@@ -13,6 +13,7 @@ class Picking extends Model
      */
     protected $fillable = [
         'box',
+        'so_no',
         'items',
         'dimension',
         'weight'

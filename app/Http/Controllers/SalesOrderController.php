@@ -108,7 +108,7 @@ class SalesOrderController extends Controller
                     $order->qty,
                     $order->rate,
                     $order->qty * $order->rate,
-                    $order->created_at->format('Y-m-d')
+                    ($order->created_at) ? $order->created_at->format('Y-m-d') : ''
                 ]);
             }
             

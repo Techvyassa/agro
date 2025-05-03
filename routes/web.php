@@ -107,3 +107,51 @@ Route::prefix('api')->middleware('api')->withoutMiddleware(['web', '\App\Http\Mi
     // Picking Routes
     Route::post('/pickings', [\App\Http\Controllers\Api\PickingController::class, 'store']);
 });
+
+// Freight Estimation Page
+Route::get('/freight', function () {
+    return redirect('/freight.html');
+});
+
+// Improved Freight Estimation Proxy with CSRF exemption and proper error handling
+Route::post('/freight-proxy', function (\Illuminate\Http\Request $request) {
+    $client = new \GuzzleHttp\Client([
+        'timeout' => 30,  // Increased timeout for API calls
+        'headers' => [
+            'Content-Type' => 'application/json',
+            'Accept' => 'application/json',
+        ]
+    ]);
+    
+    try {
+        // Forward all request data to the target API
+        $response = $client->post('https://agro-rpa.onrender.com/get-freight-estimates', [
+            'json' => $request->all(),
+            'http_errors' => false, // Don't throw exceptions for HTTP errors
+        ]);
+        
+        // Return the API response with appropriate status code and headers
+        return response($response->getBody()->getContents(), $response->getStatusCode())
+            ->header('Content-Type', 'application/json')
+            ->header('Access-Control-Allow-Origin', '*'); // Allow CORS
+            
+    } catch (\Exception $e) {
+        // Handle and log any exceptions
+        \Log::error('Freight API error: ' . $e->getMessage());
+        return response()->json([
+            'error' => 'Error connecting to freight estimation service',
+            'message' => $e->getMessage(),
+            'trace' => config('app.debug') ? $e->getTraceAsString() : null
+        ], 500);
+    }
+})->withoutMiddleware(['\App\Http\Middleware\VerifyCsrfToken']);
+
+// CORS preflight handler for the freight proxy
+Route::options('/freight-proxy', function () {
+    return response()->make('', 200, [
+        'Access-Control-Allow-Origin' => '*',
+        'Access-Control-Allow-Methods' => 'POST, OPTIONS',
+        'Access-Control-Allow-Headers' => 'Content-Type, Accept, X-Requested-With',
+        'Access-Control-Max-Age' => '86400',
+    ]);
+})->withoutMiddleware(['\App\Http\Middleware\VerifyCsrfToken']);

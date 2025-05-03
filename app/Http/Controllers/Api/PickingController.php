@@ -20,6 +20,7 @@ class PickingController extends Controller
         // Validate the request
         $validator = Validator::make($request->all(), [
             'box' => 'required|string',
+            'so_no' => 'required|string',  // Validate the sales order number
             'items' => 'required|array',
             'items.*' => 'string',
             'dimension' => 'nullable|string',
@@ -38,6 +39,7 @@ class PickingController extends Controller
             // Create a new picking
             $picking = Picking::create([
                 'box' => $request->box,
+                'so_no' => $request->so_no,
                 'items' => $request->items,
                 'dimension' => $request->dimension,
                 'weight' => $request->weight,

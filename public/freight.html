@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Freight Estimation Tool</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .card {
+            margin-bottom: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .result-card {
+            transition: all 0.3s ease;
+        }
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+        .loader {
+            display: none;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #3498db;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .extra-details {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        .btn-primary {
+            background-color: #4CAF50;
+            border-color: #4CAF50;
+        }
+        .btn-primary:hover {
+            background-color: #3e8e41;
+            border-color: #3e8e41;
+        }
+        .badge {
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <h1 class="mb-4 text-center">Freight Estimation Tool</h1>
+        
+        <div class="card mb-4">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0">Shipping Details</h5>
+            </div>
+            <div class="card-body">
+                <form id="freightForm">
+                    <div class="row">
+                        <!-- Source and Destination -->
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">Locations</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="sourcePincode" class="form-label">Source Pincode</label>
+                                        <input type="text" class="form-control" id="sourcePincode" value="400069" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="destinationPincode" class="form-label">Destination Pincode</label>
+                                        <input type="text" class="form-control" id="destinationPincode" value="400614" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Details -->
+                        <div class="col-md-6">
+                            <div class="card mb-3">
+                                <div class="card-header bg-light">Payment Details</div>
+                                <div class="card-body">
+                                    <div class="mb-3">
+                                        <label for="paymentType" class="form-label">Payment Type</label>
+                                        <select class="form-select" id="paymentType">
+                                            <option value="Prepaid" selected>Prepaid</option>
+                                            <option value="Postpaid">Postpaid</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="chequePayment">
+                                        <label class="form-check-label" for="chequePayment">Cheque Payment</label>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="invoiceAmount" class="form-label">Invoice Amount</label>
+                                        <input type="number" class="form-control" id="invoiceAmount" value="1400" required>
+                                    </div>
+                                    <div class="mb-3 form-check">
+                                        <input type="checkbox" class="form-check-input" id="rov" checked>
+                                        <label class="form-check-label" for="rov">Risk of Value (ROV)</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Shipment Dimensions -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">Shipment Dimensions</div>
+                        <div class="card-body">
+                            <div class="row mb-3" id="dimensionRow">
+                                <div class="col-md-2">
+                                    <label for="length" class="form-label">Length (cm)</label>
+                                    <input type="number" class="form-control" id="length" value="11" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="width" class="form-label">Width (cm)</label>
+                                    <input type="number" class="form-control" id="width" value="1.1" step="0.1" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="height" class="form-label">Height (cm)</label>
+                                    <input type="number" class="form-control" id="height" value="11" required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="boxCount" class="form-label">Box Count</label>
+                                    <input type="number" class="form-control" id="boxCount" value="1" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="deadWeight" class="form-label">Dead Weight (kg)</label>
+                                    <input type="number" class="form-control" id="deadWeight" value="5" required>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="totalWeight" class="form-label">Total Weight (g)</label>
+                                        <input type="number" class="form-control" id="totalWeight" value="100000" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="freightMode" class="form-label">Freight Mode</label>
+                                        <select class="form-select" id="freightMode" required>
+                                            <option value="fod" selected>FOD</option>
+                                            <option value="cod">COD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary btn-lg">Get Freight Estimates</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" style="display: none;">
+            <h2 class="mb-3">Freight Estimates</h2>
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> Showing estimates from available carriers. Click on a carrier to view detailed breakdown.
+            </div>
+            <div id="loader" class="loader"></div>
+            <div id="resultsContainer" class="row"></div>
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="freight-real.js"></script>
+</body>
+</html>

@@ -39,5 +39,28 @@ Route::get('sales/{id}', [SalesOrderController::class, 'show']);
 Route::get('sales-orders', [SalesOrderController::class, 'index']);
 Route::get('sales-orders/{id}', [SalesOrderController::class, 'show']);
 
+// Authentication routes
+Route::post('login', [AuthController::class, 'login']);
+Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
+
 // Picking route - explicitly configured for API requests
 Route::post('pickings', [\App\Http\Controllers\Api\PickingController::class, 'store'])->middleware('api');
+
+// Freight Estimation Proxy - to handle CORS issues
+Route::post('freight-proxy', function (\Illuminate\Http\Request $request) {
+    $client = new \GuzzleHttp\Client();
+    
+    try {
+        $response = $client->post('https://agro-rpa.onrender.com/get-freight-estimates', [
+            'json' => $request->all(),
+            'headers' => [
+                'Content-Type' => 'application/json',
+            ],
+        ]);
+        
+        return response($response->getBody(), $response->getStatusCode())
+            ->header('Content-Type', 'application/json');
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
+});
