@@ -30,7 +30,8 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 try {
-    // Create cURL session
+    // Create cURL session 
+    //change api url
     $ch = curl_init('http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/get-freight-estimates');
     
     // Set cURL options
