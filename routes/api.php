@@ -35,9 +35,9 @@ Route::get('item-masters/{id}', [ItemMasterController::class, 'show']);
 // SalesOrder routes - only GET methods as per user request
 // Remove leading slashes as API routes are automatically prefixed
 Route::get('sales', [SalesOrderController::class, 'index']);
-Route::get('sales/{id}', [SalesOrderController::class, 'show']);
+Route::get('sales/{so_no}', [SalesOrderController::class, 'show']);
 Route::get('sales-orders', [SalesOrderController::class, 'index']);
-Route::get('sales-orders/{id}', [SalesOrderController::class, 'show']);
+Route::get('sales-orders/{so_no}', [SalesOrderController::class, 'show']);
 
 // Authentication routes
 Route::post('login', [AuthController::class, 'login']);

@@ -19,14 +19,14 @@ class SalesOrderController extends Controller
         return response()->json(SalesOrder::all());
     }
 
-    public function show($id)
+    public function show($so_no)
     {
-        $order = SalesOrder::find($id);
+        $orderItems = SalesOrder::where('so_no', $so_no)->get();
 
-        if (!$order) {
+        if ($orderItems->isEmpty()) {
             return response()->json(['message' => 'Sales order not found'], 404);
         }
 
-        return response()->json($order);
+        return response()->json($orderItems);
     }
 }
