@@ -44,7 +44,75 @@ Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 
 // Picking routes - POST request using original controller
-Route::post('pickings', [\App\Http\Controllers\Api\PickingController::class, 'store']);
+Route::post('pickings', function (\Illuminate\Http\Request $request) {
+    try {
+        // Validate the request
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'box' => 'required|string',
+            'so_no' => 'required|string',
+            'items' => 'required|array',
+            'items.*' => 'string',
+            'dimension' => 'nullable|string',
+            'weight' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Check if pickings table has the necessary columns using DB facade
+        $hasColumns = true;
+        $columns = \Illuminate\Support\Facades\Schema::getColumnListing('pickings');
+        $required_columns = ['box', 'so_no', 'items'];
+        
+        foreach ($required_columns as $column) {
+            if (!in_array($column, $columns)) {
+                $hasColumns = false;
+                break;
+            }
+        }
+        
+        if (!$hasColumns) {
+            // Columns are missing, run the migration
+            \Illuminate\Support\Facades\Artisan::call('migrate', [
+                '--path' => 'database/migrations/2025_05_06_add_so_no_to_pickings_table.php',
+                '--force' => true
+            ]);
+        }
+        
+        // Create a new picking
+        $picking = new \App\Models\Picking();
+        $picking->box = $request->box;
+        $picking->so_no = $request->so_no;
+        $picking->items = $request->items;
+        
+        if (in_array('dimension', $columns)) {
+            $picking->dimension = $request->dimension;
+        }
+        
+        if (in_array('weight', $columns)) {
+            $picking->weight = $request->weight;
+        }
+        
+        $picking->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Picking created successfully',
+            'data' => $picking
+        ], 201);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to create picking',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+});
 
 // Clear, simple route for handling GET pickings
 Route::get('get-pickings', function (\Illuminate\Http\Request $request) {
