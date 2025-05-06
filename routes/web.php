@@ -113,6 +113,16 @@ Route::get('/freight', function () {
     return redirect('/freight.html');
 });
 
+// Freight Cost Calculation Routes
+Route::get('/freight-calculator', [App\Http\Controllers\FreightController::class, 'index'])->name('freight.calculator');
+Route::get('/freight-calculator/get-box-details', [App\Http\Controllers\FreightController::class, 'getBoxDetails'])->name('freight.getBoxDetails');
+
+// Packlist Generation Routes
+Route::get('/packlist', [App\Http\Controllers\PicklistController::class, 'index'])->name('packlist.index');
+Route::get('/packlist/get-boxes', [App\Http\Controllers\PicklistController::class, 'getBoxes'])->name('packlist.getBoxes');
+Route::post('/packlist/generate', [App\Http\Controllers\PicklistController::class, 'generate'])->name('packlist.generate');
+Route::get('/packlist/print/{so_no}/{box?}', [App\Http\Controllers\PicklistController::class, 'print'])->name('packlist.print');
+
 // Improved Freight Estimation Proxy with CSRF exemption and proper error handling
 Route::post('/freight-proxy', function (\Illuminate\Http\Request $request) {
     $client = new \GuzzleHttp\Client([

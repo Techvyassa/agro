@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting to Freight Calculator</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div style="text-align: center; margin-top: 100px;">
+        <h2>Redirecting to Freight Calculator...</h2>
+        <p>Please wait while we prepare your shipment data.</p>
+        <div class="spinner" style="margin: 20px auto; width: 50px; height: 50px; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; animation: spin 1s linear infinite;"></div>
+    </div>
+
+    <style>
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+
+    <script>
+        $(document).ready(function() {
+            // Get data from URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const soNo = urlParams.get('so_no');
+            const boxesJson = urlParams.get('boxes');
+            
+            if (!soNo || !boxesJson) {
+                alert('Missing required shipment data');
+                window.location.href = '/freight-calculator';
+                return;
+            }
+            
+            try {
+                // Parse the boxes data
+                const boxes = JSON.parse(decodeURIComponent(boxesJson));
+                
+                // For debugging
+                console.log('Boxes data:', boxes);
+                
+                // Create a form to post data to freight.html
+                const form = document.createElement('form');
+                form.method = 'GET';  // Using GET for compatibility with freight.html
+                form.action = '/freight.html';
+                
+                // Add source and destination pincodes
+                appendInput(form, 'source', '400069');
+                appendInput(form, 'destination', '400614');
+                
+                // Calculate total weight
+                let totalWeight = 0;
+                boxes.forEach(box => {
+                    totalWeight += parseFloat(box.weight) || 0;
+                });
+                
+                // If there are boxes, use first box for dimensions
+                if (boxes.length > 0) {
+                    const firstBox = boxes[0];
+                    let dimensions = [10, 10, 10]; // Default
+                    
+                    // Parse dimensions if available
+                    if (firstBox.dimension && firstBox.dimension.includes('x')) {
+                        const dimParts = firstBox.dimension.split('x').map(d => parseInt(d.trim()));
+                        if (dimParts.length >= 3) {
+                            dimensions = dimParts;
+                        }
+                    }
+                    
+                    // Add dimensions
+                    appendInput(form, 'length', dimensions[0]);
+                    appendInput(form, 'width', dimensions[1]);
+                    appendInput(form, 'height', dimensions[2]);
+                    
+                    // Add weights
+                    appendInput(form, 'boxCount', boxes.length);
+                    appendInput(form, 'deadWeight', firstBox.weight);
+                    appendInput(form, 'totalWeight', Math.round(totalWeight * 1000)); // Convert to grams
+                }
+                
+                // Add the form to the document and submit it
+                document.body.appendChild(form);
+                setTimeout(() => {
+                    form.submit();
+                }, 1000); // Small delay to show the spinner
+                
+            } catch (e) {
+                console.error('Error processing shipment data:', e);
+                alert('Error processing shipment data. Redirecting to freight calculator.');
+                setTimeout(() => {
+                    window.location.href = '/freight-calculator';
+                }, 1500);
+            }
+            
+            // Helper function to append input to form
+            function appendInput(form, name, value) {
+                const input = document.createElement('input');
+                input.type = 'hidden';
+                input.name = name;
+                input.value = value;
+                form.appendChild(input);
+            }
+        });
+    </script>
+</body>
+</html>

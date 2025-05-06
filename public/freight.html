@@ -111,33 +111,48 @@
                     <div class="card mb-3">
                         <div class="card-header bg-light">Shipment Dimensions</div>
                         <div class="card-body">
-                            <div class="row mb-3" id="dimensionRow">
-                                <div class="col-md-2">
-                                    <label for="length" class="form-label">Length (cm)</label>
-                                    <input type="number" class="form-control" id="length" value="11" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="width" class="form-label">Width (cm)</label>
-                                    <input type="number" class="form-control" id="width" value="1.1" step="0.1" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="height" class="form-label">Height (cm)</label>
-                                    <input type="number" class="form-control" id="height" value="11" required>
-                                </div>
-                                <div class="col-md-2">
-                                    <label for="boxCount" class="form-label">Box Count</label>
-                                    <input type="number" class="form-control" id="boxCount" value="1" required>
-                                </div>
-                                <div class="col-md-3">
-                                    <label for="deadWeight" class="form-label">Dead Weight (kg)</label>
-                                    <input type="number" class="form-control" id="deadWeight" value="5" required>
+                            <div id="boxesContainer">
+                                <!-- Individual box entries will be added here -->
+                                <div class="row mb-3 box-row">
+                                    <div class="col-md-2">
+                                        <label class="form-label">Length (cm)</label>
+                                        <input type="number" class="form-control box-length" value="11" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Width (cm)</label>
+                                        <input type="number" class="form-control box-width" value="11" step="0.1" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Height (cm)</label>
+                                        <input type="number" class="form-control box-height" value="11" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label class="form-label">Weight (kg)</label>
+                                        <input type="number" class="form-control box-weight" value="5" step="0.1" required>
+                                    </div>
+                                    <div class="col-md-2 d-flex align-items-end mb-2">
+                                        <button type="button" class="btn btn-danger remove-box" style="display: none;"><i class="fas fa-trash"></i></button>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="row mb-3">
+                                <div class="col-12">
+                                    <button type="button" id="addBoxBtn" class="btn btn-secondary"><i class="fas fa-plus"></i> Add Another Box</button>
+                                </div>
+                            </div>
+
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
-                                        <label for="totalWeight" class="form-label">Total Weight (g)</label>
-                                        <input type="number" class="form-control" id="totalWeight" value="100000" required>
+                                        <label for="totalBoxes" class="form-label">Total Boxes</label>
+                                        <input type="number" class="form-control" id="totalBoxes" value="1" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="totalWeight" class="form-label">Total Weight (kg)</label>
+                                        <input type="number" class="form-control" id="totalWeight" value="5" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">

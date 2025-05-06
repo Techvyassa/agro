@@ -5,7 +5,7 @@
 
 @section('content')
 <div class="row">
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -28,7 +28,7 @@
         </div>
     </div>
     
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center">
@@ -51,7 +51,30 @@
         </div>
     </div>
     
-    <div class="col-lg-4 col-md-6 mb-4">
+    <div class="col-lg-3 col-md-6 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div class="flex-shrink-0 me-3">
+                        <div class="bg-warning bg-opacity-10 p-3 rounded">
+                            <i class="fas fa-box dashboard-icon"></i>
+                        </div>
+                    </div>
+                    <div>
+                        <h6 class="text-muted mb-1">Generate</h6>
+                        <h4 class="mb-0">Packlist</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer bg-transparent border-0 py-2">
+                <a href="{{ route('packlist.index') }}" class="text-decoration-none text-muted small">
+                    <i class="fas fa-arrow-right me-1"></i> Generate Now
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-lg-3 col-md-6 mb-4">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <div class="d-flex align-items-center">

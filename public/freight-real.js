@@ -3,12 +3,209 @@ document.addEventListener('DOMContentLoaded', function() {
     const resultsSection = document.getElementById('resultsSection');
     const resultsContainer = document.getElementById('resultsContainer');
     const loader = document.getElementById('loader');
+    const boxesContainer = document.getElementById('boxesContainer');
+    const addBoxBtn = document.getElementById('addBoxBtn');
+    const totalBoxesInput = document.getElementById('totalBoxes');
+    const totalWeightInput = document.getElementById('totalWeight');
+
+    // Parse URL parameters
+    const parseUrlParams = () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const params = {};
+        
+        // Get all parameters
+        for (const [key, value] of urlParams.entries()) {
+            params[key] = value;
+        }
+        
+        return params;
+    };
+    
+    // Fill form with URL parameters
+    const fillFormFromUrlParams = () => {
+        const params = parseUrlParams();
+        
+        // Fill source and destination if provided
+        if (params.source) document.getElementById('sourcePincode').value = params.source;
+        if (params.destination) document.getElementById('destinationPincode').value = params.destination;
+        
+        // Handle invoice amount if provided
+        if (params.invoiceAmount) document.getElementById('invoiceAmount').value = params.invoiceAmount;
+        
+        // Parse box dimensions from URL - support for multiple formats
+        // Format example: dimensions=15x25x35,30x20x15,15x25x35
+        if (params.dimensions) {
+            try {
+                // Split the dimensions into individual boxes
+                const dimensionSets = params.dimensions.split(',');
+                const boxWeights = params.boxWeights ? params.boxWeights.split(',') : [];
+                
+                // Clear existing boxes first (leave one)
+                while (boxesContainer.children.length > 1) {
+                    boxesContainer.removeChild(boxesContainer.lastChild);
+                }
+                
+                // Set values for the first box
+                if (dimensionSets.length > 0) {
+                    const [length, width, height] = dimensionSets[0].split('x').map(val => parseFloat(val.trim()));
+                    const weight = boxWeights[0] ? parseFloat(boxWeights[0]) : parseFloat(params.deadWeight || 5);
+                    
+                    const firstBox = document.querySelector('.box-row');
+                    firstBox.querySelector('.box-length').value = length || '';
+                    firstBox.querySelector('.box-width').value = width || '';
+                    firstBox.querySelector('.box-height').value = height || '';
+                    firstBox.querySelector('.box-weight').value = weight || '';
+                }
+                
+                // Add additional boxes
+                for (let i = 1; i < dimensionSets.length; i++) {
+                    addNewBox();
+                    const [length, width, height] = dimensionSets[i].split('x').map(val => parseFloat(val.trim()));
+                    const weight = boxWeights[i] ? parseFloat(boxWeights[i]) : parseFloat(params.deadWeight || 5);
+                    
+                    const newBox = boxesContainer.lastChild;
+                    newBox.querySelector('.box-length').value = length || '';
+                    newBox.querySelector('.box-width').value = width || '';
+                    newBox.querySelector('.box-height').value = height || '';
+                    newBox.querySelector('.box-weight').value = weight || '';
+                }
+                
+                // Update totals
+                updateTotals();
+            } catch (error) {
+                console.error('Error parsing dimensions:', error);
+            }
+        }
+        // Fall back to legacy parameters if no dimensions parameter
+        else if (params.length && params.width && params.height && params.boxCount) {
+            // Clear existing boxes first (leave one)
+            while (boxesContainer.children.length > 1) {
+                boxesContainer.removeChild(boxesContainer.lastChild);
+            }
+            
+            // Get the box count
+            const boxCount = parseInt(params.boxCount) || 1;
+            
+            // Set values for the first box
+            const firstBox = document.querySelector('.box-row');
+            firstBox.querySelector('.box-length').value = params.length;
+            firstBox.querySelector('.box-width').value = params.width;
+            firstBox.querySelector('.box-height').value = params.height;
+            firstBox.querySelector('.box-weight').value = params.deadWeight || 5;
+            
+            // Add additional boxes if needed
+            for (let i = 1; i < boxCount; i++) {
+                addNewBox();
+                const newBox = boxesContainer.lastChild;
+                newBox.querySelector('.box-length').value = params.length;
+                newBox.querySelector('.box-width').value = params.width;
+                newBox.querySelector('.box-height').value = params.height;
+                newBox.querySelector('.box-weight').value = params.deadWeight || 5;
+            }
+            
+            // Update totals
+            updateTotals();
+        }
+        
+        // If a different total weight is specified, use that instead of calculated
+        if (params.totalWeight) {
+            const weightInKg = parseFloat(params.totalWeight) / 1000; // Convert from g to kg
+            totalWeightInput.value = weightInKg.toFixed(2);
+        }
+        
+        // Handle freight mode
+        if (params.freightMode) document.getElementById('freightMode').value = params.freightMode;
+        
+        // Auto-submit the form if requested
+        if (params.autoSubmit === 'true') {
+            setTimeout(() => {
+                document.querySelector('#freightForm button[type="submit"]').click();
+            }, 500);
+        }
+    };
 
     // Add a status message area
     const statusContainer = document.createElement('div');
     statusContainer.className = 'alert alert-info mb-4';
     statusContainer.innerHTML = '<p class="mb-0">This tool connects to the real freight API to provide actual shipping rates.</p>';
     document.querySelector('#freightForm button[type="submit"]').parentNode.prepend(statusContainer);
+
+    // Add event listener for the Add Box button
+    addBoxBtn.addEventListener('click', function() {
+        addNewBox();
+        updateTotals();
+    });
+
+    // Initial setup for remove box buttons
+    setupRemoveBoxButtons();
+    
+    // Function to add a new box row
+    function addNewBox() {
+        const boxRow = document.querySelector('.box-row').cloneNode(true);
+        boxRow.querySelectorAll('input').forEach(input => {
+            input.value = '';
+        });
+        
+        // Show the remove button for all boxes
+        const removeButtons = document.querySelectorAll('.remove-box');
+        removeButtons.forEach(btn => {
+            btn.style.display = 'block';
+        });
+        
+        // Show the remove button for the new box
+        boxRow.querySelector('.remove-box').style.display = 'block';
+        
+        // Add the new row to the container
+        boxesContainer.appendChild(boxRow);
+        
+        // Re-setup remove box buttons
+        setupRemoveBoxButtons();
+    }
+    
+    // Function to set up remove box buttons
+    function setupRemoveBoxButtons() {
+        const removeButtons = document.querySelectorAll('.remove-box');
+        removeButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (document.querySelectorAll('.box-row').length > 1) {
+                    this.closest('.box-row').remove();
+                    updateTotals();
+                    
+                    // If only one box remains, hide its remove button
+                    if (document.querySelectorAll('.box-row').length === 1) {
+                        document.querySelector('.remove-box').style.display = 'none';
+                    }
+                }
+            });
+        });
+        
+        // Add input change listeners to update totals
+        document.querySelectorAll('.box-weight, .box-length, .box-width, .box-height').forEach(input => {
+            input.addEventListener('input', updateTotals);
+        });
+    }
+    
+    // Function to update total boxes and total weight
+    function updateTotals() {
+        const boxRows = document.querySelectorAll('.box-row');
+        let totalWeight = 0;
+        
+        boxRows.forEach(row => {
+            const weightInput = row.querySelector('.box-weight');
+            if (weightInput && weightInput.value) {
+                totalWeight += parseFloat(weightInput.value);
+            }
+        });
+        
+        totalBoxesInput.value = boxRows.length;
+        totalWeightInput.value = totalWeight.toFixed(2);
+    }
+
+    // Initialize totals
+    updateTotals();
+
+    // Fill form with URL parameters
+    fillFormFromUrlParams();
 
     freightForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -21,6 +218,25 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loading message
         statusContainer.className = 'alert alert-warning mb-4';
         statusContainer.innerHTML = '<p class="mb-0"><i class="fas fa-sync fa-spin"></i> Connecting to freight API...</p>';
+        
+        // Collect all box dimensions
+        const boxRows = document.querySelectorAll('.box-row');
+        const dimensions = [];
+        
+        boxRows.forEach(row => {
+            const length = parseFloat(row.querySelector('.box-length').value) || 0;
+            const width = parseFloat(row.querySelector('.box-width').value) || 0;
+            const height = parseFloat(row.querySelector('.box-height').value) || 0;
+            const weight = parseFloat(row.querySelector('.box-weight').value) || 0;
+            
+            dimensions.push({
+                length_cm: length,
+                width_cm: width,
+                height_cm: height,
+                box_count: 1,
+                each_box_dead_weight: weight
+            });
+        });
         
         // Build request payload
         const payload = {
@@ -39,16 +255,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             shipment_details: {
-                dimensions: [
-                    {
-                        length_cm: parseFloat(document.getElementById('length').value),
-                        width_cm: parseFloat(document.getElementById('width').value),
-                        height_cm: parseFloat(document.getElementById('height').value),
-                        box_count: parseInt(document.getElementById('boxCount').value),
-                        each_box_dead_weight: parseFloat(document.getElementById('deadWeight').value)
-                    }
-                ],
-                weight_g: parseFloat(document.getElementById('totalWeight').value),
+                dimensions: dimensions,
+                weight_g: parseFloat(totalWeightInput.value) * 1000, // Convert kg to g
                 freight_mode: document.getElementById('freightMode').value
             }
         };

@@ -132,6 +132,16 @@
                                 <i class="fas fa-list"></i> View Sales Orders
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('packlist*') ? 'active' : '' }}" href="{{ route('packlist.index') }}">
+                                <i class="fas fa-box"></i> Generate Packlist
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('freight-calculator*') ? 'active' : '' }}" href="{{ route('freight.calculator') }}">
+                                <i class="fas fa-truck"></i> Calculate Freight
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
