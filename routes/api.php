@@ -158,6 +158,68 @@ Route::get('get-pickings', function (\Illuminate\Http\Request $request) {
     }
 });
 
+// NEW ROUTE: Update pickings based on so_no and box
+Route::post('update-pickings', function (\Illuminate\Http\Request $request) {
+    try {
+        // Validate the request
+        $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+            'box' => 'required|string',
+            'so_no' => 'required|string',
+            'items' => 'nullable|array',
+            'items.*' => 'string',
+            'dimension' => 'nullable|string',
+            'weight' => 'nullable|string',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Validation error',
+                'errors' => $validator->errors()
+            ], 422);
+        }
+
+        // Find existing picking by so_no and box
+        $picking = \App\Models\Picking::where('so_no', $request->so_no)
+            ->where('box', $request->box)
+            ->first();
+
+        if (!$picking) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Picking not found for the specified so_no and box',
+            ], 404);
+        }
+
+        // Update picking data
+        if ($request->has('items')) {
+            $picking->items = $request->items;
+        }
+        
+        if ($request->has('dimension')) {
+            $picking->dimension = $request->dimension;
+        }
+        
+        if ($request->has('weight')) {
+            $picking->weight = $request->weight;
+        }
+        
+        $picking->save();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Picking updated successfully',
+            'data' => $picking
+        ], 200);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to update picking',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+});
+
 // Freight Estimation Proxy - to handle CORS issues
 Route::post('freight-proxy', function (\Illuminate\Http\Request $request) {
     $client = new \GuzzleHttp\Client();
