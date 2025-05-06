@@ -35,6 +35,10 @@ class RouteServiceProvider extends ServiceProvider
 
             Route::middleware('web')
                 ->group(base_path('routes/web.php'));
+                
+            // Load custom pickings route file without api prefix (since the route itself contains 'api/')
+            Route::middleware('api')
+                ->group(base_path('routes/pickings.php'));
         });
 
         RateLimiter::for('api', function ($request) {

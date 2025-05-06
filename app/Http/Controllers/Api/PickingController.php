@@ -10,14 +10,15 @@ use Illuminate\Support\Facades\Validator;
 class PickingController extends Controller
 {
     /**
-     * Store a newly created picking in the database.
-     *
+     * Explicitly handles both GET and POST methods for creating a picking.
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function __invoke(Request $request)
     {
-        // Validate the request
+        // Works for both GET and POST methods
+        // Validate the request 
         $validator = Validator::make($request->all(), [
             'box' => 'required|string',
             'so_no' => 'required|string',  // Validate the sales order number
@@ -36,7 +37,7 @@ class PickingController extends Controller
         }
 
         try {
-            // Create a new picking
+            // Create a new picking - same logic for both GET and POST
             $picking = Picking::create([
                 'box' => $request->box,
                 'so_no' => $request->so_no,
@@ -57,5 +58,16 @@ class PickingController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+    
+    /**
+     * Original store method - preserved for compatibility
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(Request $request)
+    {
+        return $this->__invoke($request);
     }
 }

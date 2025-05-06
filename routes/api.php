@@ -43,8 +43,52 @@ Route::get('sales-orders/{so_no}', [SalesOrderController::class, 'show']);
 Route::post('login', [AuthController::class, 'login']);
 Route::middleware('auth:sanctum')->post('logout', [AuthController::class, 'logout']);
 
-// Picking route - explicitly configured for API requests
-Route::post('pickings', [\App\Http\Controllers\Api\PickingController::class, 'store'])->middleware('api');
+// Picking routes - POST request using original controller
+Route::post('pickings', [\App\Http\Controllers\Api\PickingController::class, 'store']);
+
+// Clear, simple route for handling GET pickings
+Route::get('get-pickings', function (\Illuminate\Http\Request $request) {
+    // Validate input
+    $validator = \Illuminate\Support\Facades\Validator::make($request->all(), [
+        'box' => 'required|string',
+        'so_no' => 'required|string',
+        'items' => 'required|array',
+        'items.*' => 'string',
+        'dimension' => 'nullable|string',
+        'weight' => 'nullable|string',
+    ]);
+
+    if ($validator->fails()) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Validation error',
+            'errors' => $validator->errors()
+        ], 422);
+    }
+
+    try {
+        // Create new picking
+        $picking = \App\Models\Picking::create([
+            'box' => $request->box,
+            'so_no' => $request->so_no,
+            'items' => $request->items,
+            'dimension' => $request->dimension,
+            'weight' => $request->weight,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Picking created successfully',
+            'data' => $picking
+        ], 201);
+    } catch (\Exception $e) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Failed to create picking',
+            'error' => $e->getMessage()
+        ], 500);
+    }
+});
 
 // Freight Estimation Proxy - to handle CORS issues
 Route::post('freight-proxy', function (\Illuminate\Http\Request $request) {
