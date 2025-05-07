@@ -22,9 +22,14 @@
                             <label for="service_name" class="form-label">Courier Service</label>
                             <select class="form-select" id="service_name" name="service_name" required>
                                 <option value="" selected disabled>Select a courier service</option>
-                                @foreach($courierServices as $service)
-                                    <option value="{{ $service['code'] }}">{{ $service['name'] }}</option>
-                                @endforeach
+                                @if(count($courierServices) > 0)
+                                    @foreach($courierServices as $service)
+                                        <option value="{{ $service['code'] }}">{{ $service['name'] }}</option>
+                                    @endforeach
+                                @else
+                                    <option value="delhivery">Delhivery</option>
+                                    <option value="bigship">BigShip</option>
+                                @endif
                             </select>
                         </div>
                         <div class="mb-3">

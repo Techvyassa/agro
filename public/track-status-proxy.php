@@ -34,7 +34,7 @@ if (!isset($data['service_name']) || !isset($data['search_value'])) {
 }
 
 // Forward the request to the tracking API
-$ch = curl_init('https://03a6-106-222-208-39.ngrok-free.app/track-status');
+$ch = curl_init('http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/track-status');
 
 // Set cURL options
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

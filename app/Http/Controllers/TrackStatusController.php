@@ -17,13 +17,13 @@ class TrackStatusController extends Controller
         
         try {
             $client = new Client([
-                'timeout' => 10,
+                'timeout' => 15,
                 'headers' => [
                     'Accept' => 'application/json',
                 ]
             ]);
             
-            $response = $client->get('http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/track-status', [
+            $response = $client->get('http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/courier-services', [
                 'http_errors' => false,
             ]);
             
@@ -34,12 +34,7 @@ class TrackStatusController extends Controller
                 }
             }
         } catch (\Exception $e) {
-            Log::error('Failed to fetch courier services: ' . $e->getMessage());
-            // Fallback to default services if API fails
-            $courierServices = [
-                ['name' => 'Delhivery', 'code' => 'delhivery'],
-                ['name' => 'BigShip', 'code' => 'bigship']
-            ];
+            Log::error('Error fetching courier services: ' . $e->getMessage());
         }
         
         return view('track.index', compact('courierServices'));
