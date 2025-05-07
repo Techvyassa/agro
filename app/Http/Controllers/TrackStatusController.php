@@ -23,7 +23,7 @@ class TrackStatusController extends Controller
                 ]
             ]);
             
-            $response = $client->get('https://03a6-106-222-208-39.ngrok-free.app/courier-services', [
+            $response = $client->get('http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/track-status', [
                 'http_errors' => false,
             ]);
             
