@@ -45,9 +45,9 @@
                 form.method = 'GET';  // Using GET for compatibility with freight.html
                 form.action = '/freight.html';
                 
-                // Add source and destination pincodes
-                appendInput(form, 'source', '400069');
-                appendInput(form, 'destination', '400614');
+                // We won't use hardcoded source and destination pincodes
+                // Instead, we'll use user input for these values when they fill out the freight estimation form
+                // This will be handled by freight.html
                 
                 // Calculate total weight
                 let totalWeight = 0;
@@ -55,28 +55,64 @@
                     totalWeight += parseFloat(box.weight) || 0;
                 });
                 
-                // If there are boxes, use first box for dimensions
+                // Format dimensions for all boxes
                 if (boxes.length > 0) {
-                    const firstBox = boxes[0];
-                    let dimensions = [10, 10, 10]; // Default
+                    // Keep track of all dimensions and weights
+                    const allDimensions = [];
+                    const allWeights = [];
                     
-                    // Parse dimensions if available
-                    if (firstBox.dimension && firstBox.dimension.includes('x')) {
-                        const dimParts = firstBox.dimension.split('x').map(d => parseInt(d.trim()));
-                        if (dimParts.length >= 3) {
-                            dimensions = dimParts;
+                    // Process each box
+                    boxes.forEach(box => {
+                        let dimensions = [15, 15, 15]; // Default dimensions if not specified
+                        
+                        // Parse dimensions if available
+                        if (box.dimension && box.dimension.includes('x')) {
+                            const dimParts = box.dimension.split('x').map(d => parseInt(d.trim()));
+                            if (dimParts.length >= 3) {
+                                dimensions = dimParts;
+                            }
                         }
+                        
+                        // Add this box's dimensions to the list
+                        allDimensions.push(`${dimensions[0]}x${dimensions[1]}x${dimensions[2]}`);
+                        
+                        // Add this box's weight to the list
+                        let boxWeight = parseFloat(box.weight) || 5; // Default 5kg if not specified
+                        allWeights.push(boxWeight.toFixed(2));
+                    });
+                    
+                    // Format dimensions and weights as comma-separated values
+                    const dimensionsStr = allDimensions.join(',');
+                    const weightsStr = allWeights.join(',');
+                    
+                    // Add formatted data to form
+                    appendInput(form, 'dimensions', dimensionsStr);
+                    appendInput(form, 'boxWeights', weightsStr);
+                    appendInput(form, 'boxCount', boxes.length);
+                    appendInput(form, 'totalWeight', Math.round(totalWeight * 1000)); // Convert to grams
+                    
+                    // We'll also include individual dimensions for compatibility
+                    if (boxes.length > 0) {
+                        const firstBox = boxes[0];
+                        let dimensions = [15, 15, 15]; // Default
+                        
+                        // Parse dimensions if available
+                        if (firstBox.dimension && firstBox.dimension.includes('x')) {
+                            const dimParts = firstBox.dimension.split('x').map(d => parseInt(d.trim()));
+                            if (dimParts.length >= 3) {
+                                dimensions = dimParts;
+                            }
+                        }
+                        
+                        // Add individual dimensions for backward compatibility
+                        appendInput(form, 'length', dimensions[0]);
+                        appendInput(form, 'width', dimensions[1]);
+                        appendInput(form, 'height', dimensions[2]);
+                        appendInput(form, 'deadWeight', parseFloat(firstBox.weight) || 5);
                     }
                     
-                    // Add dimensions
-                    appendInput(form, 'length', dimensions[0]);
-                    appendInput(form, 'width', dimensions[1]);
-                    appendInput(form, 'height', dimensions[2]);
-                    
-                    // Add weights
-                    appendInput(form, 'boxCount', boxes.length);
-                    appendInput(form, 'deadWeight', firstBox.weight);
-                    appendInput(form, 'totalWeight', Math.round(totalWeight * 1000)); // Convert to grams
+                    // Include raw box data for debugging and potential future use
+                    appendInput(form, 'boxData', JSON.stringify(boxes));
                 }
                 
                 // Add the form to the document and submit it

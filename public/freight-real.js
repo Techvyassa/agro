@@ -27,14 +27,139 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Fill source and destination if provided
         if (params.source) document.getElementById('sourcePincode').value = params.source;
+        if (params.sourcePincode) document.getElementById('sourcePincode').value = params.sourcePincode;
         if (params.destination) document.getElementById('destinationPincode').value = params.destination;
+        if (params.destinationPincode) document.getElementById('destinationPincode').value = params.destinationPincode;
         
         // Handle invoice amount if provided
         if (params.invoiceAmount) document.getElementById('invoiceAmount').value = params.invoiceAmount;
         
-        // Parse box dimensions from URL - support for multiple formats
-        // Format example: dimensions=15x25x35,30x20x15,15x25x35
-        if (params.dimensions) {
+        // First try to use dimensions and boxWeights parameters (from freight-calculator)
+        if (params.dimensions && params.boxCount) {
+            try {
+                console.log('Processing data from freight-calculator');
+                
+                // Split dimensions and box weights
+                const dimensionSets = params.dimensions.split(',');
+                const boxWeights = params.boxWeights ? params.boxWeights.split(',') : [];
+                const boxCount = parseInt(params.boxCount) || dimensionSets.length;
+                
+                console.log('Dimensions:', dimensionSets);
+                console.log('Box Weights:', boxWeights);
+                console.log('Box Count:', boxCount);
+                
+                // Clear existing boxes first (leave one)
+                while (boxesContainer.children.length > 1) {
+                    boxesContainer.removeChild(boxesContainer.lastChild);
+                }
+                
+                // Set values for the first box
+                if (dimensionSets.length > 0) {
+                    const firstDimSet = dimensionSets[0];
+                    let length, width, height;
+                    
+                    if (firstDimSet.includes('x')) {
+                        [length, width, height] = firstDimSet.split('x').map(val => parseFloat(val.trim()));
+                    } else {
+                        // Fallback if dimensions aren't in expected format
+                        length = parseFloat(params.length) || 15;
+                        width = parseFloat(params.width) || 15;
+                        height = parseFloat(params.height) || 15;
+                    }
+                    
+                    const weight = boxWeights[0] ? parseFloat(boxWeights[0]) : 
+                                  parseFloat(params.deadWeight) || 5;
+                    
+                    const firstBox = document.querySelector('.box-row');
+                    firstBox.querySelector('.box-length').value = length || 15;
+                    firstBox.querySelector('.box-width').value = width || 15;
+                    firstBox.querySelector('.box-height').value = height || 15;
+                    firstBox.querySelector('.box-weight').value = weight || 5;
+                    
+                    // Add additional boxes with their specific dimensions and weights
+                    for (let i = 1; i < Math.min(boxCount, dimensionSets.length); i++) {
+                        addNewBox();
+                        
+                        let boxLength, boxWidth, boxHeight;
+                        if (dimensionSets[i] && dimensionSets[i].includes('x')) {
+                            [boxLength, boxWidth, boxHeight] = dimensionSets[i].split('x')
+                                .map(val => parseFloat(val.trim()));
+                        } else {
+                            // Use first box dimensions as fallback
+                            boxLength = length;
+                            boxWidth = width;
+                            boxHeight = height;
+                        }
+                        
+                        const boxWeight = boxWeights[i] ? parseFloat(boxWeights[i]) : 
+                                        parseFloat(params.deadWeight) || 5;
+                        
+                        const newBox = boxesContainer.lastChild;
+                        newBox.querySelector('.box-length').value = boxLength || 15;
+                        newBox.querySelector('.box-width').value = boxWidth || 15;
+                        newBox.querySelector('.box-height').value = boxHeight || 15;
+                        newBox.querySelector('.box-weight').value = boxWeight || 5;
+                    }
+                    
+                    // Add any remaining boxes using the first box dimensions
+                    for (let i = dimensionSets.length; i < boxCount; i++) {
+                        addNewBox();
+                        const newBox = boxesContainer.lastChild;
+                        newBox.querySelector('.box-length').value = length || 15;
+                        newBox.querySelector('.box-width').value = width || 15;
+                        newBox.querySelector('.box-height').value = height || 15;
+                        newBox.querySelector('.box-weight').value = parseFloat(params.deadWeight) || 5;
+                    }
+                }
+                
+                // Update totals
+                updateTotals();
+                
+            } catch (error) {
+                console.error('Error processing dimensions from freight-calculator:', error);
+            }
+        }
+        // Fall back to legacy format if dimensions parameter is not available
+        else if (params.length && params.width && params.height) {
+            console.log('Processing data in legacy format');
+            
+            // Clear existing boxes first (leave one)
+            while (boxesContainer.children.length > 1) {
+                boxesContainer.removeChild(boxesContainer.lastChild);
+            }
+            
+            // Get the box count
+            const boxCount = parseInt(params.boxCount) || 1;
+            const length = parseFloat(params.length);
+            const width = parseFloat(params.width);
+            const height = parseFloat(params.height);
+            const weight = parseFloat(params.deadWeight) || 5; // Default to 5kg if not specified
+            
+            console.log('Legacy dimensions:', length, width, height);
+            console.log('Legacy box count:', boxCount);
+            
+            // Set values for the first box
+            const firstBox = document.querySelector('.box-row');
+            firstBox.querySelector('.box-length').value = length;
+            firstBox.querySelector('.box-width').value = width;
+            firstBox.querySelector('.box-height').value = height;
+            firstBox.querySelector('.box-weight').value = weight;
+            
+            // Add additional boxes if needed
+            for (let i = 1; i < boxCount; i++) {
+                addNewBox();
+                const newBox = boxesContainer.lastChild;
+                newBox.querySelector('.box-length').value = length;
+                newBox.querySelector('.box-width').value = width;
+                newBox.querySelector('.box-height').value = height;
+                newBox.querySelector('.box-weight').value = weight;
+            }
+            
+            // Update totals
+            updateTotals();
+        }
+        // Support for the dimensions format (backwards compatibility)
+        else if (params.dimensions) {
             try {
                 // Split the dimensions into individual boxes
                 const dimensionSets = params.dimensions.split(',');
@@ -76,51 +201,43 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error parsing dimensions:', error);
             }
         }
-        // Fall back to legacy parameters if no dimensions parameter
-        else if (params.length && params.width && params.height && params.boxCount) {
-            // Clear existing boxes first (leave one)
-            while (boxesContainer.children.length > 1) {
-                boxesContainer.removeChild(boxesContainer.lastChild);
-            }
-            
-            // Get the box count
-            const boxCount = parseInt(params.boxCount) || 1;
-            
-            // Set values for the first box
-            const firstBox = document.querySelector('.box-row');
-            firstBox.querySelector('.box-length').value = params.length;
-            firstBox.querySelector('.box-width').value = params.width;
-            firstBox.querySelector('.box-height').value = params.height;
-            firstBox.querySelector('.box-weight').value = params.deadWeight || 5;
-            
-            // Add additional boxes if needed
-            for (let i = 1; i < boxCount; i++) {
-                addNewBox();
-                const newBox = boxesContainer.lastChild;
-                newBox.querySelector('.box-length').value = params.length;
-                newBox.querySelector('.box-width').value = params.width;
-                newBox.querySelector('.box-height').value = params.height;
-                newBox.querySelector('.box-weight').value = params.deadWeight || 5;
-            }
-            
-            // Update totals
-            updateTotals();
-        }
         
-        // If a different total weight is specified, use that instead of calculated
+        // Handle total weight if specified (convert from grams to kg if needed)
         if (params.totalWeight) {
-            const weightInKg = parseFloat(params.totalWeight) / 1000; // Convert from g to kg
+            let weightInKg;
+            // If value is large, assume it's in grams and convert to kg
+            if (parseFloat(params.totalWeight) > 1000) {
+                weightInKg = parseFloat(params.totalWeight) / 1000;
+            } else {
+                weightInKg = parseFloat(params.totalWeight);
+            }
             totalWeightInput.value = weightInKg.toFixed(2);
         }
         
         // Handle freight mode
         if (params.freightMode) document.getElementById('freightMode').value = params.freightMode;
         
-        // Auto-submit the form if requested
-        if (params.autoSubmit === 'true') {
+        // Auto-submit the form if all required parameters are present
+        const sourcePincode = document.getElementById('sourcePincode').value;
+        const destinationPincode = document.getElementById('destinationPincode').value;
+
+        const hasRequiredParams = params.length && params.width && params.height && 
+            (params.boxCount || params.boxCount === '1') && 
+            (sourcePincode && destinationPincode);
+        
+        // Add invoice amount if needed
+        if (params.invoiceAmount && !document.getElementById('invoiceAmount').value) {
+            document.getElementById('invoiceAmount').value = params.invoiceAmount;
+        }
+
+        console.log('URL parameters detected:', params);
+        console.log('Form is ready for submission:', hasRequiredParams);
+            
+        if (hasRequiredParams || params.autoSubmit === 'true') {
+            console.log('Auto-submitting form with URL parameters');
             setTimeout(() => {
                 document.querySelector('#freightForm button[type="submit"]').click();
-            }, 500);
+            }, 800); // Increased timeout to ensure all values are loaded
         }
     };
 
@@ -222,34 +339,56 @@ document.addEventListener('DOMContentLoaded', function() {
         // Collect all box dimensions
         const boxRows = document.querySelectorAll('.box-row');
         const dimensions = [];
+        let totalValidBoxes = 0;
         
         boxRows.forEach(row => {
-            const length = parseFloat(row.querySelector('.box-length').value) || 0;
-            const width = parseFloat(row.querySelector('.box-width').value) || 0;
-            const height = parseFloat(row.querySelector('.box-height').value) || 0;
-            const weight = parseFloat(row.querySelector('.box-weight').value) || 0;
+            // Get the values from the form fields
+            const lengthInput = row.querySelector('.box-length');
+            const widthInput = row.querySelector('.box-width');
+            const heightInput = row.querySelector('.box-height');
+            const weightInput = row.querySelector('.box-weight');
             
-            dimensions.push({
-                length_cm: length,
-                width_cm: width,
-                height_cm: height,
-                box_count: 1,
-                each_box_dead_weight: weight
-            });
+            // Only include boxes that have all dimensions and weight
+            if (lengthInput.value && widthInput.value && heightInput.value && weightInput.value) {
+                const length = parseFloat(lengthInput.value) || 0;
+                const width = parseFloat(widthInput.value) || 0;
+                const height = parseFloat(heightInput.value) || 0;
+                const weight = parseFloat(weightInput.value) || 0;
+                
+                if (length > 0 && width > 0 && height > 0) {
+                    dimensions.push({
+                        length_cm: length,
+                        width_cm: width,
+                        height_cm: height,
+                        box_count: 1,
+                        each_box_dead_weight: weight
+                    });
+                    totalValidBoxes++;
+                }
+            }
         });
+        
+        // Get source and destination pincodes
+        const sourcePincodeValue = document.getElementById('sourcePincode').value.trim();
+        const destinationPincodeValue = document.getElementById('destinationPincode').value.trim();
+        
+        // Get invoice amount
+        const invoiceAmountInput = document.getElementById('invoiceAmount');
+        const invoiceAmountValue = invoiceAmountInput.value.trim() ? 
+            parseFloat(invoiceAmountInput.value) : 1000; // Default to 1000 if empty
         
         // Build request payload
         const payload = {
             common: {
                 pincode: {
-                    source: document.getElementById('sourcePincode').value,
-                    destination: document.getElementById('destinationPincode').value
+                    source: sourcePincodeValue,
+                    destination: destinationPincodeValue
                 },
                 payment: {
                     type: document.getElementById('paymentType').value,
                     cheque_payment: document.getElementById('chequePayment').checked
                 },
-                invoice_amount: parseFloat(document.getElementById('invoiceAmount').value),
+                invoice_amount: invoiceAmountValue,
                 insurance: {
                     rov: document.getElementById('rov').checked
                 }
@@ -260,6 +399,46 @@ document.addEventListener('DOMContentLoaded', function() {
                 freight_mode: document.getElementById('freightMode').value
             }
         };
+        
+        // Debugging information
+        console.log('Shipment details:', {
+            boxes: totalValidBoxes,
+            source: sourcePincodeValue,
+            destination: destinationPincodeValue,
+            dimensions: dimensions.map(d => `${d.length_cm}x${d.width_cm}x${d.height_cm}`),
+            invoice: invoiceAmountValue,
+            totalWeight: `${totalWeightInput.value}kg (${parseFloat(totalWeightInput.value) * 1000}g)`
+        });
+        
+        console.log('Sending to API:', payload);
+
+        // Check if we have all required data before making API call
+        if (!sourcePincodeValue || !destinationPincodeValue || dimensions.length === 0) {
+            // Hide loader
+            loader.style.display = 'none';
+            
+            // Show error message
+            statusContainer.className = 'alert alert-danger mb-4';
+            statusContainer.innerHTML = `
+                <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> Missing required information:</p>
+                <ul class="mb-0 small">
+                    ${!sourcePincodeValue ? '<li>Source pincode is required</li>' : ''}
+                    ${!destinationPincodeValue ? '<li>Destination pincode is required</li>' : ''}
+                    ${dimensions.length === 0 ? '<li>At least one box with valid dimensions is required</li>' : ''}
+                </ul>
+            `;
+            
+            // Show error in the results area
+            resultsContainer.innerHTML = `
+                <div class="col-12">
+                    <div class="alert alert-warning">
+                        <h5><i class="fas fa-exclamation-circle"></i> Missing Information</h5>
+                        <p>Please fill in all required fields before submitting.</p>
+                    </div>
+                </div>
+            `;
+            return;
+        }
 
         // Use our PHP proxy to call the real API
         fetch('freight-proxy.php', {
@@ -281,12 +460,104 @@ document.addEventListener('DOMContentLoaded', function() {
             // Hide loader
             loader.style.display = 'none';
             
-            // Update status to show success
-            statusContainer.className = 'alert alert-success mb-4';
-            statusContainer.innerHTML = '<p class="mb-0"><i class="fas fa-check-circle"></i> Connected successfully to the freight API. Showing live shipping rates.</p>';
+            // Verify we received actual API data and not a hardcoded response
+            console.log('API Response received:', data);
+            
+            // Check for _request_context which contains our original request parameters
+            // This was added by our enhanced proxy to verify real-time responses
+            const requestContext = data._request_context || {};
+            const isRealTimeResponse = !!requestContext.request_id;
+            
+            // Remove the request context before displaying results
+            if (data._request_context) {
+                delete data._request_context;
+            }
+            
+            // Calculate response metrics
+            let responseFingerprint = '';
+            let carrierCount = 0;
+            let estimateCount = 0;
+            let hasData = false;
+            let totalCharges = 0;
+            
+            try {
+                // Check if we have actual data
+                if (data && typeof data === 'object') {
+                    // Only count real carrier keys (exclude our added metadata)
+                    carrierCount = Object.keys(data).filter(key => !key.startsWith('_')).length;
+                    
+                    for (const carrier in data) {
+                        if (carrier.startsWith('_')) continue; // Skip metadata fields
+                        
+                        if (Array.isArray(data[carrier])) {
+                            estimateCount += data[carrier].length;
+                            
+                            // Sample values to verify real response
+                            if (data[carrier].length > 0) {
+                                hasData = true;
+                                // Check first estimate charges and build fingerprint
+                                data[carrier].forEach(estimate => {
+                                    if (estimate.total_charges) {
+                                        totalCharges += estimate.total_charges;
+                                        responseFingerprint += `${carrier}:${estimate.total_charges},`;
+                                    }
+                                });
+                            }
+                        }
+                    }
+                }
+                
+                // Log detailed response validation
+                console.log('Response validation:', {
+                    isRealTimeResponse,
+                    requestSource: requestContext.source,
+                    requestDest: requestContext.destination,
+                    carriers: carrierCount,
+                    estimates: estimateCount,
+                    totalCharges: totalCharges,
+                    hasData: hasData,
+                    fingerprint: responseFingerprint,
+                    timestamp: requestContext.timestamp
+                });
+                
+                // Verify that response matches our request parameters
+                const sourceMatches = !requestContext.source || requestContext.source === sourcePincodeValue;
+                const destMatches = !requestContext.destination || requestContext.destination === destinationPincodeValue;
+                
+                // Alert if there might be a mismatch (response doesn't match request)
+                if (!sourceMatches || !destMatches) {
+                    console.warn('Response parameters don\'t match request:', {
+                        requestSource: sourcePincodeValue,
+                        responseSource: requestContext.source,
+                        requestDest: destinationPincodeValue, 
+                        responseDest: requestContext.destination
+                    });
+                }
+                
+                // Check if we have a valid response with appropriate data
+                if (!hasData || carrierCount === 0) {
+                    throw new Error('API returned an empty response');
+                }
+            } catch (e) {
+                console.error('Error validating API response:', e);
+                statusContainer.className = 'alert alert-warning mb-4';
+                statusContainer.innerHTML = `
+                    <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> Warning: The API response may not be accurate.</p>
+                    <p class="small mb-0">Please verify the rates before proceeding.</p>
+                `;
+            }
+            
+            // Update status based on data validation
+            const freshResponse = isRealTimeResponse ? 'real-time' : 'cached';
+            statusContainer.className = isRealTimeResponse ? 'alert alert-success mb-4' : 'alert alert-info mb-4';
+            statusContainer.innerHTML = `
+                <p class="mb-0"><i class="fas fa-${isRealTimeResponse ? 'check-circle' : 'info-circle'}"></i> 
+                ${isRealTimeResponse ? 'Connected successfully' : 'Retrieved data'} from the freight API.</p>
+                <p class="small mb-0">Showing ${freshResponse} shipping rates for <strong>${sourcePincodeValue}</strong> to <strong>${destinationPincodeValue}</strong></p>
+                <p class="small mb-0">Found ${carrierCount} carriers with ${estimateCount} shipping options</p>
+            `;
             
             // Display results
-            console.log('API Response:', data);
             displayResults(data);
         })
         .catch(error => {
