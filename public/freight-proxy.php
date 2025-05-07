@@ -30,6 +30,11 @@ if (json_last_error() !== JSON_ERROR_NONE) {
 }
 
 try {
+    // Debug: Log request payload to a file
+    $debugLog = fopen('freight_api_debug.log', 'a');
+    fwrite($debugLog, "==== REQUEST " . date('Y-m-d H:i:s') . " ====\n");
+    fwrite($debugLog, $inputJSON . "\n\n");
+    
     // Create cURL session 
     //change api url
     $ch = curl_init('http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/get-freight-estimates');
@@ -48,6 +53,12 @@ try {
     // Execute the request
     $response = curl_exec($ch);
     $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+    
+    // Debug: Log response
+    fwrite($debugLog, "==== RESPONSE (Status: $httpCode) ====\n");
+    fwrite($debugLog, $response . "\n\n");
+    fwrite($debugLog, "=====================================\n\n");
+    fclose($debugLog);
     
     // Check for errors
     if (curl_errno($ch)) {
