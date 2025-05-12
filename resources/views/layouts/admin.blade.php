@@ -138,7 +138,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/products*') ? 'active' : '' }}" href="{{ route('admin.products.index') }}">
-                                <i class="fas fa-boxes"></i> Item Master Creation
+                                <i class="fas fa-boxes"></i> Item Master 
                             </a>
                         </li>
                         <li class="nav-item">
