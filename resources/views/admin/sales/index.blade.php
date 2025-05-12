@@ -36,7 +36,7 @@
                         <th scope="col">Qty</th>
                         <th scope="col">Rate</th>
                         <th scope="col">Total</th>
-                        <th scope="col" width="120">Actions</th>
+                        <!-- <th scope="col" width="120">Actions</th> -->
                     </tr>
                 </thead>
                 <tbody>
@@ -52,19 +52,19 @@
                         <td>₹{{ number_format($order->qty * $order->rate, 2) }}</td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a href="{{ route('admin.sales.show', $order->id) }}" class="btn btn-sm btn-primary">
+                                <!-- <a href="{{ route('admin.sales.show', $order->id) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <!-- <a href="{{ route('admin.sales.edit', $order->id) }}" class="btn btn-sm btn-warning">
+                                <a href="{{ route('admin.sales.edit', $order->id) }}" class="btn btn-sm btn-warning">
                                     <i class="fas fa-edit"></i>
-                                </a> -->
+                                </a>
                                 <form action="{{ route('admin.sales.destroy', $order->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this order?')">
                                         <i class="fas fa-trash"></i>
                                     </button>
-                                </form>
+                                </form> -->
                             </div>
                         </td>
                     </tr>
