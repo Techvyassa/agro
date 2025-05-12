@@ -68,7 +68,7 @@ try {
        "  - Dimensions: {$dimensionsStr}\n", FILE_APPEND);
     
     // Create cURL session with the correct API endpoint
-    $apiEndpoint = 'http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/get-freight-estimates';
+    $apiEndpoint = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates';
     file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "CONNECTING TO API: {$apiEndpoint}\n", FILE_APPEND);
     
     // Initialize cURL with proper options to prevent caching
