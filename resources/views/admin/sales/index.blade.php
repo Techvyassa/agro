@@ -55,9 +55,9 @@
                                 <a href="{{ route('admin.sales.show', $order->id) }}" class="btn btn-sm btn-primary">
                                     <i class="fas fa-eye"></i>
                                 </a>
-                                <a href="{{ route('admin.sales.edit', $order->id) }}" class="btn btn-sm btn-warning">
+                                <!-- <a href="{{ route('admin.sales.edit', $order->id) }}" class="btn btn-sm btn-warning">
                                     <i class="fas fa-edit"></i>
-                                </a>
+                                </a> -->
                                 <form action="{{ route('admin.sales.destroy', $order->id) }}" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
