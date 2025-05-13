@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro Admin - @yield('title', 'Dashboard')</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -17,7 +18,7 @@
             min-height: calc(100vh - 56px);
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
             z-index: 100;
-            background-color: #212529;
+            background-color: #527cb9;
         }
         .sidebar .nav-link {
             color: rgba(255,255,255,.75);
@@ -62,21 +63,21 @@
             background-color: rgba(0, 0, 0, 0.05);
         }
         .btn-primary {
-            background-color: #212529;
-            border-color: #212529;
+            background-color: #527cb9;
+            border-color: #527cb9;
         }
         .btn-primary:hover {
-            background-color: #1a1e21;
-            border-color: #1a1e21;
+            background-color: #476aa1;
+            border-color: #476aa1;
         }
         .bg-primary {
-            background-color: #212529 !important;
+            background-color: #527cb9 !important;
         }
         .text-primary {
-            color: #212529 !important;
+            color: #527cb9 !important;
         }
         .badge-dark {
-            background-color: #212529;
+            background-color: #527cb9;
             color: #fff;
         }
         .sidebar-heading {
@@ -85,7 +86,7 @@
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-0">
         <div class="container-fluid">
             <a class="navbar-brand" href="/admin/dashboard">Agro Admin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

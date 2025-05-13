@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agro - Login</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #2a9d8f;
+            --primary-color: #527cb9;
             --secondary-color: #264653;
             --light-color: #f8f9fa;
             --dark-color: #212529;
@@ -36,7 +37,7 @@
         .login-logo {
             text-align: center;
             margin-bottom: 30px;
-            color: var(--primary-color);
+            color: #0d4699;
         }
         
         .login-logo i {
@@ -95,7 +96,7 @@
         
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(42, 157, 143, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(82, 124, 185, 0.25);
         }
         
         .input-group-text {
@@ -119,7 +120,7 @@
         }
         
         .btn-primary:hover {
-            background-color: #238c7f;
+            background-color: #476aa1;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -150,7 +151,7 @@
         }
         
         .forgot-password:hover {
-            color: #238c7f;
+            color: #476aa1;
             text-decoration: underline;
         }
     </style>

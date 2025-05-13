@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>Agro - @yield('title', 'Dashboard')</title>
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
@@ -30,8 +31,8 @@
             text-align: center;
         }
         .sidebar .nav-link.active {
-            color: #2a9d8f;
-            background-color: rgba(42, 157, 143, 0.1);
+            color: #527cb9;
+            background-color: rgba(82, 124, 185, 0.1);
         }
         .sidebar .nav-link:hover {
             background-color: rgba(0, 0, 0, 0.05);
@@ -55,29 +56,29 @@
         }
         .dashboard-icon {
             font-size: 2rem;
-            color: #2a9d8f;
+            color: #527cb9;
         }
         .table-hover tbody tr:hover {
-            background-color: rgba(42, 157, 143, 0.05);
+            background-color: rgba(82, 124, 185, 0.05);
         }
         .btn-primary {
-            background-color: #2a9d8f;
-            border-color: #2a9d8f;
+            background-color: #527cb9;
+            border-color: #527cb9;
         }
         .btn-primary:hover {
-            background-color: #258579;
-            border-color: #258579;
+            background-color: #476aa1;
+            border-color: #476aa1;
         }
         .bg-primary {
-            background-color: #2a9d8f !important;
+            background-color: #527cb9 !important;
         }
         .text-primary {
-            color: #2a9d8f !important;
+            color: #527cb9 !important;
         }
         .alert-success {
-            background-color: rgba(42, 157, 143, 0.1);
-            border-color: rgba(42, 157, 143, 0.2);
-            color: #2a9d8f;
+            background-color: rgba(82, 124, 185, 0.1);
+            border-color: rgba(82, 124, 185, 0.2);
+            color: #527cb9;
         }
     </style>
 </head>
