@@ -158,8 +158,8 @@
 <body>
     <div class="login-container">
         <div class="login-logo">
-            <i class="fas fa-leaf"></i>
-            <h3>Royal Kissan Agro</h3>
+            <img src="{{ asset('images/logo.png') }}" alt="Royal Kissan Logo" style="height: 60px; margin-bottom: 15px;">
+            <h3>Royal Kissan </h3>
         </div>
         
         <div class="login-tabs">
