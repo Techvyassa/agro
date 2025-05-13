@@ -159,8 +159,7 @@
 <body>
     <div class="login-container">
         <div class="login-logo">
-            <img src="{{ asset('images/logo.png') }}" alt="Royal Kissan Logo" style="height: 60px; margin-bottom: 15px;">
-            <h3>Royal Kissan </h3>
+            <img src="{{ asset('images/login.jpeg') }}" alt="Royal Kissan Logo" style="height: 84px; margin-bottom: 15px;">
         </div>
         
         <div class="login-tabs">
