@@ -383,3 +383,171 @@
   - Fingerprint: delhivery:827.68,delhivery:786.8,bigship-soumnair@gmail.com:408,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:408,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,
 [2025-05-07 13:53:19] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
 [2025-05-07 13:53:19] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-12 14:13:51] 
+=== NEW REQUEST STARTED ===
+[2025-05-12 14:13:51] REQUEST PAYLOAD: {"common":{"pincode":{"source":"400605","destination":"400701"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":2000,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-12 14:13:51] REQUEST DETAILS:
+  - ID: 04b3a801dbc1ab79211dd052d2e79a24
+  - Source: 400605
+  - Destination: 400701
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-12 14:13:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/get-freight-estimates
+[2025-05-12 14:13:51] EXECUTING API REQUEST...
+[2025-05-12 14:13:53] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.942618s
+  - Size: 11326 bytes
+[2025-05-12 14:13:53] RAW RESPONSE: {"delhivery":[],"bigship-soumnair@gmail.com":[{"service_name":"LTL Delhivery","total_charges":408.0,"tat":3,"charged_wt":25.0,"risk_type":0.0,"risk_type_charge":0.0,"extra":{"courier_partner_id":1,"courier_category_id":2,"courier_type":"Surface","plan_name":"Franchise","risk_type_name":"Carrier Risk","zone":"W1-W1","restricted_pincode_message":null,"freight_charge":190.0,"cod_charge":0.0,"total_freight_charge":190.0,"additional_charges":{"risk_type_charge":63.0,"lr_cost":80.0,"green_tax":0.0,"handling_charge":0.0,"pickup_charge":75.0,"state_tax":0.0},"other_additional_charges":[{"key_name":"to_pay","key_value":0.0},{"key_name":"oda","key_value":0.0},{"key_name":"warai_charge","key_value":0.0},{"key_name":"odc_charge","key_value":0.0}]}},{"service_name":"LTL MOVIN","total_charges":572.82,"tat":5,"charged_wt":18.5,"risk_type":0.0,"risk_type_charge":0.0,"extra":{"courier_partner_id":9,"courier_category_id":2,"courier_type":"Surface","plan_name":"Franchise","risk_type_name":"Carrier Risk",...(truncated)
+[2025-05-12 14:13:53] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 16
+  - Price Sum: 10977.34
+  - Fingerprint: bigship-soumnair@gmail.com:408,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:408,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,
+[2025-05-12 14:13:53] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-12 14:13:53] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-12 14:14:21] 
+=== NEW REQUEST STARTED ===
+[2025-05-12 14:14:21] REQUEST PAYLOAD: {"common":{"pincode":{"source":"500006","destination":"400701"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":5000,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-12 14:14:21] REQUEST DETAILS:
+  - ID: 16e2b98223ef9e72167ae62d87d4b496
+  - Source: 500006
+  - Destination: 400701
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-12 14:14:21] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/get-freight-estimates
+[2025-05-12 14:14:21] EXECUTING API REQUEST...
+[2025-05-12 14:14:23] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.754914s
+  - Size: 9906 bytes
+[2025-05-12 14:14:23] RAW RESPONSE: {"delhivery":[],"bigship-soumnair@gmail.com":[{"service_name":"LTL Delhivery","total_charges":494.5,"tat":5,"charged_wt":25.0,"risk_type":0.0,"risk_type_charge":0.0,"extra":{"courier_partner_id":1,"courier_category_id":2,"courier_type":"Surface","plan_name":"Franchise","risk_type_name":"Carrier Risk","zone":"S1-W1","restricted_pincode_message":null,"freight_charge":276.5,"cod_charge":0.0,"total_freight_charge":276.5,"additional_charges":{"risk_type_charge":63.0,"lr_cost":80.0,"green_tax":0.0,"handling_charge":0.0,"pickup_charge":75.0,"state_tax":0.0},"other_additional_charges":[{"key_name":"to_pay","key_value":0.0},{"key_name":"oda","key_value":0.0},{"key_name":"warai_charge","key_value":0.0},{"key_name":"odc_charge","key_value":0.0}]}},{"service_name":"LTL MOVIN","total_charges":623.72,"tat":5,"charged_wt":18.5,"risk_type":0.0,"risk_type_charge":0.0,"extra":{"courier_partner_id":9,"courier_category_id":2,"courier_type":"Surface","plan_name":"Franchise","risk_type_name":"Carrier Risk",...(truncated)
+[2025-05-12 14:14:23] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 14
+  - Price Sum: 10922.04
+  - Fingerprint: bigship-soumnair@gmail.com:494.5,bigship-soumnair@gmail.com:623.72,bigship-soumnair@gmail.com:656,bigship-soumnair@gmail.com:1731.09,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:595.71,bigship-Info@toolik.in:494.5,bigship-Info@toolik.in:623.72,bigship-Info@toolik.in:656,bigship-Info@toolik.in:1731.09,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:595.71,
+[2025-05-12 14:14:23] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-12 14:14:23] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-12 14:16:16] 
+=== NEW REQUEST STARTED ===
+[2025-05-12 14:16:16] REQUEST PAYLOAD: {"common":{"pincode":{"source":"500006","destination":"400701"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":5000,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-12 14:16:16] REQUEST DETAILS:
+  - ID: d21494b47d90ad5e3927b4ca8c8fb1d6
+  - Source: 500006
+  - Destination: 400701
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-12 14:16:16] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com:8000/get-freight-estimates
+[2025-05-12 14:16:16] EXECUTING API REQUEST...
+[2025-05-12 14:16:18] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.198591s
+  - Size: 9906 bytes
+[2025-05-12 14:16:18] RAW RESPONSE: {"delhivery":[],"bigship-soumnair@gmail.com":[{"service_name":"LTL Delhivery","total_charges":494.5,"tat":5,"charged_wt":25.0,"risk_type":0.0,"risk_type_charge":0.0,"extra":{"courier_partner_id":1,"courier_category_id":2,"courier_type":"Surface","plan_name":"Franchise","risk_type_name":"Carrier Risk","zone":"S1-W1","restricted_pincode_message":null,"freight_charge":276.5,"cod_charge":0.0,"total_freight_charge":276.5,"additional_charges":{"risk_type_charge":63.0,"lr_cost":80.0,"green_tax":0.0,"handling_charge":0.0,"pickup_charge":75.0,"state_tax":0.0},"other_additional_charges":[{"key_name":"to_pay","key_value":0.0},{"key_name":"oda","key_value":0.0},{"key_name":"warai_charge","key_value":0.0},{"key_name":"odc_charge","key_value":0.0}]}},{"service_name":"LTL MOVIN","total_charges":623.72,"tat":5,"charged_wt":18.5,"risk_type":0.0,"risk_type_charge":0.0,"extra":{"courier_partner_id":9,"courier_category_id":2,"courier_type":"Surface","plan_name":"Franchise","risk_type_name":"Carrier Risk",...(truncated)
+[2025-05-12 14:16:18] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 14
+  - Price Sum: 10922.04
+  - Fingerprint: bigship-soumnair@gmail.com:494.5,bigship-soumnair@gmail.com:623.72,bigship-soumnair@gmail.com:656,bigship-soumnair@gmail.com:1731.09,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:595.71,bigship-Info@toolik.in:494.5,bigship-Info@toolik.in:623.72,bigship-Info@toolik.in:656,bigship-Info@toolik.in:1731.09,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:595.71,
+[2025-05-12 14:16:18] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-12 14:16:18] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-13 08:23:13] 
+=== NEW REQUEST STARTED ===
+[2025-05-13 08:23:13] REQUEST PAYLOAD: {"common":{"pincode":{"source":"400605","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":2000,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-13 08:23:13] REQUEST DETAILS:
+  - ID: 1de459541c1b310c6cde8dc7dff1bfce
+  - Source: 400605
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-13 08:23:13] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-13 08:23:13] EXECUTING API REQUEST...
+[2025-05-13 08:23:19] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 5.668769s
+  - Size: 12682 bytes
+[2025-05-13 08:23:19] RAW RESPONSE: {"delhivery":[{"service_name":"Delhivery B2B","total_charges":0.0,"tat":null,"charged_wt":null,"risk_type":"CarrierRisk","risk_type_charge":0.0,"extra":{"b2b":{"message":"Unauthorized","risk_type":"CarrierRisk"},"b2c":{"message":"Unauthorized","risk_type":"CarrierRisk"}}},{"service_name":"Delhivery B2C","total_charges":0.0,"tat":null,"charged_wt":null,"risk_type":"CarrierRisk","risk_type_charge":0.0,"extra":{"b2b":{"message":"Unauthorized","risk_type":"CarrierRisk"},"b2c":{"message":"Unauthorized","risk_type":"CarrierRisk"}}},{"service_name":"One Delhivery","total_charges":546.0,"tat":"1","charged_wt":18.5,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":250.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":37.5,"green":0.0,"gst":58.5,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_u...(truncated)
+[2025-05-13 08:23:19] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 19
+  - Price Sum: 11523.34
+  - Fingerprint: delhivery:0,delhivery:0,delhivery:546,bigship-soumnair@gmail.com:408,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:408,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,
+[2025-05-13 08:23:19] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-13 08:23:19] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-13 08:23:29] 
+=== NEW REQUEST STARTED ===
+[2025-05-13 08:23:29] REQUEST PAYLOAD: {"common":{"pincode":{"source":"400605","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":2000,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-13 08:23:29] REQUEST DETAILS:
+  - ID: 3643af8589c455c0a94b1fc012af101a
+  - Source: 400605
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-13 08:23:29] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-13 08:23:29] EXECUTING API REQUEST...
+[2025-05-13 08:23:33] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 3.869325s
+  - Size: 12682 bytes
+[2025-05-13 08:23:33] RAW RESPONSE: {"delhivery":[{"service_name":"Delhivery B2B","total_charges":0.0,"tat":null,"charged_wt":null,"risk_type":"CarrierRisk","risk_type_charge":0.0,"extra":{"b2b":{"message":"Unauthorized","risk_type":"CarrierRisk"},"b2c":{"message":"Unauthorized","risk_type":"CarrierRisk"}}},{"service_name":"Delhivery B2C","total_charges":0.0,"tat":null,"charged_wt":null,"risk_type":"CarrierRisk","risk_type_charge":0.0,"extra":{"b2b":{"message":"Unauthorized","risk_type":"CarrierRisk"},"b2c":{"message":"Unauthorized","risk_type":"CarrierRisk"}}},{"service_name":"One Delhivery","total_charges":546.0,"tat":"1","charged_wt":18.5,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":250.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":37.5,"green":0.0,"gst":58.5,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_u...(truncated)
+[2025-05-13 08:23:33] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 19
+  - Price Sum: 11523.34
+  - Fingerprint: delhivery:0,delhivery:0,delhivery:546,bigship-soumnair@gmail.com:408,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:408,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,
+[2025-05-13 08:23:33] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-13 08:23:33] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-13 08:42:00] 
+=== NEW REQUEST STARTED ===
+[2025-05-13 08:42:00] REQUEST PAYLOAD: {"common":{"pincode":{"source":"400605","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":1500,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-13 08:42:00] REQUEST DETAILS:
+  - ID: 208f84e8cf174c473aeec1c7f8f94e30
+  - Source: 400605
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-13 08:42:00] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-13 08:42:00] EXECUTING API REQUEST...
+[2025-05-13 08:42:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 9.528659s
+  - Size: 23019 bytes
+[2025-05-13 08:42:09] RAW RESPONSE: {"delhivery":[{"service_name":"Delhivery B2B","total_charges":827.68,"tat":null,"charged_wt":20.0,"risk_type":"CarrierRisk","risk_type_charge":100.0,"extra":{"b2b":{"base":{"value":107.0,"unit_charge":5.35,"new_s_pin":400605.0,"new_c_pin":400001.0,"fwd":107.0,"rto":0.0,"discount":0,"min":300.0,"total":300.0},"fuel":{"value":16.05,"unit_charge":15.0,"calc":"%age","fwd":16.05,"rto":0.0,"min":0,"total":45.0},"cod":{"value":0.0,"unit_charge":0.0,"min":300.0,"total":0.0},"demurrage":{"value":0.0,"unit_charge":0.0,"calc":"per kg","min":100.0,"total":0.0},"reattempt":{"value":0.0,"unit_charge":0.0,"calc":"per kg","min":100.0,"total":0.0},"fm":{"value":20.0,"unit_charge":1.0,"calc":"per kg","min":100.0,"total":0},"green":{"value":0.0,"unit_charge":0.0,"min":0,"total":0.0},"oda":{"value":0.0,"unit_charge":0.0,"app_at":"dest","oda_pincode":"1","min":500.0,"total":0.0},"handling":{"value":0.0,"unit_charge":0.0,"total":0.0},"pod":{"value":0.0,"unit_charge":0.0,"total":0.0},"process_value":50.0,"ro...(truncated)
+[2025-05-13 08:42:09] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 19
+  - Price Sum: 13137.82
+  - Fingerprint: delhivery:827.68,delhivery:786.8,delhivery:546,bigship-soumnair@gmail.com:408,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:408,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,
+[2025-05-13 08:42:09] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-13 08:42:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-13 08:42:33] 
+=== NEW REQUEST STARTED ===
+[2025-05-13 08:42:33] REQUEST PAYLOAD: {"common":{"pincode":{"source":"400069","destination":"400701"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":1500,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fod"}}
+[2025-05-13 08:42:33] REQUEST DETAILS:
+  - ID: b08515408e83e0793271e7b32da70712
+  - Source: 400069
+  - Destination: 400701
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-13 08:42:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-13 08:42:33] EXECUTING API REQUEST...
+[2025-05-13 08:42:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 3.360136s
+  - Size: 23019 bytes
+[2025-05-13 08:42:36] RAW RESPONSE: {"delhivery":[{"service_name":"Delhivery B2B","total_charges":827.68,"tat":null,"charged_wt":20.0,"risk_type":"CarrierRisk","risk_type_charge":100.0,"extra":{"b2b":{"base":{"value":107.0,"unit_charge":5.35,"new_s_pin":400069.0,"new_c_pin":400701.0,"fwd":107.0,"rto":0.0,"discount":0,"min":300.0,"total":300.0},"fuel":{"value":16.05,"unit_charge":15.0,"calc":"%age","fwd":16.05,"rto":0.0,"min":0,"total":45.0},"cod":{"value":0.0,"unit_charge":0.0,"min":300.0,"total":0.0},"demurrage":{"value":0.0,"unit_charge":0.0,"calc":"per kg","min":100.0,"total":0.0},"reattempt":{"value":0.0,"unit_charge":0.0,"calc":"per kg","min":100.0,"total":0.0},"fm":{"value":20.0,"unit_charge":1.0,"calc":"per kg","min":100.0,"total":0},"green":{"value":0.0,"unit_charge":0.0,"min":0,"total":0.0},"oda":{"value":0.0,"unit_charge":0.0,"app_at":"dest","oda_pincode":"1","min":500.0,"total":0.0},"handling":{"value":0.0,"unit_charge":0.0,"total":0.0},"pod":{"value":0.0,"unit_charge":0.0,"total":0.0},"process_value":50.0,"ro...(truncated)
+[2025-05-13 08:42:36] RESPONSE ANALYSIS:
+  - Carriers: 3
+  - Estimates: 19
+  - Price Sum: 13137.82
+  - Fingerprint: delhivery:827.68,delhivery:786.8,delhivery:546,bigship-soumnair@gmail.com:408,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:408,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,
+[2025-05-13 08:42:36] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-13 08:42:36] REQUEST COMPLETED SUCCESSFULLY
