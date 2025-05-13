@@ -31,8 +31,8 @@
             text-align: center;
         }
         .sidebar .nav-link.active {
-            color: #527cb9;
-            background-color: rgba(82, 124, 185, 0.1);
+            color: #2b256c;
+            background-color: rgba(43, 37, 108, 0.1);
         }
         .sidebar .nav-link:hover {
             background-color: rgba(0, 0, 0, 0.05);
@@ -56,29 +56,29 @@
         }
         .dashboard-icon {
             font-size: 2rem;
-            color: #527cb9;
+            color: #2b256c;
         }
         .table-hover tbody tr:hover {
-            background-color: rgba(82, 124, 185, 0.05);
+            background-color: rgba(43, 37, 108, 0.05);
         }
         .btn-primary {
-            background-color: #527cb9;
-            border-color: #527cb9;
+            background-color: #2b256c;
+            border-color: #2b256c;
         }
         .btn-primary:hover {
-            background-color: #476aa1;
-            border-color: #476aa1;
+            background-color: #211d53;
+            border-color: #211d53;
         }
         .bg-primary {
-            background-color: #527cb9 !important;
+            background-color: #2b256c !important;
         }
         .text-primary {
-            color: #527cb9 !important;
+            color: #2b256c !important;
         }
         .alert-success {
-            background-color: rgba(82, 124, 185, 0.1);
-            border-color: rgba(82, 124, 185, 0.2);
-            color: #527cb9;
+            background-color: rgba(43, 37, 108, 0.1);
+            border-color: rgba(43, 37, 108, 0.2);
+            color: #2b256c;
         }
     </style>
 </head>

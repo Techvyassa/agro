@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #527cb9;
+            --primary-color: #2b256c;
             --secondary-color: #264653;
             --light-color: #f8f9fa;
             --dark-color: #212529;
@@ -96,7 +96,7 @@
         
         .form-control:focus {
             border-color: var(--primary-color);
-            box-shadow: 0 0 0 0.2rem rgba(82, 124, 185, 0.25);
+            box-shadow: 0 0 0 0.2rem rgba(43, 37, 108, 0.25);
         }
         
         .input-group-text {
@@ -120,7 +120,7 @@
         }
         
         .btn-primary:hover {
-            background-color: #476aa1;
+            background-color: #211d53;
             transform: translateY(-2px);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
@@ -151,7 +151,7 @@
         }
         
         .forgot-password:hover {
-            color: #476aa1;
+            color: #211d53;
             text-decoration: underline;
         }
     </style>

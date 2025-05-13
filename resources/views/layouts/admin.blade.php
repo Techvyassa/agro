@@ -18,7 +18,7 @@
             min-height: calc(100vh - 56px);
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
             z-index: 100;
-            background-color: #527cb9;
+            background-color: #2b256c;
         }
         .sidebar .nav-link {
             color: rgba(255,255,255,.75);
@@ -63,21 +63,21 @@
             background-color: rgba(0, 0, 0, 0.05);
         }
         .btn-primary {
-            background-color: #527cb9;
-            border-color: #527cb9;
+            background-color: #2b256c;
+            border-color: #2b256c;
         }
         .btn-primary:hover {
-            background-color: #476aa1;
-            border-color: #476aa1;
+            background-color: #211d53;
+            border-color: #211d53;
         }
         .bg-primary {
-            background-color: #527cb9 !important;
+            background-color: #2b256c !important;
         }
         .text-primary {
-            color: #527cb9 !important;
+            color: #2b256c !important;
         }
         .badge-dark {
-            background-color: #527cb9;
+            background-color: #2b256c;
             color: #fff;
         }
         .sidebar-heading {

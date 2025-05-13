@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #527cb9;
+            --primary-color: #2b256c;
             --secondary-color: #264653;
             --accent-color: #e9c46a;
             --light-color: #f8f9fa;
