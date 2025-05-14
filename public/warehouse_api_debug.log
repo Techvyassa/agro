@@ -685,3 +685,18 @@ ERR_NGROK_3200
 
 [2025-05-14 13:43:42] WARNING: Invalid JSON response or API error, providing sample data
 [2025-05-14 13:43:42] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-14 13:52:56] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-14 13:52:56] USER ID: user@example.com
+[2025-05-14 13:52:56] CONNECTING TO API: https://c7c7-2401-4900-8815-9ac5-f169-ae0d-40fd-b1e9.ngrok-free.app/warehouses?user_id=user%40example.com
+[2025-05-14 13:52:56] EXECUTING API REQUEST...
+[2025-05-14 13:52:56] RESPONSE RECEIVED:
+  - Status Code: 404
+  - Time: 0.046017s
+  - Size: 104 bytes
+[2025-05-14 13:52:56] RAW RESPONSE: The endpoint c7c7-2401-4900-8815-9ac5-f169-ae0d-40fd-b1e9.ngrok-free.app is offline.
+
+ERR_NGROK_3200
+
+[2025-05-14 13:52:56] WARNING: Invalid JSON response or API error, providing sample data
+[2025-05-14 13:52:56] REQUEST COMPLETED SUCCESSFULLY

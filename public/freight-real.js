@@ -19,6 +19,43 @@ document.addEventListener('DOMContentLoaded', function() {
     const sameAsPickupCheckbox = document.getElementById('sameAsPickup');
     let boxCount = 1; // Start with one box
     
+    // Create a response modal for showing API responses
+    const responseModalContainer = document.createElement('div');
+    responseModalContainer.id = 'responseModalContainer';
+    responseModalContainer.className = 'modal fade';
+    responseModalContainer.setAttribute('tabindex', '-1');
+    responseModalContainer.setAttribute('aria-labelledby', 'responseModalLabel');
+    responseModalContainer.setAttribute('aria-hidden', 'true');
+    responseModalContainer.innerHTML = `
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="responseModalLabel">Order Creation Response</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="responseLoader" class="text-center py-4 d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Processing response...</p>
+                    </div>
+                    <div id="responseError" class="alert alert-danger d-none"></div>
+                    <div id="responseSuccess" class="alert alert-success d-none"></div>
+                    <div id="responseJson" class="bg-light p-3 rounded mt-3 d-none">
+                        <h6 class="border-bottom pb-2">API Response Details:</h6>
+                        <pre class="mt-2" style="max-height: 300px; overflow-y: auto;"></pre>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="continueBtn">Continue</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(responseModalContainer);
+    
     // Create a modal container for warehouse selection
     const warehouseModalContainer = document.createElement('div');
     warehouseModalContainer.id = 'warehouseModalContainer';
@@ -1800,7 +1837,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
         
         // Send data to API via our proxy
-        fetch('order-proxy.php', {
+        fetch('test-submit.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -1816,33 +1853,95 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             orderLoader.classList.add('d-none');
             
-            // Check response structure
-            if (data.error) {
-                orderError.textContent = `Error: ${data.error}`;
-                orderError.classList.remove('d-none');
-                return;
+            // Show response modal with the API response
+            const responseModal = new bootstrap.Modal(document.getElementById('responseModalContainer'));
+            const responseJson = document.getElementById('responseJson');
+            const responseSuccess = document.getElementById('responseSuccess');
+            const responseError = document.getElementById('responseError');
+            const continueBtn = document.getElementById('continueBtn');
+            
+            // Clear previous messages
+            responseSuccess.classList.add('d-none');
+            responseError.classList.add('d-none');
+            responseJson.classList.add('d-none');
+            
+            // Format and display the response
+            try {
+                // Check if we have an error message
+                if (data.error) {
+                    responseError.textContent = `Error: ${data.error}`;
+                    responseError.classList.remove('d-none');
+                    continueBtn.textContent = 'Try Again';
+                    continueBtn.onclick = function() {
+                        responseModal.hide();
+                    };
+                } else {
+                    // Show success message
+                    responseSuccess.innerHTML = `
+                        <h5><i class="fas fa-check-circle"></i> Order Created Successfully!</h5>
+                        <p>Your order has been submitted. Order details:</p>
+                        <ul>
+                            <li><strong>Order ID:</strong> ${formData.orderIds}</li>
+                            <li><strong>Customer:</strong> ${formData.buyer.fName} ${formData.buyer.lName}</li>
+                            <li><strong>Item:</strong> ${formData.itemName} (${formData.qty} boxes)</li>
+                            <li><strong>Invoice Amount:</strong> ₹${formData.invoiceAmt}</li>
+                        </ul>
+                    `;
+                    responseSuccess.classList.remove('d-none');
+                    
+                    // Show raw response data in pretty format
+                    responseJson.classList.remove('d-none');
+                    const pre = responseJson.querySelector('pre');
+                    if (pre) {
+                        pre.textContent = JSON.stringify(data, null, 2);
+                    }
+                    
+                    // Set continue button behavior
+                    continueBtn.textContent = 'New Order';
+                    continueBtn.onclick = function() {
+                        responseModal.hide();
+                        const orderModal = bootstrap.Modal.getInstance(document.getElementById('orderModalContainer'));
+                        if (orderModal) {
+                            orderModal.hide();
+                        }
+                        // Reset the form for a new order
+                        orderForm.reset();
+                        createOrderBtn.disabled = false;
+                    };
+                    
+                    // Disable the original submit button to prevent duplicate submissions
+                    createOrderBtn.disabled = true;
+                }
+                
+                // Show the response modal
+                responseModal.show();
+                
+            } catch (e) {
+                console.error('Error displaying response:', e);
+                responseError.textContent = `Error displaying response: ${e.message}`;
+                responseError.classList.remove('d-none');
+                responseModal.show();
             }
-            
-            // Show success message
-            orderSuccess.innerHTML = `
-                <h5><i class="fas fa-check-circle"></i> Order Created Successfully!</h5>
-                <p>Your order has been submitted. Order details:</p>
-                <ul>
-                    <li><strong>Order ID:</strong> ${formData.orderIds}</li>
-                    <li><strong>Customer:</strong> ${formData.buyer.fName} ${formData.buyer.lName}</li>
-                    <li><strong>Item:</strong> ${formData.itemName} (${formData.qty} boxes)</li>
-                    <li><strong>Invoice Amount:</strong> ₹${formData.invoiceAmt}</li>
-                </ul>
-            `;
-            orderSuccess.classList.remove('d-none');
-            
-            // Disable submit button
-            createOrderBtn.disabled = true;
         })
         .catch(error => {
             orderLoader.classList.add('d-none');
-            orderError.textContent = `Error: ${error.message}`;
-            orderError.classList.remove('d-none');
+            
+            // Show error in a popup
+            const responseModal = new bootstrap.Modal(document.getElementById('responseModalContainer'));
+            const responseSuccess = document.getElementById('responseSuccess');
+            const responseError = document.getElementById('responseError');
+            const responseJson = document.getElementById('responseJson');
+            
+            // Clear previous messages
+            responseSuccess.classList.add('d-none');
+            responseError.classList.add('d-none');
+            responseJson.classList.add('d-none');
+            
+            // Show error message
+            responseError.textContent = `Error: ${error.message}`;
+            responseError.classList.remove('d-none');
+            responseModal.show();
+            
             console.error('Order submission error:', error);
         });
     }
