@@ -1,0 +1,225 @@
+[2025-05-14 12:36:58] 
+=== NEW ORDER REQUEST STARTED ===
+[2025-05-14 12:36:58] REQUEST PAYLOAD: {"testMode":true,"orderIds":"132546","orderDate":"2025-05-14","buyerCity":"Mumbai","itemName":"demo","qty":"3","invoiceAmt":"1254","pickUpId":"143443","pickUpCity":"COIMBATORE(TN)","pickUpState":"TAMIL","returnCity":"COIMBATORE(TN)","returnState":"TAMIL","buyer":{"fName":"Test","lName":"User","email":"demo@gmail.com","mobileNo":"9876541434","buyerAddresses":{"address1":"demo","pinId":"400001"}},"orderItems":[{"noOfBox":1,"physical_weight":"7.5","length":15,"breadth":25,"height":35,"phyWeight":7.5},{"noOfBox":1,"physical_weight":"3.5","length":30,"breadth":20,"height":15,"phyWeight":3.5},{"noOfBox":1,"physical_weight":"7.5","length":15,"breadth":25,"height":35,"phyWeight":7.5}]}
+[2025-05-14 12:36:58] TEST MODE: Enabled
+[2025-05-14 12:36:58] USING MOCK RESPONSE INSTEAD OF API
+[2025-05-14 12:36:58] MOCK RESPONSE GENERATED:
+{
+    "success": true,
+    "message": "Order created successfully (TEST MODE)",
+    "status": "success",
+    "order_id": "132546",
+    "timestamp": "2025-05-14 12:36:58",
+    "data": {
+        "customer": "Test User",
+        "item": "demo",
+        "status": "CONFIRMED",
+        "tracking_id": "TRACK-85580",
+        "estimated_delivery": "2025-05-19",
+        "payment_status": "COMPLETED",
+        "order_details": {
+            "testMode": true,
+            "orderIds": "132546",
+            "orderDate": "2025-05-14",
+            "buyerCity": "Mumbai",
+            "itemName": "demo",
+            "qty": "3",
+            "invoiceAmt": "1254",
+            "pickUpId": "143443",
+            "pickUpCity": "COIMBATORE(TN)",
+            "pickUpState": "TAMIL",
+            "returnCity": "COIMBATORE(TN)",
+            "returnState": "TAMIL",
+            "buyer": {
+                "fName": "Test",
+                "lName": "User",
+                "email": "demo@gmail.com",
+                "mobileNo": "9876541434",
+                "buyerAddresses": {
+                    "address1": "demo",
+                    "pinId": "400001"
+                }
+            },
+            "orderItems": [
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "7.5",
+                    "length": 15,
+                    "breadth": 25,
+                    "height": 35,
+                    "phyWeight": 7.5
+                },
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "3.5",
+                    "length": 30,
+                    "breadth": 20,
+                    "height": 15,
+                    "phyWeight": 3.5
+                },
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "7.5",
+                    "length": 15,
+                    "breadth": 25,
+                    "height": 35,
+                    "phyWeight": 7.5
+                }
+            ]
+        }
+    }
+}
+[2025-05-14 12:36:58] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: s
+  - Size:  bytes
+[2025-05-14 12:37:03] 
+=== NEW ORDER REQUEST STARTED ===
+[2025-05-14 12:37:03] REQUEST PAYLOAD: {"testMode":true,"orderIds":"132546","orderDate":"2025-05-14","buyerCity":"Mumbai","itemName":"demo","qty":"3","invoiceAmt":"1254","pickUpId":"143443","pickUpCity":"COIMBATORE(TN)","pickUpState":"TAMIL","returnCity":"COIMBATORE(TN)","returnState":"TAMIL","buyer":{"fName":"Test","lName":"User","email":"demo@gmail.com","mobileNo":"9876541434","buyerAddresses":{"address1":"demo","pinId":"400001"}},"orderItems":[{"noOfBox":1,"physical_weight":"7.5","length":15,"breadth":25,"height":35,"phyWeight":7.5},{"noOfBox":1,"physical_weight":"3.5","length":30,"breadth":20,"height":15,"phyWeight":3.5},{"noOfBox":1,"physical_weight":"7.5","length":15,"breadth":25,"height":35,"phyWeight":7.5}]}
+[2025-05-14 12:37:03] TEST MODE: Enabled
+[2025-05-14 12:37:03] USING MOCK RESPONSE INSTEAD OF API
+[2025-05-14 12:37:03] MOCK RESPONSE GENERATED:
+{
+    "success": true,
+    "message": "Order created successfully (TEST MODE)",
+    "status": "success",
+    "order_id": "132546",
+    "timestamp": "2025-05-14 12:37:03",
+    "data": {
+        "customer": "Test User",
+        "item": "demo",
+        "status": "CONFIRMED",
+        "tracking_id": "TRACK-72719",
+        "estimated_delivery": "2025-05-19",
+        "payment_status": "COMPLETED",
+        "order_details": {
+            "testMode": true,
+            "orderIds": "132546",
+            "orderDate": "2025-05-14",
+            "buyerCity": "Mumbai",
+            "itemName": "demo",
+            "qty": "3",
+            "invoiceAmt": "1254",
+            "pickUpId": "143443",
+            "pickUpCity": "COIMBATORE(TN)",
+            "pickUpState": "TAMIL",
+            "returnCity": "COIMBATORE(TN)",
+            "returnState": "TAMIL",
+            "buyer": {
+                "fName": "Test",
+                "lName": "User",
+                "email": "demo@gmail.com",
+                "mobileNo": "9876541434",
+                "buyerAddresses": {
+                    "address1": "demo",
+                    "pinId": "400001"
+                }
+            },
+            "orderItems": [
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "7.5",
+                    "length": 15,
+                    "breadth": 25,
+                    "height": 35,
+                    "phyWeight": 7.5
+                },
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "3.5",
+                    "length": 30,
+                    "breadth": 20,
+                    "height": 15,
+                    "phyWeight": 3.5
+                },
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "7.5",
+                    "length": 15,
+                    "breadth": 25,
+                    "height": 35,
+                    "phyWeight": 7.5
+                }
+            ]
+        }
+    }
+}
+[2025-05-14 12:37:03] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: s
+  - Size:  bytes
+[2025-05-14 12:37:03] 
+=== NEW ORDER REQUEST STARTED ===
+[2025-05-14 12:37:03] REQUEST PAYLOAD: {"testMode":true,"orderIds":"132546","orderDate":"2025-05-14","buyerCity":"Mumbai","itemName":"demo","qty":"3","invoiceAmt":"1254","pickUpId":"143443","pickUpCity":"COIMBATORE(TN)","pickUpState":"TAMIL","returnCity":"COIMBATORE(TN)","returnState":"TAMIL","buyer":{"fName":"Test","lName":"User","email":"demo@gmail.com","mobileNo":"9876541434","buyerAddresses":{"address1":"demo","pinId":"400001"}},"orderItems":[{"noOfBox":1,"physical_weight":"7.5","length":15,"breadth":25,"height":35,"phyWeight":7.5},{"noOfBox":1,"physical_weight":"3.5","length":30,"breadth":20,"height":15,"phyWeight":3.5},{"noOfBox":1,"physical_weight":"7.5","length":15,"breadth":25,"height":35,"phyWeight":7.5}]}
+[2025-05-14 12:37:03] TEST MODE: Enabled
+[2025-05-14 12:37:03] USING MOCK RESPONSE INSTEAD OF API
+[2025-05-14 12:37:03] MOCK RESPONSE GENERATED:
+{
+    "success": true,
+    "message": "Order created successfully (TEST MODE)",
+    "status": "success",
+    "order_id": "132546",
+    "timestamp": "2025-05-14 12:37:03",
+    "data": {
+        "customer": "Test User",
+        "item": "demo",
+        "status": "CONFIRMED",
+        "tracking_id": "TRACK-71526",
+        "estimated_delivery": "2025-05-19",
+        "payment_status": "COMPLETED",
+        "order_details": {
+            "testMode": true,
+            "orderIds": "132546",
+            "orderDate": "2025-05-14",
+            "buyerCity": "Mumbai",
+            "itemName": "demo",
+            "qty": "3",
+            "invoiceAmt": "1254",
+            "pickUpId": "143443",
+            "pickUpCity": "COIMBATORE(TN)",
+            "pickUpState": "TAMIL",
+            "returnCity": "COIMBATORE(TN)",
+            "returnState": "TAMIL",
+            "buyer": {
+                "fName": "Test",
+                "lName": "User",
+                "email": "demo@gmail.com",
+                "mobileNo": "9876541434",
+                "buyerAddresses": {
+                    "address1": "demo",
+                    "pinId": "400001"
+                }
+            },
+            "orderItems": [
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "7.5",
+                    "length": 15,
+                    "breadth": 25,
+                    "height": 35,
+                    "phyWeight": 7.5
+                },
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "3.5",
+                    "length": 30,
+                    "breadth": 20,
+                    "height": 15,
+                    "phyWeight": 3.5
+                },
+                {
+                    "noOfBox": 1,
+                    "physical_weight": "7.5",
+                    "length": 15,
+                    "breadth": 25,
+                    "height": 35,
+                    "phyWeight": 7.5
+                }
+            ]
+        }
+    }
+}
+[2025-05-14 12:37:03] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: s
+  - Size:  bytes

@@ -7,6 +7,278 @@ document.addEventListener('DOMContentLoaded', function() {
     const addBoxBtn = document.getElementById('addBoxBtn');
     const totalBoxesInput = document.getElementById('totalBoxes');
     const totalWeightInput = document.getElementById('totalWeight');
+    
+    // Order form elements and variables
+    let currentPickupData = null;
+    const orderForm = document.getElementById('createOrderForm');
+    const createOrderBtn = document.getElementById('createOrderBtn');
+    const orderLoader = document.getElementById('orderLoader');
+    const orderError = document.getElementById('orderError');
+    const orderSuccess = document.getElementById('orderSuccess');
+    const boxDetailsContainer = document.getElementById('boxDetailsContainer');
+    const sameAsPickupCheckbox = document.getElementById('sameAsPickup');
+    let boxCount = 1; // Start with one box
+    
+    // Create a modal container for warehouse selection
+    const warehouseModalContainer = document.createElement('div');
+    warehouseModalContainer.id = 'warehouseModalContainer';
+    warehouseModalContainer.className = 'modal fade';
+    warehouseModalContainer.setAttribute('tabindex', '-1');
+    warehouseModalContainer.setAttribute('aria-labelledby', 'warehouseModalLabel');
+    warehouseModalContainer.setAttribute('aria-hidden', 'true');
+    warehouseModalContainer.innerHTML = `
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="warehouseModalLabel">Select Pickup Location</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="warehouseLoader" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading...</span>
+                        </div>
+                        <p class="mt-2">Loading warehouses...</p>
+                    </div>
+                    <div id="warehouseError" class="alert alert-danger d-none"></div>
+                    <div id="warehouseList" class="row g-3"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="selectWarehouseBtn">Select Warehouse</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(warehouseModalContainer);
+
+    // Create a modal container for order creation
+    const orderModalContainer = document.createElement('div');
+    orderModalContainer.id = 'orderModalContainer';
+    orderModalContainer.className = 'modal fade';
+    orderModalContainer.setAttribute('tabindex', '-1');
+    orderModalContainer.setAttribute('aria-labelledby', 'orderModalLabel');
+    orderModalContainer.setAttribute('aria-hidden', 'true');
+    orderModalContainer.innerHTML = `
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header bg-primary text-white">
+                    <h5 class="modal-title" id="orderModalLabel">Create Order</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="orderLoader" class="text-center py-4 d-none">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Processing order...</span>
+                        </div>
+                        <p class="mt-2">Creating your order...</p>
+                    </div>
+                    <div id="orderError" class="alert alert-danger d-none"></div>
+                    <div id="orderSuccess" class="alert alert-success d-none"></div>
+                    
+                    <form id="createOrderForm">
+                        <!-- Order Details -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Order Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="orderIds" class="form-label">Order ID*</label>
+                                        <input type="text" class="form-control" id="orderIds" name="orderIds" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="orderDate" class="form-label">Order Date*</label>
+                                        <input type="date" class="form-control" id="orderDate" name="orderDate" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="invoiceAmt" class="form-label">Invoice Amount*</label>
+                                        <input type="number" class="form-control" id="invoiceAmt" name="invoiceAmt" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Pickup Location (Read Only) -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Pickup Location</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Location ID</label>
+                                        <input type="text" class="form-control" id="pickUpId" name="pickUpId" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">City</label>
+                                        <input type="text" class="form-control" id="pickUpCity" name="pickUpCity" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">State</label>
+                                        <input type="text" class="form-control" id="pickUpState" name="pickUpState" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Return Location (Same as Pickup by default) -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                                <h5 class="mb-0">Return Location</h5>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sameAsPickup" checked>
+                                    <label class="form-check-label" for="sameAsPickup">Same as Pickup Location</label>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label">Location ID</label>
+                                        <input type="text" class="form-control" id="retrunId" name="retrunId" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">City</label>
+                                        <input type="text" class="form-control" id="returnCity" name="returnCity" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label">State</label>
+                                        <input type="text" class="form-control" id="returnState" name="returnState" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Buyer Information -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Buyer Information</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label for="buyerFName" class="form-label">First Name*</label>
+                                        <input type="text" class="form-control" id="buyerFName" name="buyer[fName]" required>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="buyerLName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="buyerLName" name="buyer[lName]">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label for="buyerEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="buyerEmail" name="buyer[emailId]">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="buyerAddress" class="form-label">Address*</label>
+                                        <input type="text" class="form-control" id="buyerAddress" name="buyer[buyerAddresses][address1]" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="buyerMobile" class="form-label">Mobile Number*</label>
+                                        <input type="text" class="form-control" id="buyerMobile" name="buyer[buyerAddresses][mobileNo]" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="buyerPincode" class="form-label">Pincode*</label>
+                                        <input type="text" class="form-control" id="buyerPincode" name="buyer[buyerAddresses][pinId]" required>
+                                    </div>
+                                </div>
+                                <!-- Hidden fields for buyer city and state (auto-filled) -->
+                                <input type="hidden" id="buyerCity" name="buyerCity">
+                                <input type="hidden" id="buyerState" name="buyerState">
+                            </div>
+                        </div>
+                        
+                        <!-- Item & Box Details -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Item Details</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3 mb-3">
+                                    <div class="col-md-6">
+                                        <label for="itemName" class="form-label">Item Name*</label>
+                                        <input type="text" class="form-control" id="itemName" name="itemName" required>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="codAmt" class="form-label">COD Amount</label>
+                                        <input type="number" class="form-control" id="codAmt" name="codAmt" value="0">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="qty" class="form-label">Quantity</label>
+                                        <input type="number" class="form-control" id="qty" name="qty" value="1" readonly>
+                                    </div>
+                                </div>
+                                
+                                <h6 class="mb-3">Box Details</h6>
+                                <div id="boxDetailsContainer">
+                                    <div class="box-detail-row border p-3 mb-3 rounded bg-light">
+                                        <div class="row g-2">
+                                            <div class="col-md-2">
+                                                <label class="form-label">Box #</label>
+                                                <input type="text" class="form-control" value="1" readonly>
+                                                <input type="hidden" class="noOfBox" name="orderItems[0][noOfBox]" value="1">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Weight (kg)*</label>
+                                                <input type="number" class="form-control box-weight" name="orderItems[0][physical_weight]" value="5" required>
+                                                <input type="hidden" class="phyWeight" name="orderItems[0][phyWeight]" value="5">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Length (cm)*</label>
+                                                <input type="number" class="form-control" name="orderItems[0][length]" value="11" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Width (cm)*</label>
+                                                <input type="number" class="form-control" name="orderItems[0][breadth]" value="12" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Height (cm)*</label>
+                                                <input type="number" class="form-control" name="orderItems[0][height]" value="14" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Actions</label>
+                                                <button type="button" class="btn btn-primary w-100 add-box-btn">Add Box</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Invoice and EWay Bill Upload -->
+                        <div class="card mb-3">
+                            <div class="card-header bg-light">
+                                <h5 class="mb-0">Documents</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="invoiceFileUpload" class="form-label">Invoice File*</label>
+                                        <input type="file" class="form-control" id="invoiceFileUpload" accept="image/*,.pdf" required>
+                                        <input type="hidden" id="invoiceFile" name="invoiceFile">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="eWayBill" class="form-label">eWay Bill Number</label>
+                                        <input type="text" class="form-control" id="eWayBill" name="eWayBill">
+                                    </div>
+                                    <div class="col-md-6 d-none" id="ewaybillFileContainer">
+                                        <label for="ewaybillFileUpload" class="form-label">eWay Bill File</label>
+                                        <input type="file" class="form-control" id="ewaybillFileUpload" accept="image/*,.pdf">
+                                        <input type="hidden" id="ewaybillFile" name="ewaybillFile">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="createOrderBtn">Create Order</button>
+                </div>
+            </div>
+        </div>
+    `;
+    document.body.appendChild(orderModalContainer);
 
     // Parse URL parameters
     const parseUrlParams = () => {
@@ -618,6 +890,409 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+        
+        // Initialize event handlers for the order form
+        initializeOrderFormHandlers();
+        
+        // Add event listeners to book freight buttons
+        document.querySelectorAll('.book-freight').forEach(button => {
+            button.addEventListener('click', function() {
+                let userEmail = this.getAttribute('data-email');
+                
+                // If no email found, try to extract from closest carrier heading
+                if (!userEmail) {
+                    const card = this.closest('.col-md-6');
+                    const carrierCard = card.closest('.card');
+                    const carrierHeader = carrierCard.querySelector('.card-header');
+                    if (carrierHeader) {
+                        const headerText = carrierHeader.textContent.trim();
+                        const emailMatch = headerText.match(/\(([^)]+)\)/);
+                        if (emailMatch && emailMatch[1]) {
+                            userEmail = emailMatch[1];
+                            // If it has a prefix like 'carrier-', remove it
+                            if (userEmail.includes('-')) {
+                                userEmail = userEmail.split('-')[1];
+                            }
+                        }
+                    }
+                }
+                
+                // Fallback to default email if none found
+                userEmail = userEmail || 'user@example.com';
+                console.log('Using email for warehouse query:', userEmail);
+                loadWarehouses(userEmail);
+            });
+        });
+        
+        // Initialize modal for warehouse selection
+        const warehouseModal = new bootstrap.Modal(document.getElementById('warehouseModalContainer'));
+        
+        // Function to load warehouses from API
+        function loadWarehouses(userEmail) {
+            const warehouseList = document.getElementById('warehouseList');
+            const warehouseLoader = document.getElementById('warehouseLoader');
+            const warehouseError = document.getElementById('warehouseError');
+            
+            // Reset modal content
+            warehouseList.innerHTML = '';
+            warehouseLoader.classList.remove('d-none');
+            warehouseError.classList.add('d-none');
+            
+            // Show the modal
+            warehouseModal.show();
+            
+            // Call the warehouse API through our PHP proxy
+            fetch(`warehouse-proxy.php?user_id=${encodeURIComponent(userEmail)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    warehouseLoader.classList.add('d-none');
+                    
+                    console.log('Warehouse response received:', data);
+                    
+                    // Extract warehouses array and data source information
+                    const warehouses = data.warehouses || data;
+                    const dataSource = data.source || 'unknown';
+                    const dataMessage = data.message || '';
+                    
+                    // Update modal title to show data source
+                    const modalTitle = document.getElementById('warehouseModalLabel');
+                    if (dataSource === 'api') {
+                        modalTitle.innerHTML = 'Select Pickup Location <span class="badge bg-success ms-2">Real-time Data</span>';
+                    } else if (dataSource === 'fallback') {
+                        modalTitle.innerHTML = 'Select Pickup Location <span class="badge bg-warning ms-2">Demo Data</span>';
+                        
+                        // Add info alert about fallback data
+                        const infoAlert = document.createElement('div');
+                        infoAlert.className = 'alert alert-info mb-3';
+                        infoAlert.innerHTML = `<small>${dataMessage}</small>`;
+                        document.getElementById('warehouseList').before(infoAlert);
+                    }
+                    
+                    if (!Array.isArray(warehouses) || warehouses.length === 0) {
+                        warehouseError.textContent = 'No warehouses available for this user.';
+                        warehouseError.classList.remove('d-none');
+                        return;
+                    }
+                    
+                    // Display warehouses as radio cards
+                    warehouses.forEach((warehouse, index) => {
+                        // Extract warehouse properties based on real API response format
+                        const warehouseName = warehouse.warehouse_name || warehouse.name || 'Unnamed Warehouse';
+                        const warehouseId = warehouse.location_id || warehouse.id || `WH${index}`;
+                        const address = warehouse.address || 'No address available';
+                        const city = warehouse.city || '';
+                        const state = warehouse.state || '';
+                        const pincode = warehouse.pincode || warehouse.zip || '';
+                        const contactPerson = warehouse.contact_person || warehouse.contact || '';
+                        const contactNumber = warehouse.contact_number || warehouse.phone || '';
+                        const isDefault = warehouse.is_default_pickup !== undefined ? warehouse.is_default_pickup : false;
+                        
+                        const warehouseCard = document.createElement('div');
+                        warehouseCard.className = 'col-md-6';
+                        warehouseCard.innerHTML = `
+                            <div class="card warehouse-card h-100 ${index === 0 ? 'border-primary' : ''} ${isDefault ? 'border-success' : ''}">
+                                <div class="card-body">
+                                    <div class="form-check">
+                                        <input class="form-check-input warehouse-radio" type="radio" name="warehouseSelection" id="warehouse${index}" value="${warehouseId}" ${index === 0 ? 'checked' : ''}>
+                                        <label class="form-check-label w-100" for="warehouse${index}">
+                                            <div class="d-flex justify-content-between">
+                                                <h5 class="card-title">${warehouseName}</h5>
+                                                ${isDefault ? '<span class="badge bg-success">Default</span>' : ''}
+                                            </div>
+                                            <p class="card-text mb-1">${address}</p>
+                                            <p class="card-text mb-1">${city}, ${state} ${pincode}</p>
+                                            <div class="text-muted small mt-2">
+                                                <strong>ID:</strong> ${warehouseId}<br>
+                                                ${contactPerson ? `<strong>Contact:</strong> ${contactPerson}<br>` : ''}
+                                                ${contactNumber ? `<strong>Phone:</strong> ${contactNumber}` : ''}
+                                                ${warehouse.email ? `<br><strong>Email:</strong> ${warehouse.email}` : ''}
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                        warehouseList.appendChild(warehouseCard);
+                    });
+                    
+                    // Add click handler for the radio cards
+                    document.querySelectorAll('.warehouse-card').forEach(card => {
+                        card.addEventListener('click', function() {
+                            // Find the radio button within this card and check it
+                            const radioBtn = this.querySelector('.warehouse-radio');
+                            radioBtn.checked = true;
+                            
+                            // Highlight the selected card
+                            document.querySelectorAll('.warehouse-card').forEach(c => {
+                                c.classList.remove('border-primary');
+                            });
+                            this.classList.add('border-primary');
+                        });
+                    });
+                    
+                    // Handle select warehouse button
+                    document.getElementById('selectWarehouseBtn').addEventListener('click', function() {
+                        const selectedWarehouse = document.querySelector('input[name="warehouseSelection"]:checked');
+                        if (selectedWarehouse) {
+                            const warehouseId = selectedWarehouse.value;
+                            const warehouseCard = selectedWarehouse.closest('.warehouse-card');
+                            
+                            // Extract city and state more directly - use hard-coded state values for reliability
+                            let warehouseCity = '';
+                            let warehouseState = '';
+                            
+                            // Try to extract the location_id directly
+                            const locationIdElem = warehouseCard.querySelector('.text-muted small');
+                            let locationId = '';
+                            if (locationIdElem) {
+                                const idMatch = locationIdElem.textContent.match(/ID:\s*([^\s,]+)/);
+                                if (idMatch && idMatch[1]) {
+                                    locationId = idMatch[1];
+                                }
+                            }
+                            
+                            // Direct check for specific location IDs from the API
+                            if (locationId === '143442' || locationId.includes('143442')) {
+                                warehouseCity = 'THANE';
+                                warehouseState = 'MAHARASHTRA';
+                            } else if (locationId === '143443' || locationId.includes('143443')) {
+                                warehouseCity = 'COIMBATORE';
+                                warehouseState = 'TAMIL NADU';
+                            } else if (locationId === '161333' || locationId.includes('161333')) {
+                                warehouseCity = 'RAJKOT';
+                                warehouseState = 'GUJARAT';
+                            } else {
+                                // If we can't determine from ID, try the warehouse name
+                                const warehouseName = warehouseCard.querySelector('.card-title').textContent;
+                                
+                                if (warehouseName.includes('ROYAL KISSAN') || warehouseName.includes('THANE')) {
+                                    warehouseCity = 'THANE';
+                                    warehouseState = 'MAHARASHTRA';
+                                } else if (warehouseName.includes('COIMBATORE')) {
+                                    warehouseCity = 'COIMBATORE';
+                                    warehouseState = 'TAMIL NADU';
+                                } else if (warehouseName.includes('RAJKOT') || warehouseName.includes('JEEKO AGRITECH')) {
+                                    warehouseCity = 'RAJKOT';
+                                    warehouseState = 'GUJARAT';
+                                } else if (warehouseName.includes('Mumbai')) {
+                                    warehouseCity = 'Mumbai';
+                                    warehouseState = 'MAHARASHTRA';
+                                } else if (warehouseName.includes('Delhi')) {
+                                    warehouseCity = 'New Delhi';
+                                    warehouseState = 'DELHI';
+                                } else if (warehouseName.includes('Bangalore')) {
+                                    warehouseCity = 'Bangalore';
+                                    warehouseState = 'KARNATAKA';
+                                } else {
+                                    // Last resort: Try to extract from the address text
+                                    try {
+                                        // Try to find card-text elements
+                                        const cardTexts = warehouseCard.querySelectorAll('.card-text');
+                                        if (cardTexts.length > 0) {
+                                            for (const textElem of cardTexts) {
+                                                const text = textElem.textContent;
+                                                // Look for known state names
+                                                if (text.includes('MAHARASHTRA')) {
+                                                    warehouseState = 'MAHARASHTRA';
+                                                    // Try to extract city
+                                                    const cityMatch = text.match(/([A-Za-z\s]+),\s*MAHARASHTRA/);
+                                                    if (cityMatch && cityMatch[1]) {
+                                                        warehouseCity = cityMatch[1].trim();
+                                                    } else {
+                                                        warehouseCity = 'THANE'; // Default city
+                                                    }
+                                                    break;
+                                                } else if (text.includes('TAMIL NADU') || text.includes('TAMIL')) {
+                                                    warehouseState = 'TAMIL NADU';
+                                                    warehouseCity = 'COIMBATORE';
+                                                    break;
+                                                } else if (text.includes('GUJARAT')) {
+                                                    warehouseState = 'GUJARAT';
+                                                    warehouseCity = 'RAJKOT';
+                                                    break;
+                                                } else if (text.includes('Delhi')) {
+                                                    warehouseState = 'DELHI';
+                                                    warehouseCity = 'New Delhi';
+                                                    break;
+                                                } else if (text.includes('Karnataka')) {
+                                                    warehouseState = 'KARNATAKA';
+                                                    warehouseCity = 'Bangalore';
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    } catch (e) {
+                                        console.error('Error extracting state information:', e);
+                                    }
+                                    
+                                    // If we still don't have a state, use defaults
+                                    if (!warehouseState) {
+                                        warehouseState = 'MAHARASHTRA'; // Default state
+                                        warehouseCity = 'THANE';        // Default city
+                                    }
+                                }
+                            }
+                            
+                            // Ensure state is always in uppercase
+                            warehouseState = warehouseState.toUpperCase();
+                            
+                            console.log(`Selected warehouse: ${warehouseId}, City: ${warehouseCity}, State: ${warehouseState}`);
+                            
+                            // Hide warehouse modal
+                            warehouseModal.hide();
+                            
+                            // Set pickup and return details in order form
+                            document.getElementById('pickUpId').value = warehouseId;
+                            document.getElementById('pickUpCity').value = warehouseCity;
+                            document.getElementById('pickUpState').value = warehouseState;
+                            
+                            // Set return details (same as pickup by default)
+                            document.getElementById('retrunId').value = warehouseId;
+                            document.getElementById('returnCity').value = warehouseCity;
+                            document.getElementById('returnState').value = warehouseState;
+                            
+                            // Set default order date to today
+                            const today = new Date();
+                            const yyyy = today.getFullYear();
+                            let mm = today.getMonth() + 1;
+                            let dd = today.getDate();
+                            if (dd < 10) dd = '0' + dd;
+                            if (mm < 10) mm = '0' + mm;
+                            const formattedDate = yyyy + '-' + mm + '-' + dd;
+                            document.getElementById('orderDate').value = formattedDate;
+                            
+                            // Transfer box details from freight form to order form
+                            const freightBoxes = document.querySelectorAll('#boxesContainer .box-row');
+                            const orderBoxesContainer = document.getElementById('boxDetailsContainer');
+                            
+                            // Clear any existing boxes except the first one
+                            const existingBoxes = orderBoxesContainer.querySelectorAll('.box-detail-row:not(:first-child)');
+                            existingBoxes.forEach(box => box.remove());
+                            
+                            // Set first box values from first freight box
+                            if (freightBoxes.length > 0) {
+                                const firstFreightBox = freightBoxes[0];
+                                const firstOrderBox = orderBoxesContainer.querySelector('.box-detail-row');
+                                
+                                if (firstOrderBox) {
+                                    const length = firstFreightBox.querySelector('.box-length').value || 11;
+                                    const width = firstFreightBox.querySelector('.box-width').value || 12;
+                                    const height = firstFreightBox.querySelector('.box-height').value || 14;
+                                    const weight = firstFreightBox.querySelector('.box-weight').value || 5;
+                                    
+                                    firstOrderBox.querySelector('input[name$="[length]"]').value = length;
+                                    firstOrderBox.querySelector('input[name$="[breadth]"]').value = width;
+                                    firstOrderBox.querySelector('input[name$="[height]"]').value = height;
+                                    firstOrderBox.querySelector('input[name$="[physical_weight]"]').value = weight;
+                                    firstOrderBox.querySelector('.phyWeight').value = weight;
+                                }
+                                
+                                // Add additional boxes if needed
+                                for (let i = 1; i < freightBoxes.length; i++) {
+                                    const freightBox = freightBoxes[i];
+                                    boxCount++;
+                                    const newIndex = boxCount - 1;
+                                    
+                                    const length = freightBox.querySelector('.box-length').value || 11;
+                                    const width = freightBox.querySelector('.box-width').value || 12;
+                                    const height = freightBox.querySelector('.box-height').value || 14;
+                                    const weight = freightBox.querySelector('.box-weight').value || 5;
+                                    
+                                    const newBox = document.createElement('div');
+                                    newBox.className = 'box-detail-row border p-3 mb-3 rounded bg-light';
+                                    newBox.innerHTML = `
+                                        <div class="row g-2">
+                                            <div class="col-md-2">
+                                                <label class="form-label">Box #</label>
+                                                <input type="text" class="form-control" value="${boxCount}" readonly>
+                                                <input type="hidden" class="noOfBox" name="orderItems[${newIndex}][noOfBox]" value="1">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Weight (kg)*</label>
+                                                <input type="number" class="form-control box-weight" name="orderItems[${newIndex}][physical_weight]" value="${weight}" required>
+                                                <input type="hidden" class="phyWeight" name="orderItems[${newIndex}][phyWeight]" value="${weight}">
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Length (cm)*</label>
+                                                <input type="number" class="form-control" name="orderItems[${newIndex}][length]" value="${length}" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Width (cm)*</label>
+                                                <input type="number" class="form-control" name="orderItems[${newIndex}][breadth]" value="${width}" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Height (cm)*</label>
+                                                <input type="number" class="form-control" name="orderItems[${newIndex}][height]" value="${height}" required>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <label class="form-label">Actions</label>
+                                                <button type="button" class="btn btn-danger w-100 remove-box-btn">Remove Box</button>
+                                            </div>
+                                        </div>
+                                    `;
+                                    
+                                    orderBoxesContainer.appendChild(newBox);
+                                    
+                                    // Add event listener to the new box weight input
+                                    const newBoxWeightInput = newBox.querySelector('.box-weight');
+                                    newBoxWeightInput.addEventListener('input', function() {
+                                        const phyWeightInput = this.parentElement.querySelector('.phyWeight');
+                                        if (phyWeightInput) {
+                                            phyWeightInput.value = this.value;
+                                        }
+                                    });
+                                    
+                                    // Add event listener to remove button
+                                    const removeBtn = newBox.querySelector('.remove-box-btn');
+                                    removeBtn.addEventListener('click', function() {
+                                        newBox.remove();
+                                        boxCount--;
+                                        document.getElementById('qty').value = boxCount;
+                                        
+                                        // Re-index the remaining boxes
+                                        const boxRows = orderBoxesContainer.querySelectorAll('.box-detail-row');
+                                        boxRows.forEach((box, index) => {
+                                            box.querySelector('input[type="text"]').value = index + 1;
+                                            const boxInputs = box.querySelectorAll('input[name^="orderItems"]');
+                                            boxInputs.forEach(input => {
+                                                const name = input.name;
+                                                const newName = name.replace(/orderItems\[\d+\]/, `orderItems[${index}]`);
+                                                input.name = newName;
+                                            });
+                                        });
+                                    });
+                                }
+                            }
+                            
+                            // Update quantity input to match the number of boxes
+                            document.getElementById('qty').value = boxCount;
+                            
+                            // Use total weight from freight form if available
+                            const totalWeightFromFreight = document.getElementById('totalWeight');
+                            if (totalWeightFromFreight && totalWeightFromFreight.value) {
+                                // We don't set this directly to a field, but could use it for calculations
+                                console.log(`Total weight from freight form: ${totalWeightFromFreight.value}kg`);
+                            }
+                            
+                            // Show the order form modal
+                            const orderModal = new bootstrap.Modal(document.getElementById('orderModalContainer'));
+                            orderModal.show();
+                        } else {
+                            alert('Please select a pickup location to continue.');
+                        }
+                    });
+                })
+                .catch(error => {
+                    warehouseLoader.classList.add('d-none');
+                    warehouseError.textContent = `Error: ${error.message}`;
+                    warehouseError.classList.remove('d-none');
+                });
+        }
     }
 
     function createEstimateCards(estimates, carrier) {
@@ -631,6 +1306,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 risk_type_charge,
                 extra
             } = estimate;
+            
+            // Extract email from carrier name if present
+            let userEmail = '';
+            if (extra && extra.customer_email) {
+                userEmail = extra.customer_email;
+            } else {
+                // Try to extract email from carrier string which might be in format: "Carrier (carrier-email@domain.com)"
+                const emailMatch = carrier.match(/\(([^)]+)\)/);
+                if (emailMatch && emailMatch[1]) {
+                    userEmail = emailMatch[1];
+                    // If it has a prefix like 'carrier-', remove it
+                    if (userEmail.includes('-')) {
+                        userEmail = userEmail.split('-')[1];
+                    }
+                }
+            }
 
             // Format extra details as a readable JSON
             const extraDetails = extra ? formatExtraDetails(extra) : 'No additional details available';
@@ -664,9 +1355,14 @@ document.addEventListener('DOMContentLoaded', function() {
                                 </div>` : ''}
                             </div>
                             
-                            <button class="btn btn-sm btn-outline-secondary w-100 toggle-details mt-2">
-                                Show details <i class="fas fa-chevron-down"></i>
-                            </button>
+                            <div class="d-flex justify-content-between mt-2 gap-2">
+                                <button class="btn btn-sm btn-outline-secondary flex-grow-1 toggle-details">
+                                    Show details <i class="fas fa-chevron-down"></i>
+                                </button>
+                                <button class="btn btn-sm btn-primary flex-grow-1 book-freight" data-email="${userEmail}">
+                                    Book Freight <i class="fas fa-truck"></i>
+                                </button>
+                            </div>
                             
                             <div class="extra-details mt-3">
                                 <h6 class="border-bottom pb-2">Price Breakdown</h6>
@@ -844,5 +1540,310 @@ document.addEventListener('DOMContentLoaded', function() {
         };
         
         return keyMap[key] || formatChargeKey(key);
+    }
+    
+    // Function to initialize all order form event handlers
+    function initializeOrderFormHandlers() {
+        // Handle Same as Pickup checkbox
+        if (sameAsPickupCheckbox) {
+            sameAsPickupCheckbox.addEventListener('change', function() {
+                if (this.checked) {
+                    // Set return address same as pickup
+                    document.getElementById('retrunId').value = document.getElementById('pickUpId').value;
+                    document.getElementById('returnCity').value = document.getElementById('pickUpCity').value;
+                    document.getElementById('returnState').value = document.getElementById('pickUpState').value;
+                } else {
+                    // Clear return address to allow different input
+                    document.getElementById('retrunId').value = '';
+                    document.getElementById('returnCity').value = '';
+                    document.getElementById('returnState').value = '';
+                }
+            });
+        }
+        
+        // Handle Add Box button
+        document.querySelectorAll('.add-box-btn').forEach(btn => {
+            btn.addEventListener('click', addNewBoxToOrder);
+        });
+        
+        // Handle file uploads and conversion to base64
+        const invoiceFileUpload = document.getElementById('invoiceFileUpload');
+        if (invoiceFileUpload) {
+            invoiceFileUpload.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    convertFileToBase64(file, 'invoiceFile');
+                }
+            });
+        }
+        
+        const ewaybillFileUpload = document.getElementById('ewaybillFileUpload');
+        if (ewaybillFileUpload) {
+            ewaybillFileUpload.addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                    const file = this.files[0];
+                    convertFileToBase64(file, 'ewaybillFile');
+                }
+            });
+        }
+        
+        // Show/hide eWay bill file upload based on input
+        const eWayBillInput = document.getElementById('eWayBill');
+        const ewaybillFileContainer = document.getElementById('ewaybillFileContainer');
+        if (eWayBillInput && ewaybillFileContainer) {
+            eWayBillInput.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    ewaybillFileContainer.classList.remove('d-none');
+                } else {
+                    ewaybillFileContainer.classList.add('d-none');
+                }
+            });
+        }
+        
+        // Handle box weight synchronization for each box
+        document.querySelectorAll('.box-weight').forEach(input => {
+            input.addEventListener('input', function() {
+                const phyWeightInput = this.parentElement.querySelector('.phyWeight');
+                if (phyWeightInput) {
+                    phyWeightInput.value = this.value;
+                }
+            });
+        });
+        
+        // Handle Create Order button click
+        if (createOrderBtn) {
+            createOrderBtn.addEventListener('click', submitOrderForm);
+        }
+    }
+    
+    // Function to convert file to base64
+    function convertFileToBase64(file, targetFieldId) {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = function() {
+            document.getElementById(targetFieldId).value = reader.result;
+        };
+        reader.onerror = function(error) {
+            console.error('Error converting file to base64:', error);
+        };
+    }
+    
+    // Function to add a new box to the order form
+    function addNewBoxToOrder() {
+        boxCount++;
+        const newIndex = boxCount - 1;
+        
+        const newBox = document.createElement('div');
+        newBox.className = 'box-detail-row border p-3 mb-3 rounded bg-light';
+        newBox.innerHTML = `
+            <div class="row g-2">
+                <div class="col-md-2">
+                    <label class="form-label">Box #</label>
+                    <input type="text" class="form-control" value="${boxCount}" readonly>
+                    <input type="hidden" class="noOfBox" name="orderItems[${newIndex}][noOfBox]" value="1">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Weight (kg)*</label>
+                    <input type="number" class="form-control box-weight" name="orderItems[${newIndex}][physical_weight]" value="5" required>
+                    <input type="hidden" class="phyWeight" name="orderItems[${newIndex}][phyWeight]" value="5">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Length (cm)*</label>
+                    <input type="number" class="form-control" name="orderItems[${newIndex}][length]" value="11" required>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Width (cm)*</label>
+                    <input type="number" class="form-control" name="orderItems[${newIndex}][breadth]" value="12" required>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Height (cm)*</label>
+                    <input type="number" class="form-control" name="orderItems[${newIndex}][height]" value="14" required>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label">Actions</label>
+                    <button type="button" class="btn btn-danger w-100 remove-box-btn">Remove Box</button>
+                </div>
+            </div>
+        `;
+        
+        boxDetailsContainer.appendChild(newBox);
+        
+        // Update qty input
+        document.getElementById('qty').value = boxCount;
+        
+        // Add event listener to new box weight input
+        const newBoxWeightInput = newBox.querySelector('.box-weight');
+        newBoxWeightInput.addEventListener('input', function() {
+            const phyWeightInput = this.parentElement.querySelector('.phyWeight');
+            if (phyWeightInput) {
+                phyWeightInput.value = this.value;
+            }
+        });
+        
+        // Add event listener to remove button
+        const removeBtn = newBox.querySelector('.remove-box-btn');
+        removeBtn.addEventListener('click', function() {
+            newBox.remove();
+            boxCount--;
+            document.getElementById('qty').value = boxCount;
+            
+            // Re-index the remaining boxes
+            const boxRows = boxDetailsContainer.querySelectorAll('.box-detail-row');
+            boxRows.forEach((box, index) => {
+                box.querySelector('input[type="text"]').value = index + 1;
+                const boxInputs = box.querySelectorAll('input[name^="orderItems"]');
+                boxInputs.forEach(input => {
+                    const name = input.name;
+                    const newName = name.replace(/orderItems\[\d+\]/, `orderItems[${index}]`);
+                    input.name = newName;
+                });
+            });
+        });
+    }
+    
+    // Function to submit the order form
+    function submitOrderForm() {
+        // Show loader and hide any previous messages
+        orderLoader.classList.remove('d-none');
+        orderError.classList.add('d-none');
+        orderSuccess.classList.add('d-none');
+        
+        // Simple form validation
+        const requiredFields = orderForm.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('is-invalid');
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        
+        // Ensure state fields are properly formatted
+        const pickUpState = document.getElementById('pickUpState');
+        const returnState = document.getElementById('returnState');
+        
+        if (pickUpState && pickUpState.value) {
+            pickUpState.value = pickUpState.value.toUpperCase();
+        }
+        
+        if (returnState && returnState.value) {
+            returnState.value = returnState.value.toUpperCase();
+        }
+        
+        if (!isValid) {
+            orderLoader.classList.add('d-none');
+            orderError.textContent = 'Please fill in all required fields.';
+            orderError.classList.remove('d-none');
+            return;
+        }
+        
+        // Check for invoice file
+        if (!document.getElementById('invoiceFile').value) {
+            orderLoader.classList.add('d-none');
+            orderError.textContent = 'Please upload an invoice file.';
+            orderError.classList.remove('d-none');
+            return;
+        }
+        
+        // Collect form data
+        const formData = {
+            orderIds: document.getElementById('orderIds').value,
+            orderDate: document.getElementById('orderDate').value,
+            buyerCity: document.getElementById('buyerCity').value || '',
+            buyerState: document.getElementById('buyerState').value || '',
+            
+            pickUpId: parseInt(document.getElementById('pickUpId').value),
+            pickUpCity: document.getElementById('pickUpCity').value,
+            pickUpState: document.getElementById('pickUpState').value,
+            
+            retrunId: parseInt(document.getElementById('retrunId').value),
+            returnCity: document.getElementById('returnCity').value,
+            returnState: document.getElementById('returnState').value,
+            
+            invoiceAmt: parseFloat(document.getElementById('invoiceAmt').value),
+            invoiceFile: document.getElementById('invoiceFile').value,
+            eWayBill: document.getElementById('eWayBill').value,
+            ewaybillFile: document.getElementById('ewaybillFile').value || '',
+            codAmt: parseFloat(document.getElementById('codAmt').value) || 0,
+            itemName: document.getElementById('itemName').value,
+            qty: parseInt(document.getElementById('qty').value),
+            
+            buyer: {
+                fName: document.getElementById('buyerFName').value,
+                lName: document.getElementById('buyerLName').value,
+                emailId: document.getElementById('buyerEmail').value || null,
+                buyerAddresses: {
+                    address1: document.getElementById('buyerAddress').value,
+                    mobileNo: document.getElementById('buyerMobile').value,
+                    pinId: document.getElementById('buyerPincode').value
+                }
+            },
+            
+            orderItems: []
+        };
+        
+        // Collect order items (boxes)
+        const boxRows = boxDetailsContainer.querySelectorAll('.box-detail-row');
+        boxRows.forEach((box, index) => {
+            const boxItem = {
+                noOfBox: 1,
+                physical_weight: box.querySelector('input[name$="[physical_weight]"]').value,
+                length: parseInt(box.querySelector('input[name$="[length]"]').value),
+                breadth: parseInt(box.querySelector('input[name$="[breadth]"]').value),
+                height: parseInt(box.querySelector('input[name$="[height]"]').value),
+                phyWeight: parseFloat(box.querySelector('input[name$="[physical_weight]"]').value)
+            };
+            formData.orderItems.push(boxItem);
+        });
+        
+        // Send data to API via our proxy
+        fetch('order-proxy.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            orderLoader.classList.add('d-none');
+            
+            // Check response structure
+            if (data.error) {
+                orderError.textContent = `Error: ${data.error}`;
+                orderError.classList.remove('d-none');
+                return;
+            }
+            
+            // Show success message
+            orderSuccess.innerHTML = `
+                <h5><i class="fas fa-check-circle"></i> Order Created Successfully!</h5>
+                <p>Your order has been submitted. Order details:</p>
+                <ul>
+                    <li><strong>Order ID:</strong> ${formData.orderIds}</li>
+                    <li><strong>Customer:</strong> ${formData.buyer.fName} ${formData.buyer.lName}</li>
+                    <li><strong>Item:</strong> ${formData.itemName} (${formData.qty} boxes)</li>
+                    <li><strong>Invoice Amount:</strong> ₹${formData.invoiceAmt}</li>
+                </ul>
+            `;
+            orderSuccess.classList.remove('d-none');
+            
+            // Disable submit button
+            createOrderBtn.disabled = true;
+        })
+        .catch(error => {
+            orderLoader.classList.add('d-none');
+            orderError.textContent = `Error: ${error.message}`;
+            orderError.classList.remove('d-none');
+            console.error('Order submission error:', error);
+        });
     }
 });
