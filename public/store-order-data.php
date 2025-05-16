@@ -67,10 +67,10 @@ file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "Prepared Data: " . json_en
 // Try to connect to the database 
 try {
     // Database credentials - adjust these to match your XAMPP setup
-    $host = 'localhost';
-    $dbname = 'agro';
-    $username = 'root';
-    $password = '';
+    $host = '127.0.0.1';
+    $dbname = 'vyassa44_agro';
+    $username = 'vyassa44_agro';
+    $password = 'RoyalK1234';
     
     // Create database connection to the agro database directly
     $dsn = "mysql:host=$host;dbname=$dbname;charset=UTF8";
