@@ -1,0 +1,246 @@
+<!-- Order Form Section to be included in your main page -->
+<div class="container mt-4">
+    <div class="card">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Create Order</h4>
+        </div>
+        <div class="card-body">
+            <div id="orderLoader" class="text-center py-4 d-none">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Processing order...</span>
+                </div>
+                <p class="mt-2">Creating your order...</p>
+            </div>
+            <div id="orderError" class="alert alert-danger d-none"></div>
+            <div id="orderSuccess" class="alert alert-success d-none"></div>
+            
+            <form id="createOrderForm">
+                <!-- Order Details -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Order Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="orderIds" class="form-label">Order ID*</label>
+                                <input type="text" class="form-control" id="orderIds" name="orderIds" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="orderDate" class="form-label">Order Date*</label>
+                                <input type="date" class="form-control" id="orderDate" name="orderDate" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="invoiceAmt" class="form-label">Invoice Amount*</label>
+                                <input type="number" class="form-control" id="invoiceAmt" name="invoiceAmt" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Pickup Location (Read Only) -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Pickup Location</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Location ID</label>
+                                <input type="text" class="form-control" id="pickUpId" name="pickUpId" value="143442">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="pickUpCity" name="pickUpCity" value="THANE">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">State</label>
+                                <input type="text" class="form-control" id="pickUpState" name="pickUpState" value="MAHARASHTRA">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Return Location (Same as Pickup by default) -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0">Return Location</h5>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="sameAsPickup" checked>
+                            <label class="form-check-label" for="sameAsPickup">Same as Pickup Location</label>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label class="form-label">Location ID</label>
+                                <input type="text" class="form-control" id="retrunId" name="retrunId" value="143442">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">City</label>
+                                <input type="text" class="form-control" id="returnCity" name="returnCity" value="THANE">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">State</label>
+                                <input type="text" class="form-control" id="returnState" name="returnState" value="MAHARASHTRA">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Buyer Information -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Buyer Information</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-4">
+                                <label for="buyerFName" class="form-label">First Name*</label>
+                                <input type="text" class="form-control" id="buyerFName" name="buyer[fName]" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="buyerLName" class="form-label">Last Name</label>
+                                <input type="text" class="form-control" id="buyerLName" name="buyer[lName]">
+                            </div>
+                            <div class="col-md-4">
+                                <label for="buyerEmail" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="buyerEmail" name="buyer[emailId]">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="buyerAddress" class="form-label">Address*</label>
+                                <input type="text" class="form-control" id="buyerAddress" name="buyer[buyerAddresses][address1]" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="buyerMobile" class="form-label">Mobile Number*</label>
+                                <input type="text" class="form-control" id="buyerMobile" name="buyer[buyerAddresses][mobileNo]" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="buyerPincode" class="form-label">Pincode*</label>
+                                <input type="text" class="form-control" id="buyerPincode" name="buyer[buyerAddresses][pinId]" required>
+                            </div>
+                        </div>
+                        <!-- Hidden fields for buyer city and state (auto-filled) -->
+                        <input type="hidden" id="buyerCity" name="buyerCity">
+                        <input type="hidden" id="buyerState" name="buyerState">
+                    </div>
+                </div>
+                
+                <!-- Item & Box Details -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Item Details</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-6">
+                                <label for="itemName" class="form-label">Item Name*</label>
+                                <input type="text" class="form-control" id="itemName" name="itemName" required>
+                            </div>
+                            <div class="col-md-3">
+                                <label for="codAmt" class="form-label">COD Amount</label>
+                                <input type="number" class="form-control" id="codAmt" name="codAmt" value="0">
+                            </div>
+                            <div class="col-md-3">
+                                <label for="qty" class="form-label">Quantity</label>
+                                <input type="number" class="form-control" id="qty" name="qty" value="1">
+                            </div>
+                        </div>
+                        
+                        <h6 class="mb-3">Box Details</h6>
+                        <div id="boxDetailsContainer">
+                            <div class="box-detail-row border p-3 mb-3 rounded bg-light">
+                                <div class="row g-2">
+                                    <div class="col-md-2">
+                                        <label class="form-label">Box #</label>
+                                        <input type="text" class="form-control" value="1" readonly>
+                                        <input type="hidden" class="noOfBox" name="orderItems[0][noOfBox]" value="1">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Weight (kg)*</label>
+                                        <input type="number" class="form-control box-weight" name="orderItems[0][physical_weight]" value="5" required>
+                                        <input type="hidden" class="phyWeight" name="orderItems[0][phyWeight]" value="5">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Length (cm)*</label>
+                                        <input type="number" class="form-control" name="orderItems[0][length]" value="11" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Width (cm)*</label>
+                                        <input type="number" class="form-control" name="orderItems[0][breadth]" value="12" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Height (cm)*</label>
+                                        <input type="number" class="form-control" name="orderItems[0][height]" value="14" required>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label">Actions</label>
+                                        <button type="button" class="btn btn-primary w-100 add-box-btn">Add Box</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Invoice and EWay Bill Upload -->
+                <div class="card mb-3">
+                    <div class="card-header bg-light">
+                        <h5 class="mb-0">Documents</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label for="invoiceFileUpload" class="form-label">Invoice File*</label>
+                                <input type="file" class="form-control" id="invoiceFileUpload" accept="image/*,.pdf" required>
+                                <input type="hidden" id="invoiceFile" name="invoiceFile">
+                            </div>
+                            <div class="col-md-6">
+                                <label for="eWayBill" class="form-label">eWay Bill Number</label>
+                                <input type="text" class="form-control" id="eWayBill" name="eWayBill">
+                            </div>
+                            <div class="col-md-6 d-none" id="ewaybillFileContainer">
+                                <label for="ewaybillFileUpload" class="form-label">eWay Bill File</label>
+                                <input type="file" class="form-control" id="ewaybillFileUpload" accept="image/*,.pdf">
+                                <input type="hidden" id="ewaybillFile" name="ewaybillFile">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary" id="createOrderBtn">Create Order</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Response Modal for showing API response -->
+<div class="modal fade" id="responseModalContainer" tabindex="-1" aria-labelledby="responseModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="responseModalLabel">Order Creation Response</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="responseLoader" class="text-center py-4 d-none">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Processing response...</p>
+                </div>
+                <div id="responseError" class="alert alert-danger d-none"></div>
+                <div id="responseSuccess" class="alert alert-success d-none"></div>
+                <div id="responseJson" class="bg-light p-3 rounded mt-3 d-none">
+                    <h6 class="border-bottom pb-2">API Response Details:</h6>
+                    <pre class="mt-2" style="max-height: 300px; overflow-y: auto;"></pre>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="continueBtn">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>

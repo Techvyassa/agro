@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ItemMasterController;
 use App\Http\Controllers\Api\SalesOrderController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -238,3 +239,6 @@ Route::post('freight-proxy', function (\Illuminate\Http\Request $request) {
         return response()->json(['error' => $e->getMessage()], 500);
     }
 });
+
+// Order Storage API
+Route::post('store-order', [OrderController::class, 'store']);

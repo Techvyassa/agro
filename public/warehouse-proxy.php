@@ -1,4 +1,13 @@
 <?php
+// Enable error reporting for debugging
+ini_set('display_errors', 0); // Don't show errors to the client
+ini_set('log_errors', 1);
+error_reporting(E_ALL);
+
+// Increase time limit and memory limit for this script
+set_time_limit(60); // Allow up to 60 seconds execution time
+ini_set('memory_limit', '256M');
+
 // Set headers to allow CORS and specify JSON response
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: GET, OPTIONS');
@@ -93,8 +102,8 @@ try {
     file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "USER ID: " . $userId . PHP_EOL, FILE_APPEND);
     
     // API endpoint
-    $apiEndpoint = 'https://c7c7-2401-4900-8815-9ac5-f169-ae0d-40fd-b1e9.ngrok-free.app/warehouses';
-    
+    //$apiEndpoint = 'https://4906-106-222-209-31.ngrok-free.app/warehouses';
+    $apiEndpoint = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses';
     // Build the URL with query parameter
     $url = $apiEndpoint . '?user_id=' . urlencode($userId);
     
@@ -115,11 +124,13 @@ try {
     ]);
     
     // Set other important cURL options
-    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);  // Force fresh connection
-    curl_setopt($ch, CURLOPT_FORBID_REUSE, true);   // Don't reuse connection
-    curl_setopt($ch, CURLOPT_TIMEOUT, 30);          // Timeout after 30 seconds
-    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true); // Follow redirects
-    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // For testing only
+    curl_setopt($ch, CURLOPT_FRESH_CONNECT, true);    // Force fresh connection
+    curl_setopt($ch, CURLOPT_FORBID_REUSE, true);     // Don't reuse connection
+    curl_setopt($ch, CURLOPT_TIMEOUT, 15);            // Reduced timeout to 15 seconds
+    curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);      // Connection timeout of 5 seconds
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);   // Follow redirects
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);  // For testing only
+    curl_setopt($ch, CURLOPT_FAILONERROR, false);     // Don't fail on error status codes
     
     // Execute the request
     file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "EXECUTING API REQUEST...\n", FILE_APPEND);
@@ -205,8 +216,17 @@ try {
         'message' => $e->getMessage()
     ]);
     
-    // Log the error
+    // Log the error with full details
     if (isset($logFile)) {
         file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "ERROR: " . $e->getMessage() . PHP_EOL, FILE_APPEND);
+        file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "TRACE: " . $e->getTraceAsString() . PHP_EOL, FILE_APPEND);
     }
+    
+    // Return a more helpful error message with fallback data
+    echo json_encode([
+        'source' => 'fallback',
+        'error' => $e->getMessage(),
+        'message' => 'Using fallback data due to API error',
+        'warehouses' => getSampleWarehouseData($userId)
+    ]);
 }

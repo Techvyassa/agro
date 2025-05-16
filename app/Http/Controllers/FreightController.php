@@ -14,6 +14,10 @@ class FreightController extends Controller
      */
     public function index()
     {
+        // Check if this is a direct access to the HTML file instead of the route
+        if (request()->is('freight.html')) {
+            return redirect()->route('freight.calculator');
+        }
         // Get all unique SO numbers from pickings - using the same approach as PicklistController
         $so_numbers = Picking::select('so_no')
             ->distinct()
@@ -26,6 +30,19 @@ class FreightController extends Controller
     /**
      * Get all boxes and their details for a specific sales order
      */
+    /**
+     * Show the create order form.
+     * This handles the route to create an order from the freight calculator.
+     */
+    public function createOrder(Request $request)
+    {
+        // Get all URL parameters to pass to the view
+        $params = $request->all();
+        
+        // Return the view with the URL parameters
+        return view('freight.create-order', compact('params'));
+    }
+    
     public function getBoxDetails(Request $request)
     {
         $so_no = $request->get('so_no');

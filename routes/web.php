@@ -112,10 +112,17 @@ Route::prefix('api')->middleware('api')->withoutMiddleware(['web', '\App\Http\Mi
 // Freight Estimation Page
 Route::get('/freight', function () {
     return redirect('/freight.html');
-});
+})->name('freight');
 
 // Freight Cost Calculation Routes
 Route::get('/freight-calculator', [App\Http\Controllers\FreightController::class, 'index'])->name('freight.calculator');
+
+// Direct access routes for HTML files in public directory
+Route::get('/freight.html', function () {
+    return redirect()->route('freight.calculator');
+});
+
+Route::get('/create-order', [App\Http\Controllers\FreightController::class, 'createOrder'])->name('create.order');
 Route::get('/freight-calculator/get-box-details', [App\Http\Controllers\FreightController::class, 'getBoxDetails'])->name('freight.getBoxDetails');
 
 // Packlist Generation Routes

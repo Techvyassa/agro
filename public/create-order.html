@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="">
+    <title>Create Order</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        .response-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-12">
+                <a href="/freight-calculator" class="btn btn-secondary mb-3">
+                    <i class="fas fa-arrow-left"></i> Back to Freight Calculator
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mt-4">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h4 class="mb-0">Create Order</h4>
+            </div>
+            <div class="card-body">
+                <div id="orderLoader" class="text-center py-4 d-none">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Processing order...</span>
+                    </div>
+                    <p class="mt-2">Creating your order...</p>
+                </div>
+                <div id="orderError" class="alert alert-danger d-none"></div>
+                <div id="orderSuccess" class="alert alert-success d-none"></div>
+                
+                <form id="createOrderForm">
+                    <!-- Order Details -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Order Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="orderIds" class="form-label">Order ID*</label>
+                                    <input type="text" class="form-control" id="orderIds" name="orderIds" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="orderDate" class="form-label">Order Date*</label>
+                                    <input type="date" class="form-control" id="orderDate" name="orderDate" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="invoiceAmt" class="form-label">Invoice Amount*</label>
+                                    <input type="number" class="form-control" id="invoiceAmt" name="invoiceAmt" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Pickup Location -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Pickup Location</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Location ID</label>
+                                    <input type="text" class="form-control" id="pickUpId" name="pickUpId" value="143442">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" id="pickUpCity" name="pickUpCity" value="THANE">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" id="pickUpState" name="pickUpState" value="MAHARASHTRA">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Return Location -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light d-flex justify-content-between align-items-center">
+                            <h5 class="mb-0">Return Location</h5>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="sameAsPickup" checked>
+                                <label class="form-check-label" for="sameAsPickup">Same as Pickup Location</label>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label class="form-label">Location ID</label>
+                                    <input type="text" class="form-control" id="retrunId" name="retrunId" value="143442">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" id="returnCity" name="returnCity" value="THANE">
+                                </div>
+                                <div class="col-md-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" id="returnState" name="returnState" value="MAHARASHTRA">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Buyer Information -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Buyer Information</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-4">
+                                    <label for="buyerFName" class="form-label">First Name*</label>
+                                    <input type="text" class="form-control" id="buyerFName" name="buyer[fName]" required>
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="buyerLName" class="form-label">Last Name</label>
+                                    <input type="text" class="form-control" id="buyerLName" name="buyer[lName]">
+                                </div>
+                                <div class="col-md-4">
+                                    <label for="buyerEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="buyerEmail" name="buyer[emailId]">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="buyerAddress" class="form-label">Address*</label>
+                                    <input type="text" class="form-control" id="buyerAddress" name="buyer[buyerAddresses][address1]" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="buyerMobile" class="form-label">Mobile Number*</label>
+                                    <input type="text" class="form-control" id="buyerMobile" name="buyer[buyerAddresses][mobileNo]" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="buyerPincode" class="form-label">Pincode*</label>
+                                    <input type="text" class="form-control" id="buyerPincode" name="buyer[buyerAddresses][pinId]" required>
+                                </div>
+                            </div>
+                            <!-- Hidden fields for buyer city and state (auto-filled) -->
+                            <input type="hidden" id="buyerCity" name="buyerCity">
+                            <input type="hidden" id="buyerState" name="buyerState">
+                        </div>
+                    </div>
+                    
+                    <!-- Item & Box Details -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Item Details</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3 mb-3">
+                                <div class="col-md-6">
+                                    <label for="itemName" class="form-label">Item Name*</label>
+                                    <input type="text" class="form-control" id="itemName" name="itemName" required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="codAmt" class="form-label">COD Amount</label>
+                                    <input type="number" class="form-control" id="codAmt" name="codAmt" value="0">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="qty" class="form-label">Quantity</label>
+                                    <input type="number" class="form-control" id="qty" name="qty" value="1">
+                                </div>
+                            </div>
+                            
+                            <h6 class="mb-3">Box Details</h6>
+                            <div id="boxDetailsContainer">
+                                <div class="box-detail-row border p-3 mb-3 rounded bg-light">
+                                    <div class="row g-2">
+                                        <div class="col-md-2">
+                                            <label class="form-label">Box #</label>
+                                            <input type="text" class="form-control" value="1" readonly>
+                                            <input type="hidden" class="noOfBox" name="orderItems[0][noOfBox]" value="1">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Weight (kg)*</label>
+                                            <input type="number" class="form-control box-weight" name="orderItems[0][physical_weight]" value="5" required>
+                                            <input type="hidden" class="phyWeight" name="orderItems[0][phyWeight]" value="5">
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Length (cm)*</label>
+                                            <input type="number" class="form-control" name="orderItems[0][length]" value="11" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Width (cm)*</label>
+                                            <input type="number" class="form-control" name="orderItems[0][breadth]" value="12" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Height (cm)*</label>
+                                            <input type="number" class="form-control" name="orderItems[0][height]" value="14" required>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <label class="form-label">Actions</label>
+                                            <button type="button" class="btn btn-primary w-100 add-box-btn">Add Box</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Invoice and EWay Bill Upload -->
+                    <div class="card mb-3">
+                        <div class="card-header bg-light">
+                            <h5 class="mb-0">Documents</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="invoiceFileUpload" class="form-label">Invoice File*</label>
+                                    <input type="file" class="form-control" id="invoiceFileUpload" accept="image/*,.pdf" required>
+                                    <input type="hidden" id="invoiceFile" name="invoiceFile">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="eWayBill" class="form-label">eWay Bill Number</label>
+                                    <input type="text" class="form-control" id="eWayBill" name="eWayBill">
+                                </div>
+                                <div class="col-md-6 d-none" id="ewaybillFileContainer">
+                                    <label for="ewaybillFileUpload" class="form-label">eWay Bill File</label>
+                                    <input type="file" class="form-control" id="ewaybillFileUpload" accept="image/*,.pdf">
+                                    <input type="hidden" id="ewaybillFile" name="ewaybillFile">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <div class="text-end mt-3">
+                    <button type="button" class="btn btn-primary" id="createOrderBtn">Create Order</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Response Popup -->
+    <div class="overlay" id="responseOverlay"></div>
+    <div class="response-popup" id="responsePopup">
+        <div class="response-header mb-3">
+            <h4 id="responseTitle">Order Response</h4>
+        </div>
+        <div class="response-body">
+            <div id="responseContent"></div>
+        </div>
+        <div class="response-footer mt-3 d-flex justify-content-end">
+            <button type="button" class="btn btn-secondary me-2" id="closeResponseBtn">Close</button>
+            <button type="button" class="btn btn-primary" id="newOrderBtn">New Order</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="order-response.js"></script>
+    
+    <!-- Script to handle warehouse selection and URL parameters -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const userId = urlParams.get('user_id');
+        
+        // If we have user_id parameter, show warehouse selection first
+        if (userId) {
+            // Create warehouse selection section
+            const warehouseSection = document.createElement('div');
+            warehouseSection.className = 'card mb-4';
+            warehouseSection.innerHTML = `
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">Select Pickup Location</h4>
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-info">
+                        <strong>Selected Carrier:</strong> ${urlParams.get('carrier') || 'Not specified'}
+                        <strong class="ms-3">Rate:</strong> ${urlParams.get('rate') || 'Not specified'}
+                        ${urlParams.get('tat') ? `<strong class="ms-3">Estimated Time:</strong> ${urlParams.get('tat')}` : ''}
+                    </div>
+                    <div id="warehouseLoader" class="text-center py-4">
+                        <div class="spinner-border text-primary" role="status">
+                            <span class="visually-hidden">Loading warehouse locations...</span>
+                        </div>
+                        <p class="mt-2">Fetching pickup locations...</p>
+                    </div>
+                    <div id="warehouseError" class="alert alert-danger d-none"></div>
+                    <div id="warehouseList" class="row"></div>
+                </div>
+            `;
+            
+            // Insert before the main order form card
+            const orderCard = document.querySelector('.container.mt-4 .card');
+            orderCard.parentNode.insertBefore(warehouseSection, orderCard);
+            
+            // Hide the main order form until warehouse is selected
+            orderCard.style.display = 'none';
+            
+            // Fetch warehouses
+            fetchWarehouses(userId);
+        } else {
+            // Just handle URL parameters and prefill form
+            prefillFormFromUrlParams();
+        }
+        
+        // Function to fetch warehouses
+        function fetchWarehouses(userEmail) {
+            const warehouseLoader = document.getElementById('warehouseLoader');
+            const warehouseError = document.getElementById('warehouseError');
+            const warehouseList = document.getElementById('warehouseList');
+            
+            fetch(`warehouse-proxy.php?user_id=${encodeURIComponent(userEmail)}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error(`Server responded with status: ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Hide loader
+                    warehouseLoader.style.display = 'none';
+                    
+                    // Extract warehouses based on response format
+                    let warehouses = [];
+                    if (data.warehouses) {
+                        warehouses = data.warehouses;
+                    } else if (data.data) {
+                        warehouses = data.data;
+                    } else if (Array.isArray(data)) {
+                        warehouses = data;
+                    }
+                    
+                    if (!warehouses.length) {
+                        warehouseError.textContent = 'No warehouse/pickup locations found.';
+                        warehouseError.classList.remove('d-none');
+                        return;
+                    }
+                    
+                    // Display warehouses
+                    warehouses.forEach((warehouse, index) => {
+                        // Extract warehouse data based on API format
+                        const warehouseName = warehouse.warehouse_name || warehouse.name || 'Unnamed Warehouse';
+                        const warehouseId = warehouse.location_id || warehouse.id || `WH${index}`;
+                        const address = warehouse.address || 'No address available';
+                        const city = warehouse.city || '';
+                        const state = warehouse.state || '';
+                        const pincode = warehouse.pincode || warehouse.zip || '';
+                        const isDefault = warehouse.is_default || warehouse.is_default_pickup || false;
+                        
+                        const warehouseCard = document.createElement('div');
+                        warehouseCard.className = 'col-md-4 mb-3';
+                        warehouseCard.innerHTML = `
+                            <div class="card h-100 ${isDefault ? 'border-success' : ''}">
+                                <div class="card-header ${isDefault ? 'bg-success text-white' : 'bg-light'}">
+                                    <h5 class="mb-0">
+                                        ${warehouseName}
+                                        ${isDefault ? '<span class="badge bg-warning text-dark ms-2">Default</span>' : ''}
+                                    </h5>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text mb-1"><strong>ID:</strong> ${warehouseId}</p>
+                                    <p class="card-text mb-1"><strong>Address:</strong> ${address}</p>
+                                    <p class="card-text mb-1"><strong>Location:</strong> ${city}, ${state} ${pincode}</p>
+                                    <button class="btn btn-primary w-100 mt-3 select-warehouse" 
+                                        data-id="${warehouseId}" 
+                                        data-city="${city}" 
+                                        data-state="${state}"
+                                    >Select This Location</button>
+                                </div>
+                            </div>
+                        `;
+                        
+                        warehouseList.appendChild(warehouseCard);
+                    });
+                    
+                    // Add click handlers to select buttons
+                    document.querySelectorAll('.select-warehouse').forEach(button => {
+                        button.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            const city = this.getAttribute('data-city');
+                            const state = this.getAttribute('data-state');
+                            
+                            // Set pickup details
+                            document.getElementById('pickUpId').value = id;
+                            document.getElementById('pickUpCity').value = city;
+                            document.getElementById('pickUpState').value = state;
+                            
+                            // If same as pickup is checked, set return details too
+                            if (document.getElementById('sameAsPickup').checked) {
+                                document.getElementById('retrunId').value = id;
+                                document.getElementById('returnCity').value = city;
+                                document.getElementById('returnState').value = state;
+                            }
+                            
+                            // Show the order form
+                            const orderCard = document.querySelector('.container.mt-4 .card:nth-child(2)');
+                            orderCard.style.display = '';
+                            
+                            // Scroll to the order form
+                            orderCard.scrollIntoView({ behavior: 'smooth' });
+                            
+                            // Fill in other form details from URL params
+                            prefillFormFromUrlParams();
+                        });
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching warehouses:', error);
+                    warehouseLoader.style.display = 'none';
+                    warehouseError.textContent = `Error loading pickup locations: ${error.message}`;
+                    warehouseError.classList.remove('d-none');
+                });
+        }
+        
+        // Function to prefill form from URL parameters
+        function prefillFormFromUrlParams() {
+            const urlParams = new URLSearchParams(window.location.search);
+            
+            // Handle invoice amount
+            if (urlParams.has('invoiceAmount')) {
+                document.getElementById('invoiceAmt').value = urlParams.get('invoiceAmount');
+            } else {
+                // Default invoice amount
+                document.getElementById('invoiceAmt').value = '1000';
+            }
+            
+            // Don't auto-generate Order ID - let user input manually
+            
+            // Let user input Order Date manually - no auto-setting to today
+            
+            // Populate destination details from pincode if available
+            if (urlParams.has('destinationPincode')) {
+                const pincode = urlParams.get('destinationPincode');
+                // Set buyer pincode
+                document.getElementById('buyerPincode').value = pincode;
+            } else {
+                // Default pincode
+                document.getElementById('buyerPincode').value = '400001';
+            }
+            
+            // Handle freight-specific parameters for box dimensions and count
+            const boxRow = document.querySelector('.box-detail-row');
+            if (boxRow) {
+                // Set length, width, height, weight from URL parameters if available
+                if (urlParams.has('length')) {
+                    boxRow.querySelector('input[name="orderItems[0][length]"]').value = urlParams.get('length');
+                }
+                
+                if (urlParams.has('width')) {
+                    boxRow.querySelector('input[name="orderItems[0][breadth]"]').value = urlParams.get('width');
+                }
+                
+                if (urlParams.has('height')) {
+                    boxRow.querySelector('input[name="orderItems[0][height]"]').value = urlParams.get('height');
+                }
+                
+                if (urlParams.has('weight')) {
+                    const weightValue = urlParams.get('weight');
+                    boxRow.querySelector('input[name="orderItems[0][physical_weight]"]').value = weightValue;
+                    boxRow.querySelector('.phyWeight').value = weightValue;
+                }
+                
+                // Add additional boxes if boxCount > 1
+                if (urlParams.has('boxCount')) {
+                    const boxCount = parseInt(urlParams.get('boxCount'), 10);
+                    if (boxCount > 1) {
+                        // Get the add box button and click it programmatically to add more boxes
+                        const addBoxBtn = document.querySelector('.add-box-btn');
+                        for (let i = 1; i < boxCount; i++) {
+                            if (addBoxBtn) {
+                                addBoxBtn.click();
+                            }
+                        }
+                        
+                        // Update the qty field
+                        document.getElementById('qty').value = boxCount;
+                    }
+                }
+            }
+            
+            // Set default pickup location if not coming from warehouse selection
+            if (!document.getElementById('pickUpId').value) {
+                document.getElementById('pickUpId').value = '143442';
+                document.getElementById('pickUpCity').value = 'THANE';
+                document.getElementById('pickUpState').value = 'MAHARASHTRA';
+            }
+            
+            // Set default return location if empty
+            if (!document.getElementById('retrunId').value) {
+                document.getElementById('retrunId').value = document.getElementById('pickUpId').value;
+                document.getElementById('returnCity').value = document.getElementById('pickUpCity').value;
+                document.getElementById('returnState').value = document.getElementById('pickUpState').value;
+            }
+            
+            // Let user input Item Details manually
+            // We won't set default values for Item Name
+            
+            // Let user input Buyer Information manually
+            // No default values for buyer name, email, mobile, address
+            // Only COD amount gets default to 0 if not entered
+            if (!document.getElementById('codAmt').value) {
+                document.getElementById('codAmt').value = '0';
+            }
+        }
+    });
+    </script>
+</body>
+</html>

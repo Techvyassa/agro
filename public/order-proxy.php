@@ -41,13 +41,21 @@ try {
     file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "\n=== NEW ORDER REQUEST STARTED ===\n", FILE_APPEND);
     file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "REQUEST PAYLOAD: " . $inputJSON . PHP_EOL, FILE_APPEND);
     
-    // API endpoint
-    $apiEndpoint = 'https://c7c7-2401-4900-8815-9ac5-f169-ae0d-40fd-b1e9.ngrok-free.app/create-order';
+    // Get user ID from query parameter
+    $userId = isset($_GET['user_id']) ? $_GET['user_id'] : '';
+    file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "USER ID: " . $userId . PHP_EOL, FILE_APPEND);
     
-    file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "CONNECTING TO API: {$apiEndpoint}\n", FILE_APPEND);
+    // API endpoint
+    //$apiEndpoint = 'https://4906-106-222-209-31.ngrok-free.app/create-order';
+    $apiEndpoint = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/create-order';
+    
+    // Build the URL with query parameter
+    $url = $apiEndpoint . '?user_id=' . urlencode($userId);
+    
+    file_put_contents($logFile, date('[Y-m-d H:i:s] ') . "CONNECTING TO API: {$url}\n", FILE_APPEND);
     
     // Initialize cURL
-    $ch = curl_init($apiEndpoint);
+    $ch = curl_init($url);
     
     // Set cURL options
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

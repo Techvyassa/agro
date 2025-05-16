@@ -317,6 +317,235 @@ document.addEventListener('DOMContentLoaded', function() {
     `;
     document.body.appendChild(orderModalContainer);
 
+    // Add event listener for Create Order button
+    document.getElementById('createOrderBtn').addEventListener('click', function() {
+        submitOrder();
+    });
+
+    // Function to submit order data to the API
+    function submitOrder() {
+        // Get form and response elements
+        const orderForm = document.getElementById('createOrderForm');
+        const orderLoader = document.getElementById('orderLoader');
+        const orderError = document.getElementById('orderError');
+        const orderSuccess = document.getElementById('orderSuccess');
+        
+        // Validate form
+        const requiredFields = orderForm.querySelectorAll('[required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.classList.add('is-invalid');
+            } else {
+                field.classList.remove('is-invalid');
+            }
+        });
+        
+        if (!isValid) {
+            orderError.textContent = 'Please fill in all required fields.';
+            orderError.classList.remove('d-none');
+            return;
+        }
+        
+        // Hide error and show loader
+        orderError.classList.add('d-none');
+        orderLoader.classList.remove('d-none');
+        
+        // Create the payload in the exact format required by the API
+        const formData = {
+            orderIds: document.getElementById('orderIds').value,
+            orderDate: document.getElementById('orderDate').value,
+            pickUpId: parseInt(document.getElementById('pickUpId').value) || 0,
+            pickUpCity: document.getElementById('pickUpCity').value,
+            pickUpState: document.getElementById('pickUpState').value,
+            retrunId: parseInt(document.getElementById('retrunId').value) || 0,
+            returnCity: document.getElementById('returnCity').value,
+            returnState: document.getElementById('returnState').value,
+            invoiceAmt: parseInt(document.getElementById('invoiceAmt').value) || 0,
+            itemName: document.getElementById('itemName').value,
+            codAmt: parseInt(document.getElementById('codAmt').value) || 0,
+            qty: parseInt(document.getElementById('qty').value) || 1,
+            buyer: {
+                fName: document.getElementById('buyerFName').value,
+                lName: document.getElementById('buyerLName').value,
+                emailId: document.getElementById('buyerEmail').value || null,
+                buyerAddresses: {
+                    address1: document.getElementById('buyerAddress').value,
+                    mobileNo: document.getElementById('buyerMobile').value,
+                    pinId: document.getElementById('buyerPincode').value
+                }
+            },
+            orderItems: []
+        };
+        
+        // Get all box items from the form
+        const boxItems = document.querySelectorAll('.box-detail-row');
+        boxItems.forEach((box, index) => {
+            const weightInput = box.querySelector('.box-weight');
+            const lengthInput = box.querySelector('input[name^="orderItems["][name$="[length]"]');
+            const widthInput = box.querySelector('input[name^="orderItems["][name$="[breadth]"]');
+            const heightInput = box.querySelector('input[name^="orderItems["][name$="[height]"]');
+            
+            if (weightInput && lengthInput && widthInput && heightInput) {
+                formData.orderItems.push({
+                    noOfBox: 1,
+                    physical_weight: weightInput.value,
+                    length: parseInt(lengthInput.value) || 10,
+                    breadth: parseInt(widthInput.value) || 10,
+                    height: parseInt(heightInput.value) || 10,
+                    phyWeight: parseFloat(weightInput.value) || 5
+                });
+            }
+        });
+        
+        // Log for debugging
+        console.log('Submitting order to: order-proxy.php');
+        
+        // Handle file uploads
+        const invoiceFileUpload = document.getElementById('invoiceFileUpload');
+        if (invoiceFileUpload && invoiceFileUpload.files.length > 0) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                // Use the base64 data URL
+                formData.invoiceFile = e.target.result;
+                
+                // Continue with API call after file is read
+                proceedWithApiCall(formData);
+            };
+            reader.readAsDataURL(invoiceFileUpload.files[0]);
+        } else {
+            // No file to process, continue with API call
+            formData.invoiceFile = "data:image/png;base64,iVBORw0"; // Default placeholder
+            proceedWithApiCall(formData);
+        }
+        
+    }
+    
+    // Function to proceed with API call after file processing
+    function proceedWithApiCall(formData) {
+        console.log('Formatted data:', formData);
+        
+        // Send data to the server via the proxy - using exact same pattern as other working proxies
+        fetch('order-proxy.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`Server responded with status: ${response.status}`);
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Hide loader
+            orderLoader.classList.add('d-none');
+            
+            // Show response in a popup
+            const responseModal = new bootstrap.Modal(document.getElementById('responseModalContainer'));
+            const responseSuccess = document.getElementById('responseSuccess');
+            const responseError = document.getElementById('responseError');
+            const responseJson = document.getElementById('responseJson');
+            const continueBtn = document.getElementById('continueBtn');
+            
+            // Clear previous messages
+            responseSuccess.classList.add('d-none');
+            responseError.classList.add('d-none');
+            responseJson.classList.add('d-none');
+            
+            // Format and display the response
+            try {
+                // Check if we have an error message
+                // Check if there's an error in the response
+                if (data.detail || data.error) {
+                    // Handle FastAPI validation errors (detail field)
+                    if (data.detail && Array.isArray(data.detail)) {
+                        const errorMessages = data.detail.map(err => `${err.msg} at ${err.loc.join('.')}`).join('<br>');
+                        responseError.innerHTML = `<strong>Validation Error:</strong><br>${errorMessages}`;
+                    } else {
+                        responseError.textContent = `Error: ${data.error || 'API request failed'}`;
+                    }
+                    
+                    responseError.classList.remove('d-none');
+                    continueBtn.textContent = 'Try Again';
+                    continueBtn.onclick = function() {
+                        responseModal.hide();
+                    };
+                } else {
+                    // Show success message
+                    responseSuccess.innerHTML = `
+                        <h5><i class="fas fa-check-circle"></i> Order Created Successfully!</h5>
+                        <p>Your order has been submitted. Order details:</p>
+                        <ul>
+                            <li><strong>Order ID:</strong> ${data.order_id || formData.orderIds}</li>
+                            <li><strong>Customer:</strong> ${formData.buyer.fName} ${formData.buyer.lName || ''}</li>
+                            <li><strong>Item:</strong> ${formData.itemName} (${formData.qty} boxes)</li>
+                            <li><strong>Invoice Amount:</strong> ₹${formData.invoiceAmt}</li>
+                        </ul>
+                    `;
+                    responseSuccess.classList.remove('d-none');
+                    
+                    // Show raw response data in pretty format
+                    responseJson.classList.remove('d-none');
+                    const pre = responseJson.querySelector('pre');
+                    if (pre) {
+                        pre.textContent = JSON.stringify(data, null, 2);
+                    }
+                    
+                    // Set continue button behavior
+                    continueBtn.textContent = 'New Order';
+                    continueBtn.onclick = function() {
+                        responseModal.hide();
+                        const orderModal = bootstrap.Modal.getInstance(document.getElementById('orderModalContainer'));
+                        if (orderModal) {
+                            orderModal.hide();
+                        }
+                        // Reset the form for a new order
+                        orderForm.reset();
+                        document.getElementById('createOrderBtn').disabled = false;
+                    };
+                    
+                    // Disable the original submit button to prevent duplicate submissions
+                    document.getElementById('createOrderBtn').disabled = true;
+                }
+                
+                // Show the response modal
+                responseModal.show();
+                
+            } catch (e) {
+                console.error('Error displaying response:', e);
+                responseError.textContent = `Error displaying response: ${e.message}`;
+                responseError.classList.remove('d-none');
+                responseModal.show();
+            }
+        })
+        .catch(error => {
+            orderLoader.classList.add('d-none');
+            
+            // Show error in a popup
+            const responseModal = new bootstrap.Modal(document.getElementById('responseModalContainer'));
+            const responseSuccess = document.getElementById('responseSuccess');
+            const responseError = document.getElementById('responseError');
+            const responseJson = document.getElementById('responseJson');
+            
+            // Clear previous messages
+            responseSuccess.classList.add('d-none');
+            responseError.classList.add('d-none');
+            responseJson.classList.add('d-none');
+            
+            // Show error message
+            responseError.textContent = `Error: ${error.message}`;
+            responseError.classList.remove('d-none');
+            responseModal.show();
+            
+            console.error('Order submission error:', error);
+        });
+    }
+
     // Parse URL parameters
     const parseUrlParams = () => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -957,7 +1186,70 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Fallback to default email if none found
                 userEmail = userEmail || 'user@example.com';
                 console.log('Using email for warehouse query:', userEmail);
-                loadWarehouses(userEmail);
+                document.getElementById('user-name').value = userEmail;
+                
+                // REDIRECT APPROACH: Go directly to create-order page with email parameter
+                const orderUrl = new URL('create-order.html', window.location.href);
+                
+                // Add parameters
+                orderUrl.searchParams.append('user_id', userEmail);
+                
+                // Get freight info from the card
+                const card = this.closest('.card-body');
+                if (card) {
+                    // Get rate information
+                    const rateElement = card.querySelector('.h3');
+                    if (rateElement) {
+                        const rate = rateElement.textContent.trim();
+                        orderUrl.searchParams.append('rate', rate);
+                    }
+                    
+                    // Get carrier name
+                    const cardHeader = this.closest('.card').querySelector('.card-header h5');
+                    if (cardHeader) {
+                        const carrierName = cardHeader.textContent.trim();
+                        orderUrl.searchParams.append('carrier', carrierName);
+                    }
+                    
+                    // Add TAT info if available
+                    const tatBadge = card.querySelector('.badge.bg-info');
+                    if (tatBadge) {
+                        orderUrl.searchParams.append('tat', tatBadge.textContent.trim());
+                    }
+                }
+                
+                // Add all available parameters from the form
+                const sourcePincode = document.getElementById('sourcePincode')?.value;
+                const destinationPincode = document.getElementById('destinationPincode')?.value;
+                const invoiceAmount = document.getElementById('invoiceAmount')?.value;
+                const totalWeight = document.getElementById('totalWeight')?.value;
+                const freightMode = document.getElementById('freightMode')?.value;
+                
+                // Build a complete object for the URL parameters
+                if (sourcePincode) orderUrl.searchParams.append('sourcePincode', sourcePincode);
+                if (destinationPincode) orderUrl.searchParams.append('destinationPincode', destinationPincode);
+                if (invoiceAmount) orderUrl.searchParams.append('invoiceAmount', invoiceAmount);
+                if (totalWeight) orderUrl.searchParams.append('totalWeight', totalWeight);
+                if (freightMode) orderUrl.searchParams.append('freightMode', freightMode);
+                
+                // Add box measurements - get from the first box as an example
+                const boxRows = document.querySelectorAll('#boxesContainer .box-row');
+                if (boxRows.length > 0) {
+                    const firstBox = boxRows[0];
+                    const length = firstBox.querySelector('.box-length')?.value;
+                    const width = firstBox.querySelector('.box-width')?.value;
+                    const height = firstBox.querySelector('.box-height')?.value;
+                    const weight = firstBox.querySelector('.box-weight')?.value;
+                    
+                    if (length) orderUrl.searchParams.append('length', length);
+                    if (width) orderUrl.searchParams.append('width', width);
+                    if (height) orderUrl.searchParams.append('height', height);
+                    if (weight) orderUrl.searchParams.append('weight', weight);
+                    orderUrl.searchParams.append('boxCount', boxRows.length.toString());
+                }
+                
+                // Redirect to the standalone create-order page
+                window.location.href = orderUrl.toString();
             });
         });
         
