@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddSoNoToPickingsTable extends Migration
+return new class extends Migration
 {
     /**
      * Run the migrations.
@@ -65,4 +65,4 @@ class AddSoNoToPickingsTable extends Migration
     {
         // Don't drop any columns in down method for safety
     }
-}
+};
