@@ -16,7 +16,8 @@ class Picking extends Model
         'so_no',
         'items',
         'dimension',
-        'weight'
+        'weight',
+        'status'
     ];
 
     /**

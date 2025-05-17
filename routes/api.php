@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\ItemMasterController;
 use App\Http\Controllers\Api\SalesOrderController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\Api\PickingStatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -242,3 +243,35 @@ Route::post('freight-proxy', function (\Illuminate\Http\Request $request) {
 
 // Order Storage API
 Route::post('store-order', [OrderController::class, 'store']);
+
+// Picking Status API
+Route::post('update-picking-status', [\App\Http\Controllers\Api\PickingStatusController::class, 'updateStatus']);
+
+// Direct approach for update-picking-status as fallback
+Route::post('update-picking-status-direct', function(\Illuminate\Http\Request $request) {
+    $request->validate([
+        'so_no' => 'required|string',
+        'status' => 'required|string',
+    ]);
+
+    $so_no = $request->input('so_no');
+    $status = $request->input('status');
+
+    $picking = \App\Models\Picking::where('so_no', $so_no)->first();
+
+    if (!$picking) {
+        return response()->json([
+            'success' => false,
+            'message' => 'Picking not found for the given SO number',
+        ], 404);
+    }
+
+    $picking->status = $status;
+    $picking->save();
+
+    return response()->json([
+        'success' => true,
+        'message' => 'Picking status updated successfully',
+        'data' => $picking,
+    ]);
+});
