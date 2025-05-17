@@ -22,28 +22,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Live server database connection
-// Update these values to match your live server configuration
-$servername = "127.0.0.1";
-$username = "vyassa44_agro";  // Update with your live DB username
-$password = "RoyalK1234";    // Update with your live DB password
-$dbname = "vyassa44_agro";   // Update with your live DB name
+// Bootstrap the Laravel application
+require __DIR__.'/../vendor/autoload.php';
+$app = require_once __DIR__.'/../bootstrap/app.php';
+$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
+$kernel->bootstrap();
 
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
+// Use Laravel's Facades
+use Illuminate\Support\Facades\DB;
+use App\Models\Picking;
 
-// Check connection
-if ($conn->connect_error) {
-    echo json_encode([
-        'success' => false,
-        'message' => 'Database connection failed',
-        'error' => $conn->connect_error
-    ]);
-    exit;
+// Create a log directory if it doesn't exist
+$logDir = __DIR__ . '/logs';
+if (!is_dir($logDir)) {
+    mkdir($logDir, 0755, true);
 }
 
-// Log request for debugging
-$logfile = dirname(__FILE__) . '/picking_status_log.txt';
+// Log file path
+$logfile = $logDir . '/picking_status_log.txt';
+
+// Log the request
 file_put_contents($logfile, date('Y-m-d H:i:s') . " - Request received\n", FILE_APPEND);
 
 // Get POST data
@@ -69,40 +67,38 @@ if (!isset($postData['so_no']) || !isset($postData['status'])) {
     exit;
 }
 
-$so_no = $conn->real_escape_string($postData['so_no']);
-$status = $conn->real_escape_string($postData['status']);
+// Get clean values
+$so_no = trim($postData['so_no']);
+$status = trim($postData['status']);
 
 // Log the values being used
 file_put_contents($logfile, date('Y-m-d H:i:s') . " - Updating SO: $so_no to status: $status\n", FILE_APPEND);
 
-// First check if records exist
-$checkQuery = "SELECT COUNT(*) as count FROM pickings WHERE so_no = '$so_no'";
-$checkResult = $conn->query($checkQuery);
-$recordCount = 0;
-
-if ($checkResult) {
-    $row = $checkResult->fetch_assoc();
-    $recordCount = $row['count'];
+try {
+    // Check if records exist
+    $recordCount = Picking::where('so_no', $so_no)->count();
     file_put_contents($logfile, date('Y-m-d H:i:s') . " - Found $recordCount matching records\n", FILE_APPEND);
-}
-
-// Find and update all pickings with the same so_no
-$updateQuery = "UPDATE pickings SET status = '$status', updated_at = NOW() WHERE so_no = '$so_no'";
-file_put_contents($logfile, date('Y-m-d H:i:s') . " - Running query: $updateQuery\n", FILE_APPEND);
-
-if ($conn->query($updateQuery) === TRUE) {
-    // Get the count of updated records
-    $affectedRows = $conn->affected_rows;
+    
+    if ($recordCount === 0) {
+        echo json_encode([
+            'success' => false,
+            'message' => 'No pickings found with the given SO number: ' . $so_no
+        ]);
+        exit;
+    }
+    
+    // Update all matching records using Eloquent
+    $affectedRows = Picking::where('so_no', $so_no)
+        ->update([
+            'status' => $status,
+            'updated_at' => now()
+        ]);
+    
     file_put_contents($logfile, date('Y-m-d H:i:s') . " - Affected rows: $affectedRows\n", FILE_APPEND);
     
     if ($affectedRows > 0) {
         // Get all updated pickings
-        $updatedResult = $conn->query("SELECT * FROM pickings WHERE so_no = '$so_no'");
-        $updatedPickings = [];
-        
-        while ($row = $updatedResult->fetch_assoc()) {
-            $updatedPickings[] = $row;
-        }
+        $updatedPickings = Picking::where('so_no', $so_no)->get();
         
         echo json_encode([
             'success' => true,
@@ -112,18 +108,16 @@ if ($conn->query($updateQuery) === TRUE) {
     } else {
         echo json_encode([
             'success' => false,
-            'message' => 'No pickings found with the given SO number: ' . $so_no,
+            'message' => 'No records were updated',
             'check_count' => $recordCount
         ]);
     }
-} else {
-    file_put_contents($logfile, date('Y-m-d H:i:s') . " - Error: " . $conn->error . "\n", FILE_APPEND);
+} catch (\Exception $e) {
+    file_put_contents($logfile, date('Y-m-d H:i:s') . " - Error: " . $e->getMessage() . "\n", FILE_APPEND);
     echo json_encode([
         'success' => false,
         'message' => 'Failed to update picking status',
-        'error' => $conn->error
+        'error' => $e->getMessage()
     ]);
 }
-
-$conn->close();
 ?>
