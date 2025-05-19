@@ -25,10 +25,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Set up database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "agro"; // Change this to your actual database name
+$servername = "127.0.0.1";
+$username = "vyassa44_agro";
+$password = "RoyalK1234";
+$dbname = "vyassa44_agro"; // Change this to your actual database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
