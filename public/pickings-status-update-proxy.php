@@ -69,6 +69,11 @@ curl_setopt($ch, CURLOPT_HTTPHEADER, [
     'Content-Type: application/json',
     'Accept: application/json'
 ]);
+// Important: Prevent following redirects
+curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+// Disable SSL verification for local testing
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
 
 // Execute cURL request
 $response = curl_exec($ch);
