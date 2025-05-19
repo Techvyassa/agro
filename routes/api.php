@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ItemMasterController;
 use App\Http\Controllers\Api\SalesOrderController;
+use App\Http\Controllers\Api\SalesPickingsController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Api\PickingStatusController;
@@ -323,3 +324,6 @@ Route::post('pickings-status-update', function(\Illuminate\Http\Request $request
         ], 500);
     }
 });
+
+// Get sales orders with their picking status
+Route::get('sales-orders-with-pickings', [SalesPickingsController::class, 'getSalesOrdersWithPickings']);
