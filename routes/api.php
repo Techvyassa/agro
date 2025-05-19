@@ -247,31 +247,28 @@ Route::post('store-order', [OrderController::class, 'store']);
 // Picking Status API
 Route::post('update-picking-status', [\App\Http\Controllers\Api\PickingStatusController::class, 'updateStatus']);
 
-// Direct approach for update-picking-status as fallback
+// Enhanced direct approach for update-picking-status - Flutter compatible with CORS support
 Route::post('update-picking-status-direct', function(\Illuminate\Http\Request $request) {
-    $request->validate([
-        'so_no' => 'required|string',
-        'status' => 'required|string',
-    ]);
+    // Add CORS headers for direct API access
+    return \App\Http\Controllers\Api\PickingStatusController::updatePickingStatus($request);
+});
 
-    $so_no = $request->input('so_no');
-    $status = $request->input('status');
+// Add an OPTIONS method handler for CORS preflight requests
+Route::options('update-picking-status-direct', function() {
+    return response('', 200)
+        ->header('Access-Control-Allow-Origin', '*')
+        ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+});
 
-    $picking = \App\Models\Picking::where('so_no', $so_no)->first();
-
-    if (!$picking) {
-        return response()->json([
-            'success' => false,
-            'message' => 'Picking not found for the given SO number',
-        ], 404);
+// Create a public-facing endpoint without the api prefix for direct access
+Route::fallback(function (\Illuminate\Http\Request $request) {
+    $path = $request->path();
+    
+    // Handle picking-status-proxy.php requests
+    if ($path === 'picking-status-proxy.php' || $path === 'public/picking-status-proxy.php') {
+        return \App\Http\Controllers\Api\PickingStatusController::updatePickingStatus($request);
     }
-
-    $picking->status = $status;
-    $picking->save();
-
-    return response()->json([
-        'success' => true,
-        'message' => 'Picking status updated successfully',
-        'data' => $picking,
-    ]);
+    
+    return response()->json(['message' => 'Not Found'], 404);
 });
