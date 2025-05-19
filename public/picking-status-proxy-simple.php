@@ -32,7 +32,7 @@ $logfile = $logDir . '/picking_status_log.txt';
 file_put_contents($logfile, date('Y-m-d H:i:s') . " - Request received\n", FILE_APPEND);
 
 // Database configuration (same as your Laravel .env)
-$servername = "127.0.0.1"; // Usually localhost or 127.0.0.1
+$servername = "192.250.231.31"; // Usually localhost or 127.0.0.1
 $username = "vyassa44_agro";        // Update with your DB username for live server
 $password = "RoyalK1234";            // Update with your DB password for live server
 $dbname = "vyassa44_agro";          // Update with your DB name for live server
