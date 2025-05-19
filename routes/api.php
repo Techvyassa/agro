@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ItemMasterController;
 use App\Http\Controllers\Api\SalesOrderController;
 use App\Http\Controllers\Api\SalesPickingsController;
+use App\Http\Controllers\Api\SalesOrdersPickingsController;
+use App\Http\Controllers\Api\SoPickingsController;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\Api\PickingStatusController;
@@ -325,5 +327,11 @@ Route::post('pickings-status-update', function(\Illuminate\Http\Request $request
     }
 });
 
-// Get sales orders with their picking status
+// Get sales orders with their picking status (original implementation)
 Route::get('sales-orders-with-pickings', [SalesPickingsController::class, 'getSalesOrdersWithPickings']);
+
+// Improved API endpoint for joining sales_orders and pickings tables
+Route::get('sales-pickings-join', [SalesOrdersPickingsController::class, 'index']);
+
+// Optimized API for SO with pickings (handles many-to-many relationship)
+Route::get('so-pickings', [SoPickingsController::class, 'index']);
