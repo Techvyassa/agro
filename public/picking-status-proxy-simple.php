@@ -35,7 +35,7 @@ file_put_contents($logfile, date('Y-m-d H:i:s') . " - Request received\n", FILE_
 $servername = "192.250.231.31"; // Usually localhost or 127.0.0.1
 $username = "vyassa44_agro";        // Update with your DB username for live server
 $password = "RoyalK1234";            // Update with your DB password for live server
-$dbname = "vyassa44_agro";          // Update with your DB name for live server
+$dbname = "vyassa44_agro";        // Update with your DB name for live server
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
