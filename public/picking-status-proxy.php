@@ -6,13 +6,6 @@
  * without relying on Laravel's routing system.
  */
 
-// Debug info - uncomment for debugging or remove when in production
-/*
-file_put_contents(__DIR__ . '/picking-debug.log', date('Y-m-d H:i:s') . ' - Request received\n', FILE_APPEND);
-file_put_contents(__DIR__ . '/picking-debug.log', 'Raw input: ' . file_get_contents('php://input') . '\n', FILE_APPEND);
-file_put_contents(__DIR__ . '/picking-debug.log', 'REQUEST_METHOD: ' . $_SERVER['REQUEST_METHOD'] . '\n', FILE_APPEND);
-*/
-
 // Set headers to allow cross-origin requests
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
@@ -25,10 +18,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // Set up database connection
-$servername = "127.0.0.1";
-$username = "vyassa44_agro";
-$password = "RoyalK1234";
-$dbname = "vyassa44_agro"; // Change this to your actual database name
+$servername = "localhost";
+$username = "root";
+$password = "";
+$dbname = "agro"; // Change this to your actual database name
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -46,17 +39,10 @@ if ($conn->connect_error) {
 // Get POST data
 $postData = json_decode(file_get_contents('php://input'), true);
 
-// If direct JSON decode fails, check if data might be in $_POST or $_GET
-if (!$postData && $_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST)) {
-    $postData = $_POST;
-} elseif (!$postData && $_SERVER['REQUEST_METHOD'] === 'GET' && !empty($_GET)) {
-    $postData = $_GET;
-}
-
 if (!$postData) {
     echo json_encode([
         'success' => false,
-        'message' => 'Invalid or missing data'
+        'message' => 'Invalid JSON data'
     ]);
     exit;
 }
