@@ -3279,3 +3279,2126 @@ ERR_NGROK_3200
   - Size: 830 bytes
 [2025-05-16 07:49:15] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
 [2025-05-16 07:49:15] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:37:44] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:37:44] USER ID: user@example.com
+[2025-05-22 12:37:44] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:37:44] EXECUTING API REQUEST...
+[2025-05-22 12:37:45] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.467649s
+  - Size: 73 bytes
+[2025-05-22 12:37:45] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:37:45] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:37:45] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:37:45] USER ID: user@example.com
+[2025-05-22 12:37:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:37:45] EXECUTING API REQUEST...
+[2025-05-22 12:37:45] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.422482s
+  - Size: 73 bytes
+[2025-05-22 12:37:45] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:37:45] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:43:17] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:43:17] USER ID: user@example.com
+[2025-05-22 12:43:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:43:17] EXECUTING API REQUEST...
+[2025-05-22 12:43:17] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.490566s
+  - Size: 73 bytes
+[2025-05-22 12:43:17] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:43:17] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:43:40] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:43:40] USER ID: user@example.com
+[2025-05-22 12:43:40] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:43:40] EXECUTING API REQUEST...
+[2025-05-22 12:43:41] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.462421s
+  - Size: 73 bytes
+[2025-05-22 12:43:41] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:43:41] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:43:41] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:43:41] USER ID: user@example.com
+[2025-05-22 12:43:41] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:43:41] EXECUTING API REQUEST...
+[2025-05-22 12:43:41] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.423264s
+  - Size: 73 bytes
+[2025-05-22 12:43:41] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:43:41] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:44:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:44:06] USER ID: user@example.com
+[2025-05-22 12:44:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:44:06] EXECUTING API REQUEST...
+[2025-05-22 12:44:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.446322s
+  - Size: 73 bytes
+[2025-05-22 12:44:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:44:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:44:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:44:06] USER ID: user@example.com
+[2025-05-22 12:44:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:44:06] EXECUTING API REQUEST...
+[2025-05-22 12:44:07] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.427235s
+  - Size: 73 bytes
+[2025-05-22 12:44:07] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:44:07] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:46:33] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:46:33] USER ID: user@example.com
+[2025-05-22 12:46:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:46:33] EXECUTING API REQUEST...
+[2025-05-22 12:46:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.493297s
+  - Size: 73 bytes
+[2025-05-22 12:46:34] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:46:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:46:36] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:46:36] USER ID: user@example.com
+[2025-05-22 12:46:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:46:36] EXECUTING API REQUEST...
+[2025-05-22 12:46:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.417285s
+  - Size: 73 bytes
+[2025-05-22 12:46:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:46:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:46:36] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:46:36] USER ID: user@example.com
+[2025-05-22 12:46:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:46:36] EXECUTING API REQUEST...
+[2025-05-22 12:46:37] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.431933s
+  - Size: 73 bytes
+[2025-05-22 12:46:37] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:46:37] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 12:46:37] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 12:46:37] USER ID: user@example.com
+[2025-05-22 12:46:37] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 12:46:37] EXECUTING API REQUEST...
+[2025-05-22 12:46:37] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.426738s
+  - Size: 73 bytes
+[2025-05-22 12:46:37] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 12:46:37] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:01:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:01:35] USER ID: user@example.com
+[2025-05-22 13:01:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:01:35] EXECUTING API REQUEST...
+[2025-05-22 13:01:35] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.41698s
+  - Size: 73 bytes
+[2025-05-22 13:01:35] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:01:35] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:01:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:01:35] USER ID: user@example.com
+[2025-05-22 13:01:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:01:35] EXECUTING API REQUEST...
+[2025-05-22 13:01:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.426852s
+  - Size: 73 bytes
+[2025-05-22 13:01:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:01:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:01:59] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:01:59] USER ID: user@example.com
+[2025-05-22 13:01:59] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:01:59] EXECUTING API REQUEST...
+[2025-05-22 13:02:02] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 3.502356s
+  - Size: 73 bytes
+[2025-05-22 13:02:02] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:02:02] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:02:16] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:02:16] USER ID: user@example.com
+[2025-05-22 13:02:16] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:02:16] EXECUTING API REQUEST...
+[2025-05-22 13:02:16] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.419901s
+  - Size: 73 bytes
+[2025-05-22 13:02:16] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:02:16] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:02:18] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:02:18] USER ID: user@example.com
+[2025-05-22 13:02:18] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:02:18] EXECUTING API REQUEST...
+[2025-05-22 13:02:18] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.440415s
+  - Size: 73 bytes
+[2025-05-22 13:02:18] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:02:18] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:02:19] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:02:19] USER ID: user@example.com
+[2025-05-22 13:02:19] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:02:19] EXECUTING API REQUEST...
+[2025-05-22 13:02:19] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.419874s
+  - Size: 73 bytes
+[2025-05-22 13:02:19] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:02:19] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:06:59] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:06:59] USER ID: user@example.com
+[2025-05-22 13:06:59] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:06:59] EXECUTING API REQUEST...
+[2025-05-22 13:07:00] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.447805s
+  - Size: 73 bytes
+[2025-05-22 13:07:00] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:07:00] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:07:00] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:07:00] USER ID: user@example.com
+[2025-05-22 13:07:00] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:07:00] EXECUTING API REQUEST...
+[2025-05-22 13:07:00] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.42511s
+  - Size: 73 bytes
+[2025-05-22 13:07:00] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:07:00] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:13:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:13:07] USER ID: user@example.com
+[2025-05-22 13:13:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:13:07] EXECUTING API REQUEST...
+[2025-05-22 13:13:07] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.413743s
+  - Size: 73 bytes
+[2025-05-22 13:13:07] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:13:07] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:13:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:13:07] USER ID: user@example.com
+[2025-05-22 13:13:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:13:07] EXECUTING API REQUEST...
+[2025-05-22 13:13:08] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.42503s
+  - Size: 73 bytes
+[2025-05-22 13:13:08] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:13:08] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:14:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:14:06] USER ID: user@example.com
+[2025-05-22 13:14:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:14:06] EXECUTING API REQUEST...
+[2025-05-22 13:14:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.416296s
+  - Size: 73 bytes
+[2025-05-22 13:14:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:14:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:14:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:14:06] USER ID: user@example.com
+[2025-05-22 13:14:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:14:06] EXECUTING API REQUEST...
+[2025-05-22 13:14:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.418726s
+  - Size: 73 bytes
+[2025-05-22 13:14:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:14:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:20:28] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:20:28] USER ID: user@example.com
+[2025-05-22 13:20:28] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:20:28] EXECUTING API REQUEST...
+[2025-05-22 13:20:29] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.498756s
+  - Size: 73 bytes
+[2025-05-22 13:20:29] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:20:29] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:20:30] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:20:30] USER ID: user@example.com
+[2025-05-22 13:20:30] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:20:30] EXECUTING API REQUEST...
+[2025-05-22 13:20:31] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.41948s
+  - Size: 73 bytes
+[2025-05-22 13:20:31] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:20:31] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:20:45] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:20:45] USER ID: user@example.com
+[2025-05-22 13:20:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:20:45] EXECUTING API REQUEST...
+[2025-05-22 13:20:46] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.424155s
+  - Size: 73 bytes
+[2025-05-22 13:20:46] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:20:46] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-22 13:20:46] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-22 13:20:46] USER ID: user@example.com
+[2025-05-22 13:20:46] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-22 13:20:46] EXECUTING API REQUEST...
+[2025-05-22 13:20:46] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.421074s
+  - Size: 73 bytes
+[2025-05-22 13:20:46] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-22 13:20:46] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:21:57] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:21:57] USER ID: user@example.com
+[2025-05-24 09:21:57] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:21:57] EXECUTING API REQUEST...
+[2025-05-24 09:21:57] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.420616s
+  - Size: 73 bytes
+[2025-05-24 09:21:57] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:21:57] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:21:58] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:21:58] USER ID: user@example.com
+[2025-05-24 09:21:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:21:58] EXECUTING API REQUEST...
+[2025-05-24 09:21:58] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.454587s
+  - Size: 73 bytes
+[2025-05-24 09:21:58] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:21:58] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:22:32] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:22:32] USER ID: soumnair@gmail.com
+[2025-05-24 09:22:32] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-24 09:22:32] EXECUTING API REQUEST...
+[2025-05-24 09:22:33] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.456876s
+  - Size: 830 bytes
+[2025-05-24 09:22:33] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-24 09:22:33] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:22:33] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:22:33] USER ID: soumnair@gmail.com
+[2025-05-24 09:22:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-24 09:22:33] EXECUTING API REQUEST...
+[2025-05-24 09:22:35] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.915899s
+  - Size: 830 bytes
+[2025-05-24 09:22:35] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-24 09:22:35] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:22:58] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:22:58] USER ID: user@example.com
+[2025-05-24 09:22:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:22:58] EXECUTING API REQUEST...
+[2025-05-24 09:22:59] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.569136s
+  - Size: 73 bytes
+[2025-05-24 09:22:59] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:22:59] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:22:59] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:22:59] USER ID: user@example.com
+[2025-05-24 09:22:59] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:22:59] EXECUTING API REQUEST...
+[2025-05-24 09:23:00] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.520676s
+  - Size: 73 bytes
+[2025-05-24 09:23:00] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:23:00] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:24:42] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:24:42] USER ID: user@example.com
+[2025-05-24 09:24:42] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:24:42] EXECUTING API REQUEST...
+[2025-05-24 09:24:43] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.446748s
+  - Size: 73 bytes
+[2025-05-24 09:24:43] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:24:43] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:24:43] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:24:43] USER ID: user@example.com
+[2025-05-24 09:24:43] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:24:43] EXECUTING API REQUEST...
+[2025-05-24 09:24:43] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.430359s
+  - Size: 73 bytes
+[2025-05-24 09:24:43] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:24:43] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:30:31] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:30:31] USER ID: user@example.com
+[2025-05-24 09:30:31] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:30:31] EXECUTING API REQUEST...
+[2025-05-24 09:30:31] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.469618s
+  - Size: 73 bytes
+[2025-05-24 09:30:31] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:30:31] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:30:33] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:30:33] USER ID: user@example.com
+[2025-05-24 09:30:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:30:33] EXECUTING API REQUEST...
+[2025-05-24 09:30:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.436045s
+  - Size: 73 bytes
+[2025-05-24 09:30:34] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:30:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:30:36] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:30:36] USER ID: user@example.com
+[2025-05-24 09:30:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:30:36] EXECUTING API REQUEST...
+[2025-05-24 09:30:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.441352s
+  - Size: 73 bytes
+[2025-05-24 09:30:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:30:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:31:02] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:31:02] USER ID: user@example.com
+[2025-05-24 09:31:02] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:31:02] EXECUTING API REQUEST...
+[2025-05-24 09:31:03] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.574199s
+  - Size: 73 bytes
+[2025-05-24 09:31:03] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:31:03] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:31:03] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:31:03] USER ID: user@example.com
+[2025-05-24 09:31:03] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:31:03] EXECUTING API REQUEST...
+[2025-05-24 09:31:04] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.482258s
+  - Size: 73 bytes
+[2025-05-24 09:31:04] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:31:04] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:34:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:34:35] USER ID: user@example.com
+[2025-05-24 09:34:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:34:35] EXECUTING API REQUEST...
+[2025-05-24 09:34:35] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.470601s
+  - Size: 73 bytes
+[2025-05-24 09:34:35] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:34:35] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:39:56] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:39:56] USER ID: user@example.com
+[2025-05-24 09:39:56] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:39:56] EXECUTING API REQUEST...
+[2025-05-24 09:39:57] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.474421s
+  - Size: 73 bytes
+[2025-05-24 09:39:57] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:39:57] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:40:18] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:40:18] USER ID: user@example.com
+[2025-05-24 09:40:18] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:40:18] EXECUTING API REQUEST...
+[2025-05-24 09:40:18] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.470023s
+  - Size: 73 bytes
+[2025-05-24 09:40:18] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:40:18] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:40:18] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:40:18] USER ID: user@example.com
+[2025-05-24 09:40:18] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:40:18] EXECUTING API REQUEST...
+[2025-05-24 09:40:19] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.424721s
+  - Size: 73 bytes
+[2025-05-24 09:40:19] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:40:19] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:41:43] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:41:43] USER ID: user@example.com
+[2025-05-24 09:41:43] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:41:43] EXECUTING API REQUEST...
+[2025-05-24 09:41:44] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.468111s
+  - Size: 73 bytes
+[2025-05-24 09:41:44] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:41:44] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:41:45] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:41:45] USER ID: user@example.com
+[2025-05-24 09:41:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:41:45] EXECUTING API REQUEST...
+[2025-05-24 09:41:45] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.426094s
+  - Size: 73 bytes
+[2025-05-24 09:41:45] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:41:45] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:41:45] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:41:45] USER ID: user@example.com
+[2025-05-24 09:41:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:41:45] EXECUTING API REQUEST...
+[2025-05-24 09:41:45] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.433146s
+  - Size: 73 bytes
+[2025-05-24 09:41:45] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:41:45] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:47:59] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:47:59] USER ID: user@example.com
+[2025-05-24 09:47:59] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:47:59] EXECUTING API REQUEST...
+[2025-05-24 09:48:00] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.44725s
+  - Size: 73 bytes
+[2025-05-24 09:48:00] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:48:00] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:51:15] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:51:15] USER ID: user@example.com
+[2025-05-24 09:51:15] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:51:15] EXECUTING API REQUEST...
+[2025-05-24 09:51:16] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.431122s
+  - Size: 73 bytes
+[2025-05-24 09:51:16] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:51:16] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:54:31] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:54:31] USER ID: user@example.com
+[2025-05-24 09:54:31] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:54:31] EXECUTING API REQUEST...
+[2025-05-24 09:54:31] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.485296s
+  - Size: 73 bytes
+[2025-05-24 09:54:31] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:54:31] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:54:50] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:54:50] USER ID: user@example.com
+[2025-05-24 09:54:50] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:54:50] EXECUTING API REQUEST...
+[2025-05-24 09:54:51] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.511918s
+  - Size: 73 bytes
+[2025-05-24 09:54:51] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:54:51] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:54:51] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:54:51] USER ID: user@example.com
+[2025-05-24 09:54:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:54:51] EXECUTING API REQUEST...
+[2025-05-24 09:54:51] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.421371s
+  - Size: 73 bytes
+[2025-05-24 09:54:51] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:54:51] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 09:58:02] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 09:58:02] USER ID: user@example.com
+[2025-05-24 09:58:02] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 09:58:02] EXECUTING API REQUEST...
+[2025-05-24 09:58:02] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.458702s
+  - Size: 73 bytes
+[2025-05-24 09:58:02] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 09:58:02] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:01:48] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:01:48] USER ID: user@example.com
+[2025-05-24 10:01:48] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:01:48] EXECUTING API REQUEST...
+[2025-05-24 10:01:49] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.462496s
+  - Size: 73 bytes
+[2025-05-24 10:01:49] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:01:49] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:03:29] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:03:29] USER ID: user@example.com
+[2025-05-24 10:03:29] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:03:29] EXECUTING API REQUEST...
+[2025-05-24 10:03:29] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.471191s
+  - Size: 73 bytes
+[2025-05-24 10:03:29] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:03:29] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:03:29] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:03:29] USER ID: user@example.com
+[2025-05-24 10:03:29] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:03:29] EXECUTING API REQUEST...
+[2025-05-24 10:03:30] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.416812s
+  - Size: 73 bytes
+[2025-05-24 10:03:30] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:03:30] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:03:30] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:03:30] USER ID: user@example.com
+[2025-05-24 10:03:30] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:03:30] EXECUTING API REQUEST...
+[2025-05-24 10:03:30] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.423243s
+  - Size: 73 bytes
+[2025-05-24 10:03:30] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:03:30] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:12:17] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:12:17] USER ID: user@example.com
+[2025-05-24 10:12:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:12:17] EXECUTING API REQUEST...
+[2025-05-24 10:12:18] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.666201s
+  - Size: 73 bytes
+[2025-05-24 10:12:18] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:12:18] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:12:34] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:12:34] USER ID: soumnair@gmail.com
+[2025-05-24 10:12:34] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-24 10:12:34] EXECUTING API REQUEST...
+[2025-05-24 10:12:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.693878s
+  - Size: 830 bytes
+[2025-05-24 10:12:36] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-24 10:12:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:12:36] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:12:36] USER ID: soumnair@gmail.com
+[2025-05-24 10:12:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-24 10:12:36] EXECUTING API REQUEST...
+[2025-05-24 10:12:37] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.463281s
+  - Size: 830 bytes
+[2025-05-24 10:12:37] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-24 10:12:37] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:13:03] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:13:03] USER ID: user@example.com
+[2025-05-24 10:13:03] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:13:03] EXECUTING API REQUEST...
+[2025-05-24 10:13:03] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.435448s
+  - Size: 73 bytes
+[2025-05-24 10:13:03] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:13:03] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:13:03] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:13:03] USER ID: user@example.com
+[2025-05-24 10:13:03] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:13:03] EXECUTING API REQUEST...
+[2025-05-24 10:13:04] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.422492s
+  - Size: 73 bytes
+[2025-05-24 10:13:04] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:13:04] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:21:38] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:21:38] USER ID: user@example.com
+[2025-05-24 10:21:38] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:21:38] EXECUTING API REQUEST...
+[2025-05-24 10:21:38] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.474066s
+  - Size: 73 bytes
+[2025-05-24 10:21:38] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:21:38] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:21:51] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:21:51] USER ID: user@example.com
+[2025-05-24 10:21:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:21:51] EXECUTING API REQUEST...
+[2025-05-24 10:21:52] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.435236s
+  - Size: 73 bytes
+[2025-05-24 10:21:52] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:21:52] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:21:52] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:21:52] USER ID: user@example.com
+[2025-05-24 10:21:52] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:21:52] EXECUTING API REQUEST...
+[2025-05-24 10:21:52] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.411982s
+  - Size: 73 bytes
+[2025-05-24 10:21:52] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:21:52] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:29:20] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:29:20] USER ID: user@example.com
+[2025-05-24 10:29:20] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:29:20] EXECUTING API REQUEST...
+[2025-05-24 10:29:20] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.531844s
+  - Size: 73 bytes
+[2025-05-24 10:29:20] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:29:20] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:29:23] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:29:23] USER ID: user@example.com
+[2025-05-24 10:29:23] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:29:23] EXECUTING API REQUEST...
+[2025-05-24 10:29:24] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.418885s
+  - Size: 73 bytes
+[2025-05-24 10:29:24] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:29:24] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:29:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:29:35] USER ID: user@example.com
+[2025-05-24 10:29:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:29:35] EXECUTING API REQUEST...
+[2025-05-24 10:29:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.423821s
+  - Size: 73 bytes
+[2025-05-24 10:29:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:29:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:30:04] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:30:04] USER ID: user@example.com
+[2025-05-24 10:30:04] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:30:04] EXECUTING API REQUEST...
+[2025-05-24 10:30:05] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.47644s
+  - Size: 73 bytes
+[2025-05-24 10:30:05] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:30:05] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:30:05] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:30:05] USER ID: user@example.com
+[2025-05-24 10:30:05] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:30:05] EXECUTING API REQUEST...
+[2025-05-24 10:30:05] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.412278s
+  - Size: 73 bytes
+[2025-05-24 10:30:05] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:30:05] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:34:41] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:34:41] USER ID: user@example.com
+[2025-05-24 10:34:41] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:34:41] EXECUTING API REQUEST...
+[2025-05-24 10:34:42] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.494294s
+  - Size: 73 bytes
+[2025-05-24 10:34:42] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:34:42] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:34:52] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:34:52] USER ID: user@example.com
+[2025-05-24 10:34:52] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:34:52] EXECUTING API REQUEST...
+[2025-05-24 10:34:53] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.464673s
+  - Size: 73 bytes
+[2025-05-24 10:34:53] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:34:53] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:34:54] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:34:54] USER ID: user@example.com
+[2025-05-24 10:34:54] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:34:54] EXECUTING API REQUEST...
+[2025-05-24 10:34:55] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.452411s
+  - Size: 73 bytes
+[2025-05-24 10:34:55] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:34:55] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:34:55] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:34:55] USER ID: user@example.com
+[2025-05-24 10:34:55] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:34:55] EXECUTING API REQUEST...
+[2025-05-24 10:34:55] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.423533s
+  - Size: 73 bytes
+[2025-05-24 10:34:55] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:34:55] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:35:01] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:35:01] USER ID: user@example.com
+[2025-05-24 10:35:01] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:35:01] EXECUTING API REQUEST...
+[2025-05-24 10:35:02] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.448197s
+  - Size: 73 bytes
+[2025-05-24 10:35:02] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:35:02] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:35:03] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:35:03] USER ID: user@example.com
+[2025-05-24 10:35:03] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:35:03] EXECUTING API REQUEST...
+[2025-05-24 10:35:03] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.411946s
+  - Size: 73 bytes
+[2025-05-24 10:35:03] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:35:03] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 10:35:03] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 10:35:03] USER ID: user@example.com
+[2025-05-24 10:35:03] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 10:35:03] EXECUTING API REQUEST...
+[2025-05-24 10:35:04] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.438846s
+  - Size: 73 bytes
+[2025-05-24 10:35:04] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 10:35:04] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:29:13] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:29:13] USER ID: user@example.com
+[2025-05-24 11:29:13] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:29:13] EXECUTING API REQUEST...
+[2025-05-24 11:29:13] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.437373s
+  - Size: 73 bytes
+[2025-05-24 11:29:13] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:29:13] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:29:13] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:29:13] USER ID: user@example.com
+[2025-05-24 11:29:13] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:29:13] EXECUTING API REQUEST...
+[2025-05-24 11:29:14] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.430295s
+  - Size: 73 bytes
+[2025-05-24 11:29:14] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:29:14] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:31:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:31:07] USER ID: user@example.com
+[2025-05-24 11:31:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:31:07] EXECUTING API REQUEST...
+[2025-05-24 11:31:07] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.458514s
+  - Size: 73 bytes
+[2025-05-24 11:31:07] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:31:07] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:35:08] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:35:08] USER ID: user@example.com
+[2025-05-24 11:35:08] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:35:08] EXECUTING API REQUEST...
+[2025-05-24 11:35:08] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.483013s
+  - Size: 73 bytes
+[2025-05-24 11:35:08] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:35:08] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:35:09] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:35:09] USER ID: user@example.com
+[2025-05-24 11:35:09] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:35:09] EXECUTING API REQUEST...
+[2025-05-24 11:35:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.412129s
+  - Size: 73 bytes
+[2025-05-24 11:35:09] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:35:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:29] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:29] USER ID: user@example.com
+[2025-05-24 11:37:29] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:29] EXECUTING API REQUEST...
+[2025-05-24 11:37:30] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.511452s
+  - Size: 73 bytes
+[2025-05-24 11:37:30] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:30] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:32] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:32] USER ID: user@example.com
+[2025-05-24 11:37:32] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:32] EXECUTING API REQUEST...
+[2025-05-24 11:37:33] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.870185s
+  - Size: 73 bytes
+[2025-05-24 11:37:33] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:33] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:35] USER ID: user@example.com
+[2025-05-24 11:37:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:35] EXECUTING API REQUEST...
+[2025-05-24 11:37:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.485646s
+  - Size: 73 bytes
+[2025-05-24 11:37:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:37] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:37] USER ID: user@example.com
+[2025-05-24 11:37:37] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:37] EXECUTING API REQUEST...
+[2025-05-24 11:37:37] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.518783s
+  - Size: 73 bytes
+[2025-05-24 11:37:37] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:37] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:37] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:37] USER ID: user@example.com
+[2025-05-24 11:37:37] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:37] EXECUTING API REQUEST...
+[2025-05-24 11:37:38] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.458046s
+  - Size: 73 bytes
+[2025-05-24 11:37:38] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:38] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:46] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:46] USER ID: user@example.com
+[2025-05-24 11:37:46] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:46] EXECUTING API REQUEST...
+[2025-05-24 11:37:47] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.543832s
+  - Size: 73 bytes
+[2025-05-24 11:37:47] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:47] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:47] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:47] USER ID: user@example.com
+[2025-05-24 11:37:47] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:47] EXECUTING API REQUEST...
+[2025-05-24 11:37:48] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.185767s
+  - Size: 73 bytes
+[2025-05-24 11:37:48] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:48] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:49] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:49] USER ID: user@example.com
+[2025-05-24 11:37:49] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:49] EXECUTING API REQUEST...
+[2025-05-24 11:37:49] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.470841s
+  - Size: 73 bytes
+[2025-05-24 11:37:49] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:49] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:55] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:55] USER ID: user@example.com
+[2025-05-24 11:37:55] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:55] EXECUTING API REQUEST...
+[2025-05-24 11:37:55] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.470433s
+  - Size: 73 bytes
+[2025-05-24 11:37:55] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:55] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:56] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:56] USER ID: user@example.com
+[2025-05-24 11:37:56] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:56] EXECUTING API REQUEST...
+[2025-05-24 11:37:56] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.497218s
+  - Size: 73 bytes
+[2025-05-24 11:37:56] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:56] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:37:56] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:37:56] USER ID: user@example.com
+[2025-05-24 11:37:56] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:37:56] EXECUTING API REQUEST...
+[2025-05-24 11:37:57] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.433498s
+  - Size: 73 bytes
+[2025-05-24 11:37:57] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:37:57] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:42:05] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:42:05] USER ID: user@example.com
+[2025-05-24 11:42:05] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:42:05] EXECUTING API REQUEST...
+[2025-05-24 11:42:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.471079s
+  - Size: 73 bytes
+[2025-05-24 11:42:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:42:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:43:04] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:43:04] USER ID: user@example.com
+[2025-05-24 11:43:04] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:43:04] EXECUTING API REQUEST...
+[2025-05-24 11:43:05] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.45668s
+  - Size: 73 bytes
+[2025-05-24 11:43:05] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:43:05] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:43:05] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:43:05] USER ID: user@example.com
+[2025-05-24 11:43:05] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:43:05] EXECUTING API REQUEST...
+[2025-05-24 11:43:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.428799s
+  - Size: 73 bytes
+[2025-05-24 11:43:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:43:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:35] USER ID: user@example.com
+[2025-05-24 11:48:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:35] EXECUTING API REQUEST...
+[2025-05-24 11:48:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.4872s
+  - Size: 73 bytes
+[2025-05-24 11:48:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:49] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:49] USER ID: user@example.com
+[2025-05-24 11:48:49] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:49] EXECUTING API REQUEST...
+[2025-05-24 11:48:49] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.440597s
+  - Size: 73 bytes
+[2025-05-24 11:48:49] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:49] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:51] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:51] USER ID: user@example.com
+[2025-05-24 11:48:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:51] EXECUTING API REQUEST...
+[2025-05-24 11:48:52] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.458548s
+  - Size: 73 bytes
+[2025-05-24 11:48:52] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:52] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:52] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:52] USER ID: user@example.com
+[2025-05-24 11:48:52] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:52] EXECUTING API REQUEST...
+[2025-05-24 11:48:52] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.441017s
+  - Size: 73 bytes
+[2025-05-24 11:48:52] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:52] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:57] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:57] USER ID: user@example.com
+[2025-05-24 11:48:57] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:57] EXECUTING API REQUEST...
+[2025-05-24 11:48:57] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.428059s
+  - Size: 73 bytes
+[2025-05-24 11:48:57] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:57] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:57] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:57] USER ID: user@example.com
+[2025-05-24 11:48:57] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:57] EXECUTING API REQUEST...
+[2025-05-24 11:48:58] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.436184s
+  - Size: 73 bytes
+[2025-05-24 11:48:58] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:58] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:48:58] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:48:58] USER ID: user@example.com
+[2025-05-24 11:48:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:48:58] EXECUTING API REQUEST...
+[2025-05-24 11:48:58] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.440666s
+  - Size: 73 bytes
+[2025-05-24 11:48:58] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:48:58] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:57:50] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:57:50] USER ID: user@example.com
+[2025-05-24 11:57:50] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:57:50] EXECUTING API REQUEST...
+[2025-05-24 11:57:50] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.483861s
+  - Size: 73 bytes
+[2025-05-24 11:57:51] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:57:51] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 11:58:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 11:58:27] USER ID: user@example.com
+[2025-05-24 11:58:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 11:58:27] EXECUTING API REQUEST...
+[2025-05-24 11:58:28] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.443291s
+  - Size: 73 bytes
+[2025-05-24 11:58:28] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 11:58:28] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:02:05] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:02:05] USER ID: user@example.com
+[2025-05-24 12:02:05] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:02:05] EXECUTING API REQUEST...
+[2025-05-24 12:02:05] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.440967s
+  - Size: 73 bytes
+[2025-05-24 12:02:05] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:02:05] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:02:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:02:06] USER ID: user@example.com
+[2025-05-24 12:02:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:02:06] EXECUTING API REQUEST...
+[2025-05-24 12:02:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.450168s
+  - Size: 73 bytes
+[2025-05-24 12:02:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:02:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:09:02] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:09:02] USER ID: user@example.com
+[2025-05-24 12:09:02] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:09:02] EXECUTING API REQUEST...
+[2025-05-24 12:09:02] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.566705s
+  - Size: 73 bytes
+[2025-05-24 12:09:02] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:09:02] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:09:05] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:09:05] USER ID: user@example.com
+[2025-05-24 12:09:05] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:09:05] EXECUTING API REQUEST...
+[2025-05-24 12:09:06] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.446958s
+  - Size: 73 bytes
+[2025-05-24 12:09:06] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:09:06] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:09:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:09:06] USER ID: user@example.com
+[2025-05-24 12:09:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:09:06] EXECUTING API REQUEST...
+[2025-05-24 12:09:07] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.564425s
+  - Size: 73 bytes
+[2025-05-24 12:09:07] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:09:07] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:09:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:09:07] USER ID: user@example.com
+[2025-05-24 12:09:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:09:07] EXECUTING API REQUEST...
+[2025-05-24 12:09:08] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.476309s
+  - Size: 73 bytes
+[2025-05-24 12:09:08] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:09:08] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:10:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:10:07] USER ID: user@example.com
+[2025-05-24 12:10:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:10:07] EXECUTING API REQUEST...
+[2025-05-24 12:10:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.671062s
+  - Size: 73 bytes
+[2025-05-24 12:10:09] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:10:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:10:09] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:10:09] USER ID: user@example.com
+[2025-05-24 12:10:09] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:10:09] EXECUTING API REQUEST...
+[2025-05-24 12:10:10] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.421107s
+  - Size: 73 bytes
+[2025-05-24 12:10:10] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:10:10] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:13:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:13:27] USER ID: user@example.com
+[2025-05-24 12:13:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:13:27] EXECUTING API REQUEST...
+[2025-05-24 12:13:29] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.306483s
+  - Size: 73 bytes
+[2025-05-24 12:13:29] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:13:29] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:13:33] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:13:33] USER ID: user@example.com
+[2025-05-24 12:13:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:13:33] EXECUTING API REQUEST...
+[2025-05-24 12:13:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.016636s
+  - Size: 73 bytes
+[2025-05-24 12:13:34] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:13:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:13:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:13:35] USER ID: user@example.com
+[2025-05-24 12:13:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:13:35] EXECUTING API REQUEST...
+[2025-05-24 12:13:35] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.599902s
+  - Size: 73 bytes
+[2025-05-24 12:13:35] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:13:35] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:13:36] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:13:36] USER ID: user@example.com
+[2025-05-24 12:13:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:13:36] EXECUTING API REQUEST...
+[2025-05-24 12:13:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.423564s
+  - Size: 73 bytes
+[2025-05-24 12:13:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:13:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:22:08] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:22:08] USER ID: user@example.com
+[2025-05-24 12:22:08] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:22:08] EXECUTING API REQUEST...
+[2025-05-24 12:22:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.130955s
+  - Size: 73 bytes
+[2025-05-24 12:22:09] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:22:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:22:24] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:22:24] USER ID: user@example.com
+[2025-05-24 12:22:24] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:22:24] EXECUTING API REQUEST...
+[2025-05-24 12:22:24] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.568627s
+  - Size: 73 bytes
+[2025-05-24 12:22:24] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:22:24] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:28:06] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:28:06] USER ID: user@example.com
+[2025-05-24 12:28:06] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:28:06] EXECUTING API REQUEST...
+[2025-05-24 12:28:07] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.586929s
+  - Size: 73 bytes
+[2025-05-24 12:28:07] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:28:07] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:28:08] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:28:08] USER ID: user@example.com
+[2025-05-24 12:28:08] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:28:08] EXECUTING API REQUEST...
+[2025-05-24 12:28:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.393197s
+  - Size: 73 bytes
+[2025-05-24 12:28:09] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:28:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:28:11] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:28:11] USER ID: user@example.com
+[2025-05-24 12:28:11] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:28:11] EXECUTING API REQUEST...
+[2025-05-24 12:28:12] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.423177s
+  - Size: 73 bytes
+[2025-05-24 12:28:12] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:28:12] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:28:22] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:28:22] USER ID: user@example.com
+[2025-05-24 12:28:22] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:28:22] EXECUTING API REQUEST...
+[2025-05-24 12:28:23] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.451046s
+  - Size: 73 bytes
+[2025-05-24 12:28:23] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:28:23] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:28:25] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:28:25] USER ID: user@example.com
+[2025-05-24 12:28:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:28:25] EXECUTING API REQUEST...
+[2025-05-24 12:28:26] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.439659s
+  - Size: 73 bytes
+[2025-05-24 12:28:26] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:28:26] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:28:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:28:27] USER ID: user@example.com
+[2025-05-24 12:28:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:28:27] EXECUTING API REQUEST...
+[2025-05-24 12:28:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.449358s
+  - Size: 73 bytes
+[2025-05-24 12:28:27] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:28:27] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:29:25] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:29:25] USER ID: user@example.com
+[2025-05-24 12:29:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:29:25] EXECUTING API REQUEST...
+[2025-05-24 12:29:26] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.428121s
+  - Size: 73 bytes
+[2025-05-24 12:29:26] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:29:26] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:29:29] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:29:29] USER ID: user@example.com
+[2025-05-24 12:29:29] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:29:29] EXECUTING API REQUEST...
+[2025-05-24 12:29:30] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.560589s
+  - Size: 73 bytes
+[2025-05-24 12:29:30] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:29:30] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:29:34] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:29:34] USER ID: user@example.com
+[2025-05-24 12:29:34] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:29:34] EXECUTING API REQUEST...
+[2025-05-24 12:29:35] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.429165s
+  - Size: 73 bytes
+[2025-05-24 12:29:35] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:29:35] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:35:55] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:35:55] USER ID: user@example.com
+[2025-05-24 12:35:55] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:35:55] EXECUTING API REQUEST...
+[2025-05-24 12:35:56] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.420297s
+  - Size: 73 bytes
+[2025-05-24 12:35:56] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:35:56] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:35:58] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:35:58] USER ID: user@example.com
+[2025-05-24 12:35:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:35:58] EXECUTING API REQUEST...
+[2025-05-24 12:35:59] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.43378s
+  - Size: 73 bytes
+[2025-05-24 12:35:59] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:35:59] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:38:00] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:38:00] USER ID: user@example.com
+[2025-05-24 12:38:00] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:38:00] EXECUTING API REQUEST...
+[2025-05-24 12:38:01] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.456164s
+  - Size: 73 bytes
+[2025-05-24 12:38:01] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:38:01] REQUEST COMPLETED SUCCESSFULLY
+2025-05-24 12:38:12 - Request for picking locations
+2025-05-24 12:38:12 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+2025-05-24 12:38:14 - Request for drop locations
+2025-05-24 12:38:14 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+[2025-05-24 12:38:15] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:38:15] USER ID: user@example.com
+[2025-05-24 12:38:15] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:38:15] EXECUTING API REQUEST...
+[2025-05-24 12:38:16] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.442245s
+  - Size: 73 bytes
+[2025-05-24 12:38:16] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:38:16] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:42:24] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:42:24] USER ID: user@example.com
+[2025-05-24 12:42:24] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:42:24] EXECUTING API REQUEST...
+[2025-05-24 12:42:24] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.554633s
+  - Size: 73 bytes
+[2025-05-24 12:42:24] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:42:24] REQUEST COMPLETED SUCCESSFULLY
+2025-05-24 12:42:24 - Request for picking locations
+2025-05-24 12:42:24 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+2025-05-24 12:42:26 - Request for drop locations
+2025-05-24 12:42:26 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+2025-05-24 12:42:27 - Request for picking locations
+2025-05-24 12:42:27 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+2025-05-24 12:42:28 - Request for drop locations
+2025-05-24 12:42:28 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+[2025-05-24 12:42:30] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:42:30] USER ID: user@example.com
+[2025-05-24 12:42:30] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:42:30] EXECUTING API REQUEST...
+[2025-05-24 12:42:31] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.430651s
+  - Size: 73 bytes
+[2025-05-24 12:42:31] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:42:31] REQUEST COMPLETED SUCCESSFULLY
+2025-05-24 12:42:39 - Request for drop locations
+2025-05-24 12:42:39 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+2025-05-24 12:42:40 - Request for picking locations
+2025-05-24 12:42:40 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+[2025-05-24 12:42:42] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:42:42] USER ID: user@example.com
+[2025-05-24 12:42:42] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:42:42] EXECUTING API REQUEST...
+[2025-05-24 12:42:42] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.42313s
+  - Size: 73 bytes
+[2025-05-24 12:42:42] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:42:42] REQUEST COMPLETED SUCCESSFULLY
+2025-05-24 12:42:44 - Request for picking locations
+2025-05-24 12:42:44 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+2025-05-24 12:42:46 - Request for drop locations
+2025-05-24 12:42:46 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+[2025-05-24 12:43:25] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:43:25] USER ID: user@example.com
+[2025-05-24 12:43:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:43:25] EXECUTING API REQUEST...
+[2025-05-24 12:43:26] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.452385s
+  - Size: 73 bytes
+[2025-05-24 12:43:26] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:43:26] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:43:26] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:43:26] USER ID: user@example.com
+[2025-05-24 12:43:26] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:43:26] EXECUTING API REQUEST...
+[2025-05-24 12:43:26] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.428893s
+  - Size: 73 bytes
+[2025-05-24 12:43:26] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:43:26] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:43:29] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:43:29] USER ID: user@example.com
+[2025-05-24 12:43:29] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:43:29] EXECUTING API REQUEST...
+[2025-05-24 12:43:29] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.400737s
+  - Size: 73 bytes
+[2025-05-24 12:43:29] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:43:29] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:43:32] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:43:32] USER ID: user@example.com
+[2025-05-24 12:43:32] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:43:32] EXECUTING API REQUEST...
+[2025-05-24 12:43:33] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.441658s
+  - Size: 73 bytes
+[2025-05-24 12:43:33] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:43:33] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:43:33] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:43:33] USER ID: user@example.com
+[2025-05-24 12:43:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:43:33] EXECUTING API REQUEST...
+[2025-05-24 12:43:33] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.41112s
+  - Size: 73 bytes
+[2025-05-24 12:43:33] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:43:33] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:43:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:43:35] USER ID: user@example.com
+[2025-05-24 12:43:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:43:35] EXECUTING API REQUEST...
+[2025-05-24 12:43:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.410297s
+  - Size: 73 bytes
+[2025-05-24 12:43:36] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:43:36] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:34] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:34] USER ID: user@example.com
+[2025-05-24 12:44:34] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:44:34] EXECUTING API REQUEST...
+[2025-05-24 12:44:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.478109s
+  - Size: 73 bytes
+[2025-05-24 12:44:34] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:44:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:34] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:34] USER ID: user@example.com
+[2025-05-24 12:44:34] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:44:34] EXECUTING API REQUEST...
+[2025-05-24 12:44:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.416957s
+  - Size: 73 bytes
+[2025-05-24 12:44:34] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:44:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:38] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:38] USER ID: user@example.com
+[2025-05-24 12:44:38] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:44:38] EXECUTING API REQUEST...
+[2025-05-24 12:44:38] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.424725s
+  - Size: 73 bytes
+[2025-05-24 12:44:38] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:44:38] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:41] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:41] USER ID: soumnair@gmail.com
+[2025-05-24 12:44:41] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-24 12:44:41] EXECUTING API REQUEST...
+[2025-05-24 12:44:43] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.535799s
+  - Size: 830 bytes
+[2025-05-24 12:44:43] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-24 12:44:43] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:43] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:43] USER ID: soumnair@gmail.com
+[2025-05-24 12:44:43] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-24 12:44:43] EXECUTING API REQUEST...
+[2025-05-24 12:44:44] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.351187s
+  - Size: 830 bytes
+[2025-05-24 12:44:44] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-24 12:44:44] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:50] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:50] USER ID: user@example.com
+[2025-05-24 12:44:50] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:44:50] EXECUTING API REQUEST...
+[2025-05-24 12:44:50] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.434539s
+  - Size: 73 bytes
+[2025-05-24 12:44:50] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:44:50] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:50] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:50] USER ID: user@example.com
+[2025-05-24 12:44:50] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:44:50] EXECUTING API REQUEST...
+[2025-05-24 12:44:50] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.398423s
+  - Size: 73 bytes
+[2025-05-24 12:44:50] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:44:50] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-24 12:44:53] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-24 12:44:53] USER ID: user@example.com
+[2025-05-24 12:44:53] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-24 12:44:53] EXECUTING API REQUEST...
+[2025-05-24 12:44:54] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.411284s
+  - Size: 73 bytes
+[2025-05-24 12:44:54] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-24 12:44:54] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:20:08] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:20:08] USER ID: user@example.com
+[2025-05-26 08:20:08] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:20:08] EXECUTING API REQUEST...
+[2025-05-26 08:20:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.745469s
+  - Size: 73 bytes
+[2025-05-26 08:20:09] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:20:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:20:09] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:20:09] USER ID: user@example.com
+[2025-05-26 08:20:09] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:20:09] EXECUTING API REQUEST...
+[2025-05-26 08:20:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.558113s
+  - Size: 73 bytes
+[2025-05-26 08:20:09] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:20:09] REQUEST COMPLETED SUCCESSFULLY
+2025-05-26 08:20:11 - Request for picking locations
+2025-05-26 08:20:11 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=20
+2025-05-26 08:20:13 - Request for drop locations
+2025-05-26 08:20:13 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=20
+[2025-05-26 08:20:16] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:20:16] USER ID: user@example.com
+[2025-05-26 08:20:16] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:20:16] EXECUTING API REQUEST...
+[2025-05-26 08:20:17] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.25436s
+  - Size: 73 bytes
+[2025-05-26 08:20:17] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:20:17] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:21:09] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:21:09] USER ID: user@example.com
+[2025-05-26 08:21:09] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:21:09] EXECUTING API REQUEST...
+[2025-05-26 08:21:10] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.23363s
+  - Size: 73 bytes
+[2025-05-26 08:21:10] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:21:10] REQUEST COMPLETED SUCCESSFULLY
+2025-05-26 08:21:10 - Request for picking locations
+2025-05-26 08:21:10 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=20
+2025-05-26 08:21:12 - Request for drop locations
+2025-05-26 08:21:12 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=20
+[2025-05-26 08:21:13] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:21:13] USER ID: user@example.com
+[2025-05-26 08:21:13] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:21:13] EXECUTING API REQUEST...
+[2025-05-26 08:21:14] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.435425s
+  - Size: 73 bytes
+[2025-05-26 08:21:14] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:21:14] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:36:51] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:36:51] USER ID: user@example.com
+[2025-05-26 08:36:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:36:51] EXECUTING API REQUEST...
+[2025-05-26 08:36:51] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.495008s
+  - Size: 73 bytes
+[2025-05-26 08:36:51] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:36:51] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:37:17] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:37:17] USER ID: user@example.com
+[2025-05-26 08:37:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:37:17] EXECUTING API REQUEST...
+[2025-05-26 08:37:17] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.511776s
+  - Size: 73 bytes
+[2025-05-26 08:37:17] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:37:17] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:37:17] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:37:17] USER ID: user@example.com
+[2025-05-26 08:37:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:37:17] EXECUTING API REQUEST...
+[2025-05-26 08:37:18] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.422444s
+  - Size: 73 bytes
+[2025-05-26 08:37:18] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:37:18] REQUEST COMPLETED SUCCESSFULLY
+2025-05-26 08:37:30 - Request for picking locations
+2025-05-26 08:37:30 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=20
+2025-05-26 08:37:33 - Request for drop locations
+2025-05-26 08:37:33 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=20
+[2025-05-26 08:37:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:37:35] USER ID: user@example.com
+[2025-05-26 08:37:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:37:35] EXECUTING API REQUEST...
+[2025-05-26 08:37:38] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.74083s
+  - Size: 73 bytes
+[2025-05-26 08:37:38] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:37:38] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:43:39] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:43:39] USER ID: user@example.com
+[2025-05-26 08:43:39] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:43:39] EXECUTING API REQUEST...
+[2025-05-26 08:43:39] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.649718s
+  - Size: 73 bytes
+[2025-05-26 08:43:39] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:43:39] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:43:39] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:43:39] USER ID: user@example.com
+[2025-05-26 08:43:39] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:43:39] EXECUTING API REQUEST...
+[2025-05-26 08:43:40] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.426138s
+  - Size: 73 bytes
+[2025-05-26 08:43:40] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:43:40] REQUEST COMPLETED SUCCESSFULLY
+2025-05-26 08:43:50 - Request for picking locations
+2025-05-26 08:43:50 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=20
+2025-05-26 08:43:52 - Request for drop locations
+2025-05-26 08:43:52 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=20
+[2025-05-26 08:43:54] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:43:54] USER ID: user@example.com
+[2025-05-26 08:43:54] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:43:54] EXECUTING API REQUEST...
+[2025-05-26 08:43:54] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.433024s
+  - Size: 73 bytes
+[2025-05-26 08:43:54] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:43:54] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:47:23] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:47:23] USER ID: user@example.com
+[2025-05-26 08:47:23] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:47:23] EXECUTING API REQUEST...
+[2025-05-26 08:47:24] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.529485s
+  - Size: 73 bytes
+[2025-05-26 08:47:24] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:47:24] REQUEST COMPLETED SUCCESSFULLY
+2025-05-26 08:47:24 - Request for picking locations
+2025-05-26 08:47:24 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=20
+2025-05-26 08:47:25 - Request for drop locations
+2025-05-26 08:47:25 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=20
+[2025-05-26 08:47:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:47:27] USER ID: user@example.com
+[2025-05-26 08:47:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 08:47:27] EXECUTING API REQUEST...
+[2025-05-26 08:47:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.418717s
+  - Size: 73 bytes
+[2025-05-26 08:47:27] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 08:47:27] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:48:17] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:48:17] USER ID: soumnair@gmail.com
+[2025-05-26 08:48:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 08:48:17] EXECUTING API REQUEST...
+[2025-05-26 08:48:18] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.519321s
+  - Size: 830 bytes
+[2025-05-26 08:48:18] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 08:48:18] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 08:48:18] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 08:48:18] USER ID: soumnair@gmail.com
+[2025-05-26 08:48:18] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 08:48:18] EXECUTING API REQUEST...
+[2025-05-26 08:48:20] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.543085s
+  - Size: 830 bytes
+[2025-05-26 08:48:20] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 08:48:20] REQUEST COMPLETED SUCCESSFULLY
+2025-05-26 08:48:22 - Request for picking locations
+2025-05-26 08:48:22 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=20
+2025-05-26 08:48:23 - Request for drop locations
+2025-05-26 08:48:23 - API URL: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=20
+[2025-05-26 09:16:46] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:16:46] USER ID: soumnair@gmail.com
+[2025-05-26 09:16:46] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:16:46] EXECUTING API REQUEST...
+[2025-05-26 09:16:48] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.721945s
+  - Size: 830 bytes
+[2025-05-26 09:16:48] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:16:48] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:17:33] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:17:33] USER ID: user@example.com
+[2025-05-26 09:17:33] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:17:33] EXECUTING API REQUEST...
+[2025-05-26 09:17:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.509639s
+  - Size: 73 bytes
+[2025-05-26 09:17:34] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:17:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:19:56] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:19:56] USER ID: soumnair@gmail.com
+[2025-05-26 09:19:56] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:19:56] EXECUTING API REQUEST...
+[2025-05-26 09:19:57] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.476988s
+  - Size: 830 bytes
+[2025-05-26 09:19:57] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:19:57] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:38:25] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:38:25] USER ID: soumnair@gmail.com
+[2025-05-26 09:38:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:38:25] EXECUTING API REQUEST...
+[2025-05-26 09:38:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.596758s
+  - Size: 830 bytes
+[2025-05-26 09:38:27] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:38:27] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:38:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:38:27] USER ID: soumnair@gmail.com
+[2025-05-26 09:38:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:38:27] EXECUTING API REQUEST...
+[2025-05-26 09:38:28] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.38201s
+  - Size: 830 bytes
+[2025-05-26 09:38:28] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:38:28] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:38:37] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:38:37] USER ID: user@example.com
+[2025-05-26 09:38:37] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:38:37] EXECUTING API REQUEST...
+[2025-05-26 09:38:38] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.55339s
+  - Size: 73 bytes
+[2025-05-26 09:38:38] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:38:38] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:38:38] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:38:38] USER ID: user@example.com
+[2025-05-26 09:38:38] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:38:38] EXECUTING API REQUEST...
+[2025-05-26 09:38:38] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.422291s
+  - Size: 73 bytes
+[2025-05-26 09:38:38] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:38:38] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:39:45] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:39:45] USER ID: user@example.com
+[2025-05-26 09:39:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:39:45] EXECUTING API REQUEST...
+[2025-05-26 09:39:45] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.499159s
+  - Size: 73 bytes
+[2025-05-26 09:39:45] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:39:45] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:48:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:48:07] USER ID: soumnair@gmail.com
+[2025-05-26 09:48:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:48:07] EXECUTING API REQUEST...
+[2025-05-26 09:48:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.369045s
+  - Size: 830 bytes
+[2025-05-26 09:48:09] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:48:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:48:09] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:48:09] USER ID: soumnair@gmail.com
+[2025-05-26 09:48:09] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:48:09] EXECUTING API REQUEST...
+[2025-05-26 09:48:10] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.302776s
+  - Size: 830 bytes
+[2025-05-26 09:48:10] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:48:10] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:48:16] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:48:16] USER ID: user@example.com
+[2025-05-26 09:48:16] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:48:16] EXECUTING API REQUEST...
+[2025-05-26 09:48:17] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.419407s
+  - Size: 73 bytes
+[2025-05-26 09:48:17] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:48:17] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:48:17] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:48:17] USER ID: user@example.com
+[2025-05-26 09:48:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:48:17] EXECUTING API REQUEST...
+[2025-05-26 09:48:17] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.433981s
+  - Size: 73 bytes
+[2025-05-26 09:48:17] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:48:17] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:48:30] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:48:30] USER ID: user@example.com
+[2025-05-26 09:48:30] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-05-26 09:48:30] EXECUTING API REQUEST...
+[2025-05-26 09:48:31] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 0.416241s
+  - Size: 73 bytes
+[2025-05-26 09:48:31] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-05-26 09:48:31] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:53:58] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:53:58] USER ID: soumnair@gmail.com
+[2025-05-26 09:53:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:53:58] EXECUTING API REQUEST...
+[2025-05-26 09:53:59] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.384892s
+  - Size: 830 bytes
+[2025-05-26 09:53:59] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:53:59] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 09:53:59] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 09:53:59] USER ID: soumnair@gmail.com
+[2025-05-26 09:53:59] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 09:53:59] EXECUTING API REQUEST...
+[2025-05-26 09:54:00] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.438025s
+  - Size: 830 bytes
+[2025-05-26 09:54:00] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 09:54:00] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 10:05:49] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 10:05:49] USER ID: soumnair@gmail.com
+[2025-05-26 10:05:49] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 10:05:49] EXECUTING API REQUEST...
+[2025-05-26 10:05:50] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.374725s
+  - Size: 830 bytes
+[2025-05-26 10:05:50] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 10:05:50] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 10:05:51] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 10:05:51] USER ID: soumnair@gmail.com
+[2025-05-26 10:05:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 10:05:51] EXECUTING API REQUEST...
+[2025-05-26 10:05:52] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.395672s
+  - Size: 830 bytes
+[2025-05-26 10:05:52] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 10:05:52] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:11:31] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:11:31] USER ID: Info@toolik.in
+[2025-05-26 11:11:31] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-05-26 11:11:31] EXECUTING API REQUEST...
+[2025-05-26 11:11:32] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.441093s
+  - Size: 774 bytes
+[2025-05-26 11:11:32] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:11:32] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:11:32] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:11:32] USER ID: Info@toolik.in
+[2025-05-26 11:11:32] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-05-26 11:11:32] EXECUTING API REQUEST...
+[2025-05-26 11:11:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.400397s
+  - Size: 774 bytes
+[2025-05-26 11:11:34] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:11:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:11:46] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:11:46] USER ID: soumnair@gmail.com
+[2025-05-26 11:11:46] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 11:11:46] EXECUTING API REQUEST...
+[2025-05-26 11:11:47] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.347733s
+  - Size: 830 bytes
+[2025-05-26 11:11:47] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:11:47] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:11:47] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:11:47] USER ID: soumnair@gmail.com
+[2025-05-26 11:11:47] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 11:11:47] EXECUTING API REQUEST...
+[2025-05-26 11:11:48] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.337389s
+  - Size: 830 bytes
+[2025-05-26 11:11:48] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:11:48] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:11:48] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:11:48] USER ID: soumnair@gmail.com
+[2025-05-26 11:11:48] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 11:11:48] EXECUTING API REQUEST...
+[2025-05-26 11:11:50] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.333059s
+  - Size: 830 bytes
+[2025-05-26 11:11:50] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:11:50] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:43:15] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:43:15] USER ID: soumnair@gmail.com
+[2025-05-26 11:43:15] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 11:43:15] EXECUTING API REQUEST...
+[2025-05-26 11:43:16] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.392149s
+  - Size: 830 bytes
+[2025-05-26 11:43:16] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:43:16] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-26 11:43:16] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-26 11:43:16] USER ID: soumnair@gmail.com
+[2025-05-26 11:43:16] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-26 11:43:16] EXECUTING API REQUEST...
+[2025-05-26 11:43:17] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.439928s
+  - Size: 830 bytes
+[2025-05-26 11:43:17] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-26 11:43:17] REQUEST COMPLETED SUCCESSFULLY

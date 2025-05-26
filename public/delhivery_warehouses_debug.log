@@ -1,0 +1,90 @@
+[2025-05-26 09:09:17] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:09:17] PARAMS: login_type=b2b, location_type=picking, page=1, page_size=10
+[2025-05-26 09:09:17] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+[2025-05-26 09:09:17] EXECUTING API REQUEST...
+[2025-05-26 09:09:19] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.340755s
+  - Size: 22159 bytes
+[2025-05-26 09:09:19] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)
+[2025-05-26 09:09:19] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:09:19] PARAMS: login_type=b2b, location_type=drop, page=1, page_size=10
+[2025-05-26 09:09:19] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+[2025-05-26 09:09:19] EXECUTING API REQUEST...
+[2025-05-26 09:09:20] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.256979s
+  - Size: 22159 bytes
+[2025-05-26 09:09:20] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)
+[2025-05-26 09:09:24] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:09:24] PARAMS: login_type=b2b, location_type=picking, page=1, page_size=5
+[2025-05-26 09:09:24] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=5
+[2025-05-26 09:09:24] EXECUTING API REQUEST...
+[2025-05-26 09:09:25] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.155057s
+  - Size: 11306 bytes
+[2025-05-26 09:09:25] RAW RESPONSE: {"total_count":0,"result_count":5,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","coun...(truncated)
+[2025-05-26 09:09:35] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:09:35] PARAMS: login_type=b2b, location_type=picking, page=1, page_size=10
+[2025-05-26 09:09:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+[2025-05-26 09:09:35] EXECUTING API REQUEST...
+[2025-05-26 09:09:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.262376s
+  - Size: 22159 bytes
+[2025-05-26 09:09:36] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)
+[2025-05-26 09:09:36] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:09:36] PARAMS: login_type=b2b, location_type=drop, page=1, page_size=10
+[2025-05-26 09:09:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+[2025-05-26 09:09:36] EXECUTING API REQUEST...
+[2025-05-26 09:09:37] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.300221s
+  - Size: 22159 bytes
+[2025-05-26 09:09:37] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)
+[2025-05-26 09:10:16] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:10:16] PARAMS: login_type=b2b, location_type=picking, page=1, page_size=10
+[2025-05-26 09:10:16] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+[2025-05-26 09:10:16] EXECUTING API REQUEST...
+[2025-05-26 09:10:19] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.211797s
+  - Size: 22159 bytes
+[2025-05-26 09:10:19] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)
+[2025-05-26 09:10:19] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:10:19] PARAMS: login_type=b2b, location_type=drop, page=1, page_size=10
+[2025-05-26 09:10:19] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&search_term=&page=1&page_size=10
+[2025-05-26 09:10:19] EXECUTING API REQUEST...
+[2025-05-26 09:10:20] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.247005s
+  - Size: 22159 bytes
+[2025-05-26 09:10:20] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)
+[2025-05-26 09:10:22] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:10:22] PARAMS: login_type=b2b, location_type=picking, page=1, page_size=10
+[2025-05-26 09:10:22] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=s&page=1&page_size=10
+[2025-05-26 09:10:22] EXECUTING API REQUEST...
+[2025-05-26 09:10:23] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.082674s
+  - Size: 94 bytes
+[2025-05-26 09:10:23] RAW RESPONSE: {"total_count":0,"result_count":0,"results":null,"only_count":false,"last_evaluated_key":null}
+[2025-05-26 09:10:25] 
+=== NEW DELHIVERY WAREHOUSES REQUEST STARTED ===
+[2025-05-26 09:10:25] PARAMS: login_type=b2b, location_type=picking, page=1, page_size=10
+[2025-05-26 09:10:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=picking&search_term=&page=1&page_size=10
+[2025-05-26 09:10:25] EXECUTING API REQUEST...
+[2025-05-26 09:10:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.203098s
+  - Size: 22159 bytes
+[2025-05-26 09:10:27] RAW RESPONSE: {"total_count":0,"result_count":10,"results":[{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_name":"Emerging Farm Equipments (India) Pvt Ltd","status":"ACTIVE","blocked":false,"timezone":"Asia/Kolkata","auto_pickup":"OFF","pickup_after_days":1,"working_days":["THU","TUE","SAT","WED","FRI","MON"],"working_hours":{"start_time_hour":10,"start_time_minute":0,"close_time_hour":18,"close_time_minute":0},"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","address_id":null,"address":{"company_id":"c8447213-0e30-43f9-810f-afa4856ef33e","created_at":1748003040949,"updated_at":1748003106720,"facility_id":"5748691d-3c7f-421b-bf0c-d12895a9f13a","facility_name":"Emerging Farm Equipments (India) Pvt Ltd","address_line1":"actory Number 112 & 113, Thanikachalam Nagar, Vadaperumbakkam, Madhavaram, Chennai, 600060, TamilNadu, India. Phone: 9840455558","address_line2":null,"city":"Chennai","state":"Tamil Nadu","pin_code":"600060","cou...(truncated)

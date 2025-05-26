@@ -52,39 +52,106 @@ document.addEventListener('DOMContentLoaded', function() {
             const loader = document.getElementById('loader');
             if (loader) loader.classList.remove('d-none');
             
-            // Instead of showing a modal, fetch warehouses and then show them directly on the page
-            fetchWarehouses(userEmail)
-                .then(warehouseData => {
-                    // Hide loader
-                    if (loader) loader.classList.add('d-none');
-                    
-                    // Display warehouse options directly on the page (not in a modal)
-                    displayWarehouseOptions(warehouseData, carrierName, rate);
-                })
-                .catch(error => {
-                    console.error('Error fetching warehouses:', error);
-                    
-                    // Instead of showing an alert, retry after 1 second
-                    console.log('Retrying warehouse fetch in 1 second...');
-                    setTimeout(() => {
-                        // Keep loader visible for retry
-                        if (loader) loader.classList.remove('d-none');
+            // IMPORTANT: Always treat first carrier section as Delhivery
+            // This is the most reliable way to identify all Delhivery carriers
+            
+            // Get the carrier section this button belongs to
+            const cardElement = button.closest('.card');
+            const parentRow = cardElement?.closest('.row');
+            
+            // Check if this is the first section (Delhivery section)
+            // In your UI, the first row with cards is always the Delhivery section
+            let isDelhivery = false;
+            
+            // Method 1: Check if we're in the first set of cards
+            const resultsContainer = document.getElementById('resultsContainer');
+            if (resultsContainer && parentRow) {
+                const allRows = resultsContainer.querySelectorAll('.row');
+                if (allRows.length > 0 && allRows[0] === parentRow) {
+                    isDelhivery = true;
+                }
+            }
+            
+            // Method 2: Check by carrier name for specific keywords
+            if (carrierName) {
+                const delhiveryKeywords = ['delhivery', 'b2b', 'b2c', 'one delhivery'];
+                for (const keyword of delhiveryKeywords) {
+                    if (carrierName.toLowerCase().includes(keyword)) {
+                        isDelhivery = true;
+                        break;
+                    }
+                }
+            }
+            
+            // Method 3: Look for section header text
+            const cardHeader = cardElement?.closest('.card')?.previousElementSibling;
+            if (cardHeader && cardHeader.textContent && 
+                cardHeader.textContent.toLowerCase().includes('delhivery')) {
+                isDelhivery = true;
+            }
+            
+            // Only Delhivery carriers should use the dropdowns
+            // Other carriers like Bigship will use the original warehouse selection
+            
+            console.log('Carrier name:', carrierName, 'isDelhivery:', isDelhivery);
+            
+            if (isDelhivery) {
+                // For Delhivery, redirect to the new manifest creation page with dropdowns
+                const manifestUrl = new URL('create-manifest.html', window.location.href);
+                
+                // Add parameters
+                manifestUrl.searchParams.append('carrier', carrierName);
+                manifestUrl.searchParams.append('rate', rate);
+                manifestUrl.searchParams.append('email', userEmail);
+                
+                // Add source and destination pincodes if available
+                const sourcePincode = document.getElementById('sourcePincode')?.value;
+                const destinationPincode = document.getElementById('destinationPincode')?.value;
+                
+                if (sourcePincode) manifestUrl.searchParams.append('sourcePincode', sourcePincode);
+                if (destinationPincode) manifestUrl.searchParams.append('destinationPincode', destinationPincode);
+                
+                // Hide loader before redirecting
+                if (loader) loader.classList.add('d-none');
+                
+                // Redirect to the manifest creation page
+                window.location.href = manifestUrl.toString();
+            } else {
+                // For other carriers, use the original warehouse selection flow
+                fetchWarehouses(userEmail)
+                    .then(warehouseData => {
+                        // Hide loader
+                        if (loader) loader.classList.add('d-none');
                         
-                        fetchWarehouses(userEmail)
-                            .then(warehouseData => {
-                                // Hide loader
-                                if (loader) loader.classList.add('d-none');
-                                
-                                // Display warehouse options directly on the page
-                                displayWarehouseOptions(warehouseData, carrierName, rate);
-                            })
-                            .catch(retryError => {
-                                // Hide loader after final attempt
-                                if (loader) loader.classList.add('d-none');
-                                console.error('Retry failed:', retryError);
-                            });
-                    }, 1000);
-                });
+                        // Display warehouse options directly on the page (not in a modal)
+                        displayWarehouseOptions(warehouseData, carrierName, rate);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching warehouses:', error);
+                        
+                        // Instead of showing an alert, retry after 1 second
+                        console.log('Retrying warehouse fetch in 1 second...');
+                        setTimeout(() => {
+                            // Keep loader visible for retry
+                            if (loader) loader.classList.remove('d-none');
+                            
+                            fetchWarehouses(userEmail)
+                                .then(warehouseData => {
+                                    // Hide loader
+                                    if (loader) loader.classList.add('d-none');
+                                    
+                                    // Display warehouse options directly on the page
+                                    displayWarehouseOptions(warehouseData, carrierName, rate);
+                                })
+                                .catch(retryError => {
+                                    // Hide loader after final attempt
+                                    if (loader) loader.classList.add('d-none');
+                                    console.error('Retry failed:', retryError);
+                                });
+                        }, 1000);
+                    });
+            }
+                ;
             
             return false;
         }
