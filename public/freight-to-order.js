@@ -111,6 +111,96 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (sourcePincode) manifestUrl.searchParams.append('sourcePincode', sourcePincode);
                 if (destinationPincode) manifestUrl.searchParams.append('destinationPincode', destinationPincode);
                 
+                // Collect and pass dimensions data
+                try {
+                    console.log('Getting dimension data from page...');
+                    
+                    // Find dimension data from boxes container
+                    const boxRows = document.querySelectorAll('#boxesContainer .box-row');
+                    if (boxRows && boxRows.length > 0) {
+                        console.log(`Found ${boxRows.length} box rows`);
+                        
+                        let dimensionsStr = [];
+                        let totalBoxes = 0;
+                        let totalWeight = 0;
+                        
+                        boxRows.forEach((row, index) => {
+                            // Get inputs by class names
+                            const lengthInput = row.querySelector('.box-length');
+                            const widthInput = row.querySelector('.box-width');
+                            const heightInput = row.querySelector('.box-height');
+                            const weightInput = row.querySelector('.box-weight');
+                            
+                            // Get values
+                            const length = lengthInput ? lengthInput.value : '';
+                            const width = widthInput ? widthInput.value : '';
+                            const height = heightInput ? heightInput.value : '';
+                            const weight = weightInput ? weightInput.value : '';
+                            
+                            console.log(`Box ${index}: L=${length}, W=${width}, H=${height}, W=${weight}kg`);
+                            
+                            // Add to dimensions string if valid
+                            if (length && width && height) {
+                                // Format: L-W-H-W (Length-Width-Height-Weight)
+                                dimensionsStr.push(`${length}-${width}-${height}-${weight}`);
+                                totalBoxes++;
+                                totalWeight += parseFloat(weight) || 0;
+                            }
+                        });
+                        
+                        // Add parameters to URL
+                        if (dimensionsStr.length > 0) {
+                            console.log('Adding dimensions to URL:', dimensionsStr.join('|'));
+                            manifestUrl.searchParams.append('dims', dimensionsStr.join('|'));
+                            manifestUrl.searchParams.append('boxes', totalBoxes);
+                            manifestUrl.searchParams.append('weight', totalWeight.toFixed(2));
+                        }
+                    } else {
+                        // Try alternate method - find total boxes and weight directly
+                        const totalBoxesInput = document.getElementById('totalBoxes');
+                        const totalWeightInput = document.getElementById('totalWeight');
+                        
+                        if (totalBoxesInput && totalWeightInput) {
+                            const boxes = totalBoxesInput.value;
+                            const weight = totalWeightInput.value;
+                            
+                            if (boxes) manifestUrl.searchParams.append('boxes', boxes);
+                            if (weight) manifestUrl.searchParams.append('weight', weight);
+                            
+                            console.log(`Using total values: Boxes=${boxes}, Weight=${weight}kg`);
+                        }
+                        
+                        // Try to get dimensions from dimension rows (alternative layout)
+                        const dimensionRows = document.querySelectorAll('.dimension-row');
+                        if (dimensionRows && dimensionRows.length > 0) {
+                            console.log(`Found ${dimensionRows.length} dimension rows as backup`);
+                            
+                            let dimsArray = [];
+                            
+                            dimensionRows.forEach((row, index) => {
+                                // Get all number inputs in the row
+                                const inputs = row.querySelectorAll('input[type="number"]');
+                                if (inputs.length >= 3) {
+                                    const l = inputs[0].value || '';
+                                    const w = inputs[1].value || '';
+                                    const h = inputs[2].value || '';
+                                    const count = (inputs.length > 3) ? (inputs[3].value || '1') : '1';
+                                    
+                                    if (l && w && h) {
+                                        dimsArray.push(`${l}-${w}-${h}-${count}`);
+                                    }
+                                }
+                            });
+                            
+                            if (dimsArray.length > 0) {
+                                manifestUrl.searchParams.append('dims', dimsArray.join('|'));
+                            }
+                        }
+                    }
+                } catch (error) {
+                    console.error('Error collecting dimensions data:', error);
+                }
+                
                 // Hide loader before redirecting
                 if (loader) loader.classList.add('d-none');
                 

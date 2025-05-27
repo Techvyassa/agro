@@ -5424,3 +5424,47 @@ ERR_NGROK_3200
   - Size: 830 bytes
 [2025-05-27 09:32:39] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
 [2025-05-27 09:32:39] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-27 10:26:18] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-27 10:26:18] USER ID: soumnair@gmail.com
+[2025-05-27 10:26:18] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-27 10:26:18] EXECUTING API REQUEST...
+[2025-05-27 10:26:20] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.705728s
+  - Size: 830 bytes
+[2025-05-27 10:26:20] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-27 10:26:20] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-27 10:26:20] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-27 10:26:20] USER ID: soumnair@gmail.com
+[2025-05-27 10:26:20] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-05-27 10:26:20] EXECUTING API REQUEST...
+[2025-05-27 10:26:21] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.444958s
+  - Size: 830 bytes
+[2025-05-27 10:26:21] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-27 10:26:21] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-27 10:26:32] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-27 10:26:32] USER ID: Info@toolik.in
+[2025-05-27 10:26:32] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-05-27 10:26:32] EXECUTING API REQUEST...
+[2025-05-27 10:26:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.05269s
+  - Size: 774 bytes
+[2025-05-27 10:26:34] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-27 10:26:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-27 10:26:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-05-27 10:26:35] USER ID: Info@toolik.in
+[2025-05-27 10:26:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-05-27 10:26:35] EXECUTING API REQUEST...
+[2025-05-27 10:26:36] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.581662s
+  - Size: 774 bytes
+[2025-05-27 10:26:36] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-05-27 10:26:36] REQUEST COMPLETED SUCCESSFULLY
