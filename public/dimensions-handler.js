@@ -21,18 +21,20 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Box Count from URL:', boxCount);
     console.log('Total Weight from URL:', totalWeight);
     
-    // Store in hidden fields
+    // Store in hidden fields - but only use box count for totals, not for individual dimensions
     if (boxCount) {
         document.getElementById('total-boxes').value = boxCount;
         console.log('Set total-boxes hidden field to:', boxCount);
         
-        // Also update box count field in the dimensions section if it exists
-        const boxCountInput = document.querySelector('.dimension-box-count, input[placeholder="Box Count"]');
-        if (boxCountInput) {
-            boxCountInput.value = boxCount;
-            console.log('Set box count input to:', boxCount);
-        }
+        // DO NOT set the box count for individual dimensions - we want them all to default to 1
+        console.log('Box count from URL ignored for individual dimensions, will use default value of 1');
     }
+    
+    // Set all dimension box counts to 1 by default
+    document.querySelectorAll('.dimension-box-count').forEach(input => {
+        input.value = '1';
+        console.log('Set dimension box count to default value of 1');
+    });
     
     if (totalWeight) {
         document.getElementById('total-weight').value = totalWeight;
@@ -153,16 +155,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         inputs[1].value = width;
                         inputs[2].value = height;
                         
-                        // For the box count, we use the one from dimensions if available,
-                        // or the total boxCount if not
-                        if (count && count !== '1') {
-                            inputs[3].value = count;
-                            console.log('Set box count from dimension data:', count);
-                        } else if (boxCount && index === 0) {
-                            // Only set from boxCount for the first row if no specific count
-                            inputs[3].value = boxCount;
-                            console.log('Set box count from URL parameter:', boxCount);
-                        }
+                        // Always set box count to 1 by default regardless of URL parameters
+                        inputs[3].value = '1';
+                        console.log('Set box count to default value of 1 (ignoring URL data)');
                         
                         console.log('Updated first row with values:', length, width, height, inputs[3].value);
                     } else {
@@ -182,18 +177,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         inputs[1].value = width;
                         inputs[2].value = height;
                         
-                        // For box count, use dimension-specific count if available
-                        if (count && count !== '1') {
-                            inputs[3].value = count;
-                            console.log(`Set box count for row ${index} from dimension data:`, count);
-                        } else if (boxCount && dimensionSets.length === 1) {
-                            // If there's only one dimension set but multiple boxes, use the total
-                            inputs[3].value = boxCount;
-                            console.log(`Set box count for row ${index} from URL parameter:`, boxCount);
-                        } else {
-                            // Default to 1 if no specific count
-                            inputs[3].value = 1;
-                        }
+                        // Always set box count to 1 by default regardless of URL parameters
+                        inputs[3].value = '1';
+                        console.log(`Set box count for row ${index} to default value of 1 (ignoring URL data)`);
                         
                         console.log(`Added new row ${index} with values:`, length, width, height, inputs[3].value);
                     }

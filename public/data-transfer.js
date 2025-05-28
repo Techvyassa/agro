@@ -92,7 +92,8 @@
                                             inputs[0].value = dim.length;
                                             inputs[1].value = dim.width;
                                             inputs[2].value = dim.height;
-                                            inputs[3].value = dim.boxCount;
+                                            // Always set box count to 1 as default
+                                            inputs[3].value = '1';
                                         }
                                     } else {
                                         // Clone template for additional rows
@@ -102,7 +103,8 @@
                                             inputs[0].value = dim.length;
                                             inputs[1].value = dim.width;
                                             inputs[2].value = dim.height;
-                                            inputs[3].value = dim.boxCount;
+                                            // Always set box count to 1 as default
+                                            inputs[3].value = '1';
                                         }
                                         
                                         // Show remove button

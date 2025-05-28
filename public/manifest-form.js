@@ -277,18 +277,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.results.forEach(location => {
                     try {
                         // Extract location details from the API response with proper handling of nested structures
-                        const returnAddress = location.return_address || {};
+                        let returnAddress = location.return_address || {};
+                        let address = location.address || {}; // For B2BR format where details are in address object
                         
                         // Create a normalized location data object that handles all potential structures
                         const locationData = {
                             id: location.facility_id || 'UNKNOWN',
-                            name: location.facility_name || returnAddress.facility_name || location.company_name || 'Unknown Location',
-                            address: returnAddress.address_line1 || location.address_line1 || location.address || '',
-                            city: returnAddress.city || location.city || '',
-                            state: returnAddress.state || location.state || '',
-                            pincode: returnAddress.pin_code || location.pin_code || location.pincode || '',
-                            contact: returnAddress.contact_person || location.contact_person || '',
-                            phone: returnAddress.phone || location.phone || '',
+                            name: location.store_code_name || location.facility_name || address.facility_name || returnAddress.facility_name || location.company_name || 'Unknown Location',
+                            address: address.address_line1 || returnAddress.address_line1 || location.address_line1 || '',
+                            city: address.city || returnAddress.city || location.city || '',
+                            state: address.state || returnAddress.state || location.state || '',
+                            pincode: address.pin_code || returnAddress.pin_code || location.pin_code || location.pincode || '',
+                            contact: address.contact_person || returnAddress.contact_person || location.contact_person || address.first_name || '',
+                            phone: address.phone || returnAddress.phone || location.phone || '',
                             raw: location // Store raw data for debugging
                         };
                         
@@ -713,8 +714,37 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Function to set up repeatable form sections
     function setupRepeatableSections() {
-        // Set up remove buttons for initial rows
         setupRemoveButtons();
+        updateRemoveButtonsVisibility();
+        
+        // Add event listeners to existing box count inputs
+        document.querySelectorAll('.dimension-box-count').forEach(input => {
+            input.addEventListener('change', updateTotalBoxes);
+        });
+        
+        updateTotalBoxes(); // Initialize total boxes count
+    }
+    
+    // Function to calculate and update total boxes
+    function updateTotalBoxes() {
+        const totalBoxesField = document.getElementById('totalBoxes');
+        if (!totalBoxesField) return;
+        
+        let totalBoxes = 0;
+        document.querySelectorAll('.dimension-row').forEach(row => {
+            const boxCountInput = row.querySelector('.dimension-box-count');
+            if (boxCountInput && boxCountInput.value) {
+                totalBoxes += parseInt(boxCountInput.value) || 0;
+            }
+        });
+        
+        // Update the total boxes field
+        totalBoxesField.value = totalBoxes;
+        
+        // Update all shipment row box counts to match the total
+        document.querySelectorAll('.shipment-box-count').forEach(input => {
+            input.value = totalBoxes;
+        });
     }
     
     // Function to set up remove buttons for all repeatable rows
@@ -818,6 +848,7 @@ document.addEventListener('DOMContentLoaded', function() {
         newRow.querySelector('.dimension-length').value = '';
         newRow.querySelector('.dimension-width').value = '';
         newRow.querySelector('.dimension-height').value = '';
+        newRow.querySelector('.dimension-weight').value = '';
         newRow.querySelector('.dimension-box-count').value = '1';
         
         // Add event listener to remove button
@@ -827,12 +858,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (document.querySelectorAll('.dimension-row').length > 1) {
                     newRow.remove();
                     updateRemoveButtonsVisibility();
+                    updateTotalBoxes(); // Update total boxes when removing a row
                 }
             });
         }
         
+        // Add event listener to box count input to update total
+        const boxCountInput = newRow.querySelector('.dimension-box-count');
+        if (boxCountInput) {
+            boxCountInput.addEventListener('change', updateTotalBoxes);
+        }
+        
         container.appendChild(newRow);
         updateRemoveButtonsVisibility();
+        updateTotalBoxes(); // Update total after adding a row
     }
     
     // Function to add shipment row
@@ -841,9 +880,10 @@ document.addEventListener('DOMContentLoaded', function() {
         const template = document.querySelector('.shipment-row');
         const newRow = template.cloneNode(true);
         
-        // Clear input values but maintain default box count
+        // Clear input values and set box count to total boxes
         newRow.querySelector('.shipment-order-id').value = '';
-        newRow.querySelector('.shipment-box-count').value = '1';
+        const totalBoxes = document.getElementById('totalBoxes').value || '1';
+        newRow.querySelector('.shipment-box-count').value = totalBoxes;
         newRow.querySelector('.shipment-description').value = '';
         
         // Add event listener to remove button
@@ -889,15 +929,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const height = parseFloat(row.querySelector('.dimension-height').value);
             const boxCount = parseInt(row.querySelector('.dimension-box-count').value);
             
+            // Get weight if the element exists, otherwise use a default of 0
+            let weight = 0;
+            const weightInput = row.querySelector('.dimension-weight');
+            if (weightInput) {
+                weight = parseFloat(weightInput.value);
+            }
+            
+            // Check only the required fields (weight is now optional)
             if (!isNaN(length) && !isNaN(width) && !isNaN(height) && !isNaN(boxCount)) {
                 dimensions.push({
                     length_cm: length,
                     width_cm: width,
                     height_cm: height,
+                    weight_kg: weight || 0, // Use 0 if weight is NaN
                     box_count: boxCount
                 });
             }
         });
+        updateTotalBoxes();
         return dimensions;
     }
     
@@ -1021,7 +1071,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Create manifest payload
         const manifestPayload = {
             pickup_location_name: selectedPickupLocation.name,
-            dropoff_store_code: selectedDropLocation.id,
+            dropoff_store_code: selectedDropLocation.name, // Changed from ID to name as per API requirement
             rov_insurance: false,
             fm_pickup: freightMode === 'fop',
             freight_mode: freightMode,

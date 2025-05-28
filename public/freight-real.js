@@ -798,7 +798,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function addNewBox() {
         const boxRow = document.querySelector('.box-row').cloneNode(true);
         boxRow.querySelectorAll('input').forEach(input => {
-            input.value = '';
+            // Clear all input values except for box-count which gets default value 1
+            if (input.classList.contains('box-count')) {
+                input.value = '1';
+            } else {
+                input.value = '';
+            }
         });
         
         // Show the remove button for all boxes
@@ -844,15 +849,25 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateTotals() {
         const boxRows = document.querySelectorAll('.box-row');
         let totalWeight = 0;
+        let totalBoxCount = 0;
         
         boxRows.forEach(row => {
             const weightInput = row.querySelector('.box-weight');
+            const boxCountInput = row.querySelector('.box-count');
+            
             if (weightInput && weightInput.value) {
                 totalWeight += parseFloat(weightInput.value);
             }
+            
+            if (boxCountInput && boxCountInput.value) {
+                totalBoxCount += parseInt(boxCountInput.value);
+            } else {
+                // If no box count is specified, default to 1
+                totalBoxCount += 1;
+            }
         });
         
-        totalBoxesInput.value = boxRows.length;
+        totalBoxesInput.value = totalBoxCount;
         totalWeightInput.value = totalWeight.toFixed(2);
     }
 
@@ -892,16 +907,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const width = parseFloat(widthInput.value) || 0;
                 const height = parseFloat(heightInput.value) || 0;
                 const weight = parseFloat(weightInput.value) || 0;
+                const boxCountInput = row.querySelector('.box-count');
+                const boxCount = boxCountInput && boxCountInput.value ? parseInt(boxCountInput.value) : 1;
                 
                 if (length > 0 && width > 0 && height > 0) {
                     dimensions.push({
                         length_cm: length,
                         width_cm: width,
                         height_cm: height,
-                        box_count: 1,
+                        box_count: boxCount,
                         each_box_dead_weight: weight
                     });
-                    totalValidBoxes++;
+                    totalValidBoxes += boxCount;
                 }
             }
         });

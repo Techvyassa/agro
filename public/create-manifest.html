@@ -313,6 +313,10 @@
                                             <label class="form-label">Height (cm)</label>
                                             <input type="number" class="form-control dimension-height" required>
                                         </div>
+                                        <!-- <div class="col-md-2">
+                                            <label class="form-label">Weight (kg)</label>
+                                            <input type="number" class="form-control dimension-weight" step="0.1" required>
+                                        </div> -->
                                         <div class="col-md-2">
                                             <label class="form-label">Box Count</label>
                                             <input type="number" class="form-control dimension-box-count" value="1" min="1" required>
@@ -351,6 +355,12 @@
                                             <input type="number" class="form-control" id="weightGrams" required>
                                         </div>
                                     </div>
+                                    <div class="col-md-6">
+                                        <div class="mb-3">
+                                            <label for="totalBoxes" class="form-label">Total Boxes</label>
+                                            <input type="number" class="form-control" id="totalBoxes" readonly>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -374,7 +384,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <label class="form-label">Box Count</label>
-                                            <input type="number" class="form-control shipment-box-count" value="1" min="1" required>
+                                            <input type="number" class="form-control shipment-box-count" value="1" min="1" required >
                                         </div>
                                         <div class="col-md-4">
                                             <label class="form-label">Description</label>

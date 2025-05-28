@@ -1,4 +1,4 @@
-// Manifest Form - Handles creation and submission of manifest forms
+﻿// Manifest Form - Handles creation and submission of manifest forms
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize variables
     let selectedPickupLocation = null;
@@ -334,3 +334,5 @@ document.addEventListener('DOMContentLoaded', function() {
             loadFallbackDropLocations();
         });
     }
+ 
+ 

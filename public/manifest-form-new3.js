@@ -202,7 +202,7 @@
         // Create manifest payload
         const manifestPayload = {
             pickup_location_name: selectedPickupLocation.name,
-            dropoff_store_code: selectedDropLocation.id,
+            dropoff_store_code: selectedDropLocation.name, // Changed from ID to name as per API requirement
             rov_insurance: false,
             fm_pickup: freightMode === 'fop',
             freight_mode: freightMode,
@@ -262,4 +262,3 @@
         });
         */
     }
-});

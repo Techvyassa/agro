@@ -5460,3 +5460,219 @@
   - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
 [2025-05-27 10:57:58] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
 [2025-05-27 10:57:58] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 11:06:39] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 11:06:39] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400614"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":8754,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 11:06:39] REQUEST DETAILS:
+  - ID: 8cc2fcb0d0c1bb9c9cffb8af623fab73
+  - Source: 410208
+  - Destination: 400614
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 11:06:39] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 11:06:39] EXECUTING API REQUEST...
+[2025-05-28 11:06:43] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.248703s
+  - Size: 15247 bytes
+[2025-05-28 11:06:43] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 11:06:43] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18746.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 11:06:43] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 11:06:43] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 12:00:51] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 12:00:51] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400004"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":4587,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 12:00:51] REQUEST DETAILS:
+  - ID: b39952c2372d14ed431422033316a590
+  - Source: 410208
+  - Destination: 400004
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 12:00:51] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 12:00:51] EXECUTING API REQUEST...
+[2025-05-28 12:00:58] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 6.230664s
+  - Size: 15247 bytes
+[2025-05-28 12:00:58] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 12:00:58] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18746.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 12:00:58] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 12:00:58] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 12:32:58] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 12:32:58] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":5478,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 12:32:58] REQUEST DETAILS:
+  - ID: d04b8b9b82b56311491ad9f058a37de2
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 12:32:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 12:32:58] EXECUTING API REQUEST...
+[2025-05-28 12:33:02] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.322548s
+  - Size: 14750 bytes
+[2025-05-28 12:33:02] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 12:33:02] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18312.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:0,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 12:33:02] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 12:33:02] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 12:35:55] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 12:35:55] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":4578,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 12:35:55] REQUEST DETAILS:
+  - ID: e3610df1b83cb5c4945aede983bf6cfd
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 12:35:55] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 12:35:55] EXECUTING API REQUEST...
+[2025-05-28 12:36:05] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 9.066094s
+  - Size: 15247 bytes
+[2025-05-28 12:36:05] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 12:36:05] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18746.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 12:36:05] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 12:36:05] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 12:36:46] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 12:36:46] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":4578,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 12:36:46] REQUEST DETAILS:
+  - ID: 07828cd1196f29903804f6b2ff0f2f76
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 12:36:46] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 12:36:46] EXECUTING API REQUEST...
+[2025-05-28 12:36:51] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.97409s
+  - Size: 14747 bytes
+[2025-05-28 12:36:51] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":0.0,"tat":"","charged_wt":0.0,"risk_type":"NON-RISK","risk_type_charge":0.0,"extra":{}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":602.5}},{"service_name":"Toolik","total_charges":434.0,"tat":"1","charged_wt":18.5,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":250.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":37.5,"green":0.0,"gst":46.5,"g...(truncated)
+[2025-05-28 12:36:51] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18254.64
+  - Fingerprint: delhivery:0,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 12:36:51] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 12:36:51] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 12:41:36] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 12:41:36] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400614"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":8754,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":2,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 12:41:36] REQUEST DETAILS:
+  - ID: 7180d127b93e72978b9c9dac6bde5c77
+  - Source: 410208
+  - Destination: 400614
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 12:41:36] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 12:41:36] EXECUTING API REQUEST...
+[2025-05-28 12:41:43] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 6.870664s
+  - Size: 14256 bytes
+[2025-05-28 12:41:43] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":0.0,"tat":"","charged_wt":0.0,"risk_type":"NON-RISK","risk_type_charge":0.0,"extra":{}},{"service_name":"B2BRC","total_charges":0.0,"tat":"","charged_wt":0.0,"risk_type":"NON-RISK","risk_type_charge":0.0,"extra":{}},{"service_name":"Toolik","total_charges":434.0,"tat":"1","charged_wt":18.5,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":250.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":37.5,"green":0.0,"gst":46.5,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":387.5}}],"bigship-soumnair@gmail.com":[{"service_name":"LTL Delhivery","total_charges":452.25,"tat":4,"charged_wt...(truncated)
+[2025-05-28 12:41:43] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18122.18
+  - Fingerprint: delhivery:0,delhivery:0,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:603.27,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625.24,bigship-soumnair@gmail.com:1645.02,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:543.31,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:603.27,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625.24,bigship-Info@toolik.in:1645.02,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:543.31,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 12:41:43] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 12:41:43] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 12:47:02] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 12:47:02] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":5478,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 12:47:02] REQUEST DETAILS:
+  - ID: f29a6e7b09c0143dee206a89c2341012
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 12:47:02] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 12:47:02] EXECUTING API REQUEST...
+[2025-05-28 12:47:07] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.731802s
+  - Size: 15247 bytes
+[2025-05-28 12:47:07] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 12:47:07] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18746.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 12:47:07] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 12:47:07] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 13:25:45] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 13:25:45] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":1254,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 13:25:45] REQUEST DETAILS:
+  - ID: 4f1f337dd0a3735b63a9009f4568d714
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 13:25:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 13:25:45] EXECUTING API REQUEST...
+[2025-05-28 13:25:49] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.016435s
+  - Size: 15244 bytes
+[2025-05-28 13:25:49] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 13:25:49] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18746.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 13:25:49] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 13:25:49] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-28 13:27:48] 
+=== NEW REQUEST STARTED ===
+[2025-05-28 13:27:48] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":1254,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":1,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop"}}
+[2025-05-28 13:27:48] REQUEST DETAILS:
+  - ID: 5b69bea0a3f1da6f8a69cf7e06862d74
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-28 13:27:48] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-28 13:27:48] EXECUTING API REQUEST...
+[2025-05-28 13:27:52] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.02664s
+  - Size: 15244 bytes
+[2025-05-28 13:27:52] RAW RESPONSE: {"delhivery":[{"service_name":"B2BR","total_charges":491.68,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":100.0,"extra":{"base_freight_charge":300.0,"fm":0,"fuel_hike":-6.0,"fuel_surcharge":45.0,"green":0.0,"gst":52.68,"gst_percent":12,"insurance_rov":100.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"adh_vhl":0.0,"appt_chg":0.0,"cheque":0.0,"cod":0.0,"csd":0.0,"demurrage":0.0,"handling":0.0,"mathadi_un":0.0,"pod":0.0,"reattempt":0.0,"sp_dlv_area":0.0,"sunday":0.0,"to_pay":0.0},"oda":{"fm":0,"lm":0.0},"other_handling_charges":0.0,"pre_tax_freight_charges":439.0}},{"service_name":"B2BRC","total_charges":674.8,"tat":"1","charged_wt":20.0,"risk_type":"RISK-COVERED","risk_type_charge":200.0,"extra":{"base_freight_charge":350.0,"fm":0,"fuel_hike":0.0,"fuel_surcharge":52.5,"green":0.0,"gst":72.3,"gst_percent":12,"insurance_rov":200.0,"lm":0,"markup":0.0,"meta_charges":{"add_cost":0.0,"add_machine":0.0,"add_man_pwr":0.0,"a...(truncated)
+[2025-05-28 13:27:52] RESPONSE ANALYSIS:
+  - Carriers: 4
+  - Estimates: 22
+  - Price Sum: 18746.32
+  - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
+[2025-05-28 13:27:52] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
+[2025-05-28 13:27:52] REQUEST COMPLETED SUCCESSFULLY
