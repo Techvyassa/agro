@@ -5676,3 +5676,101 @@
   - Fingerprint: delhivery:491.68,delhivery:674.8,delhivery:434,bigship-soumnair@gmail.com:452.25,bigship-soumnair@gmail.com:572.82,bigship-soumnair@gmail.com:575,bigship-soumnair@gmail.com:625,bigship-soumnair@gmail.com:1472.52,bigship-soumnair@gmail.com:700,bigship-soumnair@gmail.com:660,bigship-soumnair@gmail.com:475.33,bigship-Info@toolik.in:452.25,bigship-Info@toolik.in:572.82,bigship-Info@toolik.in:575,bigship-Info@toolik.in:625,bigship-Info@toolik.in:1472.52,bigship-Info@toolik.in:700,bigship-Info@toolik.in:660,bigship-Info@toolik.in:475.33,dtdc-domestic:2755,dtdc-domestic:1995,dtdc-domestic:1330,
 [2025-05-28 13:27:52] RETURNING ORIGINAL API RESPONSE WITHOUT MODIFICATION
 [2025-05-28 13:27:52] REQUEST COMPLETED SUCCESSFULLY
+[2025-05-29 12:34:35] 
+=== NEW REQUEST STARTED ===
+[2025-05-29 12:34:35] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":4500,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":4,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop","total_boxes":6}}
+[2025-05-29 12:34:35] REQUEST DETAILS:
+  - ID: 158dc8dd46df2837834e2701c5c48989
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-29 12:34:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-29 12:34:35] EXECUTING API REQUEST...
+[2025-05-29 12:34:35] RESPONSE RECEIVED:
+  - Status Code: 502
+  - Time: 0.465279s
+  - Size: 3693 bytes
+[2025-05-29 12:34:35] RAW RESPONSE: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>The page is temporarily unavailable</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+            /*<![CDATA[*/
+            body {
+                background-color: #fff;
+                color: #000;
+                font-size: 0.9em;
+                font-family: sans-serif,helvetica;
+                margin: 0;
+                padding: 0;
+            }
+            :link {
+                color: #c00;
+            }
+            :visited {
+                color: #c00;
+            }
+            a:hover {
+                color: #f50;
+            }
+            h1 {
+                text-align: center;
+                margin: 0;
+                padding: 0.6em 2em 0.4em;
+                background-color: #294172;
+                color: #fff;
+       ...(truncated)
+[2025-05-29 12:34:35] ERROR: Invalid JSON response
+[2025-05-29 12:34:35] 
+=== NEW REQUEST STARTED ===
+[2025-05-29 12:34:35] REQUEST PAYLOAD: {"common":{"pincode":{"source":"410208","destination":"400001"},"payment":{"type":"Prepaid","cheque_payment":false},"invoice_amount":4500,"insurance":{"rov":true}},"shipment_details":{"dimensions":[{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5},{"length_cm":30,"width_cm":20,"height_cm":15,"box_count":4,"each_box_dead_weight":3.5},{"length_cm":15,"width_cm":25,"height_cm":35,"box_count":1,"each_box_dead_weight":7.5}],"weight_g":18500,"freight_mode":"fop","total_boxes":6}}
+[2025-05-29 12:34:35] REQUEST DETAILS:
+  - ID: 158dc8dd46df2837834e2701c5c48989
+  - Source: 410208
+  - Destination: 400001
+  - Weight: 18500g
+  - Boxes: 3
+  - Dimensions: 15x25x35,30x20x15,15x25x35
+[2025-05-29 12:34:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/get-freight-estimates
+[2025-05-29 12:34:35] EXECUTING API REQUEST...
+[2025-05-29 12:34:35] RESPONSE RECEIVED:
+  - Status Code: 502
+  - Time: 0.411345s
+  - Size: 3693 bytes
+[2025-05-29 12:34:35] RAW RESPONSE: <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+    <head>
+        <title>The page is temporarily unavailable</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <style type="text/css">
+            /*<![CDATA[*/
+            body {
+                background-color: #fff;
+                color: #000;
+                font-size: 0.9em;
+                font-family: sans-serif,helvetica;
+                margin: 0;
+                padding: 0;
+            }
+            :link {
+                color: #c00;
+            }
+            :visited {
+                color: #c00;
+            }
+            a:hover {
+                color: #f50;
+            }
+            h1 {
+                text-align: center;
+                margin: 0;
+                padding: 0.6em 2em 0.4em;
+                background-color: #294172;
+                color: #fff;
+       ...(truncated)
+[2025-05-29 12:34:35] ERROR: Invalid JSON response

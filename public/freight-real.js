@@ -820,6 +820,15 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Re-setup remove box buttons
         setupRemoveBoxButtons();
+        
+        // Add event listeners to the new box inputs for updating totals
+        boxRow.querySelectorAll('input').forEach(input => {
+            input.addEventListener('change', updateTotals);
+            input.addEventListener('input', updateTotals);
+        });
+        
+        // Update totals after adding the new box
+        updateTotals();
     }
     
     // Function to set up remove box buttons
@@ -837,11 +846,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 }
             });
-        });
-        
-        // Add input change listeners to update totals
-        document.querySelectorAll('.box-weight, .box-length, .box-width, .box-height').forEach(input => {
-            input.addEventListener('input', updateTotals);
         });
     }
     
@@ -873,6 +877,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize totals
     updateTotals();
+    
+    // Add event listeners to existing box count inputs
+    document.querySelectorAll('.box-count').forEach(input => {
+        input.addEventListener('change', updateTotals);
+        input.addEventListener('input', updateTotals);
+    });
 
     // Fill form with URL parameters
     fillFormFromUrlParams();
@@ -951,7 +961,8 @@ document.addEventListener('DOMContentLoaded', function() {
             shipment_details: {
                 dimensions: dimensions,
                 weight_g: parseFloat(totalWeightInput.value) * 1000, // Convert kg to g
-                freight_mode: document.getElementById('freightMode').value
+                freight_mode: document.getElementById('freightMode').value,
+                total_boxes: parseInt(totalBoxesInput.value) || totalValidBoxes // Use the updated total boxes value
             }
         };
         
