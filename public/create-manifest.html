@@ -319,7 +319,7 @@
                                         </div> -->
                                         <div class="col-md-2">
                                             <label class="form-label">Box Count</label>
-                                            <input type="number" class="form-control dimension-box-count" value="1" min="1" required onchange="updateTotalBoxCount()">
+                                            <input type="number" class="form-control dimension-box-count" value="1" min="1" required oninput="updateTotalBoxCount()">
                                         </div>
                                         <div class="col-md-1 d-flex align-items-end mb-2">
                                             <button type="button" class="btn btn-danger remove-dimension" style="display: none;">
@@ -488,6 +488,9 @@
     <script src="box-count-direct-fix.js"></script>
     <!-- Script to update box counts automatically -->
     <script>
+        // Store weight per box as a persistent variable
+        var weightPerBoxRatio = 500; // Default weight per box in grams
+        
         function updateTotalBoxCount() {
             // Calculate total boxes from all dimension rows
             const dimensionBoxCounts = document.querySelectorAll('.dimension-box-count');
@@ -511,8 +514,11 @@
             
             // Also update when adding new dimension row
             document.querySelectorAll('.remove-dimension').forEach(btn => {
-                btn.onclick = function() {
-                    setTimeout(updateTotalBoxCount, 100); // Update after row is removed
+                if (!btn.hasRemoveListener) {
+                    btn.onclick = function() {
+                        setTimeout(updateTotalBoxCount, 100); // Update after row is removed
+                    };
+                    btn.hasRemoveListener = true;
                 }
             });
         }
@@ -522,54 +528,77 @@
             const weightInput = document.getElementById('weightGrams');
             
             // Calculate weight based on box count
-            // If we already have a weight value and box count is changing, we adjust proportionally
-            const currentWeight = parseInt(weightInput.value) || 0;
-            
-            if (currentWeight > 0 && boxCount > 0) {
-                // Store average weight per box if we have both values
-                if (!window.weightPerBox) {
-                    // First time setting a reference weight per box
-                    window.weightPerBox = currentWeight / parseInt(document.getElementById('totalBoxes').value || 1);
+            if (boxCount > 0) {
+                // Get the current weight if it exists
+                const currentWeight = parseInt(weightInput.value) || 0;
+                
+                // If user has manually entered weight, calculate the weightPerBoxRatio
+                if (weightInput.dataset.userModified === 'true' && currentWeight > 0) {
+                    weightPerBoxRatio = currentWeight / (parseInt(document.getElementById('totalBoxes').value) || 1);
                 }
                 
-                // Update weight based on box count and average weight per box
-                weightInput.value = Math.round(window.weightPerBox * boxCount);
-            } else if (boxCount > 0 && !currentWeight) {
-                // Default weight per box (500g) if no weight has been entered
-                window.weightPerBox = 500;
-                weightInput.value = Math.round(window.weightPerBox * boxCount);
+                // Always update weight based on current weightPerBoxRatio and box count
+                weightInput.value = Math.round(weightPerBoxRatio * boxCount);
+            } else {
+                // If no boxes, set weight to 0
+                weightInput.value = 0;
             }
             
-            // If user manually changes weight, update the weight per box ratio
+            // If user hasn't added listener yet
             if (!weightInput.hasListenerAdded) {
-                weightInput.addEventListener('change', function() {
-                    const boxes = parseInt(document.getElementById('totalBoxes').value || 1);
+                // Add input event listener for real-time updates when user changes weight
+                weightInput.addEventListener('input', function() {
+                    // Mark that user has modified the weight
+                    this.dataset.userModified = 'true';
+                    
+                    // Update weight per box ratio based on user input
+                    const boxes = parseInt(document.getElementById('totalBoxes').value) || 1;
                     if (boxes > 0) {
-                        window.weightPerBox = parseInt(this.value) / boxes;
+                        weightPerBoxRatio = parseInt(this.value) / boxes;
                     }
                 });
+                
                 weightInput.hasListenerAdded = true;
             }
         }
         
         // Call once on page load to initialize
         document.addEventListener('DOMContentLoaded', function() {
+            // Initialize weight calculation on page load
             updateTotalBoxCount();
+            
+            // Set up mutation observer to watch for dynamically added dimension rows
+            const dimensionsContainer = document.getElementById('dimensionsContainer');
+            const observer = new MutationObserver(function(mutations) {
+                mutations.forEach(function(mutation) {
+                    if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+                        // Add event listeners to any new dimension rows
+                        mutation.addedNodes.forEach(function(node) {
+                            if (node.nodeType === 1 && node.classList.contains('dimension-row')) {
+                                const boxCountInput = node.querySelector('.dimension-box-count');
+                                if (boxCountInput) {
+                                    boxCountInput.addEventListener('input', updateTotalBoxCount);
+                                }
+                            }
+                        });
+                        // Update totals after DOM changes
+                        updateTotalBoxCount();
+                    }
+                });
+            });
+            
+            // Start observing the container for changes
+            observer.observe(dimensionsContainer, { childList: true, subtree: true });
             
             // Add event listener for the add dimension button
             document.getElementById('addDimensionBtn').addEventListener('click', function() {
-                // Wait for the new row to be added
-                setTimeout(function() {
-                    // Add event listeners to the new row's box count input
-                    const newDimensionRow = document.querySelector('#dimensionsContainer .dimension-row:last-child');
-                    if (newDimensionRow) {
-                        const boxCountInput = newDimensionRow.querySelector('.dimension-box-count');
-                        if (boxCountInput) {
-                            boxCountInput.addEventListener('change', updateTotalBoxCount);
-                        }
-                    }
-                    updateTotalBoxCount();
-                }, 100);
+                // The observer will handle the new row's event listeners
+                setTimeout(updateTotalBoxCount, 100);
+            });
+            
+            // Add global input event listener for all existing dimension box counts
+            document.querySelectorAll('.dimension-box-count').forEach(function(input) {
+                input.addEventListener('input', updateTotalBoxCount);
             });
         });
     </script>
