@@ -199,5 +199,55 @@
     <script src="freight-to-order.js"></script>
     <!-- Data transfer script for dimensions and weight -->
     <script src="data-transfer.js"></script>
+    
+    <!-- Script to calculate total weight -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initial calculation of total boxes and weight
+            calculateTotals();
+            
+            // Add event listener to container to handle all box inputs (event delegation)
+            document.getElementById('boxesContainer').addEventListener('input', function(event) {
+                // Check if the input is from a box weight or box count field
+                if (event.target.classList.contains('box-weight') || 
+                    event.target.classList.contains('box-count')) {
+                    calculateTotals();
+                }
+            });
+            
+            // Add event listener for the add box button
+            document.getElementById('addBoxBtn').addEventListener('click', function() {
+                // Wait for the DOM to update with the new box
+                setTimeout(calculateTotals, 10);
+            });
+            
+            // Function to calculate totals
+            function calculateTotals() {
+                let totalBoxes = 0;
+                let totalWeight = 0;
+                
+                // Get all box rows
+                const boxRows = document.querySelectorAll('.box-row');
+                
+                // Calculate for each row
+                boxRows.forEach(row => {
+                    const weightInput = row.querySelector('.box-weight');
+                    const countInput = row.querySelector('.box-count');
+                    
+                    if (weightInput && countInput) {
+                        const weight = parseFloat(weightInput.value) || 0;
+                        const count = parseInt(countInput.value) || 0;
+                        
+                        totalBoxes += count;
+                        totalWeight += weight * count;
+                    }
+                });
+                
+                // Update total fields
+                document.getElementById('totalBoxes').value = totalBoxes;
+                document.getElementById('totalWeight').value = totalWeight.toFixed(2);
+            }
+        });
+    </script>
 </body>
 </html>
