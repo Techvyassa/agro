@@ -661,9 +661,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const shippingAddress = addressData.shipping_address || {};
                 
                 // Populate billing address fields
-                document.getElementById('billingName').value = addressDetails.contact_person || shippingAddress.name || 'N/A';
+                document.getElementById('billingName').value = addressData.store_code_name || 'N/A';
                 document.getElementById('billingCompany').value = addressDetails.company || 'N/A';
-                document.getElementById('billingConsignor').value = addressDetails.company || 'N/A';
+                document.getElementById('billingConsignor').value = addressDetails.contact_person || shippingAddress.store_code_name || 'N/A';
                 document.getElementById('billingAddress').value = shippingAddress.line1 || addressDetails.address || 'N/A';
                 document.getElementById('billingCity').value = shippingAddress.city || 'N/A';
                 document.getElementById('billingState').value = shippingAddress.state || 'N/A';
@@ -1075,13 +1075,16 @@ document.addEventListener('DOMContentLoaded', function() {
             rov_insurance: false,
             fm_pickup: freightMode === 'fop',
             freight_mode: freightMode,
-            billing_store_id: facilityId,
+            billing_store_id: freightMode === 'fod' ? selectedDropLocation.id : selectedPickupLocation.id,
+            // Set billing_warehouse_id based on freight mode
             billing_warehouse_id: null,
+            // Add COD amount if applicable
+            cod_amount: document.getElementById('codAmount') ? parseInt(document.getElementById('codAmount').value || 0) : 0,
             billing_address: {
-                name: addressDetails.contact_person || shippingAddress.name || 'Unknown',
+                name: selectedDropLocation.name || 'Unknown', // store_code_name
                 company: addressDetails.company || 'Unknown Company',
-                consignor: addressDetails.company || 'Unknown Consignor',
-                address: shippingAddress.line1 || addressDetails.address || 'Unknown Address',
+                consignor: addressDetails.contact_person || 'Unknown Consignor',
+                address: addressDetails.address || 'Unknown Address',
                 city: shippingAddress.city || 'Unknown City',
                 state: shippingAddress.state || 'Unknown State',
                 pin: (shippingAddress.pin_code || '000000').toString(),

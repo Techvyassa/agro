@@ -425,6 +425,10 @@
                                     <input class="form-check-input" type="radio" name="paymentMode" id="paymentModeCOD" value="cod">
                                     <label class="form-check-label" for="paymentModeCOD">COD</label>
                                 </div>
+                                <div id="codAmountContainer" class="mt-3" style="display: none;">
+                                    <label for="codAmount" class="form-label">COD Amount</label>
+                                    <input type="number" class="form-control" id="codAmount" placeholder="Enter COD amount">
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -468,6 +472,7 @@
     <input id="freight-rate" type="hidden">
     <input id="source-pincode" type="hidden">
     <input id="destination-pincode" type="hidden">
+    <input id="payment-type" type="hidden">
     
     <!-- Hidden fields for dimensions data -->
     <input id="total-boxes" type="hidden">
@@ -562,10 +567,54 @@
             }
         }
         
+        // Function to handle Payment Mode toggle and COD Amount field visibility
+        function setupPaymentModeHandlers() {
+            const paymentModeRadios = document.querySelectorAll('input[name="paymentMode"]');
+            const codAmountContainer = document.getElementById('codAmountContainer');
+            
+            // Add event listeners to payment mode radio buttons
+            paymentModeRadios.forEach(radio => {
+                radio.addEventListener('change', function() {
+                    if (this.value === 'cod') {
+                        codAmountContainer.style.display = 'block';
+                    } else {
+                        codAmountContainer.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Check if payment type is in URL parameters
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentType = urlParams.get('paymentType');
+            
+            if (paymentType) {
+                // Store in hidden field
+                document.getElementById('payment-type').value = paymentType;
+                
+                // Set the correct payment mode radio button
+                if (paymentType.toLowerCase() === 'cod') {
+                    document.getElementById('paymentModeCOD').checked = true;
+                    codAmountContainer.style.display = 'block';
+                    
+                    // Check if COD amount is in URL parameters
+                    const codAmount = urlParams.get('codAmount');
+                    if (codAmount) {
+                        document.getElementById('codAmount').value = codAmount;
+                    }
+                } else {
+                    document.getElementById('paymentModePrepaid').checked = true;
+                    codAmountContainer.style.display = 'none';
+                }
+            }
+        }
+        
         // Call once on page load to initialize
         document.addEventListener('DOMContentLoaded', function() {
             // Initialize weight calculation on page load
             updateTotalBoxCount();
+            
+            // Setup payment mode handlers
+            setupPaymentModeHandlers();
             
             // Set up mutation observer to watch for dynamically added dimension rows
             const dimensionsContainer = document.getElementById('dimensionsContainer');

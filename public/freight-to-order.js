@@ -111,6 +111,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (sourcePincode) manifestUrl.searchParams.append('sourcePincode', sourcePincode);
                 if (destinationPincode) manifestUrl.searchParams.append('destinationPincode', destinationPincode);
                 
+                // Add payment type and COD amount if applicable
+                const paymentType = document.getElementById('paymentType')?.value;
+                if (paymentType) manifestUrl.searchParams.append('paymentType', paymentType);
+                
+                if (paymentType === 'COD') {
+                    const codAmount = document.getElementById('codAmount')?.value;
+                    if (codAmount) manifestUrl.searchParams.append('codAmount', codAmount);
+                }
+                
                 // Collect and pass dimensions data
                 try {
                     console.log('Getting dimension data from page...');

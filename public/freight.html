@@ -87,7 +87,7 @@
                                         <label for="paymentType" class="form-label">Payment Type</label>
                                         <select class="form-select" id="paymentType">
                                             <option value="Prepaid" selected>Prepaid</option>
-                                            <option value="Postpaid">Postpaid</option>
+                                            <option value="COD">COD</option>
                                         </select>
                                     </div>
                                     <div class="mb-3 form-check">
@@ -97,6 +97,12 @@
                                     <div class="mb-3">
                                         <label for="invoiceAmount" class="form-label">Invoice Amount</label>
                                         <input type="number" class="form-control" id="invoiceAmount" required>
+                                    </div>
+                                    <div class="mb-3" id="codAmountContainer" style="display: none;">
+                                        <label for="codAmount" class="form-label">COD Amount</label>
+                                        <input type="number" class="form-control" id="codAmount">
+                                        <div class="form-text text-muted">COD Amount must be less than or equal to Invoice Amount.</div>
+                                        <div id="codAmountError" class="invalid-feedback">COD Amount cannot exceed Invoice Amount.</div>
                                     </div>
                                     <div class="mb-3 form-check">
                                         <input type="checkbox" class="form-check-input" id="rov" checked>

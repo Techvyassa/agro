@@ -878,6 +878,46 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize totals
     updateTotals();
     
+    // Add event listener to toggle COD amount field visibility
+    const paymentTypeSelect = document.getElementById('paymentType');
+    const codAmountContainer = document.getElementById('codAmountContainer');
+    const codAmountInput = document.getElementById('codAmount');
+    const invoiceAmountInput = document.getElementById('invoiceAmount');
+    
+    // Function to validate COD amount doesn't exceed invoice amount
+    function validateCodAmount() {
+        if (paymentTypeSelect.value !== 'COD') return true;
+        
+        const codAmount = parseFloat(codAmountInput.value) || 0;
+        const invoiceAmount = parseFloat(invoiceAmountInput.value) || 0;
+        
+        if (codAmount > invoiceAmount) {
+            codAmountInput.classList.add('is-invalid');
+            document.getElementById('codAmountError').style.display = 'block';
+            return false;
+        } else {
+            codAmountInput.classList.remove('is-invalid');
+            document.getElementById('codAmountError').style.display = 'none';
+            return true;
+        }
+    }
+    
+    // Add event listeners for validation
+    codAmountInput.addEventListener('input', validateCodAmount);
+    invoiceAmountInput.addEventListener('input', validateCodAmount);
+    
+    paymentTypeSelect.addEventListener('change', function() {
+        if (this.value === 'COD') {
+            codAmountContainer.style.display = 'block';
+            codAmountInput.setAttribute('required', 'required');
+            validateCodAmount();
+        } else {
+            codAmountContainer.style.display = 'none';
+            codAmountInput.removeAttribute('required');
+            codAmountInput.classList.remove('is-invalid');
+        }
+    });
+    
     // Add event listeners to existing box count inputs
     document.querySelectorAll('.box-count').forEach(input => {
         input.addEventListener('change', updateTotals);
@@ -938,9 +978,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const destinationPincodeValue = document.getElementById('destinationPincode').value.trim();
         
         // Get invoice amount
-        const invoiceAmountInput = document.getElementById('invoiceAmount');
-        const invoiceAmountValue = invoiceAmountInput.value.trim() ? 
-            parseFloat(invoiceAmountInput.value) : 1000; // Default to 1000 if empty
+        const invoiceAmountValue = parseFloat(document.getElementById('invoiceAmount').value) || 0;
         
         // Build request payload
         const payload = {
@@ -951,9 +989,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 },
                 payment: {
                     type: document.getElementById('paymentType').value,
-                    cheque_payment: document.getElementById('chequePayment').checked
+                    cheque_payment: document.getElementById('chequePayment')?.checked || false
                 },
                 invoice_amount: invoiceAmountValue,
+                // Add cod_amount when payment type is COD
+                cod_amount: document.getElementById('paymentType').value === 'COD' ? 
+                    (parseInt(document.getElementById('codAmount')?.value) || 0) : 0,
                 insurance: {
                     rov: document.getElementById('rov').checked
                 }
@@ -978,6 +1019,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Sending to API:', payload);
 
+        // Validate COD amount doesn't exceed invoice amount
+        if (document.getElementById('paymentType').value === 'COD') {
+            if (!validateCodAmount()) {
+                // Hide loader
+                loader.style.display = 'none';
+                
+                // Show error message
+                statusContainer.className = 'alert alert-danger mb-4';
+                statusContainer.innerHTML = `
+                    <p class="mb-0"><i class="fas fa-exclamation-triangle"></i> COD Amount Error:</p>
+                    <ul class="mb-0 small">
+                        <li>COD Amount cannot exceed Invoice Amount</li>
+                    </ul>
+                `;
+                
+                // Scroll to the error
+                document.getElementById('codAmountContainer').scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
+        }
+        
         // Check if we have all required data before making API call
         if (!sourcePincodeValue || !destinationPincodeValue || dimensions.length === 0) {
             // Hide loader
