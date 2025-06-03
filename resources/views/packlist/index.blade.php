@@ -1,14 +1,14 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Generate Packlist')
-@section('page-title', 'Generate Packlist')
+@section('title', 'Print Packlist')
+@section('page-title', 'Print Packlist')
 
 @section('content')
 <div class="row">
     <div class="col-md-8">
         <div class="card">
             <div class="card-header">
-                Generate Packlist
+                Print Packlist
             </div>
             <div class="card-body">
                 <form method="POST" action="{{ route('packlist.generate') }}" id="packlistForm">
@@ -60,7 +60,7 @@
                     <div class="row mt-4">
                         <div class="col-md-12 text-center">
                             <button type="submit" class="btn btn-primary" id="generateButton" disabled>
-                                Generate Packlist
+                                Print Packlist
                             </button>
                            
                         </div>

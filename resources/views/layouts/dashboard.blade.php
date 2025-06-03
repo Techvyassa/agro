@@ -136,7 +136,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('packlist*') ? 'active' : '' }}" href="{{ route('packlist.index') }}">
-                                <i class="fas fa-box"></i> Generate Packlist
+                                <i class="fas fa-box"></i> Print Packlist
                             </a>
                         </li>
                         <li class="nav-item">
