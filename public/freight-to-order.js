@@ -72,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             }
             
+            console.log('Carrier name:', carrierName, 'isDelhivery:', isDelhivery);
+            
             // Method 2: Check by carrier name for specific keywords
             if (carrierName) {
                 const delhiveryKeywords = ['b2br', 'b2brc', 'toolik'];
