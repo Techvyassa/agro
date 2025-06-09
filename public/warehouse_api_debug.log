@@ -5490,3 +5490,289 @@ ERR_NGROK_3200
   - Size: 830 bytes
 [2025-05-28 13:37:57] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
 [2025-05-28 13:37:57] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-04 09:29:45] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-04 09:29:45] USER ID: soumnair@gmail.com
+[2025-06-04 09:29:45] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-04 09:29:45] EXECUTING API REQUEST...
+[2025-06-04 09:29:46] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.432949s
+  - Size: 830 bytes
+[2025-06-04 09:29:46] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-04 09:29:46] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-04 09:29:47] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-04 09:29:47] USER ID: soumnair@gmail.com
+[2025-06-04 09:29:47] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-04 09:29:47] EXECUTING API REQUEST...
+[2025-06-04 09:29:59] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 11.671672s
+  - Size: 830 bytes
+[2025-06-04 09:29:59] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-04 09:29:59] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:15:47] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:15:47] USER ID: user@example.com
+[2025-06-05 09:15:47] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-06-05 09:15:47] EXECUTING API REQUEST...
+[2025-06-05 09:15:51] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 4.026621s
+  - Size: 73 bytes
+[2025-06-05 09:15:51] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-06-05 09:15:51] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:15:55] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:15:55] USER ID: soumnair@gmail.com
+[2025-06-05 09:15:55] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:15:55] EXECUTING API REQUEST...
+[2025-06-05 09:15:56] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.407702s
+  - Size: 830 bytes
+[2025-06-05 09:15:56] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:15:56] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:20:23] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:20:23] USER ID: user@example.com
+[2025-06-05 09:20:23] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=user%40example.com
+[2025-06-05 09:20:23] EXECUTING API REQUEST...
+[2025-06-05 09:20:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 3.522861s
+  - Size: 73 bytes
+[2025-06-05 09:20:27] RAW RESPONSE: {"success":true,"data":{"success":false,"message":"Invalid Username..."}}
+[2025-06-05 09:20:27] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:25:25] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:25:25] USER ID: soumnair@gmail.com
+[2025-06-05 09:25:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:25:25] EXECUTING API REQUEST...
+[2025-06-05 09:25:26] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.49687s
+  - Size: 830 bytes
+[2025-06-05 09:25:26] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:25:26] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:25:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:25:27] USER ID: soumnair@gmail.com
+[2025-06-05 09:25:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:25:27] EXECUTING API REQUEST...
+[2025-06-05 09:25:28] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.473101s
+  - Size: 830 bytes
+[2025-06-05 09:25:28] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:25:28] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:33:22] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:33:22] USER ID: soumnair@gmail.com
+[2025-06-05 09:33:22] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:33:22] EXECUTING API REQUEST...
+[2025-06-05 09:33:24] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.391475s
+  - Size: 830 bytes
+[2025-06-05 09:33:24] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:33:24] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:33:24] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:33:24] USER ID: soumnair@gmail.com
+[2025-06-05 09:33:24] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:33:24] EXECUTING API REQUEST...
+[2025-06-05 09:33:25] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.307688s
+  - Size: 830 bytes
+[2025-06-05 09:33:25] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:33:25] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:42:07] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:42:07] USER ID: soumnair@gmail.com
+[2025-06-05 09:42:07] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:42:07] EXECUTING API REQUEST...
+[2025-06-05 09:42:09] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.022482s
+  - Size: 830 bytes
+[2025-06-05 09:42:09] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:42:09] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:42:09] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:42:09] USER ID: soumnair@gmail.com
+[2025-06-05 09:42:09] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-05 09:42:09] EXECUTING API REQUEST...
+[2025-06-05 09:42:10] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.779347s
+  - Size: 830 bytes
+[2025-06-05 09:42:10] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:42:10] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:42:32] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:42:32] USER ID: Info@toolik.in
+[2025-06-05 09:42:32] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-05 09:42:32] EXECUTING API REQUEST...
+[2025-06-05 09:42:34] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.751871s
+  - Size: 774 bytes
+[2025-06-05 09:42:34] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:42:34] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:42:34] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:42:34] USER ID: Info@toolik.in
+[2025-06-05 09:42:34] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-05 09:42:34] EXECUTING API REQUEST...
+[2025-06-05 09:42:35] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.397767s
+  - Size: 774 bytes
+[2025-06-05 09:42:35] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:42:35] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-05 09:42:35] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-05 09:42:35] USER ID: Info@toolik.in
+[2025-06-05 09:42:35] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-05 09:42:35] EXECUTING API REQUEST...
+[2025-06-05 09:42:37] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.31355s
+  - Size: 774 bytes
+[2025-06-05 09:42:37] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-05 09:42:37] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:35:26] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:35:26] USER ID: soumnair@gmail.com
+[2025-06-09 11:35:26] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:35:26] EXECUTING API REQUEST...
+[2025-06-09 11:35:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.371425s
+  - Size: 830 bytes
+[2025-06-09 11:35:27] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:35:27] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:35:27] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:35:27] USER ID: soumnair@gmail.com
+[2025-06-09 11:35:27] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:35:27] EXECUTING API REQUEST...
+[2025-06-09 11:35:29] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.530343s
+  - Size: 830 bytes
+[2025-06-09 11:35:29] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:35:29] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:37:23] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:37:23] USER ID: soumnair@gmail.com
+[2025-06-09 11:37:23] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:37:23] EXECUTING API REQUEST...
+[2025-06-09 11:37:25] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.622202s
+  - Size: 830 bytes
+[2025-06-09 11:37:25] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:37:25] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:37:25] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:37:25] USER ID: soumnair@gmail.com
+[2025-06-09 11:37:25] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:37:25] EXECUTING API REQUEST...
+[2025-06-09 11:37:27] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.621023s
+  - Size: 830 bytes
+[2025-06-09 11:37:27] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:37:27] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:37:41] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:37:41] USER ID: Info@toolik.in
+[2025-06-09 11:37:41] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-09 11:37:41] EXECUTING API REQUEST...
+[2025-06-09 11:37:43] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.502682s
+  - Size: 774 bytes
+[2025-06-09 11:37:43] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:37:43] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:37:43] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:37:43] USER ID: Info@toolik.in
+[2025-06-09 11:37:43] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-09 11:37:43] EXECUTING API REQUEST...
+[2025-06-09 11:37:44] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.541704s
+  - Size: 774 bytes
+[2025-06-09 11:37:44] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:37:44] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:37:58] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:37:58] USER ID: soumnair@gmail.com
+[2025-06-09 11:37:58] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:37:58] EXECUTING API REQUEST...
+[2025-06-09 11:37:59] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.564949s
+  - Size: 830 bytes
+[2025-06-09 11:37:59] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:37:59] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:37:59] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:37:59] USER ID: soumnair@gmail.com
+[2025-06-09 11:37:59] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:37:59] EXECUTING API REQUEST...
+[2025-06-09 11:38:01] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.417101s
+  - Size: 830 bytes
+[2025-06-09 11:38:01] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:38:01] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:43:13] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:43:13] USER ID: soumnair@gmail.com
+[2025-06-09 11:43:13] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:43:13] EXECUTING API REQUEST...
+[2025-06-09 11:43:14] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.413814s
+  - Size: 830 bytes
+[2025-06-09 11:43:14] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:43:14] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:43:14] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:43:14] USER ID: soumnair@gmail.com
+[2025-06-09 11:43:14] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=soumnair%40gmail.com
+[2025-06-09 11:43:14] EXECUTING API REQUEST...
+[2025-06-09 11:43:16] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.844582s
+  - Size: 830 bytes
+[2025-06-09 11:43:16] RAW RESPONSE: {"success":true,"data":[{"location_id":143442,"warehouse_name":"ROYAL KISSAN AGRO","address":"GALA NO. 111, 1ST FLOOR, JAI ESTATE, MIDC PHASE I, DOMBIVLI","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"ROYALKISSAN AGRO","contact_number":"9820816433","is_default_pickup":true},{"location_id":161333,"warehouse_name":"JEEKO AGRITECH LLP","address":" PLOT NO.332, ROAD-R, PHASE-1, KHIRASARA GIDC, ","city":"RAJKOT","state":"GUJARAT","pincode":"360021","contact_person":"VINOD","contact_number":"9925232951","is_default_pickup":false},{"location_id":143443,"warehouse_name":"COIMBATOREWAREHOUSE","address":"176/3D,  L AND T BYPASS,  AMMAN KOVIL STREET ","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"RAVISHANKAR","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:43:16] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:43:21] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:43:21] USER ID: Info@toolik.in
+[2025-06-09 11:43:21] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-09 11:43:21] EXECUTING API REQUEST...
+[2025-06-09 11:43:22] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 1.439164s
+  - Size: 774 bytes
+[2025-06-09 11:43:22] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:43:22] REQUEST COMPLETED SUCCESSFULLY
+[2025-06-09 11:43:22] 
+=== NEW WAREHOUSE REQUEST STARTED ===
+[2025-06-09 11:43:22] USER ID: Info@toolik.in
+[2025-06-09 11:43:22] CONNECTING TO API: http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/warehouses?user_id=Info%40toolik.in
+[2025-06-09 11:43:22] EXECUTING API REQUEST...
+[2025-06-09 11:43:25] RESPONSE RECEIVED:
+  - Status Code: 200
+  - Time: 2.29601s
+  - Size: 774 bytes
+[2025-06-09 11:43:25] RAW RESPONSE: {"success":true,"data":[{"location_id":143483,"warehouse_name":"A04JaiEstate","address":"A 04, Jai Estate, Opp Shivam Hotel, ","city":"THANE","state":"MAHARASHTRA","pincode":"421201","contact_person":"Hemant","contact_number":"9004026937","is_default_pickup":true},{"location_id":150234,"warehouse_name":"Client Raj Narayan Patel ","address":"s/o Tulsi Ram Patel, West Nara, ","city":"ALLAHABAD","state":"UTTAR PRADESH","pincode":"212503","contact_person":"Raj Narayan Patel ","contact_number":"8450980233","is_default_pickup":false},{"location_id":143485,"warehouse_name":"Coimbatore","address":"176/3D, L and T By Pass Road,","city":"COIMBATORE(TN)","state":"TAMIL NADU","pincode":"641111","contact_person":"Ravi","contact_number":"6382928596","is_default_pickup":false}]}
+[2025-06-09 11:43:25] REQUEST COMPLETED SUCCESSFULLY
