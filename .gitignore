@@ -21,6 +21,4 @@ yarn-error.log
 /.nova
 /.vscode
 /.zed
-public/warehouse_api_debug.log
-public/freight_api_debug.log
-public/response_fingerprints.log
+
