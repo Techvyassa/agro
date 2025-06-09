@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Method 2: Check by carrier name for specific keywords
             if (carrierName) {
-                const delhiveryKeywords = ['delhivery', 'b2b', 'b2c', 'one delhivery'];
+                const delhiveryKeywords = ['b2br', 'b2brc', 'toolik'];
                 for (const keyword of delhiveryKeywords) {
                     if (carrierName.toLowerCase().includes(keyword)) {
                         isDelhivery = true;
@@ -85,9 +85,11 @@ document.addEventListener('DOMContentLoaded', function() {
             
             // Method 3: Look for section header text
             const cardHeader = cardElement?.closest('.card')?.previousElementSibling;
-            if (cardHeader && cardHeader.textContent && 
-                cardHeader.textContent.toLowerCase().includes('delhivery')) {
-                isDelhivery = true;
+            if (cardHeader && cardHeader.textContent) {
+                const headerText = cardHeader.textContent.toLowerCase();
+                if (['b2br', 'b2brc', 'toolik'].some(h => headerText.includes(h))) {
+                    isDelhivery = true;
+                }
             }
             
             // Only Delhivery carriers should use the dropdowns
