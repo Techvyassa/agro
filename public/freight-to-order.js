@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', function() {
             
             console.log('Carrier name:', carrierName, 'isDelhivery:', isDelhivery);
             
-            // Method 2: Check by carrier name for specific keywords
+            // Method 2: Check by carrier name for specific keywords like b2br, b2brc, toolik
             if (carrierName) {
                 const delhiveryKeywords = ['b2br', 'b2brc', 'toolik'];
                 for (const keyword of delhiveryKeywords) {
