@@ -119,9 +119,42 @@
                 </div>
             @endif
             
-            <div class="d-flex justify-content-center">
-                {{ $salesOrders->links() }}
-            </div>
+            <div class="d-flex justify-content-center mt-4">
+    <nav aria-label="Sales Orders Pagination">
+        <ul class="pagination">
+            {{-- Use Laravel's built-in pagination with Bootstrap styling --}}
+            {!! $salesOrders->onEachSide(1)->links('pagination::bootstrap-4') !!}
+        </ul>
+    </nav>
+</div>
+
+{{-- Optional: Add custom CSS if Bootstrap is not loaded --}}
+<style>
+.pagination {
+    display: flex;
+    justify-content: center;
+    padding-left: 0;
+    list-style: none;
+}
+.pagination li {
+    margin: 0 2px;
+}
+.pagination .page-link {
+    color: #007bff;
+    border: 1px solid #dee2e6;
+    padding: 6px 12px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+.pagination .active .page-link {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+.pagination .page-link:hover {
+    background-color: #e9ecef;
+}
+</style>
         @else
             <div class="alert alert-info">
                 <i class="fas fa-info-circle me-2"></i>
