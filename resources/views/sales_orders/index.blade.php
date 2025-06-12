@@ -118,7 +118,7 @@
                 </table>
                 </div>
             @endif
-            
+            <!-- pagination changes -->
             <div class="d-flex justify-content-center mt-4">
     <nav aria-label="Sales Orders Pagination">
         <ul class="pagination">
