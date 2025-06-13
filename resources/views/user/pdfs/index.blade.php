@@ -65,20 +65,22 @@
             </table>
         </div>
     @endif
-    @if(isset($invoiceData) && is_array($invoiceData) && count($invoiceData))
+    @if(isset($invoiceData) && is_array($invoiceData) && count($invoiceData) && !empty($apiTimestamp))
         <form action="{{ route('user.pdfs.save-to-sales-orders') }}" method="POST" class="mt-3">
             @csrf
             <input type="hidden" name="so_no" value="{{ $soNo }}">
             <input type="hidden" name="invoice_data" value='@json($invoiceData)'>
+            <input type="hidden" name="api_timestamp" value='{{ $apiTimestamp }}'>
             <button type="submit" class="btn btn-success">Continue</button>
         </form>
     @endif
 @if(isset($invoiceData) && is_array($invoiceData) && count($invoiceData))
     <script>
-        console.log('Full API Response:', {
+        console.log('API Extraction Response:', {
             success: @json($apiSuccess ?? null),
             message: @json($message ?? null),
             filename: @json($filename ?? null),
+            timestamp: @json($apiTimestamp ?? null),
             data: @json($invoiceData ?? [])
         });
     </script>

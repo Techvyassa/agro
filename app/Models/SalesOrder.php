@@ -21,5 +21,7 @@ class SalesOrder extends Model
         'hsn',
         'qty',
         'rate',
+        'created_at',
+        'updated_at',
     ];
 }

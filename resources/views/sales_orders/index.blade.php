@@ -16,8 +16,8 @@
             <a href="{{ route('sales_orders.export', request()->query()) }}" class="btn btn-success me-2">
                 <i class="fas fa-file-excel me-1"></i> Export to CSV
             </a>
-            <a href="{{ route('sales_orders.upload') }}" class="btn btn-primary">
-                <i class="fas fa-upload me-1"></i> Upload New CSV
+            <a href="{{ route('user.pdfs.index') }}" class="btn btn-primary">
+                <i class="fas fa-upload me-1"></i> Upload New PDF
             </a>
         </div>
     </div>

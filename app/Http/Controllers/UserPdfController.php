@@ -66,6 +66,7 @@ class UserPdfController extends Controller
                 'message' => $message,
                 'filename' => $filename,
                 'apiSuccess' => $success,
+                'apiTimestamp' => $responseArr['timestamp'] ?? null,
                 'success' => 'Invoice extracted successfully.'
             ]);
         } catch (\Exception $e) {
@@ -87,12 +88,13 @@ class UserPdfController extends Controller
     {
         $soNo = $request->input('so_no');
         $invoiceData = json_decode($request->input('invoice_data'), true);
-        if (!$soNo || !is_array($invoiceData) || !count($invoiceData)) {
-            return redirect()->back()->with('error', 'Invalid data for saving sales orders.');
+        $apiTimestamp = $request->input('api_timestamp');
+        if (!$soNo || !is_array($invoiceData) || !count($invoiceData) || !$apiTimestamp) {
+            return redirect()->back()->with('error', 'Invalid data for saving sales orders. Timestamp required.');
         }
         try {
             DB::statement("SET time_zone = '+05:30'");
-            $now = now();
+            $createdAt = $apiTimestamp;
             foreach ($invoiceData as $row) {
                 SalesOrder::create([
                     'so_no' => $soNo,
@@ -101,8 +103,8 @@ class UserPdfController extends Controller
                     'hsn' => $row['hsn'] ?? '',
                     'qty' => isset($row['qty']) ? floatval(preg_replace('/[^0-9.]/', '', $row['qty'])) : 0,
                     'rate' => $row['rate'] ?? 0,
-                    'created_at' => $now,
-                    'updated_at' => $now,
+                    'created_at' => $createdAt,
+                    'updated_at' => $createdAt,
                 ]);
             }
             return redirect()->route('user.pdfs.index')->with('success', 'Sales orders inserted successfully.');
