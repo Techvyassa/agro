@@ -124,11 +124,16 @@
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <!-- <li class="nav-item">
                             <a class="nav-link {{ request()->is('sales-orders/upload*') ? 'active' : '' }}" href="{{ route('sales_orders.upload') }}">
                                 <i class="fas fa-file-csv"></i> Sales Order CSV Upload
                             </a>
-                        </li>
+                        </li> -->
+                        <li class="nav-item">
+    <a class="nav-link {{ request()->is('user/pdfs*') ? 'active' : '' }}" href="{{ route('user.pdfs.index') }}">
+        <i class="fas fa-file-pdf"></i>Sales Order PDF Uploads
+    </a>
+</li>
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('sales-orders') ? 'active' : '' }}" href="{{ route('sales_orders.index') }}">
                                 <i class="fas fa-list"></i> View Sales Orders
@@ -145,10 +150,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('track-status*') ? 'active' : '' }}" href="{{ route('track.status') }}">
-                                <i class="fas fa-truck-loading"></i> Track Status
-                            </a>
-                        </li>
+    <a class="nav-link {{ request()->is('track-status*') ? 'active' : '' }}" href="{{ route('track.status') }}">
+        <i class="fas fa-truck-loading"></i> Track Status
+    </a>
+</li>
+
                     </ul>
                 </div>
             </div>

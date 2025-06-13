@@ -175,6 +175,15 @@ Route::options('/freight-proxy', function () {
 })->withoutMiddleware(['\App\Http\Middleware\VerifyCsrfToken']);
 
 // Track Status Routes
+
+use App\Http\Controllers\UserPdfController;
+
+Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
+    Route::get('pdfs', [UserPdfController::class, 'index'])->name('pdfs.index');
+    Route::post('pdfs', [UserPdfController::class, 'store'])->name('pdfs.store');
+    Route::get('pdfs/download/{id}', [UserPdfController::class, 'download'])->name('pdfs.download');
+    Route::post('pdfs/save-to-sales-orders', [UserPdfController::class, 'saveToSalesOrders'])->name('pdfs.save-to-sales-orders');
+});
 Route::get('/track-status', [TrackStatusController::class, 'index'])->name('track.status');
 Route::post('/track-status-proxy', [TrackStatusController::class, 'trackStatus'])->name('track.status.proxy')->withoutMiddleware(['\App\Http\Middleware\VerifyCsrfToken']);
 Route::options('/track-status-proxy', function () {
