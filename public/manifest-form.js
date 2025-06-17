@@ -115,13 +115,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loader
         if (pickupLoader) pickupLoader.style.display = 'block';
 
+        // Add search input above the pickup dropdown if not present
+        if (!document.getElementById('pickupLocationSearch')) {
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.className = 'form-control mb-2';
+            searchInput.placeholder = 'Search pickup location...';
+            searchInput.id = 'pickupLocationSearch';
+            pickupSelect.parentNode.insertBefore(searchInput, pickupSelect);
+            searchInput.addEventListener('input', function() {
+                pickupSelect.dataset.searchTerm = searchInput.value;
+                loadPickupLocations(true);
+            });
+        }
+
         // Use the global loginType variable
         console.log('Using login type for pickup locations:', loginType);
         
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
-        const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
-                      loginType + '&location_type=picking&page=1&page_size=100&_=' + timestamp;
+        const searchTerm = pickupSelect.dataset.searchTerm ? pickupSelect.dataset.searchTerm.trim() : '';
+const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+                      loginType + '&location_type=picking' + (searchTerm ? ('&search_term=' + encodeURIComponent(searchTerm)) : '') + '&page=1&page_size=100&_=' + timestamp;
         
         // Show what URL we're using
         console.log('Loading pickup locations from:', apiUrl);
@@ -236,13 +251,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // Show loader
         if (dropLoader) dropLoader.style.display = 'block';
 
+        // Add search input above the drop dropdown if not present
+        if (!document.getElementById('dropLocationSearch')) {
+            const searchInput = document.createElement('input');
+            searchInput.type = 'text';
+            searchInput.className = 'form-control mb-2';
+            searchInput.placeholder = 'Search drop location...';
+            searchInput.id = 'dropLocationSearch';
+            dropSelect.parentNode.insertBefore(searchInput, dropSelect);
+            searchInput.addEventListener('input', function() {
+                dropSelect.dataset.searchTerm = searchInput.value;
+                loadDropLocations(true);
+            });
+        }
+
         // Use the global loginType variable
         console.log('Using login type for drop locations:', loginType);
         
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
-        const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
-                  loginType + '&location_type=drop&page=1&page_size=100&_=' + timestamp;
+        const searchTerm = dropSelect.dataset.searchTerm ? dropSelect.dataset.searchTerm.trim() : '';
+const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+                  loginType + '&location_type=drop' + (searchTerm ? ('&search_term=' + encodeURIComponent(searchTerm)) : '') + '&page=1&page_size=100&_=' + timestamp;
         
         // Show what URL we're using
         console.log('Loading drop locations from:', apiUrl);
