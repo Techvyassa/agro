@@ -59,9 +59,9 @@
                     
                     <div class="row mt-4">
                         <div class="col-md-12 text-center">
-                            <button type="submit" class="btn btn-primary" id="generateButton" disabled>
-                                Print Packlist
-                            </button>
+                            <button type="button" class="btn btn-primary" id="generateButton" disabled>
+    Print Packlist
+</button>
                            
                         </div>
                     </div>
@@ -124,7 +124,7 @@
             const boxSelect = $('#box');
             
             // Reset box selection
-            boxSelect.html('<option value="">-- All Boxes --</option>');
+            boxSelect.html('<option value="all">-- All Boxes --</option>');
             $('#boxDimension').text('-');
             $('#boxWeight').text('-');
             
@@ -137,6 +137,24 @@
             
             // Enable generate button when SO is selected
             $('#generateButton').prop('disabled', false);
+
+// Print Packlist button logic
+$('#generateButton').off('click').on('click', function(e) {
+    e.preventDefault();
+    const soNo = $('#so_no').val();
+    const boxVal = $('#box').val();
+    if (boxVal === 'all') {
+        if (soNo) {
+            // Open print for all boxes
+            window.open(`/packlist/print/${soNo}/all`, '_blank');
+        } else {
+            alert('Please select a Sales Order Number.');
+        }
+    } else {
+        // Submit the form for a single box
+        $('#packlistForm')[0].submit();
+    }
+});
             $('#calculateFreightButton').prop('disabled', false);
             
             // Fetch boxes for this SO
@@ -173,7 +191,7 @@
         $('#box').on('change', function() {
             const selectedOption = $(this).find('option:selected');
             
-            if (selectedOption.val()) {
+            if (selectedOption.val() !== 'all') {
                 // Update box details
                 $('#boxDimension').text(selectedOption.data('dimension') || 'Not specified');
                 $('#boxWeight').text(selectedOption.data('weight') || 'Not specified');

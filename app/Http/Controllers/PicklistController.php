@@ -58,7 +58,7 @@ class PicklistController extends Controller
         $query->where('so_no', $request->so_no);
         
         // Filter by box if provided
-        if ($request->filled('box')) {
+        if ($request->filled('box') && $request->box !== 'all') {
             $query->where('box', $request->box);
         }
         
@@ -81,7 +81,7 @@ class PicklistController extends Controller
     {
         $query = Picking::query()->where('so_no', $so_no);
         
-        if ($box && $box !== 'null') {
+        if ($box && $box !== 'null' && $box !== 'all') {
             $query->where('box', $box);
         }
         

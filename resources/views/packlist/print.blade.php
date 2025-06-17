@@ -55,23 +55,72 @@
         <button onclick="window.close();">Close</button>
     </div>
 
+    @if(!$box || $box === 'all')
+    @php
+        $grouped = $packitems->groupBy('box');
+    @endphp
+    @foreach($grouped as $boxNo => $items)
+        <div class="print-header">
+            <h1>PACKING LIST</h1>
+        </div>
+        <div class="order-info">
+            <div>
+                <p><strong>Sales Order Number:</strong> {{ $so_no }}</p>
+                <p><strong>Box Number:</strong> {{ $boxNo }}</p>
+                <p><strong>Date:</strong> {{ now()->format('d/m/Y') }}</p>
+            </div>
+            <div>
+                <p><strong>Generated On:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
+            </div>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>Box</th>
+                    <th>Item Name</th>
+                    <th>Quantity</th>
+                    <th>Dimension</th>
+                    <th>Weight</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($items as $item)
+                    @php
+                        $itemsArray = json_decode($item->items, true);
+                    @endphp
+                    @if(is_array($itemsArray))
+                        @foreach($itemsArray as $packItem)
+                            @php
+                                $itemData = json_decode($packItem, true);
+                            @endphp
+                            <tr>
+                                <td>{{ $item->box }}</td>
+                                <td>{{ $itemData['item'] ?? 'N/A' }}</td>
+                                <td>{{ $itemData['qty'] ?? 'N/A' }}</td>
+                                <td>{{ $item->dimension }}</td>
+                                <td>{{ $item->weight }}</td>
+                            </tr>
+                        @endforeach
+                    @endif
+                @endforeach
+            </tbody>
+        </table>
+        <hr style="page-break-after: always; border: none; margin: 40px 0;">
+    @endforeach
+@else
     <div class="print-header">
         <h1>PACKING LIST</h1>
     </div>
-
     <div class="order-info">
         <div>
             <p><strong>Sales Order Number:</strong> {{ $so_no }}</p>
-            @if($box)
             <p><strong>Box Number:</strong> {{ $box }}</p>
-            @endif
             <p><strong>Date:</strong> {{ now()->format('d/m/Y') }}</p>
         </div>
         <div>
             <p><strong>Generated On:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
         </div>
     </div>
-
     <table>
         <thead>
             <tr>
@@ -104,6 +153,7 @@
             @endforeach
         </tbody>
     </table>
+@endif
 
     <script>
         // Auto-print when page loads
