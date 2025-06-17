@@ -56,6 +56,150 @@
     </style>
 </head>
 <body>
+<script>
+// --- Initialize Total Boxes and Weight from localStorage on page load ---
+(function() {
+    if (window.location.href.includes('create-manifest.html')) {
+        // 1. Try URL params first
+        const urlParams = new URLSearchParams(window.location.search);
+        let tb = null;
+        let tw = null;
+        // Check for totalBoxes, boxes, weight
+        if (urlParams.has('totalBoxes')) {
+            tb = parseInt(urlParams.get('totalBoxes'));
+        } else if (urlParams.has('boxes')) {
+            tb = parseInt(urlParams.get('boxes'));
+        }
+        if (urlParams.has('weight')) {
+            tw = parseFloat(urlParams.get('weight'));
+        }
+        // Set from URL if present
+        if (tb !== null && !isNaN(tb)) {
+            var totalBoxesInput = document.getElementById('totalBoxes');
+            if (totalBoxesInput) totalBoxesInput.value = tb;
+            var totalBoxesHidden = document.getElementById('total-boxes');
+            if (totalBoxesHidden) totalBoxesHidden.value = tb;
+            // Set a global flag so updateTotalBoxCount knows not to overwrite
+            window.boxCountFromUrl = true;
+            // Set ALL shipment details box counts to match total boxes
+            var shipmentBoxCounts = document.querySelectorAll('.shipment-box-count');
+            shipmentBoxCounts.forEach(function(input) { input.value = tb; });
+        }
+        // --- Populate Dimensions from dims URL parameter ---
+        (function populateDimensionsFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('dims')) {
+                const dimsStr = urlParams.get('dims');
+                // Format: 10-20-30-5-2|10-20-30-5-3 ... (L-W-H-Wt-Count) or (L-W-H-Count)
+                const dimsArr = dimsStr.split('|');
+                // Remove all default dimension rows first
+                const dimensionsContainer = document.getElementById('dimensionsContainer');
+                if (dimensionsContainer) {
+                    dimensionsContainer.innerHTML = '';
+                    dimsArr.forEach(dim => {
+                        const parts = dim.split('-');
+                        // Support both L-W-H-Count and L-W-H-Wt-Count
+                        let length = parts[0] || '';
+                        let width = parts[1] || '';
+                        let height = parts[2] || '';
+                        let count = parts.length === 5 ? parseInt(parts[4]) : (parts[3] ? parseInt(parts[3]) : 1);
+                        if (isNaN(count) || count < 1) count = 1;
+
+                        // Track total boxes for all dimension rows
+                        if (!window._dimensionBoxSum) window._dimensionBoxSum = 0;
+                        window._dimensionBoxSum += count;
+
+                        const row = document.createElement('div');
+                        row.className = 'row mb-3 dimension-row';
+                        row.innerHTML = `
+                            <div class="col-md-2">
+                                <label class="form-label">Length (cm)</label>
+                                <input type="number" class="form-control dimension-length" value="${length}" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Width (cm)</label>
+                                <input type="number" class="form-control dimension-width" value="${width}" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Height (cm)</label>
+                                <input type="number" class="form-control dimension-height" value="${height}" required>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="form-label">Box Count</label>
+                                <input type="number" class="form-control dimension-box-count" value="${count}" min="1" required>
+                            </div>
+                            <div class="col-md-1 d-flex align-items-end mb-2">
+                                <button type="button" class="btn btn-danger remove-dimension" style="display: none;">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `;
+                        dimensionsContainer.appendChild(row);
+                    });
+                    // After all rows, set Total Boxes field to sum
+                    if (window._dimensionBoxSum) {
+                        var totalBoxesInput = document.getElementById('totalBoxes');
+                        if (totalBoxesInput) totalBoxesInput.value = window._dimensionBoxSum;
+                        var totalBoxesHidden = document.getElementById('total-boxes');
+                        if (totalBoxesHidden) totalBoxesHidden.value = window._dimensionBoxSum;
+                        window.boxCountFromUrl = true;
+                        // Set ALL shipment details box counts to match total boxes
+                        var shipmentBoxCounts = document.querySelectorAll('.shipment-box-count');
+                        shipmentBoxCounts.forEach(function(input) { input.value = totalBoxesInput.value; });
+                        window._dimensionBoxSum = 0;
+                        // Trigger dependent UI updates
+                        if (typeof updateTotalBoxCount === 'function') updateTotalBoxCount();
+                    }
+                }
+            }
+        })();
+        if (tw !== null && !isNaN(tw)) {
+            var weightGrams;
+            if (tw >= 1000 && Number.isInteger(tw)) {
+                weightGrams = tw;
+            } else {
+                weightGrams = Math.round(tw * 1000);
+            }
+            var weightInput = document.getElementById('weightGrams');
+            if (weightInput) weightInput.value = weightGrams;
+            var totalWeightHidden = document.getElementById('total-weight');
+            if (totalWeightHidden) totalWeightHidden.value = weightGrams;
+        }
+        // 2. Fallback to localStorage if not present in URL
+        if ((tb === null || isNaN(tb)) || (tw === null || isNaN(tw))) {
+            const storedDataString = localStorage.getItem('freightDimensionData');
+            if (storedDataString) {
+                try {
+                    const storedData = JSON.parse(storedDataString);
+                    // Only set if not already set by URL
+                    if ((tb === null || isNaN(tb)) && storedData.totalBoxes) {
+                        tb = parseInt(storedData.totalBoxes) || 0;
+                        var totalBoxesInput2 = document.getElementById('totalBoxes');
+                        if (totalBoxesInput2) totalBoxesInput2.value = tb;
+                        var totalBoxesHidden2 = document.getElementById('total-boxes');
+                        if (totalBoxesHidden2) totalBoxesHidden2.value = tb;
+                    }
+                    if ((tw === null || isNaN(tw)) && storedData.totalWeight) {
+                        tw = parseFloat(storedData.totalWeight) || 0;
+                        var weightGrams2;
+                        if (tw >= 1000 && Number.isInteger(tw)) {
+                            weightGrams2 = tw;
+                        } else {
+                            weightGrams2 = Math.round(tw * 1000);
+                        }
+                        var weightInput2 = document.getElementById('weightGrams');
+                        if (weightInput2) weightInput2.value = weightGrams2;
+                        var totalWeightHidden2 = document.getElementById('total-weight');
+                        if (totalWeightHidden2) totalWeightHidden2.value = weightGrams2;
+                    }
+                } catch (e) {
+                    console.error('Error initializing totals from localStorage:', e);
+                }
+            }
+        }
+    }
+})();
+</script>
     <div class="container py-5">
         <h1 class="mb-4 text-center">Create Delhivery Manifest</h1>
         
@@ -505,18 +649,17 @@
                 totalBoxes += parseInt(boxInput.value) || 0;
             });
             
-            // Update total boxes in the weight section
-            document.getElementById('totalBoxes').value = totalBoxes;
-            
-            // Update the box count in the first shipment row
-            const shipmentBoxCount = document.querySelector('.shipment-box-count');
-            if (shipmentBoxCount) {
-                shipmentBoxCount.value = totalBoxes;
+            // Only update if not set from URL or if user edits a dimension row
+            if (!window.boxCountFromUrl) {
+                document.getElementById('totalBoxes').value = totalBoxes;
+                // Update the box count in the first shipment row
+                const shipmentBoxCount = document.querySelector('.shipment-box-count');
+                if (shipmentBoxCount) {
+                    shipmentBoxCount.value = totalBoxes;
+                }
             }
-            
             // Update weight based on box count
             updateWeightBasedOnBoxCount(totalBoxes);
-            
             // Also update when adding new dimension row
             document.querySelectorAll('.remove-dimension').forEach(btn => {
                 if (!btn.hasRemoveListener) {
@@ -531,32 +674,17 @@
         function updateWeightBasedOnBoxCount(boxCount) {
             // Get the weight input element
             const weightInput = document.getElementById('weightGrams');
-            
-            // Calculate weight based on box count
-            if (boxCount > 0) {
-                // Get the current weight if it exists
-                const currentWeight = parseInt(weightInput.value) || 0;
-                
-                // If user has manually entered weight, calculate the weightPerBoxRatio
-                if (weightInput.dataset.userModified === 'true' && currentWeight > 0) {
-                    weightPerBoxRatio = currentWeight / (parseInt(document.getElementById('totalBoxes').value) || 1);
+            // Do NOT recalculate weight unless user has manually changed it
+            if (weightInput && weightInput.dataset.userModified === 'true') {
+                const boxes = parseInt(document.getElementById('totalBoxes').value) || 1;
+                if (boxes > 0) {
+                    weightPerBoxRatio = parseInt(weightInput.value) / boxes;
                 }
-                
-                // Always update weight based on current weightPerBoxRatio and box count
-                weightInput.value = Math.round(weightPerBoxRatio * boxCount);
-            } else {
-                // If no boxes, set weight to 0
-                weightInput.value = 0;
             }
-            
-            // If user hasn't added listener yet
-            if (!weightInput.hasListenerAdded) {
-                // Add input event listener for real-time updates when user changes weight
+            // Add input event listener for real-time updates when user changes weight (only once)
+            if (weightInput && !weightInput.hasListenerAdded) {
                 weightInput.addEventListener('input', function() {
-                    // Mark that user has modified the weight
                     this.dataset.userModified = 'true';
-                    
-                    // Update weight per box ratio based on user input
                     const boxes = parseInt(document.getElementById('totalBoxes').value) || 1;
                     if (boxes > 0) {
                         weightPerBoxRatio = parseInt(this.value) / boxes;

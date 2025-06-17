@@ -143,30 +143,33 @@ document.addEventListener('DOMContentLoaded', function() {
                             const widthInput = row.querySelector('.box-width');
                             const heightInput = row.querySelector('.box-height');
                             const weightInput = row.querySelector('.box-weight');
-                            
+                            const countInput = row.querySelector('.box-count');
+
                             // Get values
                             const length = lengthInput ? lengthInput.value : '';
                             const width = widthInput ? widthInput.value : '';
                             const height = heightInput ? heightInput.value : '';
                             const weight = weightInput ? weightInput.value : '';
-                            
-                            console.log(`Box ${index}: L=${length}, W=${width}, H=${height}, W=${weight}kg`);
-                            
+                            const count = countInput ? parseInt(countInput.value) || 1 : 1;
+
+                            console.log(`Box ${index}: L=${length}, W=${width}, H=${height}, W=${weight}kg, Count=${count}`);
+
                             // Add to dimensions string if valid
                             if (length && width && height) {
-                                // Format: L-W-H-W (Length-Width-Height-Weight)
-                                dimensionsStr.push(`${length}-${width}-${height}-${weight}`);
-                                totalBoxes++;
-                                totalWeight += parseFloat(weight) || 0;
+                                // Format: L-W-H-W-Count (Length-Width-Height-Weight-Count)
+                                dimensionsStr.push(`${length}-${width}-${height}-${weight}-${count}`);
+                                totalBoxes += count;
+                                totalWeight += (parseFloat(weight) || 0) * count;
                             }
                         });
                         
                         // Add parameters to URL
                         if (dimensionsStr.length > 0) {
                             console.log('Adding dimensions to URL:', dimensionsStr.join('|'));
-                            manifestUrl.searchParams.append('dims', dimensionsStr.join('|'));
-                            manifestUrl.searchParams.append('boxes', totalBoxes);
-                            manifestUrl.searchParams.append('weight', totalWeight.toFixed(2));
+                            manifestUrl.searchParams.set('dims', dimensionsStr.join('|'));
+                            manifestUrl.searchParams.set('boxes', totalBoxes);
+                            manifestUrl.searchParams.set('totalBoxes', totalBoxes);
+                            manifestUrl.searchParams.set('weight', totalWeight.toFixed(2));
                         }
                     } else {
                         // Try alternate method - find total boxes and weight directly
