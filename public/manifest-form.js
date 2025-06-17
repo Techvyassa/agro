@@ -114,14 +114,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show loader
         if (pickupLoader) pickupLoader.style.display = 'block';
-        
+
         // Use the global loginType variable
         console.log('Using login type for pickup locations:', loginType);
         
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
         const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
-                      loginType + '&location_type=picking&search_term=&page=1&page_size=5&_=' + timestamp;
+                      loginType + '&location_type=picking&page=1&page_size=100&_=' + timestamp;
         
         // Show what URL we're using
         console.log('Loading pickup locations from:', apiUrl);
@@ -158,29 +158,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.results.forEach(location => {
                     try {
                         // Extract location details from the API response with proper handling of nested structures
-                        const returnAddress = location.return_address || {};
-                        
-                        // Create a normalized location data object that handles all potential structures
+                        let address = location.address || {};
+                        let returnAddress = address.return_address || {};
+                        // Prefer facility_name from location, then address
+                        const facilityName = location.facility_name || address.facility_name || 'Unknown Location';
+                        // Prefer city/state from address, fallback to return_address
+                        const city = address.city || returnAddress.city || '';
+                        const state = address.state || returnAddress.state || '';
+                        // Prefer pin_code from address, fallback to return_address
+                        const pinCode = address.pin_code || returnAddress.pin_code || '';
                         const locationData = {
                             id: location.facility_id || location._id || 'UNKNOWN',
-                            name: location.facility_name || returnAddress.facility_name || location.company_name || 'Unknown Location',
-                            address: returnAddress.address_line1 || location.address_line1 || location.address || '',
-                            city: returnAddress.city || location.city || '',
-                            state: returnAddress.state || location.state || '',
-                            pincode: returnAddress.pin_code || location.pin_code || location.pincode || '',
-                            contact: returnAddress.contact_person || location.contact_person || '',
-                            phone: returnAddress.phone || location.phone || '',
+                            name: facilityName,
+                            address: address.address_line1 || '',
+                            city: city,
+                            state: state,
+                            pincode: pinCode,
+                            contact: address.contact_person || '',
+                            phone: address.phone || '',
                             raw: location // Store raw data for debugging
                         };
-                        
                         console.log('Extracted pickup location data:', locationData);
-                        
                         const option = document.createElement('option');
                         option.value = locationData.id;
-                        option.textContent = locationData.name + (locationData.city ? ' - ' + locationData.city : '');
-                        option.textContent += locationData.state ? ', ' + locationData.state : '';
+                        option.textContent = `${facilityName}${city ? ' - ' + city : ''}${state ? ', ' + state : ''}${pinCode ? ' (PIN: ' + pinCode + ')' : ''}`;
                         option.dataset.location = JSON.stringify(locationData);
-                        
                         pickupSelect.appendChild(option);
                     } catch (e) {
                         console.error('Error processing location data:', e, location);
@@ -233,14 +235,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Show loader
         if (dropLoader) dropLoader.style.display = 'block';
-        
+
         // Use the global loginType variable
         console.log('Using login type for drop locations:', loginType);
         
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
         const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
-                      loginType + '&location_type=drop&search_term=&page=1&page_size=10&_=' + timestamp;
+                  loginType + '&location_type=drop&page=1&page_size=100&_=' + timestamp;
         
         // Show what URL we're using
         console.log('Loading drop locations from:', apiUrl);
@@ -277,30 +279,31 @@ document.addEventListener('DOMContentLoaded', function() {
                 data.results.forEach(location => {
                     try {
                         // Extract location details from the API response with proper handling of nested structures
-                        let returnAddress = location.return_address || {};
-                        let address = location.address || {}; // For B2BR format where details are in address object
-                        
-                        // Create a normalized location data object that handles all potential structures
+                        let address = location.address || {};
+                        let returnAddress = address.return_address || {};
+                        // Prefer facility_name from location, then address
+                        const facilityName = location.facility_name || address.facility_name || 'Unknown Location';
+                        // Prefer city/state from address, fallback to return_address
+                        const city = address.city || returnAddress.city || '';
+                        const state = address.state || returnAddress.state || '';
+                        // Prefer pin_code from address, fallback to return_address
+                        const pinCode = address.pin_code || returnAddress.pin_code || '';
                         const locationData = {
-                            id: location.facility_id || 'UNKNOWN',
-                            name: location.store_code_name || location.facility_name || address.facility_name || returnAddress.facility_name || location.company_name || 'Unknown Location',
-                            address: address.address_line1 || returnAddress.address_line1 || location.address_line1 || '',
-                            city: address.city || returnAddress.city || location.city || '',
-                            state: address.state || returnAddress.state || location.state || '',
-                            pincode: address.pin_code || returnAddress.pin_code || location.pin_code || location.pincode || '',
-                            contact: address.contact_person || returnAddress.contact_person || location.contact_person || address.first_name || '',
-                            phone: address.phone || returnAddress.phone || location.phone || '',
+                            id: location.facility_id || location._id || 'UNKNOWN',
+                            name: facilityName,
+                            address: address.address_line1 || '',
+                            city: city,
+                            state: state,
+                            pincode: pinCode,
+                            contact: address.contact_person || '',
+                            phone: address.phone || '',
                             raw: location // Store raw data for debugging
                         };
-                        
                         console.log('Extracted drop location data:', locationData);
-                        
                         const option = document.createElement('option');
                         option.value = locationData.id;
-                        option.textContent = locationData.name + (locationData.city ? ' - ' + locationData.city : '');
-                        option.textContent += locationData.state ? ', ' + locationData.state : '';
+                        option.textContent = `${facilityName}${city ? ' - ' + city : ''}${state ? ', ' + state : ''}${pinCode ? ' (PIN: ' + pinCode + ')' : ''}`;
                         option.dataset.location = JSON.stringify(locationData);
-                        
                         dropSelect.appendChild(option);
                     } catch (e) {
                         console.error('Error processing location data:', e, location);
