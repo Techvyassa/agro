@@ -317,7 +317,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Fill all box rows
                     document.querySelectorAll('.box-row').forEach((row, idx) => {
                         if (boxes[idx]) {
-                            const dims = boxes[idx].dimension ? boxes[idx].dimension.split('x') : [15, 15, 15];
+                            const dims = boxes[idx].dimension
+                                ? boxes[idx].dimension.split('x').map(d => d.trim())
+                                : [15, 15, 15];
                             row.querySelector('.box-length').value = dims[0] || '';
                             row.querySelector('.box-width').value = dims[1] || '';
                             row.querySelector('.box-height').value = dims[2] || '';
