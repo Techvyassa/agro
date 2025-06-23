@@ -14,10 +14,21 @@ class SalesOrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $salesOrders = SalesOrder::latest()->paginate(10);
-        return view('admin.sales.index', compact('salesOrders'));
+        $query = SalesOrder::query();
+        
+        // Search by SO Number
+        if ($request->filled('so_no')) {
+            $query->where('so_no', 'like', '%' . $request->so_no . '%');
+        }
+        // Search by Category
+        if ($request->filled('category')) {
+            $query->where('category', $request->category);
+        }
+        $salesOrders = $query->latest()->paginate(10)->appends($request->all());
+        $categories = SalesOrder::select('category')->distinct()->pluck('category');
+        return view('admin.sales.index', compact('salesOrders', 'categories'));
     }
 
     /**

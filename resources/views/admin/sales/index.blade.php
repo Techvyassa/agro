@@ -24,6 +24,23 @@
 
 <div class="card border-0 shadow-sm">
     <div class="card-body">
+        <form method="GET" action="" class="row g-3 mb-4">
+            <div class="col-md-4">
+                <input type="text" name="so_no" class="form-control" placeholder="Search by SO Number" value="{{ request('so_no') }}">
+            </div>
+            <div class="col-md-4">
+                <select name="category" class="form-select">
+                    <option value="">All Categories</option>
+                    @foreach($categories as $cat)
+                        <option value="{{ $cat }}" {{ request('category') == $cat ? 'selected' : '' }}>{{ $cat }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="col-md-4">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="{{ route('admin.sales.index') }}" class="btn btn-light">Reset</a>
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-hover align-middle">
                 <thead class="table-light">

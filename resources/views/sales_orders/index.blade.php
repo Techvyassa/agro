@@ -25,21 +25,16 @@
         <!-- Filter form -->
         <form action="{{ route('sales_orders.filter') }}" method="GET" class="mb-4">
             <div class="row g-3 align-items-end">
-                <div class="col-md-4">
-                    <label for="so_no" class="form-label">Filter by SO Number</label>
-                    <select name="so_no" id="so_no" class="form-select">
-                        <option value="">All SO Numbers</option>
-                        @foreach($soNumbers as $soNumber)
-                            <option value="{{ $soNumber }}" {{ isset($so_no) && $so_no == $soNumber ? 'selected' : '' }}>{{ $soNumber }}</option>
-                        @endforeach
-                    </select>
+                <div class="col-md-8">
+                    <label for="search" class="form-label">Search SO Number or Item Name</label>
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Enter SO Number or Item Name" value="{{ request('search') }}">
                 </div>
-                <div class="col-md-3">
-                    <button type="submit" class="btn btn-secondary">
+                <div class="col-md-4">
+                    <button type="submit" class="btn btn-secondary mt-4">
                         <i class="fas fa-filter me-1"></i> Filter
                     </button>
-                    @if(isset($so_no) && !empty($so_no))
-                        <a href="{{ route('sales_orders.index') }}" class="btn btn-outline-secondary">
+                    @if(request('search'))
+                        <a href="{{ route('sales_orders.index') }}" class="btn btn-outline-secondary mt-4">
                             <i class="fas fa-times me-1"></i> Clear
                         </a>
                     @endif

@@ -23,19 +23,18 @@ class SalesOrderController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Group by SO Number and order by it
-        $salesOrders = SalesOrder::orderBy('so_no')
-            ->paginate(15);
-            
-        // Get all unique SO numbers for filtering
-        $soNumbers = SalesOrder::select('so_no')
-            ->distinct()
-            ->orderBy('so_no')
-            ->pluck('so_no');
-            
-        return view('sales_orders.index', compact('salesOrders', 'soNumbers'));
+        $query = SalesOrder::query();
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('so_no', 'like', "%$search%")
+                  ->orWhere('item_name', 'like', "%$search%" );
+            });
+        }
+        $salesOrders = $query->orderByDesc('id')->paginate(15)->appends($request->all());
+        return view('sales_orders.index', compact('salesOrders'));
     }
     
     /**
@@ -46,24 +45,16 @@ class SalesOrderController extends Controller
      */
     public function filter(Request $request)
     {
-        $so_no = $request->input('so_no');
-        
-        if ($so_no) {
-            $salesOrders = SalesOrder::where('so_no', $so_no)
-                ->orderBy('so_no')
-                ->paginate(15);
-        } else {
-            $salesOrders = SalesOrder::orderBy('so_no')
-                ->paginate(15);
+        $query = SalesOrder::query();
+        if ($request->filled('search')) {
+            $search = $request->search;
+            $query->where(function($q) use ($search) {
+                $q->where('so_no', 'like', "%$search%")
+                  ->orWhere('item_name', 'like', "%$search%" );
+            });
         }
-        
-        // Get all unique SO numbers for filtering
-        $soNumbers = SalesOrder::select('so_no')
-            ->distinct()
-            ->orderBy('so_no')
-            ->pluck('so_no');
-            
-        return view('sales_orders.index', compact('salesOrders', 'soNumbers', 'so_no'));
+        $salesOrders = $query->orderByDesc('id')->paginate(15)->appends($request->all());
+        return view('sales_orders.index', compact('salesOrders'));
     }
     
     /**
