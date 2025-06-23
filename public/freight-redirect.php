@@ -20,53 +20,15 @@
         }
     </style>
 
+    <!-- Inject POST data as hidden fields for JS -->
+    <input type="hidden" id="so_no" value="<?php echo isset($_POST['so_no']) ? htmlspecialchars($_POST['so_no']) : ''; ?>">
+    <input type="hidden" id="boxes" value="<?php echo isset($_POST['boxes']) ? htmlspecialchars($_POST['boxes']) : ''; ?>">
+
     <script>
         $(document).ready(function() {
-            // Get data from POST body instead of URL parameters
-            function getPostData() {
-                // Try to get data from the form if redirected via POST
-                const form = document.createElement('form');
-                let soNo = null;
-                let boxesJson = null;
-                // Try to get from window.name (for some browsers)
-                if (window.history && window.history.state) {
-                    soNo = window.history.state.so_no;
-                    boxesJson = window.history.state.boxes;
-                }
-                // Fallback: try to get from the DOM (form POST)
-                if (!soNo || !boxesJson) {
-                    // Try to get from hidden inputs (if present)
-                    const soInput = document.querySelector('input[name="so_no"]');
-                    const boxesInput = document.querySelector('input[name="boxes"]');
-                    if (soInput && boxesInput) {
-                        soNo = soInput.value;
-                        boxesJson = boxesInput.value;
-                    }
-                }
-                // Fallback: try to get from previous POST (if any)
-                if (!soNo || !boxesJson) {
-                    // Try to get from sessionStorage (if set)
-                    soNo = sessionStorage.getItem('so_no');
-                    boxesJson = sessionStorage.getItem('boxes');
-                }
-                return { soNo, boxesJson };
-            }
-
-            // Try to get POSTed data
-            let soNo = null;
-            let boxesJson = null;
-            // Try to get from hidden inputs (should be present after POST)
-            const soInput = document.querySelector('input[name="so_no"]');
-            const boxesInput = document.querySelector('input[name="boxes"]');
-            if (soInput && boxesInput) {
-                soNo = soInput.value;
-                boxesJson = boxesInput.value;
-            }
-            // Fallback: try to get from sessionStorage (if set)
-            if (!soNo || !boxesJson) {
-                soNo = sessionStorage.getItem('so_no');
-                boxesJson = sessionStorage.getItem('boxes');
-            }
+            // Get data from hidden fields injected by PHP
+            const soNo = document.getElementById('so_no').value;
+            const boxesJson = document.getElementById('boxes').value;
 
             if (!soNo || !boxesJson) {
                 alert('Missing required shipment data');
@@ -77,21 +39,17 @@
             try {
                 // Parse the boxes data
                 const boxes = JSON.parse(decodeURIComponent(boxesJson));
-
                 // For debugging
                 console.log('Boxes data:', boxes);
-
-                // Create a form to post data to freight.html
+                // Create a form to post data to freight.php
                 const form = document.createElement('form');
-                form.method = 'POST'; // Use POST now
-                form.action = '/freight.html';
-
+                form.method = 'POST';
+                form.action = '/freight.php';
                 // Calculate total weight
                 let totalWeight = 0;
                 boxes.forEach(box => {
                     totalWeight += parseFloat(box.weight) || 0;
                 });
-
                 // Format dimensions for all boxes
                 if (boxes.length > 0) {
                     const allDimensions = [];
@@ -130,7 +88,6 @@
                     }
                     appendInput(form, 'boxData', JSON.stringify(boxes));
                 }
-
                 document.body.appendChild(form);
                 setTimeout(() => {
                     form.submit();
@@ -142,7 +99,6 @@
                     window.location.href = '/freight-calculator';
                 }, 1500);
             }
-
             function appendInput(form, name, value) {
                 const input = document.createElement('input');
                 input.type = 'hidden';
@@ -153,4 +109,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

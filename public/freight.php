@@ -7,53 +7,30 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        .card {
-            margin-bottom: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .result-card {
-            transition: all 0.3s ease;
-        }
-        .result-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
-        }
-        .loader {
-            display: none;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #3498db;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            animation: spin 1s linear infinite;
-            margin: 20px auto;
-        }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        .extra-details {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease-out;
-        }
-        .btn-primary {
-            background-color: #4CAF50;
-            border-color: #4CAF50;
-        }
-        .btn-primary:hover {
-            background-color: #3e8e41;
-            border-color: #3e8e41;
-        }
-        .badge {
-            font-size: 0.85rem;
-        }
+        .card { margin-bottom: 20px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .result-card { transition: all 0.3s ease; }
+        .result-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba(0,0,0,0.15); }
+        .loader { display: none; border: 5px solid #f3f3f3; border-top: 5px solid #3498db; border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite; margin: 20px auto; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+        .extra-details { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
+        .btn-primary { background-color: #4CAF50; border-color: #4CAF50; }
+        .btn-primary:hover { background-color: #3e8e41; border-color: #3e8e41; }
+        .badge { font-size: 0.85rem; }
     </style>
 </head>
 <body>
+<?php
+// Inject POST data as hidden fields for JS to access
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    foreach ($_POST as $key => $value) {
+        $safeKey = htmlspecialchars($key, ENT_QUOTES, 'UTF-8');
+        $safeValue = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+        echo "<input type='hidden' name='{$safeKey}' value='{$safeValue}'>\n";
+    }
+}
+?>
     <div class="container py-5">
         <h1 class="mb-4 text-center">Freight Estimation Tool</h1>
-        
         <div class="card mb-4">
             <div class="card-header bg-primary text-white">
                 <h5 class="mb-0">Shipping Details</h5>
@@ -77,7 +54,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <!-- Payment Details -->
                         <div class="col-md-6">
                             <div class="card mb-3">
@@ -112,7 +88,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Shipment Dimensions -->
                     <div class="card mb-3">
                         <div class="card-header bg-light">Shipment Dimensions</div>
@@ -145,13 +120,11 @@
                                     </div>
                                 </div>
                             </div>
-                            
                             <div class="row mb-3">
                                 <div class="col-12">
                                     <button type="button" id="addBoxBtn" class="btn btn-secondary"><i class="fas fa-plus"></i> Add Another Box</button>
                                 </div>
                             </div>
-
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="mb-3">
@@ -159,7 +132,6 @@
                                         <input type="number" class="form-control" id="totalBoxes" readonly>
                                     </div>
                                 </div>
-                                
                                 <div class="col-md-6">
                                     <div class="mb-3">
                                         <label for="totalWeight" class="form-label">Total Weight (kg)</label>
@@ -178,14 +150,12 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-lg">Get Freight Estimates</button>
                     </div>
                 </form>
             </div>
         </div>
-
         <!-- Results Section -->
         <div id="resultsSection" style="display: none;">
             <h2 class="mb-3">Freight Estimates</h2>
@@ -195,40 +165,31 @@
             <div id="loader" class="loader"></div>
             <div id="resultsContainer" class="row"></div>
         </div>
-
     </div>
-
     <input id="user-name" type="hidden" ></input>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="freight-real.js"></script>
     <script src="freight-to-order.js"></script>
     <!-- Data transfer script for dimensions and weight -->
     <script src="data-transfer.js"></script>
-    
     <!-- Script to calculate total weight -->
     <script>
         // Global variable to store weight per box ratios for each row
         const weightPerBoxMap = new Map();
-        
         // Main function to calculate totals
         function calculateTotals() {
             let totalBoxes = 0;
             let totalWeight = 0;
-            
             // Get all box rows
             const boxRows = document.querySelectorAll('.box-row');
-            
             // Calculate for each row
             boxRows.forEach((row, index) => {
                 const weightInput = row.querySelector('.box-weight');
                 const countInput = row.querySelector('.box-count');
-                
                 if (weightInput && countInput) {
                     const rowId = `row-${index}`;
                     const weight = parseFloat(weightInput.value) || 0;
                     const count = parseInt(countInput.value) || 0;
-                    
                     // Store weight per box ratio if not already stored or if weight was manually changed
                     if (!weightPerBoxMap.has(rowId) || weightInput.dataset.userModified === 'true') {
                         if (count > 0) {
@@ -237,7 +198,6 @@
                         // Reset the user modified flag
                         weightInput.dataset.userModified = 'false';
                     }
-                    
                     // If box count changed but we have a saved weight per box, use that
                     if (weightPerBoxMap.has(rowId) && count > 0) {
                         const savedWeightPerBox = weightPerBoxMap.get(rowId);
@@ -246,29 +206,23 @@
                             weightInput.value = savedWeightPerBox;
                         }
                     }
-                    
                     totalBoxes += count;
                     totalWeight += weight * count;
                 }
             });
-            
             // Update total fields
             document.getElementById('totalBoxes').value = totalBoxes;
             document.getElementById('totalWeight').value = totalWeight.toFixed(2);
-            
             // Save the current values to ensure they persist
             saveCurrentValues();
         }
-        
         // Store current values to session storage
         function saveCurrentValues() {
             const boxRows = document.querySelectorAll('.box-row');
             const savedData = [];
-            
             boxRows.forEach((row, index) => {
                 const weightInput = row.querySelector('.box-weight');
                 const countInput = row.querySelector('.box-count');
-                
                 if (weightInput && countInput) {
                     savedData.push({
                         rowIndex: index,
@@ -277,15 +231,12 @@
                     });
                 }
             });
-            
             // Save to session storage
             sessionStorage.setItem('freightBoxData', JSON.stringify(savedData));
         }
-        
         document.addEventListener('DOMContentLoaded', function() {
             // Initial calculation of total boxes and weight
             calculateTotals();
-            
             // Add global input event listeners for real-time updates
             document.querySelectorAll('.box-weight').forEach(input => {
                 input.addEventListener('input', function() {
@@ -293,13 +244,11 @@
                     calculateTotals();
                 });
             });
-            
             document.querySelectorAll('.box-count').forEach(input => {
                 input.addEventListener('input', calculateTotals);
                 input.addEventListener('change', calculateTotals);
                 input.addEventListener('blur', calculateTotals);
             });
-            
             // Add event listener to container to handle all box inputs (event delegation)
             document.getElementById('boxesContainer').addEventListener('input', function(event) {
                 // Check if the input is from a box weight or box count field
@@ -310,7 +259,6 @@
                     calculateTotals();
                 }
             });
-            
             // Add event listener for the add box button
             document.getElementById('addBoxBtn').addEventListener('click', function() {
                 // Wait for the DOM to update with the new box
@@ -320,14 +268,12 @@
                     if (newRow) {
                         const weightInput = newRow.querySelector('.box-weight');
                         const countInput = newRow.querySelector('.box-count');
-                        
                         if (weightInput) {
                             weightInput.addEventListener('input', function() {
                                 this.dataset.userModified = 'true';
                                 calculateTotals();
                             });
                         }
-                        
                         if (countInput) {
                             countInput.addEventListener('input', calculateTotals);
                             countInput.addEventListener('change', calculateTotals);
@@ -337,7 +283,6 @@
                     calculateTotals();
                 }, 100);
             });
-
             // Helper to get POSTed data from hidden inputs
             function getPostedData() {
                 const data = {};
@@ -346,24 +291,25 @@
                 });
                 return data;
             }
-
             const postData = getPostedData();
-
             // Fill in the first box row if data is present
             if (postData.length) document.querySelector('.box-length').value = postData.length;
             if (postData.width) document.querySelector('.box-width').value = postData.width;
             if (postData.height) document.querySelector('.box-height').value = postData.height;
             if (postData.deadWeight) document.querySelector('.box-weight').value = postData.deadWeight;
             if (postData.boxCount) document.querySelector('.box-count').value = postData.boxCount;
-
             // Fill in total boxes and total weight
             if (postData.boxCount) document.getElementById('totalBoxes').value = postData.boxCount;
             if (postData.totalWeight) document.getElementById('totalWeight').value = (parseFloat(postData.totalWeight) / 1000).toFixed(2);
-
             // Optionally, if you want to handle multiple boxes, parse postData.boxData (JSON) and dynamically add rows
             if (postData.boxData) {
                 try {
                     const boxes = JSON.parse(postData.boxData);
+                    // Clear existing box rows except the first one
+                    const boxesContainer = document.getElementById('boxesContainer');
+                    while (boxesContainer.children.length > 1) {
+                        boxesContainer.removeChild(boxesContainer.lastChild);
+                    }
                     // If more than one box, add rows and fill them
                     for (let i = 1; i < boxes.length; i++) {
                         document.getElementById('addBoxBtn').click();
@@ -386,4 +332,4 @@
         });
     </script>
 </body>
-</html>
+</html> 

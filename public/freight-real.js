@@ -559,19 +559,21 @@ document.addEventListener('DOMContentLoaded', function() {
         return params;
     };
     
-    // Fill form with URL parameters
+    // Fill form with URL parameters or POSTed hidden inputs
     const fillFormFromUrlParams = () => {
-        const params = parseUrlParams();
-        
+        let params = parseUrlParams();
+        // If no URL params, try to get from POSTed hidden inputs
+        if (Object.keys(params).length === 0) {
+            document.querySelectorAll('input[type="hidden"]').forEach(input => {
+                params[input.name] = input.value;
+            });
+        }
         // Fill source and destination if provided
         if (params.source) document.getElementById('sourcePincode').value = params.source;
         if (params.sourcePincode) document.getElementById('sourcePincode').value = params.sourcePincode;
         if (params.destination) document.getElementById('destinationPincode').value = params.destination;
         if (params.destinationPincode) document.getElementById('destinationPincode').value = params.destinationPincode;
-        
-        // Handle invoice amount if provided
         if (params.invoiceAmount) document.getElementById('invoiceAmount').value = params.invoiceAmount;
-        
         // First try to use dimensions and boxWeights parameters (from freight-calculator)
         if (params.dimensions && params.boxCount) {
             try {
@@ -924,7 +926,7 @@ document.addEventListener('DOMContentLoaded', function() {
         input.addEventListener('input', updateTotals);
     });
 
-    // Fill form with URL parameters
+    // Fill form with URL parameters or POSTed hidden inputs
     fillFormFromUrlParams();
 
     freightForm.addEventListener('submit', function(e) {

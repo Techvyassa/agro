@@ -142,18 +142,34 @@
             });
         });
         
-        // Redirect to freight-redirect.html with shipment details
+        // Redirect to freight-redirect.php with shipment details
         $('#redirectFreightButton').on('click', function() {
             if (shipmentData.boxes.length === 0) {
                 alert('No box details available for this sales order');
                 return;
             }
-            
-            // Encode the boxes data
-            const encodedBoxes = encodeURIComponent(JSON.stringify(shipmentData.boxes));
-            
-            // Redirect to the freight-redirect page with all the data
-            window.location.href = `/freight-redirect.html?so_no=${$('#so_no').val()}&boxes=${encodedBoxes}`;
+
+            // Create a form and submit via POST
+            const form = document.createElement('form');
+            form.method = 'POST';
+            form.action = '/freight-redirect.php';
+
+            // Add SO number
+            const soInput = document.createElement('input');
+            soInput.type = 'hidden';
+            soInput.name = 'so_no';
+            soInput.value = $('#so_no').val();
+            form.appendChild(soInput);
+
+            // Add boxes data
+            const boxesInput = document.createElement('input');
+            boxesInput.type = 'hidden';
+            boxesInput.name = 'boxes';
+            boxesInput.value = encodeURIComponent(JSON.stringify(shipmentData.boxes));
+            form.appendChild(boxesInput);
+
+            document.body.appendChild(form);
+            form.submit();
         });
     });
 </script>
