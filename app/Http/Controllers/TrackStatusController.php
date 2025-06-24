@@ -23,7 +23,7 @@ class TrackStatusController extends Controller
                 ]
             ]);
             
-            $response = $client->get('http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/courier-services', [
+            $response = $client->get('http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/courier-services', [
                 'http_errors' => false,
             ]);
             

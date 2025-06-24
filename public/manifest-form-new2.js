@@ -17,7 +17,7 @@ function loadPickupLocations() {
     
     // Construct API URL with timestamp to prevent caching
     const timestamp = new Date().getTime();
-    const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+    const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
                   loginType + '&location_type=pickup&search_term=&page=1&page_size=100&_=' + timestamp;
     
     // Create a proxy URL to avoid CORS issues
@@ -126,7 +126,7 @@ function loadDropLocations() {
     // Direct fetch to the API through our proxy to avoid CORS issues
     const timestamp = new Date().getTime();
     // Use 'b2brc' as the login_type parameter based on the working URL
-    const apiUrl = `http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2brc&location_type=drop&search_term=&page=1&page_size=100&_=${timestamp}`;
+    const apiUrl = `http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2brc&location_type=drop&search_term=&page=1&page_size=100&_=${timestamp}`;
     
     // Log request for debugging
     console.log('Fetching drop locations from:', apiUrl);
@@ -437,11 +437,11 @@ function showLocationDetails(locationType) {
             `<div class="alert alert-info">Fetching billing address...</div>`;
         
         // Construct API URL
-        const apiUrl = `http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-billing-addresses?login_type=main&facility_id=${facilityId}&freight_mode=${freightMode}`;
+        const apiUrl = `http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-billing-addresses?login_type=main&facility_id=${facilityId}&freight_mode=${freightMode}`;
         
         console.log('Fetching billing address from:', apiUrl);
         
-        // Create a proxy URL to avoid CORS issues
+        // Use the billing address proxy to handle CORS
         const proxyUrl = 'billing-address-proxy.php';
         
         // Fetch data using the proxy

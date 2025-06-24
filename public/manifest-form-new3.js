@@ -236,13 +236,12 @@
         
         // In a real implementation, we would also handle the file upload
         // For example:
-        /*
         const formData = new FormData();
         formData.append('login_type', 'b2b');
         formData.append('manifest_payload', JSON.stringify(manifestPayload));
         formData.append('file', document.getElementById('invoiceCopy').files[0]);
         
-        fetch('http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/create-manifest', {
+        fetch('http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/create-manifest', {
             method: 'POST',
             body: formData
         })
@@ -260,5 +259,4 @@
             console.error('Error creating manifest:', error);
             alert('Error creating manifest: ' + error.message);
         });
-        */
     }

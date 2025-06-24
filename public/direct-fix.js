@@ -29,7 +29,7 @@ function fixDropLocations() {
     dropSelect.innerHTML = '<option value="">Loading locations...</option>';
     
     // Create the correct URL
-    const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2brc&location_type=drop&search_term=&page=1&page_size=100';
+    const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2brc&location_type=drop&search_term=&page=1&page_size=100';
     
     // Log the URL we're using
     console.log('Fetching drop locations from:', apiUrl);
