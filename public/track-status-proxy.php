@@ -34,7 +34,7 @@ if (!isset($data['service_name']) || !isset($data['search_value'])) {
 }
 
 // Forward the request to the tracking API
-$ch = curl_init('http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/track-status');
+$ch = curl_init('http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/track-status');
 
 // Set cURL options
 curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);

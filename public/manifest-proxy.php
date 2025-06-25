@@ -17,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 // API endpoint
-$apiEndpoint = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/create-manifest';
+$apiEndpoint = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/create-manifest';
 
 // Enhanced debugging
 error_log('=========== MANIFEST PROXY REQUEST START ===========');

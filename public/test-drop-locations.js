@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
     dropSelect.innerHTML = '<option value="">Loading drop locations...</option>';
     
     // Construct API URL
-    const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&page=1&page_size=100';
+    const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=b2b&location_type=drop&page=1&page_size=100';
     
     console.log('Fetching drop locations from:', apiUrl);
     

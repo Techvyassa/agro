@@ -28,7 +28,7 @@ class UserPdfController extends Controller
 
         $file = $request->file('pdf_file');
         $fileName = $file->getClientOriginalName();
-        $apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/extract-invoice';
+        $apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/extract-invoice';
 
         try {
             $client = new \GuzzleHttp\Client(['verify' => false]);

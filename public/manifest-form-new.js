@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
-        const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+        const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
                       loginType + '&location_type=picking&search_term=&page=1&page_size=5&_=' + timestamp;
         
         // Show what URL we're using
@@ -232,7 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
-        const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+        const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
                       loginType + '&location_type=drop&search_term=&page=1&page_size=10&_=' + timestamp;
         
         // Show what URL we're using
@@ -334,5 +334,4 @@ document.addEventListener('DOMContentLoaded', function() {
             loadFallbackDropLocations();
         });
     }
- 
- 
+});

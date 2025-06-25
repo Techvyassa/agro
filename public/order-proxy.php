@@ -47,7 +47,7 @@ try {
     
     // API endpoint
     //$apiEndpoint = 'https://4906-106-222-209-31.ngrok-free.app/create-order';
-    $apiEndpoint = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/create-order';
+    $apiEndpoint = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/create-order';
     
     // Build the URL with query parameter
     $url = $apiEndpoint . '?user_id=' . urlencode($userId);

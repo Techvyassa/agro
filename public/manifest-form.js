@@ -135,7 +135,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
         const searchTerm = pickupSelect.dataset.searchTerm ? pickupSelect.dataset.searchTerm.trim() : '';
-const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
                       loginType + '&location_type=picking' + (searchTerm ? ('&search_term=' + encodeURIComponent(searchTerm)) : '') + '&page=1&page_size=100&_=' + timestamp;
         
         // Show what URL we're using
@@ -271,7 +271,7 @@ const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhiv
         // Construct API URL with timestamp to prevent caching
         const timestamp = new Date().getTime();
         const searchTerm = dropSelect.dataset.searchTerm ? dropSelect.dataset.searchTerm.trim() : '';
-const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
+const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-warehouses?login_type=' + 
                   loginType + '&location_type=drop' + (searchTerm ? ('&search_term=' + encodeURIComponent(searchTerm)) : '') + '&page=1&page_size=100&_=' + timestamp;
         
         // Show what URL we're using
@@ -561,7 +561,7 @@ const apiUrl = 'http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhiv
         addressSelect.innerHTML = '<option value="">Loading addresses...</option>';
         
         // Construct API URL
-        const apiUrl = `http://ec2-54-172-12-118.compute-1.amazonaws.com/agro-api/delhivery-billing-addresses?login_type=${loginType}&facility_id=${facilityId}&freight_mode=${freightMode}`;
+        const apiUrl = `http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-billing-addresses?login_type=${loginType}&facility_id=${facilityId}&freight_mode=${freightMode}`;
         
         console.log('Fetching billing addresses from:', apiUrl);
         
