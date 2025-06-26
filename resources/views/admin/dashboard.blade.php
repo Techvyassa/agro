@@ -167,8 +167,8 @@
                                 <td>{{ $order->item_name }}</td>
                                 <td>{{ $order->category }}</td>
                                 <td>{{ $order->qty }}</td>
-                                <td>₹{{ number_format($order->rate, 2) }}</td>
-                                <td>₹{{ number_format($order->qty * $order->rate, 2) }}</td>
+                                <td>₹{{ number_format((float)$order->rate, 2) }}</td>
+                                <td>₹{{ number_format((float)$order->qty * (float)$order->rate, 2) }}</td>
                                 <!-- <td>
                                     <a href="{{ route('admin.sales.show', $order->id) }}" class="btn btn-sm btn-primary me-1"><i class="fas fa-eye"></i></a>
                                     <a href="{{ route('admin.sales.edit', $order->id) }}" class="btn btn-sm btn-warning"><i class="fas fa-edit"></i></a>
