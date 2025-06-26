@@ -87,7 +87,7 @@
                 @endif
                 
                 @php
-                    $itemAmount = $order->qty * $order->rate;
+                    $itemAmount = (float)$order->qty * (float)$order->rate;
                     $totalAmount += $itemAmount;
                 @endphp
                 
