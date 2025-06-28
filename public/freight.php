@@ -152,6 +152,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                     <div class="text-center">
                         <button type="submit" class="btn btn-primary btn-lg">Get Freight Estimates</button>
+                        <button type="button" id="reloginBtn" class="btn btn-warning btn-lg ms-2">Relogin</button>
                     </div>
                 </form>
             </div>
@@ -331,6 +332,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Ignore if boxData is not valid
                 }
             }
+        });
+        
+        // Relogin functionality
+        document.getElementById('reloginBtn').addEventListener('click', function() {
+            // Show loading state
+            const originalText = this.innerHTML;
+            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Relogging in...';
+            this.disabled = true;
+            
+            // Make API call to relogin endpoint
+            fetch('http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-relogin', {
+                method: 'POST',
+                mode: 'cors'
+                // No headers or body data to avoid CORS preflight
+            })
+            .then(response => {
+                // Log status code and response body like in the Python example
+                console.log('Status Code:', response.status);
+                return response.text();
+            })
+            .then(responseText => {
+                console.log('Response Body:', responseText);
+            })
+            .catch(error => {
+                console.error('Error during relogin:', error);
+            })
+            .finally(() => {
+                // Reset button state
+                this.innerHTML = originalText;
+                this.disabled = false;
+            });
         });
     </script>
 </body>
