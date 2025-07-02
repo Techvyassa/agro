@@ -57,11 +57,22 @@ if (isset($requestData['headers']) && is_array($requestData['headers'])) {
     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
 }
 
-// Handle POST requests with data
-if (isset($requestData['method']) && strtoupper($requestData['method']) === 'POST' && isset($requestData['data'])) {
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($requestData['data']));
+// Handle any HTTP method
+$method = isset($requestData['method']) ? strtoupper($requestData['method']) : 'GET';
+curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
+
+// Handle POST/PUT/PATCH requests with raw body
+if (in_array($method, ['POST', 'PUT', 'PATCH']) && isset($requestData['body'])) {
+    curl_setopt($ch, CURLOPT_POSTFIELDS, $requestData['body']);
 }
+
+// Add debug logging for outgoing request
+error_log('Proxy outgoing: ' . print_r([
+    'url' => $url,
+    'method' => $method,
+    'headers' => isset($headers) ? $headers : [],
+    'body' => isset($requestData['body']) ? $requestData['body'] : null
+], true));
 
 // Execute cURL request
 $response = curl_exec($ch);
@@ -82,27 +93,8 @@ $httpCode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 // Close cURL session
 curl_close($ch);
 
-// Check if we got a valid response
-if ($httpCode >= 200 && $httpCode < 300) {
-    // Try to decode JSON response
-    $decodedResponse = json_decode($response, true);
-    
-    // If it's valid JSON, return it as is
-    if ($decodedResponse !== null) {
-        echo $response;
-    } else {
-        // If not valid JSON, wrap it in a success response
-        echo json_encode([
-            'success' => true,
-            'data' => $response
-        ]);
-    }
-} else {
-    // Handle error responses
-    echo json_encode([
-        'success' => false,
-        'message' => 'API returned error code: ' . $httpCode,
-        'data' => $response
-    ]);
-}
+// Always return the raw API response and status code
+http_response_code($httpCode);
+header('Content-Type: application/json');
+echo $response;
 ?>

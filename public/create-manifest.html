@@ -275,6 +275,9 @@
                                         <button class="btn btn-primary" type="button" id="loadDropLocationsBtn">
                                             <i class="fas fa-sync-alt"></i> Load Locations
                                         </button>
+                                        <button class="btn btn-success ms-2" type="button" id="addDropLocationBtn">
+                                            <i class="fas fa-plus"></i> Add Drop Location
+                                        </button>
                                     </div>
                                     <div id="dropStatus" class="form-text"></div>
                                     <div class="form-text text-info">API: Delhivery Warehouse Drop Locations</div>
@@ -622,6 +625,51 @@
     <input id="total-boxes" type="hidden">
     <input id="total-weight" type="hidden">
     <div id="dimensions-data" style="display:none"></div>
+
+    <div id="addDropLocationModal" class="modal" tabindex="-1">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Drop Location</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="addDropLocationForm">
+              <div class="mb-3">
+                <label class="form-label">Store Code Name</label>
+                <input type="text" class="form-control" id="dropStoreCodeName" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Company Name</label>
+                <input type="text" class="form-control" id="dropCompanyName" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">First Name</label>
+                <input type="text" class="form-control" id="dropFirstName" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Phone</label>
+                <input type="text" class="form-control" id="dropPhone" required>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Address Line 1</label>
+                <input type="text" class="form-control" id="dropAddress1" required>
+              </div>
+              <div class="mb-3">
+                <!-- <label class="form-label">Address Line 2</label> -->
+                <input type="hidden" value="" class="form-control" id="dropAddress2">
+              </div>
+              <div class="mb-3">
+                <label class="form-label">PIN Code</label>
+                <input type="text" class="form-control" id="dropPinCode" required>
+              </div>
+              <div id="addDropLocationError" class="text-danger mb-2" style="display:none;"></div>
+              <button type="submit" class="btn btn-success">Add Location</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     <script src="manifest-form.js"></script>

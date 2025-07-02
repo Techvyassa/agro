@@ -63,6 +63,74 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup billing address dropdown change event
     document.getElementById('billingAddressSelect').addEventListener('change', updateBillingFields);
     
+    // Add Drop Location Modal logic
+    const addDropLocationBtn = document.getElementById('addDropLocationBtn');
+    const addDropLocationModal = document.getElementById('addDropLocationModal');
+    const addDropLocationForm = document.getElementById('addDropLocationForm');
+    const addDropLocationError = document.getElementById('addDropLocationError');
+    let addDropLocationModalInstance = null;
+
+    if (addDropLocationBtn && addDropLocationModal) {
+        addDropLocationBtn.addEventListener('click', function() {
+            if (!addDropLocationModalInstance) {
+                addDropLocationModalInstance = new bootstrap.Modal(addDropLocationModal);
+            }
+            addDropLocationError.style.display = 'none';
+            addDropLocationForm.reset();
+            addDropLocationModalInstance.show();
+        });
+    }
+
+    if (addDropLocationForm) {
+        addDropLocationForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            addDropLocationError.style.display = 'none';
+            const storeCodeName = document.getElementById('dropStoreCodeName').value.trim();
+            const companyName = document.getElementById('dropCompanyName').value.trim();
+            const firstName = document.getElementById('dropFirstName').value.trim();
+            const phone = document.getElementById('dropPhone').value.trim();
+            const address1 = document.getElementById('dropAddress1').value.trim();
+            const address2 = document.getElementById('dropAddress2').value.trim();
+            const pinCode = document.getElementById('dropPinCode').value.trim();
+            if (!storeCodeName || !companyName || !firstName || !phone || !address1 || !pinCode) {
+                addDropLocationError.textContent = 'Please fill all required fields.';
+                addDropLocationError.style.display = 'block';
+                return;
+            }
+            const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery/add-drop-location?login_type=toolik';
+            const body = {
+                store_code_name: storeCodeName,
+                company_name: companyName,
+                address: {
+                    first_name: firstName,
+                    phone: phone,
+                    address_line1: address1,
+                    address_line2: address2,
+                    pin_code: pinCode
+                }
+            };
+            fetch('location-proxy.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ url: apiUrl, method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data && (data.success || data.status === 'success' || data.is_valid)) {
+                    if (addDropLocationModalInstance) addDropLocationModalInstance.hide();
+                    loadDropLocations(true); // reload drop locations
+                } else {
+                    addDropLocationError.textContent = (data && (data.message || data.detail)) ? (data.message || data.detail) : 'Failed to add drop location.';
+                    addDropLocationError.style.display = 'block';
+                }
+            })
+            .catch(err => {
+                addDropLocationError.textContent = 'Error: ' + err.message;
+                addDropLocationError.style.display = 'block';
+            });
+        });
+    }
+    
     // Function to set up all event listeners
     function setupEventListeners() {
         // Pickup and drop location change events
