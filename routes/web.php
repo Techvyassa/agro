@@ -24,6 +24,7 @@ use App\Http\Controllers\Superadmin\UserController;
 use App\Http\Controllers\Superadmin\ProfileController;
 use App\Http\Controllers\Superadmin\ItemMasterController as SuperadminItemMasterController;
 use App\Http\Controllers\LocationDashboardController;
+use App\Http\Controllers\Api\AsnUpdateController;
 
 // Home route
 Route::get('/', function () {
@@ -230,3 +231,10 @@ Route::prefix('superadmin')->name('superadmin.')->group(function() {
     Route::delete('users/{user}', [\App\Http\Controllers\Superadmin\UserController::class, 'destroy'])->name('users.destroy');
     Route::resource('item-masters', SuperadminItemMasterController::class);
 });
+
+// Route to call the public/update_asn.php script directly
+Route::post('/api/update-asn', function () {
+    include public_path('update_asn.php');
+});
+
+Route::post('/update-asn', [AsnUpdateController::class, 'update']);
