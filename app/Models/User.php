@@ -46,4 +46,9 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function location()
+    {
+        return $this->belongsTo(\App\Models\Location::class);
+    }
 }

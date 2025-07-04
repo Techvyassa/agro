@@ -16,6 +16,14 @@ use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Api\ItemMasterController as ApiItemMasterController;
 use App\Http\Controllers\Api\SalesOrderController as ApiSalesOrderController;
 use App\Http\Controllers\Api\AuthController as ApiAuthController;
+use App\Http\Controllers\UserPdfController;
+use App\Http\Controllers\Superadmin\AuthController;
+use App\Http\Controllers\Superadmin\DashboardController as SuperadminDashboardController;
+use App\Http\Controllers\Superadmin\LocationController;
+use App\Http\Controllers\Superadmin\UserController;
+use App\Http\Controllers\Superadmin\ProfileController;
+use App\Http\Controllers\Superadmin\ItemMasterController as SuperadminItemMasterController;
+use App\Http\Controllers\LocationDashboardController;
 
 // Home route
 Route::get('/', function () {
@@ -36,6 +44,10 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // User Dashboard Route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Location User Dashboard Route
+Route::get('/location-dashboard', [\App\Http\Controllers\LocationDashboardController::class, 'index'])->name('location.dashboard');
+// Location User ASN Upload Route
+Route::get('/location-user/asn-upload', [\App\Http\Controllers\LocationDashboardController::class, 'asnUpload'])->name('location.asn.upload');
 
 // Product Routes
 Route::resource('products', ProductController::class);
@@ -175,9 +187,6 @@ Route::options('/freight-proxy', function () {
 })->withoutMiddleware(['\App\Http\Middleware\VerifyCsrfToken']);
 
 // Track Status Routes
-
-use App\Http\Controllers\UserPdfController;
-
 Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('pdfs', [UserPdfController::class, 'index'])->name('pdfs.index');
     Route::post('pdfs', [UserPdfController::class, 'store'])->name('pdfs.store');
@@ -194,3 +203,24 @@ Route::options('/track-status-proxy', function () {
         'Access-Control-Max-Age' => '86400',
     ]);
 })->withoutMiddleware(['\App\Http\Middleware\VerifyCsrfToken']);
+
+// Superadmin Auth and Dashboard routes
+Route::get('/superadmin/create-credential', [AuthController::class, 'showCreateForm'])->name('superadmin.create-credential');
+Route::post('/superadmin/create-credential', [AuthController::class, 'createCredential']);
+Route::get('/superadmin/login', [AuthController::class, 'showLoginForm'])->name('superadmin.login');
+Route::post('/superadmin/login', [AuthController::class, 'login']);
+Route::get('/superadmin/dashboard', [SuperadminDashboardController::class, 'index'])->name('superadmin.dashboard');
+
+// Superadmin Location Routes
+Route::prefix('superadmin')->name('superadmin.')->group(function() {
+    Route::resource('locations', LocationController::class);
+    Route::get('profile/edit', [\App\Http\Controllers\Superadmin\ProfileController::class, 'edit'])->name('profile.edit');
+    Route::put('profile/update', [\App\Http\Controllers\Superadmin\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('users', [\App\Http\Controllers\Superadmin\UserController::class, 'index'])->name('users.index');
+    Route::get('users/create', [\App\Http\Controllers\Superadmin\UserController::class, 'create'])->name('users.create');
+    Route::post('users', [\App\Http\Controllers\Superadmin\UserController::class, 'store'])->name('users.store');
+    Route::get('users/{user}/edit', [\App\Http\Controllers\Superadmin\UserController::class, 'edit'])->name('users.edit');
+    Route::put('users/{user}', [\App\Http\Controllers\Superadmin\UserController::class, 'update'])->name('users.update');
+    Route::delete('users/{user}', [\App\Http\Controllers\Superadmin\UserController::class, 'destroy'])->name('users.destroy');
+    Route::resource('item-masters', SuperadminItemMasterController::class);
+});

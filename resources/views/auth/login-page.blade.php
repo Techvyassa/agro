@@ -237,6 +237,7 @@
                 <div class="login-tabs">
                     <div id="user-tab" class="login-tab active" onclick="switchTab('user')">User Login</div>
                     <div id="admin-tab" class="login-tab" onclick="switchTab('admin')">Admin Login</div>
+                    <div id="superadmin-tab" class="login-tab" onclick="switchTab('superadmin')">Superadmin Login</div>
                 </div>
                 
                 <div class="login-form-container">
@@ -323,6 +324,42 @@
                             <p class="mb-0">Admin registration is restricted. Contact the system administrator for access.</p>
                         </div>
                     </form>
+
+                    <!-- Superadmin Login Form -->
+                    <form id="superadmin-form" action="{{ route('superadmin.login') }}" method="POST" class="login-form" style="display: none;">
+                        @csrf
+                        <h4 class="mb-4">Superadmin Access</h4>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+                        <div class="mb-3">
+                            <label for="superadmin-email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="superadmin-email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="superadmin-password" class="form-label">Password</label>
+                            <input type="password" class="form-control" id="superadmin-password" name="password" required>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="superadmin-remember" name="remember">
+                                <label class="form-check-label" for="superadmin-remember">
+                                    Remember me
+                                </label>
+                            </div>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Superadmin Sign In</button>
+                        <div class="mt-3 text-center">
+                            <a href="{{ route('superadmin.create-credential') }}" class="text-primary">Create Credential</a>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -333,11 +370,13 @@
             // Update tabs
             document.getElementById('user-tab').classList.remove('active');
             document.getElementById('admin-tab').classList.remove('active');
+            document.getElementById('superadmin-tab').classList.remove('active');
             document.getElementById(tab + '-tab').classList.add('active');
             
             // Update forms
             document.getElementById('user-form').style.display = 'none';
             document.getElementById('admin-form').style.display = 'none';
+            document.getElementById('superadmin-form').style.display = 'none';
             document.getElementById(tab + '-form').style.display = 'block';
         }
     </script>

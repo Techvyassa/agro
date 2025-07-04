@@ -5,6 +5,9 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use App\Models\LocationUser;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -22,7 +25,20 @@ class LoginController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+            // Check if user exists in location_users table
+            $locationUser = DB::table('location_users')->where('email', $request->email)->first();
+            if ($locationUser) {
+                return redirect()->intended('/location-dashboard');
+            }
             return redirect()->intended('/dashboard');
+        }
+
+        // Try location_users table if not found in users
+        $locationUser = LocationUser::where('email', $request->email)->first();
+        if ($locationUser && Hash::check($request->password, $locationUser->password)) {
+            Auth::login($locationUser);
+            $request->session()->regenerate();
+            return redirect()->intended('/location-dashboard');
         }
 
         return back()->withErrors([

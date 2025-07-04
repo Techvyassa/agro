@@ -1,29 +1,12 @@
-@extends('layouts.admin')
+@extends('layouts.superadmin')
 
-@section('title', 'Create User')
+@section('title', 'Edit User')
 
 @section('content')
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row mb-2">
-            <div class="col-sm-6">
-                <h1 class="m-0">Create User</h1>
-            </div>
-            <div class="col-sm-6">
-                <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                    <li class="breadcrumb-item"><a href="{{ route('admin.users.index') }}">Users</a></li>
-                    <li class="breadcrumb-item active">Create</li>
-                </ol>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="container-fluid">
     <div class="card">
         <div class="card-header">
-            <h5 class="m-0">User Information</h5>
+            <h5 class="m-0">Edit User</h5>
         </div>
         <div class="card-body">
             @if ($errors->any())
@@ -35,14 +18,14 @@
                     </ul>
                 </div>
             @endif
-
-            <form action="{{ route('admin.users.store') }}" method="POST">
+            <form action="{{ route('superadmin.users.update', $user->id) }}" method="POST">
                 @csrf
+                @method('PUT')
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" required>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name', $user->name) }}" required>
                             @error('name')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -51,14 +34,13 @@
                     <div class="col-md-6">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email', $user->email) }}" required>
                             @error('email')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
@@ -66,7 +48,7 @@
                             <select class="form-control @error('location_id') is-invalid @enderror" id="location_id" name="location_id" required>
                                 <option value="">Select Location</option>
                                 @foreach($locations as $location)
-                                    <option value="{{ $location->id }}" {{ old('location_id') == $location->id ? 'selected' : '' }}>{{ $location->name }} ({{ $location->code }})</option>
+                                    <option value="{{ $location->id }}" {{ old('location_id', $user->location_id) == $location->id ? 'selected' : '' }}>{{ $location->name }} ({{ $location->code }})</option>
                                 @endforeach
                             </select>
                             @error('location_id')
@@ -76,32 +58,31 @@
                     </div>
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="password" class="form-label">Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" required>
+                            <label for="password" class="form-label">Password</label>
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password">
+                            <small class="form-text text-muted">Leave blank to keep current password.</small>
                             @error('password')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
                 </div>
-
                 <div class="row">
                     <div class="col-md-6">
                         <div class="mb-3">
-                            <label for="password_confirmation" class="form-label">Confirm Password <span class="text-danger">*</span></label>
-                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required>
+                            <label for="password_confirmation" class="form-label">Confirm Password</label>
+                            <input type="password" class="form-control" id="password_confirmation" name="password_confirmation">
                         </div>
                     </div>
                 </div>
-
                 <div class="d-flex justify-content-end mt-3">
-                    <a href="{{ route('admin.users.index') }}" class="btn btn-secondary me-2">Cancel</a>
+                    <a href="{{ route('superadmin.users.index') }}" class="btn btn-secondary me-2">Cancel</a>
                     <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save me-1"></i> Create User
+                        <i class="fas fa-save me-1"></i> Update User
                     </button>
                 </div>
             </form>
         </div>
     </div>
 </div>
-@endsection
+@endsection 

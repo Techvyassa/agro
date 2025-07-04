@@ -142,11 +142,11 @@
                                 <i class="fas fa-boxes"></i> Item Master 
                             </a>
                         </li>
-                        <li class="nav-item">
+                        {{-- <li class="nav-item">
                             <a class="nav-link {{ request()->is('admin/users*') ? 'active' : '' }}" href="{{ route('admin.users.index') }}">
                                 <i class="fas fa-users"></i> User Creation
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                     
                     <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1">
