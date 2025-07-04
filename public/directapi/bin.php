@@ -19,32 +19,40 @@ if ($conn->connect_error) {
 // Set headers for JSON output
 header("Content-Type: application/json");
 
-// Query to fetch all records from bin_location table
-$query = "SELECT id, bin_name, sequence FROM bin_location";
+// Check if bin_name is provided in the GET request
+if (isset($_GET['bin_name'])) {
+    $bin_name = $conn->real_escape_string($_GET['bin_name']);  // Sanitize the input
 
-// Execute the query
-$result = $conn->query($query);
+    // Query to fetch sequence for the given bin_name
+    $query = "SELECT sequence FROM bin_location WHERE bin_name = '$bin_name'";
 
-// Check if any records are found
-if ($result->num_rows > 0) {
-    // Create an array to store the results
-    $binLocations = [];
-    
-    // Fetch all records into the array
-    while ($row = $result->fetch_assoc()) {
-        $binLocations[] = $row;
+    // Execute the query
+    $result = $conn->query($query);
+
+    // Check if any record is found for the provided bin_name
+    if ($result->num_rows > 0) {
+        // Fetch the result
+        $row = $result->fetch_assoc();
+        $sequence = $row['sequence'];
+
+        // Return the sequence as a JSON response
+        echo json_encode([
+            "success" => true,
+            "bin_name" => $bin_name,
+            "sequence" => $sequence
+        ]);
+    } else {
+        // If no record found for the provided bin_name
+        echo json_encode([
+            "success" => false,
+            "message" => "Bin name not found."
+        ]);
     }
-
-    // Return the records as a JSON response
-    echo json_encode([
-        "success" => true,
-        "data" => $binLocations
-    ]);
 } else {
-    // If no records found, return an error message
+    // If bin_name is not provided
     echo json_encode([
         "success" => false,
-        "message" => "No bin locations found."
+        "message" => "Missing bin_name parameter."
     ]);
 }
 
