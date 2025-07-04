@@ -122,6 +122,9 @@ Route::prefix('api')->middleware('api')->withoutMiddleware(['web', '\App\Http\Mi
 
     // Picking Routes
     Route::post('/pickings', [\App\Http\Controllers\Api\PickingController::class, 'store']);
+
+    // ASN Uploads API Route
+    Route::get('/asn-uploads', [\App\Http\Controllers\Api\AsnUploadController::class, 'index']);
 });
 
 // Freight Estimation Page

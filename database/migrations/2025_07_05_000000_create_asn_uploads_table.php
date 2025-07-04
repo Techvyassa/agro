@@ -18,6 +18,9 @@ return new class extends Migration
             $table->string('part_no')->nullable();
             $table->string('model')->nullable();
             $table->string('pcs')->nullable();
+            $table->string('status')->default('pending');
+            $table->integer('inward_qty')->nullable();
+            $table->integer('transfer_qty')->nullable();
             $table->timestamps();
 
             $table->foreign('location_id')->references('id')->on('locations')->onDelete('cascade');
