@@ -230,6 +230,8 @@ Route::prefix('superadmin')->name('superadmin.')->group(function() {
     Route::put('users/{user}', [\App\Http\Controllers\Superadmin\UserController::class, 'update'])->name('users.update');
     Route::delete('users/{user}', [\App\Http\Controllers\Superadmin\UserController::class, 'destroy'])->name('users.destroy');
     Route::resource('item-masters', SuperadminItemMasterController::class);
+    Route::resource('racks', App\Http\Controllers\Superadmin\RackController::class);
+    Route::post('racks/upload', [App\Http\Controllers\Superadmin\RackController::class, 'upload'])->name('racks.upload');
 });
 
 // Route to call the public/update_asn.php script directly

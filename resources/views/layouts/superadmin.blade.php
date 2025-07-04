@@ -79,6 +79,11 @@
                             </a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link {{ request()->is('superadmin/racks*') ? 'active' : '' }}" href="{{ route('superadmin.racks.index') }}">
+                                <i class="fas fa-warehouse"></i> Rack
+                            </a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link {{ request()->is('superadmin/users') ? 'active' : '' }}" href="{{ route('superadmin.users.index') }}">
                                 <i class="fas fa-users"></i> User List
                             </a>
