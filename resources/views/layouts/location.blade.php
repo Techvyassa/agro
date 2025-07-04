@@ -74,6 +74,11 @@
                             <i class="fas fa-file-pdf"></i> Upload ASN
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ request()->is('location-user/asn-list') ? 'active' : '' }}" href="{{ route('location.asn.list') }}">
+                            <i class="fas fa-file-pdf"></i> ASN Uploads List
+                        </a>
+                    </li>
                 </ul>
             </div>
         </div>

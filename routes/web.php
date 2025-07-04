@@ -48,6 +48,9 @@ Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard
 Route::get('/location-dashboard', [\App\Http\Controllers\LocationDashboardController::class, 'index'])->name('location.dashboard');
 // Location User ASN Upload Route
 Route::get('/location-user/asn-upload', [\App\Http\Controllers\LocationDashboardController::class, 'asnUpload'])->name('location.asn.upload');
+Route::post('/location-user/asn-upload', [\App\Http\Controllers\LocationDashboardController::class, 'asnUploadPost'])->name('location.asn.upload.post');
+// Location User ASN List Route
+Route::get('/location-user/asn-list', [\App\Http\Controllers\LocationDashboardController::class, 'asnUploadList'])->name('location.asn.list');
 
 // Product Routes
 Route::resource('products', ProductController::class);

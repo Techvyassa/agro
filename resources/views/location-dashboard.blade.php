@@ -12,4 +12,11 @@
         </div>
     </div>
 </div>
+<div class="card mt-4">
+    <div class="card-body">
+        <h5 class="card-title"><i class="fas fa-file-pdf"></i> ASN Uploads List</h5>
+        <p class="card-text">View all your uploaded ASN records.</p>
+        <a href="{{ route('location.asn.list') }}" class="btn btn-primary">View ASN Uploads</a>
+    </div>
+</div>
 @endsection 

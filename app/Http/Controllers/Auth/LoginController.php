@@ -28,6 +28,8 @@ class LoginController extends Controller
             // Check if user exists in location_users table
             $locationUser = DB::table('location_users')->where('email', $request->email)->first();
             if ($locationUser) {
+                // Store location_id in session
+                $request->session()->put('location_id', $locationUser->location_id);
                 return redirect()->intended('/location-dashboard');
             }
             return redirect()->intended('/dashboard');
@@ -38,6 +40,8 @@ class LoginController extends Controller
         if ($locationUser && Hash::check($request->password, $locationUser->password)) {
             Auth::login($locationUser);
             $request->session()->regenerate();
+            // Store location_id in session
+            $request->session()->put('location_id', $locationUser->location_id);
             return redirect()->intended('/location-dashboard');
         }
 
