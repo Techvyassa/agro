@@ -44,6 +44,22 @@ class AuthController extends Controller
             ], 200);
         }
 
+        // Check location_users table if not found in users
+        $locationUser = \App\Models\LocationUser::where('email', $request->email)->first();
+        if ($locationUser && \Illuminate\Support\Facades\Hash::check($request->password, $locationUser->password)) {
+            // Optionally, you can generate a token for location users if needed
+            // $token = $locationUser->createToken('authToken')->plainTextToken;
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Login successful (location user)',
+                'data' => [
+                    'location_id' => $locationUser->location_id,
+                    'name' => $locationUser->name,
+                    // 'token' => $token // Uncomment if you want to provide a token
+                ]
+            ], 200);
+        }
+
         return response()->json([
             'status' => 'error',
             'message' => 'Invalid credentials'
