@@ -7,6 +7,7 @@ $password = "RoyalK1234";
 
 // Create a connection
 $conn = new mysqli($host, $username, $password, $dbname);
+error_reporting(E_ALL & ~E_WARNING);
 
 // Check the connection
 if ($conn->connect_error) {
@@ -34,7 +35,7 @@ if (
     $per_page_all = isset($_GET['per_page']) && $_GET['per_page'] === 'all';
     $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
     $per_page = ($per_page_all) ? null : (isset($_GET['per_page']) ? max(1, intval($_GET['per_page'])) : 50);
-    $offset = ($page - 1) * ($per_page ? $per_page : 1);
+    $offset = ($page - 1) * ($er_page ? $per_page : 1);
 
     // Query to count total matching records
     $count_query = "SELECT COUNT(*) as total FROM asn_uploads WHERE location_id = $location_id AND TRIM(invoice_number) = TRIM('$invoice_number') AND status = '$status'";
