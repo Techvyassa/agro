@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,26 +11,99 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { min-height: 100vh; overflow-x: hidden; }
-        .sidebar { min-height: calc(100vh - 56px); box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); z-index: 100; background-color: #2b256c; }
-        .sidebar .nav-link { color: rgba(255,255,255,.75); padding: 0.75rem 1rem; font-weight: 500; }
-        .sidebar .nav-link i { margin-right: 0.5rem; width: 20px; text-align: center; }
-        .sidebar .nav-link.active { color: #fff; background-color: rgba(255,255,255,.1); }
-        .sidebar .nav-link:hover { color: #fff; background-color: rgba(255,255,255,.05); }
-        main { padding: 1.5rem; }
-        .content-header { margin-bottom: 1.5rem; }
-        .card { border-radius: 0.5rem; box-shadow: 0 0.125rem 0.25rem rgba(0,0,0,0.075); margin-bottom: 1.5rem; }
-        .card-header { border-radius: 0.5rem 0.5rem 0 0 !important; background-color: #fff; border-bottom: 1px solid rgba(0,0,0,0.125); padding: 1rem; }
-        .dashboard-icon { font-size: 2rem; color: #212529; }
-        .table-hover tbody tr:hover { background-color: rgba(0,0,0,0.05); }
-        .btn-primary { background-color: #2b256c; border-color: #2b256c; }
-        .btn-primary:hover { background-color: #211d53; border-color: #211d53; }
-        .bg-primary { background-color: #2b256c !important; }
-        .text-primary { color: #2b256c !important; }
-        .badge-dark { background-color: #2b256c; color: #fff; }
-        .sidebar-heading { color: rgba(255,255,255,.5); }
+        body {
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            min-height: calc(100vh - 56px);
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            z-index: 100;
+            background-color: #2b256c;
+        }
+
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, .75);
+            padding: 0.75rem 1rem;
+            font-weight: 500;
+        }
+
+        .sidebar .nav-link i {
+            margin-right: 0.5rem;
+            width: 20px;
+            text-align: center;
+        }
+
+        .sidebar .nav-link.active {
+            color: #fff;
+            background-color: rgba(255, 255, 255, .1);
+        }
+
+        .sidebar .nav-link:hover {
+            color: #fff;
+            background-color: rgba(255, 255, 255, .05);
+        }
+
+        main {
+            padding: 1.5rem;
+        }
+
+        .content-header {
+            margin-bottom: 1.5rem;
+        }
+
+        .card {
+            border-radius: 0.5rem;
+            box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+            margin-bottom: 1.5rem;
+        }
+
+        .card-header {
+            border-radius: 0.5rem 0.5rem 0 0 !important;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+            padding: 1rem;
+        }
+
+        .dashboard-icon {
+            font-size: 2rem;
+            color: #212529;
+        }
+
+        .table-hover tbody tr:hover {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .btn-primary {
+            background-color: #2b256c;
+            border-color: #2b256c;
+        }
+
+        .btn-primary:hover {
+            background-color: #211d53;
+            border-color: #211d53;
+        }
+
+        .bg-primary {
+            background-color: #2b256c !important;
+        }
+
+        .text-primary {
+            color: #2b256c !important;
+        }
+
+        .badge-dark {
+            background-color: #2b256c;
+            color: #fff;
+        }
+
+        .sidebar-heading {
+            color: rgba(255, 255, 255, .5);
+        }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-0">
         <div class="container-fluid">
@@ -40,15 +114,19 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
                             <i class="fas fa-user-shield"></i> Superadmin
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
-                                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i> Logout</button>
+                                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i>
+                                        Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -64,37 +142,66 @@
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('superadmin/dashboard') ? 'active' : '' }}" href="{{ route('superadmin.dashboard') }}">
+                            <a class="nav-link {{ request()->is('superadmin/dashboard') ? 'active' : '' }}"
+                                href="{{ route('superadmin.dashboard') }}">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('superadmin/locations*') ? 'active' : '' }}" href="{{ route('superadmin.locations.index') }}">
+                            <a class="nav-link {{ request()->is('superadmin/locations*') ? 'active' : '' }}"
+                                href="{{ route('superadmin.locations.index') }}">
                                 <i class="fas fa-map-marker-alt"></i> Location Master
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('superadmin/item-masters*') ? 'active' : '' }}" href="{{ route('superadmin.item-masters.index') }}">
+                            <a class="nav-link {{ request()->is('superadmin/item-masters*') ? 'active' : '' }}"
+                                href="{{ route('superadmin.item-masters.index') }}">
                                 <i class="fas fa-boxes"></i> Item Master
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('superadmin/racks*') ? 'active' : '' }}" href="{{ route('superadmin.racks.index') }}">
+                            <a class="nav-link {{ request()->is('superadmin/racks*') ? 'active' : '' }}"
+                                href="{{ route('superadmin.racks.index') }}">
                                 <i class="fas fa-warehouse"></i> Rack
                             </a>
                         </li>
+                        {{--after RACK --}}
+                        @php
+                            $isChildActive = request()->routeIs('superadmin.reports.index');
+                        @endphp
+
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('superadmin/users') ? 'active' : '' }}" href="{{ route('superadmin.users.index') }}">
-                                <i class="fas fa-users"></i> User List
+                            {{-- Parent link (no active class even if child is active) --}}
+                            <a class="nav-link d-flex justify-content-between align-items-center"
+                                data-bs-toggle="collapse" href="#reportsSubmenu" role="button"
+                                aria-expanded="{{ $isChildActive ? 'true' : 'false' }}" aria-controls="reportsSubmenu">
+                                <span><i class="fas fa-chart-line me-2"></i> Reports</span>
+                                <i class="fas fa-chevron-down small"></i>
                             </a>
+
+                            {{-- Submenu --}}
+                            <div class="collapse {{ $isChildActive ? 'show' : '' }}" id="reportsSubmenu">
+                                <ul class="list-unstyled ps-4 small">
+                                    <li>
+                                        <a href="{{ route('superadmin.reports.index') }}"
+                                            class="nav-link small text-nowrap {{ $isChildActive ? 'active' : '' }}">
+                                            <i class="fas fa-map-marker-alt me-2"></i> Report by Location
+                                        </a>
+                                    </li>
+                                    {{-- Add more child items here --}}
+                                </ul>
+                            </div>
                         </li>
+
+
                         <!-- <li class="nav-item">
                             <a class="nav-link {{ request()->is('location-user/asn-list') ? 'active' : '' }}" href="{{ route('location.asn.list') }}">
                                 <i class="fas fa-file-pdf"></i> ASN Uploads List
                             </a>
                         </li> -->
                         {{-- <li class="nav-item">
-                            <a class="nav-link {{ request()->is('superadmin/users/create') ? 'active' : '' }}" href="{{ route('superadmin.users.create') }}">
+                            <a class="nav-link {{ request()->is('superadmin/users/create') ? 'active' : '' }}"
+                                href="{{ route('superadmin.users.create') }}">
                                 <i class="fas fa-user-plus"></i> User Creation
                             </a>
                         </li> --}}
@@ -135,7 +242,8 @@
                             </div>
                             <div class="col-sm-6">
                                 <ol class="breadcrumb float-sm-end">
-                                    <li class="breadcrumb-item"><a href="{{ route('superadmin.dashboard') }}">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="{{ route('superadmin.dashboard') }}">Home</a>
+                                    </li>
                                     @yield('breadcrumb')
                                 </ol>
                             </div>
@@ -149,6 +257,13 @@
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Popper.js (required for dropdowns) -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.6.2/js/bootstrap.min.js"></script>
     @yield('scripts')
 </body>
-</html> 
+
+</html>

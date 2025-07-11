@@ -232,7 +232,13 @@ Route::prefix('superadmin')->name('superadmin.')->group(function() {
     Route::resource('item-masters', SuperadminItemMasterController::class);
     Route::resource('racks', App\Http\Controllers\Superadmin\RackController::class);
     Route::post('racks/upload', [App\Http\Controllers\Superadmin\RackController::class, 'upload'])->name('racks.upload');
+     // report generation
+    Route::get('reports', [App\Http\Controllers\Superadmin\ReportController::class, 'index'])->name('reports.index');
+
+    Route::get('reports/export', [App\Http\Controllers\Superadmin\ReportController::class, 'export'])->name('reports.export');
 });
+
+
 
 // Route to call the public/update_asn.php script directly
 Route::post('/api/update-asn', function () {
