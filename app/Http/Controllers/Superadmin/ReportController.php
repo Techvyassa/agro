@@ -23,14 +23,14 @@ class ReportController extends Controller
 
         // 2. Build the main query with optional location filter
         $query = DB::table('transfer')
-            ->leftJoin('asn_uploads', 'transfers.part_no', '=', 'asn_uploads.part_no')
+            ->leftJoin('asn_uploads', 'transfer.part_no', '=', 'asn_uploads.part_no')
             ->select(
-                'transfers.*',
+                'transfer.*',
                 'asn_uploads.description as asn_description' // alias for clarity
             );
 
         if ($request->filled('locationcode')) {
-            $query->where('transfers.location_id', $request->input('locationcode'));
+            $query->where('transfer.location_id', $request->input('locationcode'));
         }
 
         // 3. Execute and map created_at formatting
@@ -49,19 +49,19 @@ class ReportController extends Controller
     {
         // Build the query with optional location filter and join with asn_uploads
         $query = DB::table('transfer')
-            ->leftJoin('asn_uploads', 'transfers.part_no', '=', 'asn_uploads.part_no')
+            ->leftJoin('asn_uploads', 'transfer.part_no', '=', 'asn_uploads.part_no')
             ->select(
-                'transfers.*',
+                'transfer.*',
                 'asn_uploads.description as asn_description'
             );
 
         if ($request->filled('locationcode')) {
-            $query->where('transfers.location_id', $request->input('locationcode'));
+            $query->where('transfer.location_id', $request->input('locationcode'));
         }
 
         $transfers = $query->get();
 
-        $filename = 'transfers_export_' . now()->format('Ymd_His') . '.csv';
+        $filename = 'transfer_export_' . now()->format('Ymd_His') . '.csv';
 
         $headers = [
             'Content-Type' => 'text/csv',
