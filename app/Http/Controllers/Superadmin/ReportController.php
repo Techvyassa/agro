@@ -15,14 +15,14 @@ class ReportController extends Controller
     public function index(Request $request)
     {
         // 1. Get distinct location IDs from transfers table
-        $locations = DB::table('transfers')
+        $locations = DB::table('transfer')
             ->select('location_id')
             ->whereNotNull('location_id')
             ->distinct()
             ->pluck('location_id');
 
         // 2. Build the main query with optional location filter
-        $query = DB::table('transfers')
+        $query = DB::table('transfer')
             ->leftJoin('asn_uploads', 'transfers.part_no', '=', 'asn_uploads.part_no')
             ->select(
                 'transfers.*',
@@ -48,7 +48,7 @@ class ReportController extends Controller
     public function export(Request $request)
     {
         // Build the query with optional location filter and join with asn_uploads
-        $query = DB::table('transfers')
+        $query = DB::table('transfer')
             ->leftJoin('asn_uploads', 'transfers.part_no', '=', 'asn_uploads.part_no')
             ->select(
                 'transfers.*',
