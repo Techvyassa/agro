@@ -77,6 +77,13 @@
             boxes: []
         };
         
+        // Initialize Select2 for SO Number dropdown
+        $('#so_no').select2({
+            placeholder: '-- Select SO Number --',
+            allowClear: true,
+            width: '100%'
+        });
+
         // When SO number changes
         $('#so_no').on('change', function() {
             const soNo = $(this).val();
