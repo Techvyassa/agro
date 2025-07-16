@@ -1799,17 +1799,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function formatExtraDetails(extra) {
         try {
             if (extra.price_breakup) {
-                return formatPriceBreakup(extra);
+                const breakdown = formatPriceBreakup(extra);
+                if (breakdown) return breakdown;
             }
-            // If Delhivery-style fields exist at the top level, format them as price_breakup
             if (typeof extra.base_freight_charge !== "undefined") {
-                return formatPriceBreakup({ ...extra, price_breakup: extra });
+                const breakdown = formatPriceBreakup({ ...extra, price_breakup: extra });
+                if (breakdown) return breakdown;
             }
-            // If DTDC or other carriers, fallback to generic
             if (Object.keys(extra).length > 0) {
-                return formatGenericExtra(extra);
+                const generic = formatGenericExtra(extra);
+                if (generic) return generic;
             }
-            // As a last resort, show the raw JSON
+            // Fallback: show the raw JSON if nothing else is shown
             return JSON.stringify(extra, null, 2);
         } catch (error) {
             return JSON.stringify(extra, null, 2);
@@ -1817,57 +1818,37 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function formatPriceBreakup(extra) {
-        // Format for Delhivery-style response
+        // Accepts either {price_breakup: {...}} or just {...}
+        let pb = extra.price_breakup || extra;
         let result = '';
-        
-        if (extra.min_charged_wt) {
-            result += `Minimum Charged Weight: ${extra.min_charged_wt} kg\n`;
+
+        if (pb.min_charged_wt) {
+            result += `Minimum Charged Weight: ${pb.min_charged_wt} kg\n`;
         }
-        
-        if (extra.price_breakup) {
-            result += 'Price Breakup:\n';
-            const pb = extra.price_breakup;
-            
-            // Base charges
-            if (pb.base_freight_charge) result += `  Base Freight: ₹${pb.base_freight_charge}\n`;
-            if (pb.fuel_surcharge) result += `  Fuel Surcharge: ₹${pb.fuel_surcharge}\n`;
-            if (pb.fuel_hike) result += `  Fuel Hike: ₹${pb.fuel_hike}\n`;
-            if (pb.insurance_rov) result += `  Insurance (ROV): ₹${pb.insurance_rov}\n`;
-            
-            // Additional charges
-            if (pb.fm) result += `  FM: ₹${pb.fm}\n`;
-            if (pb.lm) result += `  LM: ₹${pb.lm}\n`;
-            if (pb.green) result += `  Green Tax: ₹${pb.green}\n`;
-            
-            // ODA charges
-            if (pb.oda && (pb.oda.fm || pb.oda.lm)) {
-                result += `  ODA: FM ₹${pb.oda.fm || 0}, LM ₹${pb.oda.lm || 0}\n`;
-            }
-            
-            // Total pre-tax
-            if (pb.pre_tax_freight_charges) result += `  Pre-tax Charges: ₹${pb.pre_tax_freight_charges}\n`;
-            
-            // GST
-            if (pb.gst) result += `  GST (${pb.gst_percent}%): ₹${pb.gst}\n`;
-            
-            // Markup
-            if (pb.markup) result += `  Markup: ₹${pb.markup}\n`;
-            
-            // Handling charges
-            if (pb.other_handling_charges) result += `  Handling Charges: ₹${pb.other_handling_charges}\n`;
-            
-            // Meta charges
-            if (pb.meta_charges && Object.keys(pb.meta_charges).length > 0) {
-                result += '  Meta Charges:\n';
-                for (const [key, value] of Object.entries(pb.meta_charges)) {
-                    if (value > 0) {
-                        result += `    ${formatMetaChargeKey(key)}: ₹${value}\n`;
-                    }
+        result += 'Price Breakup:\n';
+        if (pb.base_freight_charge !== undefined) result += `  Base Freight: ₹${pb.base_freight_charge}\n`;
+        if (pb.fuel_surcharge !== undefined) result += `  Fuel Surcharge: ₹${pb.fuel_surcharge}\n`;
+        if (pb.fuel_hike !== undefined) result += `  Fuel Hike: ₹${pb.fuel_hike}\n`;
+        if (pb.insurance_rov !== undefined) result += `  Insurance (ROV): ₹${pb.insurance_rov}\n`;
+        if (pb.fm !== undefined) result += `  FM: ₹${pb.fm}\n`;
+        if (pb.lm !== undefined) result += `  LM: ₹${pb.lm}\n`;
+        if (pb.green !== undefined) result += `  Green Tax: ₹${pb.green}\n`;
+        if (pb.oda && (pb.oda.fm || pb.oda.lm)) {
+            result += `  ODA: FM ₹${pb.oda.fm || 0}, LM ₹${pb.oda.lm || 0}\n`;
+        }
+        if (pb.pre_tax_freight_charges !== undefined) result += `  Pre-tax Charges: ₹${pb.pre_tax_freight_charges}\n`;
+        if (pb.gst !== undefined) result += `  GST (${pb.gst_percent || ''}%): ₹${pb.gst}\n`;
+        if (pb.markup !== undefined) result += `  Markup: ₹${pb.markup}\n`;
+        if (pb.other_handling_charges !== undefined) result += `  Handling Charges: ₹${pb.other_handling_charges}\n`;
+        if (pb.meta_charges && Object.keys(pb.meta_charges).length > 0) {
+            result += '  Meta Charges:\n';
+            for (const [key, value] of Object.entries(pb.meta_charges)) {
+                if (value > 0) {
+                    result += `    ${formatMetaChargeKey(key)}: ₹${value}\n`;
                 }
             }
         }
-        
-        return result;
+        return result.trim();
     }
 
     function formatGenericExtra(extra) {
