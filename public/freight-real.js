@@ -1801,11 +1801,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (extra.price_breakup) {
                 return formatPriceBreakup(extra);
             }
+            // If Delhivery-style fields exist at the top level, format them as price_breakup
             if (typeof extra.base_freight_charge !== "undefined") {
-                // For debugging: show the full JSON of extra
-                return JSON.stringify(extra, null, 2);
+                return formatPriceBreakup({ ...extra, price_breakup: extra });
             }
-            return formatGenericExtra(extra);
+            // If DTDC or other carriers, fallback to generic
+            if (Object.keys(extra).length > 0) {
+                return formatGenericExtra(extra);
+            }
+            // As a last resort, show the raw JSON
+            return JSON.stringify(extra, null, 2);
         } catch (error) {
             return JSON.stringify(extra, null, 2);
         }
