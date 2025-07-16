@@ -52,6 +52,10 @@ Route::get('/location-user/asn-upload', [\App\Http\Controllers\LocationDashboard
 Route::post('/location-user/asn-upload', [\App\Http\Controllers\LocationDashboardController::class, 'asnUploadPost'])->name('location.asn.upload.post');
 // Location User ASN List Route
 Route::get('/location-user/asn-list', [\App\Http\Controllers\LocationDashboardController::class, 'asnUploadList'])->name('location.asn.list');
+// Location User Replenishment Route
+Route::get('/location-user/replenishment', [\App\Http\Controllers\LocationDashboardController::class, 'replenishment'])->name('location.replenishment');
+// Location User Replenishment Export Route
+Route::get('/location-user/replenishment/export', [\App\Http\Controllers\LocationDashboardController::class, 'exportReplenishmentCsv'])->name('location.replenishment.export');
 
 // Product Routes
 Route::resource('products', ProductController::class);
@@ -77,6 +81,7 @@ Route::prefix('admin')->group(function () {
     
     // Admin Product Routes (main route for managing items)
     Route::resource('/products', \App\Http\Controllers\Admin\ProductController::class)->names('admin.products');
+    Route::post('/products/upload-csv', [\App\Http\Controllers\Admin\ProductController::class, 'uploadCsv'])->name('admin.products.uploadCsv');
     
     // Admin Sales Order Routes
     Route::resource('/sales', AdminSalesOrderController::class)->names('admin.sales');

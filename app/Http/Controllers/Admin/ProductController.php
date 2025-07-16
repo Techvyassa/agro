@@ -105,4 +105,48 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')
             ->with('success', 'Product deleted successfully.');
     }
+
+    /**
+     * Handle CSV upload for bulk product creation.
+     */
+    public function uploadCsv(Request $request)
+    {
+        $request->validate([
+            'csv_file' => 'required|file|mimes:csv,txt',
+        ]);
+
+        $file = $request->file('csv_file');
+        $header = null;
+        $data = [];
+        $rowCount = 0;
+        $createdCount = 0;
+        if (($handle = fopen($file->getRealPath(), 'r')) !== false) {
+            while (($row = fgetcsv($handle, 1000, ',')) !== false) {
+                if (!$header) {
+                    $header = $row;
+                } else {
+                    $rowData = array_combine($header, $row);
+                    // Basic validation for required fields
+                    if (empty($rowData['item_name'])) {
+                        continue;
+                    }
+                    Products::create([
+                        'item_name' => $rowData['item_name'],
+                        'length' => $rowData['length'] ?? null,
+                        'width' => $rowData['width'] ?? null,
+                        'height' => $rowData['height'] ?? null,
+                        'weight' => $rowData['weight'] ?? null,
+                    ]);
+                    $createdCount++;
+                }
+                $rowCount++;
+            }
+            fclose($handle);
+        }
+        if ($createdCount > 0) {
+            return redirect()->back()->with('csv_success', "$createdCount products uploaded successfully.");
+        } else {
+            return redirect()->back()->with('csv_error', 'No products were uploaded. Please check your CSV file.');
+        }
+    }
 }

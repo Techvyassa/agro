@@ -9,6 +9,29 @@
 @endsection
 
 @section('content')
+@if (session('csv_error'))
+    <div class="alert alert-danger">{{ session('csv_error') }}</div>
+@endif
+@if (session('csv_success'))
+    <div class="alert alert-success">{{ session('csv_success') }}</div>
+@endif
+<div class="card mb-4">
+    <div class="card-header">
+        <h5 class="mb-0">Bulk Upload via CSV</h5>
+    </div>
+    <div class="card-body">
+        <form action="{{ route('admin.products.uploadCsv') }}" method="POST" enctype="multipart/form-data">
+            @csrf
+            <div class="mb-3">
+                <label for="csv_file" class="form-label">Upload CSV File</label>
+                <input type="file" class="form-control" id="csv_file" name="csv_file" accept=".csv" required>
+            </div>
+            <button type="submit" class="btn btn-success">
+                <i class="fas fa-upload me-1"></i> Upload CSV
+            </button>
+        </form>
+    </div>
+</div>
 <div class="card">
     <div class="card-header">
         <h5 class="mb-0">Item Information</h5>
