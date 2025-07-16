@@ -14,7 +14,6 @@
                 <div class="row mb-3">
                     <label for="so_no" class="col-md-4 col-form-label">Sales Order Number</label>
                     <div class="col-md-8">
-                        <input type="text" id="so_search" class="form-control mb-2" placeholder="Search SO Number...">
                         <select id="so_no" class="form-select" name="so_no" required>
                             <option value="">-- Select SO Number --</option>
                             @foreach($so_numbers as $so_no)
@@ -78,21 +77,6 @@
             boxes: []
         };
         
-        // Search/filter for SO Number dropdown
-        $('#so_search').on('keyup', function() {
-            var filter = $(this).val().toUpperCase();
-            $('#so_no option').each(function() {
-                if ($(this).text().toUpperCase().indexOf(filter) > -1 || $(this).val() === "") {
-                    $(this).show();
-                } else {
-                    $(this).hide();
-                }
-            });
-            // Optionally, select the first visible option after filtering
-            $('#so_no').val($('#so_no option:visible:first').val());
-            $('#so_no').trigger('change');
-        });
-
         // When SO number changes
         $('#so_no').on('change', function() {
             const soNo = $(this).val();
