@@ -55,16 +55,19 @@ class FreightController extends Controller
         }
         
         try {
-            // Log::info('Fetching boxes for SO: ' . $so_no);
+            // Log the request for debugging
+            Log::info('Fetching boxes for SO: ' . $so_no);
+            
             // Fetch all boxes with their dimensions and weights for this sales order - using the same approach as PicklistController
             $boxes = Picking::where('so_no', $so_no)
                 ->select('box', 'dimension', 'weight', 'items')
                 ->get();
                 
-            // Log::info('Boxes retrieved: ', ['count' => count($boxes), 'data' => $boxes->toArray()]);
+            // Log the retrieved data
+            Log::info('Boxes retrieved: ', ['count' => count($boxes), 'data' => $boxes->toArray()]);
                 
             if ($boxes->isEmpty()) {
-                // Log::warning('No boxes found for SO: ' . $so_no);
+                Log::warning('No boxes found for SO: ' . $so_no);
                 return response()->json([
                     'success' => false,
                     'message' => 'No boxes found for this sales order'
@@ -75,7 +78,7 @@ class FreightController extends Controller
             $totalWeight = 0;
             foreach ($boxes as $box) {
                 // Log weight value for debugging
-                // Log::info('Box weight value:', ['box' => $box->box, 'weight' => $box->weight, 'type' => gettype($box->weight)]);
+                Log::info('Box weight value:', ['box' => $box->box, 'weight' => $box->weight, 'type' => gettype($box->weight)]);
                 
                 if (is_numeric($box->weight)) {
                     $totalWeight += (float)$box->weight;
@@ -87,7 +90,7 @@ class FreightController extends Controller
                 }
             }
             
-            // Log::info('Calculated total weight:', ['totalWeight' => $totalWeight]);
+            Log::info('Calculated total weight:', ['totalWeight' => $totalWeight]);
             
             // Collect all dimensions - ensure they're formatted properly
             $dimensions = [];
@@ -126,7 +129,7 @@ class FreightController extends Controller
                 'dimensions' => $dimensionsStr
             ]);
         } catch (\Exception $e) {
-            // Log::error('Error fetching box details: ' . $e->getMessage());
+            Log::error('Error fetching box details: ' . $e->getMessage());
             return response()->json([
                 'success' => false,
                 'message' => 'Error fetching box details: ' . $e->getMessage()
