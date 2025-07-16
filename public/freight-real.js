@@ -1798,15 +1798,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     function formatExtraDetails(extra) {
         try {
-            // If price_breakup exists, use the existing logic
             if (extra.price_breakup) {
                 return formatPriceBreakup(extra);
             }
-            // If Delhivery-style fields exist at the top level, format them as price_breakup
             if (typeof extra.base_freight_charge !== "undefined") {
-                return formatPriceBreakup({ ...extra, price_breakup: extra });
+                // For debugging: show the full JSON of extra
+                return JSON.stringify(extra, null, 2);
             }
-            // Otherwise, fallback to generic
             return formatGenericExtra(extra);
         } catch (error) {
             return JSON.stringify(extra, null, 2);
