@@ -17,11 +17,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Set up database connection
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "agro"; // Change this to your actual database name
+// Database configuration (same as your Laravel .env)
+$servername = "192.250.231.31"; // Usually localhost or 127.0.0.1
+$username = "vyassa44_agro";        // Update with your DB username for live server
+$password = "RoyalK1234";            // Update with your DB password for live server
+$dbname = "vyassa44_agro";        // Update with your DB name for live server
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
