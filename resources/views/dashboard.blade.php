@@ -174,4 +174,59 @@
         </div>
     </div>
 </div>
+
+<div class="row">
+    <div class="col-lg-12 mb-4">
+        <div class="card border-0 shadow-sm">
+            <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <h5 class="mb-0">Short SO (Pickings on Hold)</h5>
+            </div>
+            <div class="card-body">
+                @if(isset($shortSOs) && $shortSOs->count())
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>SO No</th>
+                                    <th>Box</th>
+                                    <th>Items</th>
+                                    <th>Dimension</th>
+                                    <th>Weight</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($shortSOs as $so)
+                                    <tr>
+                                        <td>{{ $so->so_no }}</td>
+                                        <td>{{ $so->box }}</td>
+                                        <td>
+                                            @if(is_array($so->items))
+                                                {{ implode(', ', $so->items) }}
+                                            @else
+                                                {{ $so->items }}
+                                            @endif
+                                        </td>
+                                        <td>{{ $so->dimension }}</td>
+                                        <td>{{ $so->weight }}</td>
+                                        <td><span class="badge bg-warning text-dark">{{ $so->status }}</span></td>
+                                        <td>
+                                            <form method="POST" action="{{ route('pickings.force-complete', $so->id) }}" style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark this SO as completed?')">Force Complete</button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div class="alert alert-info mb-0">No pickings on hold found.</div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

@@ -45,6 +45,8 @@ Route::post('/register', [RegisterController::class, 'register']);
 
 // User Dashboard Route
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+// Add this route for force completing a picking
+Route::post('/pickings/{id}/force-complete', [App\Http\Controllers\DashboardController::class, 'forceComplete'])->name('pickings.force-complete');
 // Location User Dashboard Route
 Route::get('/location-dashboard', [\App\Http\Controllers\LocationDashboardController::class, 'index'])->name('location.dashboard');
 // Location User ASN Upload Route
