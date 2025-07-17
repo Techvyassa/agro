@@ -17,6 +17,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
+// Handle GET request for diagnostics
+if ($_SERVER['REQUEST_METHOD'] === 'GET') {
+    echo json_encode(['message' => 'hello world']);
+    exit;
+}
+
 // Database configuration (same as your Laravel .env)
 $servername = "192.250.231.31"; // Usually localhost or 127.0.0.1
 $username = "vyassa44_agro";        // Update with your DB username for live server
