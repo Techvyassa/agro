@@ -341,10 +341,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Relogging in...';
             this.disabled = true;
             
-            // Make API call to relogin endpoint
-            fetch('http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhivery-relogin', {
+            // Make API call to relogin proxy endpoint
+            fetch('freight-relogin-proxy.php', {
                 method: 'POST',
-                mode: 'cors'
                 // No headers or body data to avoid CORS preflight
             })
             .then(response => {
