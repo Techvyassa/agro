@@ -19,7 +19,8 @@ class FreightController extends Controller
             return redirect()->route('freight.calculator');
         }
         // Get all unique SO numbers from pickings - using the same approach as PicklistController
-        $so_numbers = Picking::select('so_no')
+        $so_numbers = Picking::where('status', 'completed')
+            ->select('so_no')
             ->distinct()
             ->orderBy('so_no')
             ->pluck('so_no');
