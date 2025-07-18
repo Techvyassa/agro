@@ -9,6 +9,9 @@ class DashboardController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // Share the count of SOs in short (pickings on hold) with all dashboard views
+        $shortSoCount = \App\Models\Picking::where('status', 'hold')->get()->groupBy('so_no')->count();
+        view()->share('shortSoCount', $shortSoCount);
     }
 
     public function index()

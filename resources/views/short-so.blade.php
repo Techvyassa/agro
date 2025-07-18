@@ -58,7 +58,7 @@
                                                 <form action="{{ route('pickings.force-complete-so', $so_no) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark all pickings for SO {{ $so_no }} as completed?')">
-                                                        Close
+                                                        Close whith shortage
                                                     </button>
                                                 </form>
                                             @else

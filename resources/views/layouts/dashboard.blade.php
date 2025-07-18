@@ -157,6 +157,9 @@
                         <li class="nav-item">
                             <a class="nav-link {{ request()->is('short-so') ? 'active' : '' }}" href="{{ url('/short-so') }}">
                                 <i class="fas fa-pause-circle"></i> Short SO (Pickings on Hold)
+                                @if(isset($shortSoCount) && $shortSoCount > 0)
+                                    <span class="badge bg-danger ms-2">{{ $shortSoCount }}</span>
+                                @endif
                             </a>
                         </li>
 
