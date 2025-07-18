@@ -1168,7 +1168,7 @@ const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhi
         const addressDetails = billingAddressData.address_details || {};
         const billingDetails = billingAddressData.billing_details || {};
         const shippingAddress = billingAddressData.shipping_address || {};
-        
+        const is_warehouse = billingAddressData.warehouse || false;
         // Create manifest payload
         const manifestPayload = {
             pickup_location_name: selectedPickupLocation.name,
@@ -1176,9 +1176,11 @@ const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhi
             rov_insurance: false,
             fm_pickup: freightMode === 'fop',
             freight_mode: freightMode,
-            billing_store_id: freightMode === 'fod' ? selectedDropLocation.id : selectedPickupLocation.id,
-            // Set billing_warehouse_id based on freight mode
-            billing_warehouse_id: null,
+            // billing_store_id: freightMode === 'fod' ? selectedDropLocation.id : selectedPickupLocation.id,
+            // // Set billing_warehouse_id based on freight mode
+            // billing_warehouse_id: null,
+            billing_store_id: is_warehouse ? null : (freightMode === 'fod' ? selectedDropLocation.id : selectedPickupLocation.id),
+            billing_warehouse_id: is_warehouse ? (freightMode === 'fod' ? selectedDropLocation.id : selectedPickupLocation.id) : null,
             // Add COD amount if applicable
             cod_amount: document.getElementById('codAmount') ? parseInt(document.getElementById('codAmount').value || 0) : 0,
             billing_address: {
