@@ -43,113 +43,39 @@
         </form>
         
         @if(count($salesOrders) > 0)
-            <!-- Group by SO Number -->
             @php
-                $currentSoNo = null;
-                $totalAmount = 0;
+                // Group sales orders by SO No
+                $grouped = $salesOrders->groupBy('so_no');
             @endphp
-            
-            @foreach($salesOrders as $order)
-                @if($currentSoNo !== $order->so_no)
-                    @if($currentSoNo !== null)
-                        <!-- Display total for previous SO -->
-                        <tr class="table-light">
-                            <td colspan="5" class="text-end fw-bold">Total for {{ $currentSoNo }}:</td>
-                            <td class="fw-bold">{{ number_format($totalAmount, 2) }}</td>
-                            <td></td>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>SO No</th>
+                            <th>Uploaded Date</th>
+                            <th>Packing Date</th>
                         </tr>
-                        </tbody>
-                        </table>
-                        </div>
-                    @endif
-                    
-                    <!-- Start new table for new SO Number -->
-                    <h5 class="mt-4 mb-2">SO Number: {{ $order->so_no }}</h5>
-                    <div class="table-responsive mb-4">
-                        <table class="table table-bordered table-hover">
-                            <thead class="table-light">
-                                <tr>
-                                    <th>Item Name</th>
-                                    <th>Category</th>
-                                    <th>HSN Code</th>
-                                    <th>Qty</th>
-                                    <th>Rate</th>
-                                    <th>Amount</th>
-                                    <th>Date Added</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                    
-                    @php
-                        $currentSoNo = $order->so_no;
-                        $totalAmount = 0;
-                    @endphp
-                @endif
-                
-                @php
-                    $itemAmount = (float)$order->qty * (float)$order->rate;
-                    $totalAmount += $itemAmount;
-                @endphp
-                
-                <tr>
-                    <td>{{ $order->item_name }}</td>
-                    <td>{{ $order->category }}</td>
-                    <td>{{ $order->hsn }}</td>
-                    <td>{{ $order->qty }}</td>
-                    <td>{{ $order->rate }}</td>
-                    <td>{{ number_format($itemAmount, 2) }}</td>
-                    <td>{{ $order->created_at->format('M d, Y') }}</td>
-                </tr>
-            @endforeach
-            
-            @if($currentSoNo !== null)
-                <!-- Display total for last SO -->
-                <tr class="table-light">
-                    <td colspan="5" class="text-end fw-bold">Total for {{ $currentSoNo }}:</td>
-                    <td class="fw-bold">{{ number_format($totalAmount, 2) }}</td>
-                    <td></td>
-                </tr>
-                </tbody>
+                    </thead>
+                    <tbody>
+                        @foreach($grouped as $so_no => $orders)
+                            @php
+                                // Uploaded date: earliest created_at from sales_orders
+                                $uploadedDate = $orders->min('created_at');
+                                // Packing date: earliest updated_at from pickings for this SO No
+                                $packingDate = optional(\App\Models\Picking::where('so_no', $so_no)->orderBy('updated_at')->first())->updated_at;
+                            @endphp
+                            <tr>
+                                <td>{{ $so_no }}</td>
+                                <td>{{ $uploadedDate ? $uploadedDate->format('M d, Y') : '' }}</td>
+                                <td>{{ $packingDate ? $packingDate->format('M d, Y') : '' }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </table>
-                </div>
-            @endif
-            <!-- pagination changes -->
+            </div>
             <div class="d-flex justify-content-center mt-4">
-    <nav aria-label="Sales Orders Pagination">
-        <ul class="pagination">
-            {{-- Use Laravel's built-in pagination with Bootstrap styling --}}
-            {!! $salesOrders->onEachSide(1)->links('pagination::bootstrap-4') !!}
-        </ul>
-    </nav>
-</div>
-
-{{-- Optional: Add custom CSS if Bootstrap is not loaded --}}
-<style>
-.pagination {
-    display: flex;
-    justify-content: center;
-    padding-left: 0;
-    list-style: none;
-}
-.pagination li {
-    margin: 0 2px;
-}
-.pagination .page-link {
-    color: #007bff;
-    border: 1px solid #dee2e6;
-    padding: 6px 12px;
-    border-radius: 3px;
-    text-decoration: none;
-}
-.pagination .active .page-link {
-    background-color: #007bff;
-    color: #fff;
-    border-color: #007bff;
-}
-.pagination .page-link:hover {
-    background-color: #e9ecef;
-}
-</style>
+                {!! $salesOrders->onEachSide(1)->links('pagination::bootstrap-4') !!}
+            </div>
         @else
             <div class="alert alert-info">
                 <i class="fas fa-info-circle me-2"></i>
