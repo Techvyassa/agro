@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Short SO (Pickings on Hold)')
-@section('page-title', 'Short SO (Pickings on Hold)')
+@section('title', 'Short SO (Packings on Hold)')
+@section('page-title', 'Short SO (Packings on Hold)')
 
 @section('content')
 <div class="row">
@@ -10,9 +10,10 @@
             <i class="fas fa-exclamation-circle me-2"></i>
             <strong>{{ $pickings->count() }}</strong> SO(s) present in Short (on hold)
         </div>
+        <!--short so-->
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Short SO (Pickings on Hold)</h5>
+                <h5 class="mb-0">Short SO (Packings on Hold)</h5>
             </div>
             <div class="card-body">
                 @if(isset($pickings) && $pickings->count())
@@ -35,11 +36,11 @@
                                         <td>
                                             @php
                                                 $allItems = collect();
-                                                foreach($group as $picking) {
-                                                    if(is_array($picking->items)) {
-                                                        $allItems = $allItems->merge($picking->items);
-                                                    } elseif(is_string($picking->items)) {
-                                                        $decoded = json_decode($picking->items, true);
+                                                foreach($group as $packing) {
+                                                    if(is_array($packing->items)) {
+                                                        $allItems = $allItems->merge($packing->items);
+                                                    } elseif(is_string($packing->items)) {
+                                                        $decoded = json_decode($packing->items, true);
                                                         if(is_array($decoded)) $allItems = $allItems->merge($decoded);
                                                     }
                                                 }
@@ -49,6 +50,8 @@
                                         <td>
                                             @if($group->contains('status', 'hold'))
                                                 <span class="badge bg-warning text-dark">hold</span>
+                                            @elseif($group->contains('status', 'force_completed'))
+                                                <span class="badge bg-info text-dark">closed with shortage</span>
                                             @else
                                                 <span class="badge bg-success">completed</span>
                                             @endif
@@ -57,10 +60,12 @@
                                             @if($group->contains('status', 'hold'))
                                                 <form action="{{ route('pickings.force-complete-so', $so_no) }}" method="POST" style="display:inline-block;">
                                                     @csrf
-                                                    <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark all pickings for SO {{ $so_no }} as completed?')">
-                                                        Close whith shortage
+                                                    <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark all packings for SO {{ $so_no }} as closed with shortage?')">
+                                                        Close with shortage
                                                     </button>
                                                 </form>
+                                            @elseif($group->contains('status', 'force_completed'))
+                                                <span class="text-info">Closed with shortage</span>
                                             @else
                                                 <span class="text-success">Completed</span>
                                             @endif
@@ -71,7 +76,7 @@
                         </table>
                     </div>
                 @else
-                    <div class="alert alert-info">No pickings on hold found.</div>
+                    <div class="alert alert-info">No packings on hold found.</div>
                 @endif
             </div>
         </div>
