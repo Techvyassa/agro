@@ -25,27 +25,19 @@
         <!-- Filter form -->
         <form action="{{ route('sales_orders.index') }}" method="GET" class="mb-4">
             <div class="row g-3 align-items-end">
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <label for="search" class="form-label">Search SO Number</label>
                     <input type="text" name="search" id="search" class="form-control" placeholder="Enter SO Number" value="{{ request('search') }}">
                 </div>
-                <div class="col-md-2">
-                    <label for="uploaded_from" class="form-label">Uploaded From</label>
-                    <input type="date" name="uploaded_from" id="uploaded_from" class="form-control" value="{{ request('uploaded_from') }}">
+                <div class="col-md-3">
+                    <label for="uploaded_date" class="form-label">Uploaded Date</label>
+                    <input type="date" name="uploaded_date" id="uploaded_date" class="form-control" value="{{ request('uploaded_date') }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="packing_date" class="form-label">Packing Date</label>
+                    <input type="date" name="packing_date" id="packing_date" class="form-control" value="{{ request('packing_date') }}">
                 </div>
                 <div class="col-md-2">
-                    <label for="uploaded_to" class="form-label">Uploaded To</label>
-                    <input type="date" name="uploaded_to" id="uploaded_to" class="form-control" value="{{ request('uploaded_to') }}">
-                </div>
-                <div class="col-md-2">
-                    <label for="packing_from" class="form-label">Packing From</label>
-                    <input type="date" name="packing_from" id="packing_from" class="form-control" value="{{ request('packing_from') }}">
-                </div>
-                <div class="col-md-2">
-                    <label for="packing_to" class="form-label">Packing To</label>
-                    <input type="date" name="packing_to" id="packing_to" class="form-control" value="{{ request('packing_to') }}">
-                </div>
-                <div class="col-md-1">
                     <button type="submit" class="btn btn-secondary mt-4 w-100">
                         <i class="fas fa-filter me-1"></i> Filter
                     </button>

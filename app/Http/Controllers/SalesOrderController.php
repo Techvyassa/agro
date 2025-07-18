@@ -33,34 +33,23 @@ class SalesOrderController extends Controller
                   ->orWhere('item_name', 'like', "%$search%" );
             });
         }
-        // Filter by uploaded date
-        if ($request->filled('uploaded_from')) {
-            $query->whereDate('created_at', '>=', $request->uploaded_from);
-        }
-        if ($request->filled('uploaded_to')) {
-            $query->whereDate('created_at', '<=', $request->uploaded_to);
+        // Filter by exact uploaded date
+        if ($request->filled('uploaded_date')) {
+            $query->whereDate('created_at', $request->uploaded_date);
         }
         // Get all SO numbers with their earliest uploaded date
         $soGroups = $query->select('so_no', DB::raw('MIN(created_at) as uploaded_at'))->groupBy('so_no');
-        // Packing date filter (from pickings.updated_at)
-        if ($request->filled('packing_from') || $request->filled('packing_to')) {
+        // Packing date filter (from pickings.updated_at, exact match)
+        if ($request->filled('packing_date')) {
             $soGroups = $soGroups->whereIn('so_no', function($sub) use ($request) {
-                $sub->select('so_no')->from('pickings');
-                if ($request->filled('packing_from')) {
-                    $sub->whereDate('updated_at', '>=', $request->packing_from);
-                }
-                if ($request->filled('packing_to')) {
-                    $sub->whereDate('updated_at', '<=', $request->packing_to);
-                }
+                $sub->select('so_no')->from('pickings')->whereDate('updated_at', $request->packing_date);
             });
         }
         $soGroups = $soGroups->orderByDesc('uploaded_at')->paginate(50)->appends($request->all());
         return view('sales_orders.index', [
             'soGroups' => $soGroups,
-            'uploaded_from' => $request->uploaded_from,
-            'uploaded_to' => $request->uploaded_to,
-            'packing_from' => $request->packing_from,
-            'packing_to' => $request->packing_to,
+            'uploaded_date' => $request->uploaded_date,
+            'packing_date' => $request->packing_date,
             'search' => $request->search,
         ]);
     }
