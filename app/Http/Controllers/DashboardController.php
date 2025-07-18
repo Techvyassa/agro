@@ -29,4 +29,20 @@ class DashboardController extends Controller
         }
         return redirect()->back()->with('error', 'Picking not found or not on hold.');
     }
+
+    public function shortSoPage()
+    {
+        // Get all pickings on hold, grouped by so_no
+        $pickings = \App\Models\Picking::where('status', 'hold')->get()->groupBy('so_no');
+        return view('short-so', compact('pickings'));
+    }
+
+    public function forceCompleteBySoNo($so_no)
+    {
+        $updated = \App\Models\Picking::where('so_no', $so_no)->where('status', 'hold')->update(['status' => 'completed']);
+        if ($updated) {
+            return redirect()->route('short-so')->with('success', 'All pickings for SO ' . $so_no . ' marked as completed.');
+        }
+        return redirect()->route('short-so')->with('error', 'No pickings found or already completed for SO ' . $so_no);
+    }
 }

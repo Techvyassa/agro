@@ -179,7 +179,7 @@
     <div class="col-lg-12 mb-4">
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
-                <h5 class="mb-0">Short SO (Pickings on Hold)</h5>
+                <h5 class="mb-0"><a id="short-so"></a>Short SO (Pickings on Hold)</h5>
             </div>
             <div class="card-body">
                 @if(isset($shortSOs) && $shortSOs->count())
@@ -214,7 +214,7 @@
                                         <td>
                                             <form method="POST" action="{{ route('pickings.force-complete', $so->id) }}" style="display:inline;">
                                                 @csrf
-                                                <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark this SO as completed?')">Force Complete</button>
+                                                <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark this SO as completed?')">close with shortage</button>
                                             </form>
                                         </td>
                                     </tr>
