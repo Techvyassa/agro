@@ -6,6 +6,10 @@
 @section('content')
 <div class="row">
     <div class="col-lg-12 mb-4">
+        <div class="alert alert-primary d-flex align-items-center" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <strong>{{ $pickings->count() }}</strong> SO(s) present in Short (on hold)
+        </div>
         <div class="card border-0 shadow-sm">
             <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
                 <h5 class="mb-0">Short SO (Pickings on Hold)</h5>
@@ -16,14 +20,16 @@
                         <table class="table table-bordered table-striped">
                             <thead class="table-light">
                                 <tr>
-                                    <th>SO No</th>
+                                    <th>SO No
+                                        <a href="?sort=desc" class="ms-1"><i class="fas fa-sort-down"></i></a>
+                                    </th>
                                     <th>Items</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach($pickings as $so_no => $group)
+                                @foreach($pickings->sortKeysDesc() as $so_no => $group)
                                     <tr>
                                         <td>{{ $so_no }}</td>
                                         <td>
@@ -52,7 +58,7 @@
                                                 <form action="{{ route('pickings.force-complete-so', $so_no) }}" method="POST" style="display:inline-block;">
                                                     @csrf
                                                     <button type="submit" class="btn btn-sm btn-success" onclick="return confirm('Mark all pickings for SO {{ $so_no }} as completed?')">
-                                                        Force Complete
+                                                        Close
                                                     </button>
                                                 </form>
                                             @else
