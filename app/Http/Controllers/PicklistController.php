@@ -14,8 +14,9 @@ class PicklistController extends Controller
      */
     public function index()
     {
-        // Get all unique SO numbers from the pickings table
-        $so_numbers = Picking::select('so_no')->distinct()->orderBy('so_no')->pluck('so_no');
+        // Get all unique SO numbers from the pickings table where status is completed or force_completed
+        $so_numbers = Picking::whereIn('status', ['completed', 'force_completed'])
+            ->select('so_no')->distinct()->orderBy('so_no')->pluck('so_no');
         
         return view('packlist.index', compact('so_numbers'));
     }

@@ -17,12 +17,18 @@
                     <div class="row mb-3">
                         <label for="so_no" class="col-md-4 col-form-label">Sales Order Number</label>
                         <div class="col-md-8">
-                            <select id="so_no" class="form-select" name="so_no" required>
-                                <option value="">-- Select SO Number --</option>
-                                @foreach($so_numbers as $so_no)
-                                    <option value="{{ $so_no }}">{{ $so_no }}</option>
-                                @endforeach
-                            </select>
+                            <div id="customDropdown" class="custom-dropdown">
+                                <div id="dropdownSelected" class="dropdown-selected">-- Select SO Number --</div>
+                                <div id="dropdownList" class="dropdown-list" style="display:none;">
+                                    <input type="text" id="dropdownSearch" class="form-control mb-2" placeholder="Search SO Number...">
+                                    <div id="dropdownOptions" class="dropdown-options" style="max-height:200px;overflow-y:auto;">
+                                        @foreach($so_numbers as $so_no)
+                                            <div class="dropdown-option" data-value="{{ $so_no }}">{{ $so_no }}</div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" id="so_no" name="so_no" value="">
                         </div>
                     </div>
                     
@@ -116,187 +122,126 @@
 </div>
 
 @section('scripts')
+<style>
+.custom-dropdown { position: relative; width: 100%; }
+.dropdown-selected { border: 1px solid #ced4da; padding: 8px 12px; border-radius: 4px; background: #fff; cursor: pointer; }
+.dropdown-list { position: absolute; top: 100%; left: 0; right: 0; background: #fff; border: 1px solid #ced4da; border-top: none; z-index: 1000; border-radius: 0 0 4px 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); }
+.dropdown-option { padding: 8px 12px; cursor: pointer; }
+.dropdown-option:hover, .dropdown-option.active { background: #f1f1f1; }
+</style>
 <script>
-    $(document).ready(function() {
-        // When SO number changes
-        $('#so_no').on('change', function() {
-            const soNo = $(this).val();
-            const boxSelect = $('#box');
-            
-            // Reset box selection
-            boxSelect.html('<option value="all">-- All Boxes --</option>');
-            $('#boxDimension').text('-');
-            $('#boxWeight').text('-');
-            
-            if (!soNo) {
-                $('#boxDetailsContainer').hide();
-                $('#generateButton').prop('disabled', true);
-                $('#calculateFreightButton').prop('disabled', true);
-                return;
-            }
-            
-            // Enable generate button when SO is selected
-            $('#generateButton').prop('disabled', false);
+$(document).ready(function() {
+    // Custom dropdown logic (copied from freight calculator)
+    var $dropdown = $('#customDropdown');
+    var $selected = $('#dropdownSelected');
+    var $list = $('#dropdownList');
+    var $search = $('#dropdownSearch');
+    var $options = $('#dropdownOptions');
+    var $hiddenInput = $('#so_no');
 
-// Print Packlist button logic
-$('#generateButton').off('click').on('click', function(e) {
-    e.preventDefault();
-    const soNo = $('#so_no').val();
-    const boxVal = $('#box').val();
-    if (boxVal === 'all') {
-        if (soNo) {
-            // Open print for all boxes
-            window.open(`/packlist/print/${soNo}/all`, '_blank');
-        } else {
-            alert('Please select a Sales Order Number.');
-        }
-    } else {
-        // Submit the form for a single box
-        $('#packlistForm')[0].submit();
-    }
-});
-            $('#calculateFreightButton').prop('disabled', false);
-            
-            // Fetch boxes for this SO
-            $.ajax({
-                url: "{{ route('packlist.getBoxes') }}",
-                method: 'GET',
-                data: {
-                    'so_no': soNo
-                },
-                success: function(response) {
-                    if (response.length > 0) {
-                        // Add boxes to dropdown
-                        response.forEach(function(item) {
-                            boxSelect.append(
-                                $('<option></option>')
-                                    .val(item.box)
-                                    .text(item.box)
-                                    .data('dimension', item.dimension)
-                                    .data('weight', item.weight)
-                            );
-                        });
-                        
-                        // Show boxes container
-                        $('#boxDetailsContainer').show();
-                    }
-                },
-                error: function(error) {
-                    console.error('Error fetching boxes:', error);
-                }
-            });
-        });
-        
-        // When box changes, update details
-        $('#box').on('change', function() {
-            const selectedOption = $(this).find('option:selected');
-            
-            if (selectedOption.val() !== 'all') {
-                // Update box details
-                $('#boxDimension').text(selectedOption.data('dimension') || 'Not specified');
-                $('#boxWeight').text(selectedOption.data('weight') || 'Not specified');
+    $selected.on('click', function(e) {
+        $list.toggle();
+        $search.val('');
+        $options.children().show();
+        $search.focus();
+    });
+
+    $search.on('keyup', function() {
+        var filter = $(this).val().toUpperCase();
+        $options.children('.dropdown-option').each(function() {
+            if ($(this).text().toUpperCase().indexOf(filter) > -1) {
+                $(this).show();
             } else {
-                $('#boxDimension').text('Multiple dimensions');
-                $('#boxWeight').text('Multiple weights');
+                $(this).hide();
             }
-        });
-        
-        // Calculate freight cost button click handler
-        $('#calculateFreightButton').on('click', function() {
-            const soNo = $('#so_no').val();
-            const boxNumber = $('#box').val();
-            
-            if (!soNo) {
-                alert('Please select a Sales Order Number first');
-                return;
-            }
-            
-            // Get dimensions and weight
-            let dimensions = '';
-            let weight = 0;
-            
-            if (boxNumber) {
-                // Single box selected
-                const selectedOption = $('#box').find('option:selected');
-                dimensions = selectedOption.data('dimension') || '';
-                weight = parseFloat(selectedOption.data('weight')) || 0;
-            } else {
-                // Multiple boxes - need to calculate total dimensions and weight
-                let totalWeight = 0;
-                let boxDimensions = [];
-                
-                $('#box option').each(function() {
-                    if ($(this).val()) {
-                        boxDimensions.push($(this).data('dimension'));
-                        totalWeight += parseFloat($(this).data('weight') || 0);
-                    }
-                });
-                
-                dimensions = boxDimensions.join(', ');
-                weight = totalWeight;
-            }
-            
-            // Open the modal
-            $('#freightCalculationModal').modal('show');
-            $('#freightLoadingSpinner').show();
-            $('#freightResults').hide();
-            $('#freightError').hide();
-            
-            // Prepare data for API
-            const freightData = {
-                "source_pincode": "110001", // Default pincode (can be replaced with actual source pincode)
-                "destination_pincode": "400001", // Default pincode (can be replaced with actual destination pincode)
-                "weight": weight, // in kg
-                "dimensions": dimensions,
-                "order_id": soNo
-            };
-            
-            // Call the freight API via proxy
-            $.ajax({
-                url: "{{ asset('freight-proxy.php') }}",
-                method: 'POST',
-                contentType: 'application/json',
-                data: JSON.stringify(freightData),
-                success: function(response) {
-                    $('#freightLoadingSpinner').hide();
-                    
-                    // Display shipment details
-                    let detailsHTML = `
-                        <p><strong>Order ID:</strong> ${soNo}</p>
-                        <p><strong>Weight:</strong> ${weight} kg</p>
-                        <p><strong>Dimensions:</strong> ${dimensions || 'Not specified'}</p>
-                    `;
-                    $('#shipmentDetails').html(detailsHTML);
-                    
-                    // Display freight rates
-                    const ratesTableBody = $('#freightRatesTable');
-                    ratesTableBody.empty();
-                    
-                    if (response && response.carriers && response.carriers.length > 0) {
-                        response.carriers.forEach(function(carrier) {
-                            let rowHTML = `
-                                <tr>
-                                    <td>${carrier.name}</td>
-                                    <td>${carrier.service_type || 'Standard'}</td>
-                                    <td>₹${carrier.rate.toFixed(2)}</td>
-                                    <td>${carrier.estimated_delivery_days || 'N/A'} days</td>
-                                </tr>
-                            `;
-                            ratesTableBody.append(rowHTML);
-                        });
-                        $('#freightResults').show();
-                    } else {
-                        $('#freightError').text('No freight rates available for this shipment.').show();
-                    }
-                },
-                error: function(error) {
-                    $('#freightLoadingSpinner').hide();
-                    $('#freightError').text('Failed to retrieve freight rates. Please try again later.').show();
-                    console.error('Error fetching freight rates:', error);
-                }
-            });
         });
     });
+
+    $options.on('click', '.dropdown-option', function() {
+        var value = $(this).data('value');
+        var text = $(this).text();
+        $selected.text(text);
+        $hiddenInput.val(value).trigger('change');
+        $list.hide();
+    });
+
+    // Hide dropdown if clicked outside
+    $(document).on('mousedown', function(e) {
+        if (!$dropdown.is(e.target) && $dropdown.has(e.target).length === 0) {
+            $list.hide();
+        }
+    });
+
+    // When SO number changes (triggered by custom dropdown)
+    $hiddenInput.on('change', function() {
+        const soNo = $(this).val();
+        const boxSelect = $('#box');
+        // Reset box selection
+        boxSelect.html('<option value="all">-- All Boxes --</option>');
+        $('#boxDimension').text('-');
+        $('#boxWeight').text('-');
+        if (!soNo) {
+            $('#boxDetailsContainer').hide();
+            $('#generateButton').prop('disabled', true);
+            $('#calculateFreightButton').prop('disabled', true);
+            return;
+        }
+        // Enable generate button when SO is selected
+        $('#generateButton').prop('disabled', false);
+        // Print Packlist button logic
+        $('#generateButton').off('click').on('click', function(e) {
+            e.preventDefault();
+            const soNo = $hiddenInput.val();
+            const boxVal = $('#box').val();
+            if (boxVal === 'all') {
+                if (soNo) {
+                    window.open(`/packlist/print/${soNo}/all`, '_blank');
+                } else {
+                    alert('Please select a Sales Order Number.');
+                }
+            } else {
+                $('#packlistForm')[0].submit();
+            }
+        });
+        $('#calculateFreightButton').prop('disabled', false);
+        // Fetch boxes for this SO
+        $.ajax({
+            url: "{{ route('packlist.getBoxes') }}",
+            method: 'GET',
+            data: {
+                'so_no': soNo
+            },
+            success: function(response) {
+                if (response.length > 0) {
+                    response.forEach(function(item) {
+                        boxSelect.append(
+                            $('<option></option>')
+                                .val(item.box)
+                                .text(item.box)
+                                .data('dimension', item.dimension)
+                                .data('weight', item.weight)
+                        );
+                    });
+                    $('#boxDetailsContainer').show();
+                }
+            },
+            error: function(error) {
+                console.error('Error fetching boxes:', error);
+            }
+        });
+    });
+    // When box changes, update details
+    $('#box').on('change', function() {
+        const selectedOption = $(this).find('option:selected');
+        if (selectedOption.val() !== 'all') {
+            $('#boxDimension').text(selectedOption.data('dimension') || 'Not specified');
+            $('#boxWeight').text(selectedOption.data('weight') || 'Not specified');
+        } else {
+            $('#boxDimension').text('Multiple dimensions');
+            $('#boxWeight').text('Multiple weights');
+        }
+    });
+});
 </script>
 @endsection
 @endsection
