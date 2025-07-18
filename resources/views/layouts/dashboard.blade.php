@@ -154,6 +154,11 @@
         <i class="fas fa-truck-loading"></i> Track Status
     </a>
 </li>
+                        <li class="nav-item">
+                            <a class="nav-link {{ request()->is('short-so') ? 'active' : '' }}" href="{{ url('/short-so') }}">
+                                <i class="fas fa-pause-circle"></i> Short SO (Pickings on Hold)
+                            </a>
+                        </li>
 
                     </ul>
                 </div>
