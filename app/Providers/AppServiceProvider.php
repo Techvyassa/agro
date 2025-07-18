@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        // Share the count of SOs in packings on hold with all views
+        \View::composer('*', function ($view) {
+            $shortSoCount = \App\Models\Picking::where('status', 'hold')->get()->groupBy('so_no')->count();
+            $view->with('shortSoCount', $shortSoCount);
+        });
     }
 }

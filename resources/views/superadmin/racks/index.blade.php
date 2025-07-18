@@ -42,6 +42,9 @@
                                 <tr>
                                     <th>Bin Name</th>
                                     <th>Sequence</th>
+                                    <th>Status</th>
+                                    <th>Min Qty</th>
+                                    <th>Max Qty</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -49,6 +52,23 @@
                                     <tr>
                                         <td>{{ $bin->bin_name }}</td>
                                         <td>{{ $bin->sequence }}</td>
+                                        <td>
+                                            @if($bin->status)
+                                                @php
+                                                    $badgeClass = match(strtolower($bin->status)) {
+                                                        'fastmoving' => 'bg-success',
+                                                        'slowmoving' => 'bg-warning',
+                                                        'overflow' => 'bg-secondary',
+                                                        default => 'bg-dark',
+                                                    };
+                                                @endphp
+                                                <span class="badge {{ $badgeClass }}">{{ ucfirst($bin->status) }}</span>
+                                            @else
+                                                -
+                                            @endif
+                                        </td>
+                                        <td>{{ $bin->min_qty ?? '-' }}</td>
+                                        <td>{{ $bin->max_qty ?? '-' }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
