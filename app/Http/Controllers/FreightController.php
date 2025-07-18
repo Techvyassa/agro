@@ -18,8 +18,8 @@ class FreightController extends Controller
         if (request()->is('freight.html')) {
             return redirect()->route('freight.calculator');
         }
-        // Get all unique SO numbers from pickings where status is completed
-        $so_numbers = Picking::where('status', 'completed')
+        // Get all unique SO numbers from pickings where status is completed or force_completed
+        $so_numbers = Picking::whereIn('status', ['completed', 'force_completed'])
             ->select('so_no')
             ->distinct()
             ->orderBy('so_no')

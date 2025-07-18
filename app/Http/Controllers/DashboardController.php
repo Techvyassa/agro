@@ -42,9 +42,9 @@ class DashboardController extends Controller
 
     public function forceCompleteBySoNo($so_no)
     {
-        $updated = \App\Models\Picking::where('so_no', $so_no)->where('status', 'hold')->update(['status' => 'completed']);
+        $updated = \App\Models\Picking::where('so_no', $so_no)->where('status', 'hold')->update(['status' => 'force_completed']);
         if ($updated) {
-            return redirect()->route('short-so')->with('success', 'All pickings for SO ' . $so_no . ' marked as completed.');
+            return redirect()->route('short-so')->with('success', 'All pickings for SO ' . $so_no . ' marked as force completed (closed with shortage).');
         }
         return redirect()->route('short-so')->with('error', 'No pickings found or already completed for SO ' . $so_no);
     }
