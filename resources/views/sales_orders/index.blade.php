@@ -23,30 +23,36 @@
     </div>
     <div class="card-body">
         <!-- Filter form -->
-        <form action="{{ route('sales_orders.filter') }}" method="GET" class="mb-4">
+        <form action="{{ route('sales_orders.index') }}" method="GET" class="mb-4">
             <div class="row g-3 align-items-end">
-                <div class="col-md-8">
-                    <label for="search" class="form-label">Search SO Number or Item Name</label>
-                    <input type="text" name="search" id="search" class="form-control" placeholder="Enter SO Number or Item Name" value="{{ request('search') }}">
+                <div class="col-md-3">
+                    <label for="search" class="form-label">Search SO Number</label>
+                    <input type="text" name="search" id="search" class="form-control" placeholder="Enter SO Number" value="{{ request('search') }}">
                 </div>
-                <div class="col-md-4">
-                    <button type="submit" class="btn btn-secondary mt-4">
+                <div class="col-md-2">
+                    <label for="uploaded_from" class="form-label">Uploaded From</label>
+                    <input type="date" name="uploaded_from" id="uploaded_from" class="form-control" value="{{ request('uploaded_from') }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="uploaded_to" class="form-label">Uploaded To</label>
+                    <input type="date" name="uploaded_to" id="uploaded_to" class="form-control" value="{{ request('uploaded_to') }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="packing_from" class="form-label">Packing From</label>
+                    <input type="date" name="packing_from" id="packing_from" class="form-control" value="{{ request('packing_from') }}">
+                </div>
+                <div class="col-md-2">
+                    <label for="packing_to" class="form-label">Packing To</label>
+                    <input type="date" name="packing_to" id="packing_to" class="form-control" value="{{ request('packing_to') }}">
+                </div>
+                <div class="col-md-1">
+                    <button type="submit" class="btn btn-secondary mt-4 w-100">
                         <i class="fas fa-filter me-1"></i> Filter
                     </button>
-                    @if(request('search'))
-                        <a href="{{ route('sales_orders.index') }}" class="btn btn-outline-secondary mt-4">
-                            <i class="fas fa-times me-1"></i> Clear
-                        </a>
-                    @endif
                 </div>
             </div>
         </form>
-        
-        @if(count($salesOrders) > 0)
-            @php
-                // Group sales orders by SO No
-                $grouped = $salesOrders->groupBy('so_no');
-            @endphp
+        @if($soGroups->count() > 0)
             <div class="table-responsive">
                 <table class="table table-bordered table-hover">
                     <thead class="table-light">
@@ -57,24 +63,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($grouped as $so_no => $orders)
+                        @foreach($soGroups as $row)
                             @php
-                                // Uploaded date: earliest created_at from sales_orders
-                                $uploadedDate = $orders->min('created_at');
-                                // Packing date: earliest updated_at from pickings for this SO No
-                                $packingDate = optional(\App\Models\Picking::where('so_no', $so_no)->orderBy('updated_at')->first())->updated_at;
+                                $packingDate = optional(\App\Models\Picking::where('so_no', $row->so_no)->orderBy('updated_at')->first())->updated_at;
                             @endphp
                             <tr>
-                                <td>{{ $so_no }}</td>
-                                <td>{{ $uploadedDate ? $uploadedDate->format('M d, Y') : '' }}</td>
-                                <td>{{ $packingDate ? $packingDate->format('M d, Y') : '' }}</td>
+                                <td>{{ $row->so_no }}</td>
+                                <td>{{ $row->uploaded_at ? \Carbon\Carbon::parse($row->uploaded_at)->format('M d, Y') : '' }}</td>
+                                <td>{{ $packingDate ? \Carbon\Carbon::parse($packingDate)->format('M d, Y') : '' }}</td>
                             </tr>
                         @endforeach
                     </tbody>
                 </table>
             </div>
             <div class="d-flex justify-content-center mt-4">
-                {!! $salesOrders->onEachSide(1)->links('pagination::bootstrap-4') !!}
+                {!! $soGroups->onEachSide(1)->links('pagination::bootstrap-4') !!}
             </div>
         @else
             <div class="alert alert-info">

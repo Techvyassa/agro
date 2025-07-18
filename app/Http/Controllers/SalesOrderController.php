@@ -25,7 +25,7 @@ class SalesOrderController extends Controller
      */
     public function index(Request $request)
     {
-        $query = SalesOrder::query();
+        $query = \App\Models\SalesOrder::query();
         if ($request->filled('search')) {
             $search = $request->search;
             $query->where(function($q) use ($search) {
@@ -33,8 +33,36 @@ class SalesOrderController extends Controller
                   ->orWhere('item_name', 'like', "%$search%" );
             });
         }
-        $salesOrders = $query->orderByDesc('id')->paginate(15)->appends($request->all());
-        return view('sales_orders.index', compact('salesOrders'));
+        // Filter by uploaded date
+        if ($request->filled('uploaded_from')) {
+            $query->whereDate('created_at', '>=', $request->uploaded_from);
+        }
+        if ($request->filled('uploaded_to')) {
+            $query->whereDate('created_at', '<=', $request->uploaded_to);
+        }
+        // Get all SO numbers with their earliest uploaded date
+        $soGroups = $query->select('so_no', DB::raw('MIN(created_at) as uploaded_at'))->groupBy('so_no');
+        // Packing date filter (from pickings.updated_at)
+        if ($request->filled('packing_from') || $request->filled('packing_to')) {
+            $soGroups = $soGroups->whereIn('so_no', function($sub) use ($request) {
+                $sub->select('so_no')->from('pickings');
+                if ($request->filled('packing_from')) {
+                    $sub->whereDate('updated_at', '>=', $request->packing_from);
+                }
+                if ($request->filled('packing_to')) {
+                    $sub->whereDate('updated_at', '<=', $request->packing_to);
+                }
+            });
+        }
+        $soGroups = $soGroups->orderByDesc('uploaded_at')->paginate(50)->appends($request->all());
+        return view('sales_orders.index', [
+            'soGroups' => $soGroups,
+            'uploaded_from' => $request->uploaded_from,
+            'uploaded_to' => $request->uploaded_to,
+            'packing_from' => $request->packing_from,
+            'packing_to' => $request->packing_to,
+            'search' => $request->search,
+        ]);
     }
     
     /**
