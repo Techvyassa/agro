@@ -1202,7 +1202,7 @@ const apiUrl = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/delhi
             payment_mode: paymentMode,
             doc_data: getDocumentData()
         };
-        
+        // Debugging logs
         console.log('is_warehouse:', is_warehouse);
         console.log('manifestPayload:', manifestPayload);
         

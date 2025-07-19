@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
+// Check if the request is coming from the same domain
 // API endpoint
 $apiEndpoint = 'http://ec2-52-205-180-161.compute-1.amazonaws.com/agro-api/create-manifest';
 
