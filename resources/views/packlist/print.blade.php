@@ -80,7 +80,7 @@
                     <th>S.No</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
-                    <th>Dimension</th>
+                    <!-- <th>Dimension</th>                     -->
                     <th>Weight</th>
                 </tr>
             </thead>
@@ -99,7 +99,7 @@
                                 <td>{{ $serial++ }}</td>
                                 <td>{{ $itemData['item'] ?? 'N/A' }}</td>
                                 <td>{{ $itemData['qty'] ?? 'N/A' }}</td>
-                                <td>{{ $item->dimension }}</td>
+                                <!-- <td>{{ $item->dimension }}</td> -->
                                 <td>{{ $item->weight }}</td>
                             </tr>
                         @endforeach
