@@ -143,15 +143,21 @@ class PicklistController extends Controller
         $picking = \App\Models\Picking::findOrFail($picking_id);
         $itemsArray = is_array($picking->items) ? $picking->items : json_decode($picking->items, true);
         if (!isset($itemsArray[$item_index])) {
+            \Log::error('Packlist update: Item not found', ['picking_id' => $picking_id, 'item_index' => $item_index]);
             return response()->json(['error' => 'Item not found'], 404);
         }
         $itemData = is_array($itemsArray[$item_index]) ? $itemsArray[$item_index] : json_decode($itemsArray[$item_index], true);
         $itemData['qty'] = $request->input('quantity', $itemData['qty']);
         $itemData['weight'] = $request->input('weight', $itemData['weight'] ?? $picking->weight);
         $itemData['dimension'] = $request->input('dimension', $itemData['dimension'] ?? $picking->dimension);
-        $itemsArray[$item_index] = json_encode($itemData);
+        $itemsArray[$item_index] = $itemData;
         $picking->items = $itemsArray;
-        $picking->save();
+        try {
+            $picking->save();
+        } catch (\Exception $e) {
+            \Log::error('Packlist update: Failed to save picking', ['error' => $e->getMessage(), 'picking_id' => $picking_id]);
+            return response()->json(['error' => 'Failed to update item.'], 500);
+        }
         return response()->json(['success' => true]);
     }
 
