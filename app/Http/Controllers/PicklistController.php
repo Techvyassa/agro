@@ -146,11 +146,13 @@ class PicklistController extends Controller
             \Log::error('Packlist update: Item not found', ['picking_id' => $picking_id, 'item_index' => $item_index]);
             return response()->json(['error' => 'Item not found'], 404);
         }
-        $itemData = is_array($itemsArray[$item_index]) ? $itemsArray[$item_index] : json_decode($itemsArray[$item_index], true);
+        // Parse the JSON string to an array
+        $itemData = json_decode($itemsArray[$item_index], true);
         $itemData['qty'] = $request->input('quantity', $itemData['qty']);
         $itemData['weight'] = $request->input('weight', $itemData['weight'] ?? $picking->weight);
         $itemData['dimension'] = $request->input('dimension', $itemData['dimension'] ?? $picking->dimension);
-        $itemsArray[$item_index] = $itemData;
+        // Re-encode as JSON string
+        $itemsArray[$item_index] = json_encode($itemData);
         $picking->items = $itemsArray;
         try {
             $picking->save();
