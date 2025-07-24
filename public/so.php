@@ -50,7 +50,12 @@ try {
         $soList = $soStmt->fetchAll(PDO::FETCH_ASSOC);
     }
     $result = [];
+    $seen_so_nos = [];
     foreach ($soList as $row) {
+        if (in_array($row['so_no'], $seen_so_nos)) {
+            continue; // Skip duplicate so_no
+        }
+        $seen_so_nos[] = $row['so_no'];
         // Fetch all items for this so_no
         $itemsStmt = $pdo->prepare("SELECT * FROM sales_orders WHERE so_no = ?");
         $itemsStmt->execute([$row['so_no']]);
