@@ -49,7 +49,15 @@ try {
         $soStmt->execute();
         $soList = $soStmt->fetchAll(PDO::FETCH_ASSOC);
     }
-    $result = $soList;
+    $result = [];
+    foreach ($soList as $row) {
+        // Fetch all items for this so_no
+        $itemsStmt = $pdo->prepare("SELECT * FROM sales_orders WHERE so_no = ?");
+        $itemsStmt->execute([$row['so_no']]);
+        $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
+        $row['items'] = $items;
+        $result[] = $row;
+    }
     
     // Return the result
     $response = [
