@@ -8,8 +8,10 @@ set_time_limit(30); // Prevent timeout
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-// Get status parameter
+// Get status, page parameters
 $status = isset($_GET['status']) ? $_GET['status'] : null;
+$page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
+$perPage = 20;
 
 // Database connection
 try {
@@ -22,9 +24,15 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Get all distinct SO numbers from sales_orders
-    $soQuery = "SELECT DISTINCT so_no FROM sales_orders";
+    $soQuery = "SELECT DISTINCT so_no FROM sales_orders ORDER BY so_no DESC";
     $soStmt = $pdo->query($soQuery);
     $soNumbers = $soStmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Pagination logic
+    $total = count($soNumbers);
+    $totalPages = ceil($total / $perPage);
+    $offset = ($page - 1) * $perPage;
+    $soNumbers = array_slice($soNumbers, $offset, $perPage);
     
     $result = [];
     
@@ -87,6 +95,10 @@ try {
     echo json_encode([
         'success' => true,
         'filtered_by' => $status ? "status=$status" : 'none',
+        'page' => $page,
+        'per_page' => $perPage,
+        'total' => $total,
+        'total_pages' => $totalPages,
         'count' => count($result),
         'data' => $result
     ]);
