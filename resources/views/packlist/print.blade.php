@@ -69,6 +69,7 @@
                 <p><strong>Box Number:</strong> {{ $boxNo }}</p>
                 <p><strong>Date:</strong> {{ now()->format('d/m/Y') }}</p>
                 <p><strong>Dimension:</strong> {{ $items->first()->dimension ?? '-' }}</p>
+                <p><strong>Weight:</strong> {{ $items->first()->weight ?? '-' }}</p>
             </div>
             <div>
                 <p><strong>Generated On:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
@@ -77,11 +78,11 @@
         <table>
             <thead>
                 <tr>
-                    <th>S.No</th>
+                    <th>Serial No</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
-                    <!-- <th>Dimension</th>                     -->
-                    <th>Weight</th>
+                    <!-- <th>Dimension</th>
+                    <th>Weight</th> -->
                 </tr>
             </thead>
             <tbody>
@@ -99,8 +100,8 @@
                                 <td>{{ $serial++ }}</td>
                                 <td>{{ $itemData['item'] ?? 'N/A' }}</td>
                                 <td>{{ $itemData['qty'] ?? 'N/A' }}</td>
-                                <!-- <td>{{ $item->dimension }}</td> -->
-                                <td>{{ $item->weight }}</td>
+                                <!-- <td>{{ $item->dimension }}</td>
+                                <td>{{ $item->weight }}</td> -->
                             </tr>
                         @endforeach
                     @endif
@@ -118,6 +119,8 @@
             <p><strong>Sales Order Number:</strong> {{ $so_no }}</p>
             <p><strong>Box Number:</strong> {{ $box }}</p>
             <p><strong>Date:</strong> {{ now()->format('d/m/Y') }}</p>
+            <p><strong>Dimension:</strong> {{ $packitems->first()->dimension ?? '-' }}</p>
+            <p><strong>Weight:</strong> {{ $packitems->first()->weight ?? '-' }}</p>
         </div>
         <div>
             <p><strong>Generated On:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
@@ -126,11 +129,11 @@
     <table>
         <thead>
             <tr>
-                <th>S.No</th>
+                <th>Serial No</th>
                 <th>Item Name</th>
                 <th>Quantity</th>
-                <th>Dimension</th>
-                <th>Weight</th>
+                    <!-- <th>Dimension</th>
+                    <th>Weight</th> -->
             </tr>
         </thead>
         <tbody>
@@ -148,8 +151,8 @@
                             <td>{{ $serial++ }}</td>
                             <td>{{ $itemData['item'] ?? 'N/A' }}</td>
                             <td>{{ $itemData['qty'] ?? 'N/A' }}</td>
-                            <td>{{ $item->dimension }}</td>
-                            <td>{{ $item->weight }}</td>
+                            <!-- <td>{{ $item->dimension }}</td>
+                            <td>{{ $item->weight }}</td> -->
                         </tr>
                     @endforeach
                 @endif
