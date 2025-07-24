@@ -25,20 +25,11 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     // Build base query for sales_orders with optional so_no filter
-    $baseQuery = "SELECT id, so_no, created_at, updated_at FROM sales_orders";
     $params = [];
     $where = [];
     if ($so_no) {
-        $where[] = "so_no LIKE ?";
+        $baseQuery = "SELECT id, so_no, created_at, updated_at FROM sales_orders WHERE so_no LIKE ? ORDER BY so_no DESC";
         $params[] = "%$so_no%";
-    }
-    if (!empty($where)) {
-        $baseQuery .= " WHERE " . implode(" AND ", $where);
-    }
-    $baseQuery .= " ORDER BY so_no DESC";
-
-    // If searching by so_no, ignore pagination and return all matches
-    if ($so_no) {
         $soStmt = $pdo->prepare($baseQuery);
         $soStmt->execute($params);
         $soList = $soStmt->fetchAll(PDO::FETCH_ASSOC);
@@ -46,16 +37,16 @@ try {
         $totalPages = 1;
         $page = 1;
     } else {
-        // Get total count for pagination
+        // Use aggregation to get one row per so_no
         $countQuery = "SELECT COUNT(DISTINCT so_no) FROM sales_orders";
         $countStmt = $pdo->prepare($countQuery);
         $countStmt->execute();
         $total = $countStmt->fetchColumn();
         $totalPages = ceil($total / $perPage);
         $offset = ($page - 1) * $perPage;
-        $soQuery = $baseQuery . " GROUP BY so_no LIMIT $perPage OFFSET $offset";
+        $soQuery = "SELECT MIN(id) as id, so_no, MIN(created_at) as created_at, MIN(updated_at) as updated_at FROM sales_orders GROUP BY so_no ORDER BY so_no DESC LIMIT $perPage OFFSET $offset";
         $soStmt = $pdo->prepare($soQuery);
-        $soStmt->execute($params);
+        $soStmt->execute();
         $soList = $soStmt->fetchAll(PDO::FETCH_ASSOC);
     }
     $result = $soList;
