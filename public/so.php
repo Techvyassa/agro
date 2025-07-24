@@ -23,37 +23,73 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Build base query for sales_orders
-    $baseQuery = "SELECT id, so_no, created_at, updated_at FROM sales_orders";
-    $params = [];
-    // If status is provided, filter SOs that have at least one picking with that status
-    if ($status) {
-        $baseQuery .= " WHERE so_no IN (SELECT so_no FROM pickings WHERE status = ?)";
-        $params[] = $status;
-    }
-    $baseQuery .= " GROUP BY so_no ORDER BY so_no DESC";
+    // Get all distinct SO numbers from sales_orders
+    $soQuery = "SELECT DISTINCT so_no FROM sales_orders ORDER BY so_no DESC";
+    $soStmt = $pdo->query($soQuery);
+    $soNumbers = $soStmt->fetchAll(PDO::FETCH_COLUMN);
 
-    // Get total count for pagination
-    $countQuery = "SELECT COUNT(DISTINCT so_no) FROM sales_orders";
-    $countParams = [];
-    if ($status) {
-        $countQuery .= " WHERE so_no IN (SELECT so_no FROM pickings WHERE status = ?)";
-        $countParams[] = $status;
-    }
-    $countStmt = $pdo->prepare($countQuery);
-    $countStmt->execute($countParams);
-    $total = $countStmt->fetchColumn();
+    // Pagination logic
+    $total = count($soNumbers);
     $totalPages = ceil($total / $perPage);
     $offset = ($page - 1) * $perPage;
-
-    // Get paginated SOs
-    $soQuery = $baseQuery . " LIMIT $perPage OFFSET $offset";
-    $soStmt = $pdo->prepare($soQuery);
-    $soStmt->execute($params);
-    $soList = $soStmt->fetchAll(PDO::FETCH_ASSOC);
-
-    // Return only the required fields
-    $result = $soList;
+    $soNumbers = array_slice($soNumbers, $offset, $perPage);
+    
+    $result = [];
+    
+    // For each SO number, get items and pickings
+    foreach ($soNumbers as $soNumber) {
+        // Get items for this SO
+        $itemsStmt = $pdo->prepare("SELECT * FROM sales_orders WHERE so_no = ?");
+        $itemsStmt->execute([$soNumber]);
+        $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
+        
+        // Check if this SO exists in pickings table
+        $pickingCheckStmt = $pdo->prepare("SELECT COUNT(*) FROM pickings WHERE so_no = ?");
+        $pickingCheckStmt->execute([$soNumber]);
+        $pickingExists = $pickingCheckStmt->fetchColumn() > 0;
+        
+        // Prepare pickings query with optional status filter
+        if ($status && $status !== 'pending') {
+            $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ? AND status = ?");
+            $pickingsStmt->execute([$soNumber, $status]);
+            $pickings = $pickingsStmt->fetchAll(PDO::FETCH_ASSOC);
+            
+            // Only include SOs with matching pickings
+            if (!empty($pickings)) {
+                $result[] = [
+                    'so_no' => $soNumber,
+                    'items' => $items,
+                    'pickings' => $pickings,
+                    'picking_status' => $status
+                ];
+            }
+        } 
+        // Special case for 'pending' filter or no pickings
+        else if (!$pickingExists || $status === 'pending') {
+            // If SO doesn't exist in pickings table or we're filtering for pending
+            if (!$pickingExists && ($status === 'pending' || !$status)) {
+                $result[] = [
+                    'so_no' => $soNumber,
+                    'items' => $items,
+                    'pickings' => [],
+                    'picking_status' => 'pending'
+                ];
+            }
+            // If no status filter, include all
+            else if (!$status) {
+                $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ?");
+                $pickingsStmt->execute([$soNumber]);
+                $pickings = $pickingsStmt->fetchAll(PDO::FETCH_ASSOC);
+                
+                $result[] = [
+                    'so_no' => $soNumber,
+                    'items' => $items,
+                    'pickings' => $pickings,
+                    'picking_status' => $pickingExists ? $pickings[0]['status'] : 'pending'
+                ];
+            }
+        }
+    }
     
     // Return the result
     echo json_encode([
