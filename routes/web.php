@@ -25,6 +25,7 @@ use App\Http\Controllers\Superadmin\ProfileController;
 use App\Http\Controllers\Superadmin\ItemMasterController as SuperadminItemMasterController;
 use App\Http\Controllers\LocationDashboardController;
 use App\Http\Controllers\Api\AsnUpdateController;
+use App\Http\Controllers\PicklistController;
 
 // Home route
 Route::get('/', function () {
@@ -158,6 +159,11 @@ Route::get('/packlist', [App\Http\Controllers\PicklistController::class, 'index'
 Route::get('/packlist/get-boxes', [App\Http\Controllers\PicklistController::class, 'getBoxes'])->name('packlist.getBoxes');
 Route::post('/packlist/generate', [App\Http\Controllers\PicklistController::class, 'generate'])->name('packlist.generate');
 Route::get('/packlist/print/{so_no}/{box?}', [App\Http\Controllers\PicklistController::class, 'print'])->name('packlist.print');
+
+// Packlist AJAX endpoints
+Route::get('/packlist/items', [PicklistController::class, 'getPacklistItems']);
+Route::put('/packlist/item/{picking_id}/{item_index}', [PicklistController::class, 'updatePacklistItem']);
+Route::delete('/packlist/item/{picking_id}/{item_index}', [PicklistController::class, 'deletePacklistItem']);
 
 // Improved Freight Estimation Proxy with CSRF exemption and proper error handling
 Route::post('/freight-proxy', function (\Illuminate\Http\Request $request) {

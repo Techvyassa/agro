@@ -97,4 +97,77 @@ class PicklistController extends Controller
         
         return view('packlist.print', compact('packitems', 'so_no', 'box'));
     }
+
+    /**
+     * AJAX: Get all packlist items for a given SO/box
+     */
+    public function getPacklistItems(Request $request)
+    {
+        $so_no = $request->input('so_no');
+        $box = $request->input('box');
+        if (!$so_no) {
+            return response()->json([], 400);
+        }
+        $query = \App\Models\Picking::where('so_no', $so_no);
+        if ($box && $box !== 'all') {
+            $query->where('box', $box);
+        }
+        $pickings = $query->get();
+        $result = [];
+        foreach ($pickings as $picking) {
+            $itemsArray = is_array($picking->items) ? $picking->items : json_decode($picking->items, true);
+            if (is_array($itemsArray)) {
+                foreach ($itemsArray as $idx => $packItem) {
+                    $itemData = is_array($packItem) ? $packItem : json_decode($packItem, true);
+                    $result[] = [
+                        'id' => $picking->id,
+                        'item_index' => $idx,
+                        'item_name' => $itemData['item'] ?? '',
+                        'quantity' => $itemData['qty'] ?? '',
+                        'weight' => $itemData['weight'] ?? $picking->weight,
+                        'dimension' => $itemData['dimension'] ?? $picking->dimension,
+                        'box' => $picking->box,
+                        'so_no' => $picking->so_no,
+                    ];
+                }
+            }
+        }
+        return response()->json($result);
+    }
+
+    /**
+     * AJAX: Update a specific packlist item (quantity, weight, dimension)
+     */
+    public function updatePacklistItem(Request $request, $picking_id, $item_index)
+    {
+        $picking = \App\Models\Picking::findOrFail($picking_id);
+        $itemsArray = is_array($picking->items) ? $picking->items : json_decode($picking->items, true);
+        if (!isset($itemsArray[$item_index])) {
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+        $itemData = is_array($itemsArray[$item_index]) ? $itemsArray[$item_index] : json_decode($itemsArray[$item_index], true);
+        $itemData['qty'] = $request->input('quantity', $itemData['qty']);
+        $itemData['weight'] = $request->input('weight', $itemData['weight'] ?? $picking->weight);
+        $itemData['dimension'] = $request->input('dimension', $itemData['dimension'] ?? $picking->dimension);
+        $itemsArray[$item_index] = json_encode($itemData);
+        $picking->items = $itemsArray;
+        $picking->save();
+        return response()->json(['success' => true]);
+    }
+
+    /**
+     * AJAX: Delete a specific packlist item
+     */
+    public function deletePacklistItem($picking_id, $item_index)
+    {
+        $picking = \App\Models\Picking::findOrFail($picking_id);
+        $itemsArray = is_array($picking->items) ? $picking->items : json_decode($picking->items, true);
+        if (!isset($itemsArray[$item_index])) {
+            return response()->json(['error' => 'Item not found'], 404);
+        }
+        array_splice($itemsArray, $item_index, 1);
+        $picking->items = $itemsArray;
+        $picking->save();
+        return response()->json(['success' => true]);
+    }
 }

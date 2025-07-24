@@ -66,9 +66,11 @@
                     <div class="row mt-4">
                         <div class="col-md-12 text-center">
                             <button type="button" class="btn btn-primary" id="generateButton" disabled>
-    Print Packlist
-</button>
-                           
+                                Print Packlist
+                            </button>
+                            <button type="button" class="btn btn-warning ms-2" id="editPacklistButton" disabled>
+                                Edit Packlist
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -113,6 +115,49 @@
                     </div>
                 </div>
                 <div id="freightError" class="alert alert-danger" style="display: none;"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Packlist Modal -->
+<div class="modal fade" id="editPacklistModal" tabindex="-1" aria-labelledby="editPacklistModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editPacklistModalLabel">Edit Packlist</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="editPacklistLoading" class="text-center" style="display:none;">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-2">Loading packlist...</p>
+                </div>
+                <div id="editPacklistTableContainer" style="display:none;">
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="editPacklistTable">
+                            <thead>
+                                <tr>
+                                    <th>Item</th>
+                                    <th>Quantity</th>
+                                    <th>Weight</th>
+                                    <th>Dimension</th>
+                                    <th>Box</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Rows will be populated by JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="editPacklistError" class="alert alert-danger" style="display:none;"></div>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -183,7 +228,7 @@ $(document).ready(function() {
         if (!soNo) {
             $('#boxDetailsContainer').hide();
             $('#generateButton').prop('disabled', true);
-            $('#calculateFreightButton').prop('disabled', true);
+            $('#editPacklistButton').prop('disabled', true);
             return;
         }
         // Enable generate button when SO is selected
@@ -203,7 +248,8 @@ $(document).ready(function() {
                 $('#packlistForm')[0].submit();
             }
         });
-        $('#calculateFreightButton').prop('disabled', false);
+        // Enable Edit Packlist button when SO is selected
+        $('#editPacklistButton').prop('disabled', !soNo);
         // Fetch boxes for this SO
         $.ajax({
             url: "{{ route('packlist.getBoxes') }}",
@@ -240,6 +286,85 @@ $(document).ready(function() {
             $('#boxDimension').text('Multiple dimensions');
             $('#boxWeight').text('Multiple weights');
         }
+    });
+
+    // Edit Packlist button click
+    $('#editPacklistButton').on('click', function() {
+        const soNo = $hiddenInput.val();
+        const boxVal = $('#box').val() || 'all';
+        if (!soNo) return;
+        $('#editPacklistModal').modal('show');
+        $('#editPacklistLoading').show();
+        $('#editPacklistTableContainer').hide();
+        $('#editPacklistError').hide();
+        // Fetch packlist data (AJAX endpoint to be implemented)
+        $.ajax({
+            url: '/packlist/items', // To be implemented in backend
+            method: 'GET',
+            data: { so_no: soNo, box: boxVal },
+            success: function(response) {
+                const tbody = $('#editPacklistTable tbody');
+                tbody.empty();
+                if (response && response.length > 0) {
+                    response.forEach(function(row) {
+                        tbody.append(`
+                            <tr data-id="${row.id}">
+                                <td>${row.item_name || ''}</td>
+                                <td><input type="number" class="form-control form-control-sm edit-qty" value="${row.quantity}" min="1"></td>
+                                <td><input type="text" class="form-control form-control-sm edit-weight" value="${row.weight}"></td>
+                                <td><input type="text" class="form-control form-control-sm edit-dimension" value="${row.dimension}"></td>
+                                <td>${row.box || ''}</td>
+                                <td>
+                                    <button class="btn btn-success btn-sm save-row">Save</button>
+                                    <button class="btn btn-danger btn-sm delete-row ms-1">Delete</button>
+                                </td>
+                            </tr>
+                        `);
+                    });
+                    $('#editPacklistTableContainer').show();
+                } else {
+                    tbody.append('<tr><td colspan="6" class="text-center">No packlist items found.</td></tr>');
+                    $('#editPacklistTableContainer').show();
+                }
+                $('#editPacklistLoading').hide();
+            },
+            error: function(xhr) {
+                $('#editPacklistLoading').hide();
+                $('#editPacklistError').text('Failed to load packlist items.').show();
+            }
+        });
+    });
+    // Save and Delete actions (AJAX endpoints to be implemented)
+    $('#editPacklistTable').on('click', '.save-row', function() {
+        const $tr = $(this).closest('tr');
+        const id = $tr.data('id');
+        const quantity = $tr.find('.edit-qty').val();
+        const weight = $tr.find('.edit-weight').val();
+        const dimension = $tr.find('.edit-dimension').val();
+        // TODO: AJAX call to update packlist item
+        // Example:
+        // $.ajax({
+        //     url: `/packlist/item/${id}`,
+        //     method: 'PUT',
+        //     data: { quantity, weight, dimension, _token: '{{ csrf_token() }}' },
+        //     success: function(resp) { /* show success */ },
+        //     error: function() { /* show error */ }
+        // });
+        alert('Save functionality to be implemented.');
+    });
+    $('#editPacklistTable').on('click', '.delete-row', function() {
+        const $tr = $(this).closest('tr');
+        const id = $tr.data('id');
+        // TODO: AJAX call to delete packlist item
+        // Example:
+        // $.ajax({
+        //     url: `/packlist/item/${id}`,
+        //     method: 'DELETE',
+        //     data: { _token: '{{ csrf_token() }}' },
+        //     success: function(resp) { $tr.remove(); },
+        //     error: function() { /* show error */ }
+        // });
+        alert('Delete functionality to be implemented.');
     });
 });
 </script>
