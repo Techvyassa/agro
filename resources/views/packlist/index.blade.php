@@ -300,16 +300,16 @@ $(document).ready(function() {
         $('#editPacklistError').hide();
         // Fetch packlist data (AJAX endpoint to be implemented)
         $.ajax({
-            url: '/packlist/items', // To be implemented in backend
+            url: '/packlist/items',
             method: 'GET',
             data: { so_no: soNo, box: boxVal },
             success: function(response) {
                 const tbody = $('#editPacklistTable tbody');
                 tbody.empty();
                 if (response && response.length > 0) {
-                    response.forEach(function(row) {
+                    response.forEach(function(row, idx) {
                         tbody.append(`
-                            <tr data-id="${row.id}">
+                            <tr data-id="${row.id}" data-item-index="${row.item_index}">
                                 <td>${row.item_name || ''}</td>
                                 <td><input type="number" class="form-control form-control-sm edit-qty" value="${row.quantity}" min="1"></td>
                                 <td><input type="text" class="form-control form-control-sm edit-weight" value="${row.weight}"></td>
@@ -339,33 +339,49 @@ $(document).ready(function() {
     $('#editPacklistTable').on('click', '.save-row', function() {
         const $tr = $(this).closest('tr');
         const id = $tr.data('id');
+        const itemIndex = $tr.data('item-index');
         const quantity = $tr.find('.edit-qty').val();
         const weight = $tr.find('.edit-weight').val();
         const dimension = $tr.find('.edit-dimension').val();
-        // TODO: AJAX call to update packlist item
-        // Example:
-        // $.ajax({
-        //     url: `/packlist/item/${id}`,
-        //     method: 'PUT',
-        //     data: { quantity, weight, dimension, _token: '{{ csrf_token() }}' },
-        //     success: function(resp) { /* show success */ },
-        //     error: function() { /* show error */ }
-        // });
-        alert('Save functionality to be implemented.');
+        $.ajax({
+            url: `/packlist/item/${id}/${itemIndex}`,
+            method: 'PUT',
+            data: {
+                quantity: quantity,
+                weight: weight,
+                dimension: dimension,
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(resp) {
+                // Optionally show a success message
+                $tr.addClass('table-success');
+                setTimeout(function() {
+                    $tr.removeClass('table-success');
+                }, 800);
+            },
+            error: function(xhr) {
+                alert('Failed to update item.');
+            }
+        });
     });
     $('#editPacklistTable').on('click', '.delete-row', function() {
         const $tr = $(this).closest('tr');
         const id = $tr.data('id');
-        // TODO: AJAX call to delete packlist item
-        // Example:
-        // $.ajax({
-        //     url: `/packlist/item/${id}`,
-        //     method: 'DELETE',
-        //     data: { _token: '{{ csrf_token() }}' },
-        //     success: function(resp) { $tr.remove(); },
-        //     error: function() { /* show error */ }
-        // });
-        alert('Delete functionality to be implemented.');
+        const itemIndex = $tr.data('item-index');
+        if (!confirm('Are you sure you want to delete this item?')) return;
+        $.ajax({
+            url: `/packlist/item/${id}/${itemIndex}`,
+            method: 'DELETE',
+            data: {
+                _token: '{{ csrf_token() }}'
+            },
+            success: function(resp) {
+                $tr.fadeOut(300, function() { $(this).remove(); });
+            },
+            error: function(xhr) {
+                alert('Failed to delete item.');
+            }
+        });
     });
 });
 </script>
