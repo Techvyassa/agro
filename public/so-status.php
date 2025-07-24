@@ -7,8 +7,10 @@ error_reporting(E_ALL);
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-// Get status parameter
+// Get status and page parameters
 $status = isset($_GET['status']) ? $_GET['status'] : null;
+$page = isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? (int)$_GET['page'] : 1;
+$perPage = 20;
 
 // Database connection - using your parameters directly for simplicity
 $host = '192.250.231.31';
@@ -21,9 +23,19 @@ try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $user, $pass);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
-    // Get all distinct SO numbers
-    $soQuery = "SELECT DISTINCT so_no FROM sales_orders";
-    $soStmt = $pdo->query($soQuery);
+    // Get total SO count for pagination
+    $countQuery = "SELECT COUNT(DISTINCT so_no) FROM sales_orders";
+    $countStmt = $pdo->query($countQuery);
+    $totalSoCount = (int)$countStmt->fetchColumn();
+    $totalPages = (int)ceil($totalSoCount / $perPage);
+    $offset = ($page - 1) * $perPage;
+
+    // Get paginated SO numbers
+    $soQuery = "SELECT DISTINCT so_no FROM sales_orders LIMIT :limit OFFSET :offset";
+    $soStmt = $pdo->prepare($soQuery);
+    $soStmt->bindValue(':limit', $perPage, PDO::PARAM_INT);
+    $soStmt->bindValue(':offset', $offset, PDO::PARAM_INT);
+    $soStmt->execute();
     $soNumbers = $soStmt->fetchAll(PDO::FETCH_COLUMN);
     
     $result = [];
@@ -60,6 +72,12 @@ try {
     echo json_encode([
         'success' => true,
         'filtered_by' => $status ? "status=$status" : 'none',
+        'pagination' => [
+            'current_page' => $page,
+            'per_page' => $perPage,
+            'total_pages' => $totalPages,
+            'total_so_count' => $totalSoCount
+        ],
         'data' => $result
     ]);
     
