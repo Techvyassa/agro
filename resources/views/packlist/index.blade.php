@@ -68,6 +68,7 @@
                             <button type="button" class="btn btn-primary" id="generateButton" disabled>
                                 Print Packlist
                             </button>
+                             <!-- edit btn to edit packlist -->
                             <button type="button" class="btn btn-warning ms-2" id="editPacklistButton" disabled>
                                 Edit Packlist
                             </button>
