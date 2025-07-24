@@ -345,15 +345,15 @@ $(document).ready(function() {
         const dimension = $tr.find('.edit-dimension').val();
         $.ajax({
             url: `/packlist/item/${id}/${itemIndex}`,
-            method: 'PUT',
+            method: 'POST', // Use POST for method spoofing
             data: {
                 quantity: quantity,
                 weight: weight,
                 dimension: dimension,
+                _method: 'PUT', // Method spoofing for Laravel
                 _token: '{{ csrf_token() }}'
             },
             success: function(resp) {
-                // Optionally show a success message
                 $tr.addClass('table-success');
                 setTimeout(function() {
                     $tr.removeClass('table-success');
@@ -371,8 +371,9 @@ $(document).ready(function() {
         if (!confirm('Are you sure you want to delete this item?')) return;
         $.ajax({
             url: `/packlist/item/${id}/${itemIndex}`,
-            method: 'DELETE',
+            method: 'POST', // Use POST for method spoofing
             data: {
+                _method: 'DELETE', // Method spoofing for Laravel
                 _token: '{{ csrf_token() }}'
             },
             success: function(resp) {
