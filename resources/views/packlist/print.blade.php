@@ -68,6 +68,7 @@
                 <p><strong>Sales Order Number:</strong> {{ $so_no }}</p>
                 <p><strong>Box Number:</strong> {{ $boxNo }}</p>
                 <p><strong>Date:</strong> {{ now()->format('d/m/Y') }}</p>
+                <p><strong>Dimension:</strong> {{ $items->first()->dimension ?? '-' }}</p>
             </div>
             <div>
                 <p><strong>Generated On:</strong> {{ now()->format('d/m/Y H:i:s') }}</p>
@@ -76,7 +77,7 @@
         <table>
             <thead>
                 <tr>
-                    <th>Box</th>
+                    <th>S.No</th>
                     <th>Item Name</th>
                     <th>Quantity</th>
                     <th>Dimension</th>
@@ -84,6 +85,7 @@
                 </tr>
             </thead>
             <tbody>
+                @php $serial = 1; @endphp
                 @foreach($items as $item)
                     @php
                         $itemsArray = json_decode($item->items, true);
@@ -94,7 +96,7 @@
                                 $itemData = json_decode($packItem, true);
                             @endphp
                             <tr>
-                                <td>{{ $item->box }}</td>
+                                <td>{{ $serial++ }}</td>
                                 <td>{{ $itemData['item'] ?? 'N/A' }}</td>
                                 <td>{{ $itemData['qty'] ?? 'N/A' }}</td>
                                 <td>{{ $item->dimension }}</td>
@@ -124,7 +126,7 @@
     <table>
         <thead>
             <tr>
-                <th>Box</th>
+                <th>S.No</th>
                 <th>Item Name</th>
                 <th>Quantity</th>
                 <th>Dimension</th>
@@ -132,6 +134,7 @@
             </tr>
         </thead>
         <tbody>
+            @php $serial = 1; @endphp
             @foreach($packitems as $item)
                 @php
                     $itemsArray = json_decode($item->items, true);
@@ -142,7 +145,7 @@
                             $itemData = json_decode($packItem, true);
                         @endphp
                         <tr>
-                            <td>{{ $item->box }}</td>
+                            <td>{{ $serial++ }}</td>
                             <td>{{ $itemData['item'] ?? 'N/A' }}</td>
                             <td>{{ $itemData['qty'] ?? 'N/A' }}</td>
                             <td>{{ $item->dimension }}</td>
