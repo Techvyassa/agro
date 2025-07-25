@@ -11,6 +11,8 @@ header('Access-Control-Allow-Origin: *');
 $status = isset($_GET['status']) ? $_GET['status'] : null;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 0 ? (int)$_GET['page'] : 1;
 $perPage = 20;
+// Add support for optional so_no parameter
+$so_no = isset($_GET['so_no']) ? $_GET['so_no'] : null;
 
 // Database connection - using your parameters directly for simplicity
 $host = '192.250.231.31';
@@ -40,6 +42,37 @@ try {
     
     $result = [];
     
+    if ($so_no) {
+        // If so_no is provided, fetch only that SO (ignore pagination)
+        // Get items for this SO
+        $itemsStmt = $pdo->prepare("SELECT * FROM sales_orders WHERE so_no = ?");
+        $itemsStmt->execute([$so_no]);
+        $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
+        // Prepare pickings query with optional status filter
+        if ($status) {
+            $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ? AND status = ?");
+            $pickingsStmt->execute([$so_no, $status]);
+        } else {
+            $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ?");
+            $pickingsStmt->execute([$so_no]);
+        }
+        $pickings = $pickingsStmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($pickings)) {
+            $result[] = [
+                'so_no' => $so_no,
+                'items' => $items,
+                'pickings' => $pickings
+            ];
+        }
+        // Return the result (no pagination info needed)
+        echo json_encode([
+            'success' => true,
+            'filtered_by' => ($status ? "status=$status" : 'none') . ", so_no=$so_no",
+            'data' => $result
+        ]);
+        exit;
+    }
+
     // For each SO number, get items and pickings
     foreach ($soNumbers as $soNumber) {
         // Get items for this SO
