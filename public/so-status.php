@@ -43,31 +43,42 @@ try {
     $result = [];
     
     if ($so_no) {
-        // If so_no is provided, fetch only that SO (ignore pagination)
-        // Get items for this SO
-        $itemsStmt = $pdo->prepare("SELECT * FROM sales_orders WHERE so_no = ?");
-        $itemsStmt->execute([$so_no]);
+        // If so_no is provided, fetch SOs matching the partial so_no (ignore pagination)
+        // Get items for SOs matching the partial so_no
+        $itemsStmt = $pdo->prepare("SELECT * FROM sales_orders WHERE so_no LIKE ?");
+        $itemsStmt->execute(['%' . $so_no . '%']);
         $items = $itemsStmt->fetchAll(PDO::FETCH_ASSOC);
-        // Prepare pickings query with optional status filter
-        if ($status) {
-            $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ? AND status = ?");
-            $pickingsStmt->execute([$so_no, $status]);
-        } else {
-            $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ?");
-            $pickingsStmt->execute([$so_no]);
-        }
-        $pickings = $pickingsStmt->fetchAll(PDO::FETCH_ASSOC);
-        if (!empty($pickings)) {
-            $result[] = [
-                'so_no' => $so_no,
-                'items' => $items,
-                'pickings' => $pickings
-            ];
+        // Get all matching SO numbers
+        $soNumbersStmt = $pdo->prepare("SELECT DISTINCT so_no FROM sales_orders WHERE so_no LIKE ?");
+        $soNumbersStmt->execute(['%' . $so_no . '%']);
+        $matchingSoNumbers = $soNumbersStmt->fetchAll(PDO::FETCH_COLUMN);
+        $result = [];
+        foreach ($matchingSoNumbers as $matchedSoNo) {
+            // Prepare pickings query with optional status filter
+            if ($status) {
+                $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ? AND status = ?");
+                $pickingsStmt->execute([$matchedSoNo, $status]);
+            } else {
+                $pickingsStmt = $pdo->prepare("SELECT * FROM pickings WHERE so_no = ?");
+                $pickingsStmt->execute([$matchedSoNo]);
+            }
+            $pickings = $pickingsStmt->fetchAll(PDO::FETCH_ASSOC);
+            // Get items for this SO
+            $soItems = array_filter($items, function($item) use ($matchedSoNo) {
+                return $item['so_no'] === $matchedSoNo;
+            });
+            if (!empty($pickings)) {
+                $result[] = [
+                    'so_no' => $matchedSoNo,
+                    'items' => array_values($soItems),
+                    'pickings' => $pickings
+                ];
+            }
         }
         // Return the result (no pagination info needed)
         echo json_encode([
             'success' => true,
-            'filtered_by' => ($status ? "status=$status" : 'none') . ", so_no=$so_no",
+            'filtered_by' => ($status ? "status=$status" : 'none') . ", so_no LIKE %$so_no%",
             'data' => $result
         ]);
         exit;
