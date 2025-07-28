@@ -5,8 +5,8 @@
  */
 
 // Initialize Laravel
-require __DIR__.'/../vendor/autoload.php';
-$app = require_once __DIR__.'/../bootstrap/app.php';
+require __DIR__ . '/../vendor/autoload.php';
+$app = require_once __DIR__ . '/../bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
 $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
@@ -18,7 +18,7 @@ header('Content-Type: application/json');
 try {
     // Get request method
     $method = $_SERVER['REQUEST_METHOD'];
-    
+
     // Get parameters based on request method
     if ($method === 'GET') {
         $box = $_GET['box'] ?? null;
@@ -32,14 +32,14 @@ try {
         if (!$data && !empty($_POST)) {
             $data = $_POST;
         }
-        
+
         $box = $data['box'] ?? null;
         $so_no = $data['so_no'] ?? null;
         $dimension = $data['dimension'] ?? null;
         $weight = $data['weight'] ?? null;
         $items = $data['items'] ?? null;
     }
-    
+
     // Validate required parameters
     if (empty($box) || empty($so_no)) {
         echo json_encode([
@@ -48,12 +48,16 @@ try {
         ]);
         exit;
     }
-    
+
+
+    // Normalize box value (handle array or string)
+    $boxValue = is_array($box) ? $box[0] : $box;
+
     // Find existing picking
     $picking = App\Models\Picking::where('so_no', $so_no)
-        ->where('box', $box)
+        ->where('box', $boxValue)
         ->first();
-    
+
     if (!$picking) {
         echo json_encode([
             'success' => false,
@@ -61,25 +65,25 @@ try {
         ]);
         exit;
     }
-    
+
     // Update fields if provided
     $updated = false;
-    
+
     if (!is_null($items)) {
         $picking->items = $items;
         $updated = true;
     }
-    
+
     if (!is_null($dimension)) {
         $picking->dimension = $dimension;
         $updated = true;
     }
-    
+
     if (!is_null($weight)) {
         $picking->weight = $weight;
         $updated = true;
     }
-    
+
     if ($updated) {
         $picking->save();
         echo json_encode([
@@ -94,7 +98,7 @@ try {
             'data' => $picking
         ]);
     }
-    
+
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
