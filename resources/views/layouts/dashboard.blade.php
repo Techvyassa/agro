@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,66 +16,82 @@
             min-height: 100vh;
             overflow-x: hidden;
         }
+
         .sidebar {
             min-height: calc(100vh - 56px);
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
             z-index: 100;
         }
+
         .sidebar .nav-link {
             color: #495057;
             padding: 0.75rem 1rem;
             font-weight: 500;
         }
+
         .sidebar .nav-link i {
             margin-right: 0.5rem;
             width: 20px;
             text-align: center;
         }
+
         .sidebar .nav-link.active {
             color: #2b256c;
             background-color: rgba(43, 37, 108, 0.1);
         }
+
         .sidebar .nav-link:hover {
             background-color: rgba(0, 0, 0, 0.05);
         }
+
         main {
             padding: 1.5rem;
         }
+
         .content-header {
             margin-bottom: 1.5rem;
         }
+
         .card {
             border-radius: 0.5rem;
             box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
             margin-bottom: 1.5rem;
         }
+
         .card-header {
             border-radius: 0.5rem 0.5rem 0 0 !important;
             background-color: #fff;
             border-bottom: 1px solid rgba(0, 0, 0, 0.125);
             padding: 1rem;
         }
+
         .dashboard-icon {
             font-size: 2rem;
             color: #2b256c;
         }
+
         .table-hover tbody tr:hover {
             background-color: rgba(43, 37, 108, 0.05);
         }
+
         .btn-primary {
             background-color: #2b256c;
             border-color: #2b256c;
         }
+
         .btn-primary:hover {
             background-color: #211d53;
             border-color: #211d53;
         }
+
         .bg-primary {
             background-color: #2b256c !important;
         }
+
         .text-primary {
             color: #2b256c !important;
         }
+
         .alert-success {
             background-color: rgba(43, 37, 108, 0.1);
             border-color: rgba(43, 37, 108, 0.2);
@@ -82,6 +99,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-0">
         <div class="container-fluid">
@@ -92,18 +110,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown">
+                        <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown">
                             <i class="fas fa-user-circle"></i> {{ Auth::user()->name }}
                         </a>
                         <ul class="dropdown-menu dropdown-menu-end">
                             <!-- <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
                             <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li> -->
-                            <li><hr class="dropdown-divider"></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
                             <li>
                                 <form method="POST" action="{{ route('logout') }}">
                                     @csrf
                                     <input type="hidden" name="redirect" value="/">
-                                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i> Logout</button>
+                                    <button type="submit" class="dropdown-item"><i class="fas fa-sign-out-alt me-2"></i>
+                                        Logout</button>
                                 </form>
                             </li>
                         </ul>
@@ -120,7 +142,8 @@
                 <div class="position-sticky pt-3">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}" href="{{ route('dashboard') }}">
+                            <a class="nav-link {{ request()->is('dashboard') ? 'active' : '' }}"
+                                href="{{ route('dashboard') }}">
                                 <i class="fas fa-tachometer-alt"></i> Dashboard
                             </a>
                         </li>
@@ -130,32 +153,38 @@
                             </a>
                         </li> -->
                         <li class="nav-item">
-    <a class="nav-link {{ request()->is('user/pdfs*') ? 'active' : '' }}" href="{{ route('user.pdfs.index') }}">
-        <i class="fas fa-file-pdf"></i>Sales Order PDF Uploads
-    </a>
-</li>
+                            <a class="nav-link {{ request()->is('user/pdfs*') ? 'active' : '' }}"
+                                href="{{ route('user.pdfs.index') }}">
+                                <i class="fas fa-file-pdf"></i>Sales Order PDF Uploads
+                            </a>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('sales-orders') ? 'active' : '' }}" href="{{ route('sales_orders.index') }}">
+                            <a class="nav-link {{ request()->is('sales-orders') ? 'active' : '' }}"
+                                href="{{ route('sales_orders.index') }}">
                                 <i class="fas fa-list"></i> View Sales Orders
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('packlist*') ? 'active' : '' }}" href="{{ route('packlist.index') }}">
+                            <a class="nav-link {{ request()->is('packlist*') ? 'active' : '' }}"
+                                href="{{ route('packlist.index') }}">
                                 <i class="fas fa-box"></i> Print Packlist
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('freight-calculator*') ? 'active' : '' }}" href="{{ route('freight.calculator') }}">
+                            <a class="nav-link {{ request()->is('freight-calculator*') ? 'active' : '' }}"
+                                href="{{ route('freight.calculator') }}">
                                 <i class="fas fa-truck"></i> Calculate Freight
                             </a>
                         </li>
                         <li class="nav-item">
-    <a class="nav-link {{ request()->is('track-status*') ? 'active' : '' }}" href="{{ route('track.status') }}">
-        <i class="fas fa-truck-loading"></i> Track Status
-    </a>
-</li>
+                            <a class="nav-link {{ request()->is('track-status*') ? 'active' : '' }}"
+                                href="{{ route('track.status') }}">
+                                <i class="fas fa-truck-loading"></i> Track Status
+                            </a>
+                        </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ request()->is('short-so') ? 'active' : '' }}" href="{{ url('/short-so') }}">
+                            <a class="nav-link {{ request()->is('short-so') ? 'active' : '' }}"
+                                href="{{ url('/short-so') }}">
                                 <i class="fas fa-pause-circle"></i> Short SO (Packings on Hold)
                                 <span class="badge bg-danger ms-2">{{ isset($shortSoCount) ? $shortSoCount : 0 }}</span>
                             </a>
@@ -208,5 +237,9 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     @yield('scripts')
+    <script>
+        
+    </script>
 </body>
+
 </html>

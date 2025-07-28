@@ -17,7 +17,7 @@ class SalesOrderController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     /**
      * Display a listing of sales orders
      *
@@ -28,32 +28,48 @@ class SalesOrderController extends Controller
         $query = \App\Models\SalesOrder::query();
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('so_no', 'like', "%$search%")
-                  ->orWhere('item_name', 'like', "%$search%" );
+                    ->orWhere('item_name', 'like', "%$search%");
             });
         }
+
+
         // Filter by exact uploaded date
         if ($request->filled('uploaded_date')) {
             $query->whereDate('created_at', $request->uploaded_date);
         }
+
+
+
         // Get all SO numbers with their earliest uploaded date
         $soGroups = $query->select('so_no', DB::raw('MIN(created_at) as uploaded_at'))->groupBy('so_no');
+
         // Packing date filter (from pickings.updated_at, exact match)
         if ($request->filled('packing_date')) {
-            $soGroups = $soGroups->whereIn('so_no', function($sub) use ($request) {
+            $soGroups = $soGroups->whereIn('so_no', function ($sub) use ($request) {
                 $sub->select('so_no')->from('pickings')->whereDate('updated_at', $request->packing_date);
             });
         }
         $soGroups = $soGroups->orderByDesc('uploaded_at')->paginate(50)->appends($request->all());
+
+        // Load related pickings in one go
+        $pickingsBySo = \App\Models\Picking::whereIn('so_no', $soGroups->pluck('so_no'))->get()->groupBy('so_no');
+
+        // echo '<pre>';
+        // print_r($pickingsBySo->toArray());
+        // echo '</pre>';
+        // exit();
+
         return view('sales_orders.index', [
             'soGroups' => $soGroups,
             'uploaded_date' => $request->uploaded_date,
             'packing_date' => $request->packing_date,
             'search' => $request->search,
+            'pickingsBySo' => $pickingsBySo,
         ]);
     }
-    
+
     /**
      * Filter sales orders by SO Number
      *
@@ -65,15 +81,15 @@ class SalesOrderController extends Controller
         $query = SalesOrder::query();
         if ($request->filled('search')) {
             $search = $request->search;
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('so_no', 'like', "%$search%")
-                  ->orWhere('item_name', 'like', "%$search%" );
+                    ->orWhere('item_name', 'like', "%$search%");
             });
         }
         $salesOrders = $query->orderByDesc('id')->paginate(15)->appends($request->all());
         return view('sales_orders.index', compact('salesOrders'));
     }
-    
+
     /**
      * Export sales orders to CSV
      *
@@ -83,7 +99,7 @@ class SalesOrderController extends Controller
     public function export(Request $request)
     {
         $so_no = $request->input('so_no');
-        
+
         if ($so_no) {
             $salesOrders = SalesOrder::where('so_no', $so_no)
                 ->orderBy('so_no')
@@ -92,20 +108,20 @@ class SalesOrderController extends Controller
             $salesOrders = SalesOrder::orderBy('so_no')
                 ->get();
         }
-        
+
         $filename = 'sales_orders_' . date('Y-m-d') . '.csv';
-        
+
         $headers = [
             'Content-Type' => 'text/csv',
             'Content-Disposition' => 'attachment; filename="' . $filename . '"',
         ];
-        
-        $callback = function() use ($salesOrders) {
+
+        $callback = function () use ($salesOrders) {
             $file = fopen('php://output', 'w');
-            
+
             // Add headers
             fputcsv($file, ['SO Number', 'Item Name', 'Category', 'HSN Code', 'Quantity', 'Rate', 'Amount', 'Date Added']);
-            
+
             // Add data
             foreach ($salesOrders as $order) {
                 fputcsv($file, [
@@ -119,10 +135,10 @@ class SalesOrderController extends Controller
                     ($order->created_at) ? $order->created_at->format('Y-m-d') : ''
                 ]);
             }
-            
+
             fclose($file);
         };
-        
+
         return response()->stream($callback, 200, $headers);
     }
 
@@ -154,21 +170,21 @@ class SalesOrderController extends Controller
 
         $file = $request->file('csv_file');
         $handle = fopen($file->getPathname(), 'r');
-        
+
         // Get headers from first row
         $headers = fgetcsv($handle);
-        
+
         // Convert headers to lowercase
         $headers = array_map('strtolower', $headers);
-        
+
         // Check required columns exist
         $requiredColumns = ['so_no', 'item_name', 'category', 'hsn', 'qty', 'rate'];
         $missingColumns = array_diff($requiredColumns, $headers);
-        
+
         if (count($missingColumns) > 0) {
             return redirect()->back()->with('error', 'CSV is missing required columns: ' . implode(', ', $missingColumns));
         }
-        
+
         // Read data
         $salesOrders = [];
         while (($data = fgetcsv($handle)) !== false) {
@@ -177,13 +193,13 @@ class SalesOrderController extends Controller
                 $salesOrders[] = $row;
             }
         }
-        
+
         fclose($handle);
-        
+
         if (empty($salesOrders)) {
             return redirect()->back()->with('error', 'No valid data found in the CSV file.');
         }
-        
+
         // Group data by SO number for better display
         $groupedOrders = [];
         foreach ($salesOrders as $order) {
@@ -193,17 +209,17 @@ class SalesOrderController extends Controller
             }
             $groupedOrders[$soNumber][] = $order;
         }
-        
+
         // Store in session and display for confirmation
         session(['sales_orders' => $salesOrders]);
         session(['grouped_orders' => $groupedOrders]);
-        
+
         return view('sales_orders.confirm', [
             'salesOrders' => $salesOrders,
             'groupedOrders' => $groupedOrders
         ]);
     }
-    
+
     /**
      * Save the confirmed sales order data
      *
@@ -213,15 +229,15 @@ class SalesOrderController extends Controller
     public function saveOrders(Request $request)
     {
         $salesOrders = session('sales_orders', []);
-        
+
         if (empty($salesOrders)) {
             return redirect()->route('sales_orders.upload')->with('error', 'No sales order data found. Please upload again.');
         }
-        
+
         try {
             // Begin transaction to ensure all records are saved or none
             DB::beginTransaction();
-            
+
             // Save data to database
             foreach ($salesOrders as $order) {
                 SalesOrder::create([
@@ -233,22 +249,22 @@ class SalesOrderController extends Controller
                     'rate' => $order['rate']
                 ]);
             }
-            
+
             // Commit transaction
             DB::commit();
-            
+
             // Clear the session
             session()->forget(['sales_orders', 'grouped_orders']);
-            
+
             return redirect()->route('sales_orders.index')->with('success', count($salesOrders) . ' sales orders have been successfully imported.');
-        
+
         } catch (\Exception $e) {
             // Rollback if any error occurs
             DB::rollBack();
-            
+
             // Log the error
             Log::error('Error saving sales orders: ' . $e->getMessage());
-            
+
             return redirect()->route('sales_orders.upload')->with('error', 'Error saving sales orders: ' . $e->getMessage());
         }
     }
