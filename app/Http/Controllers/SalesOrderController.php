@@ -25,50 +25,61 @@ class SalesOrderController extends Controller
      */
     public function index(Request $request)
     {
+        // Base SalesOrder query
         $query = \App\Models\SalesOrder::query();
+
+        // Search filter
         if ($request->filled('search')) {
-            $search = $request->search;
-            $query->where(function ($q) use ($search) {
-                $q->where('so_no', 'like', "%$search%")
-                    ->orWhere('item_name', 'like', "%$search%");
+            $query->where(function ($q) use ($request) {
+                $q->where('so_no', 'like', "%{$request->search}%")
+                    ->orWhere('item_name', 'like', "%{$request->search}%");
             });
         }
 
-
-        // Filter by exact uploaded date
+        // Uploaded date filter
         if ($request->filled('uploaded_date')) {
             $query->whereDate('created_at', $request->uploaded_date);
         }
 
+        // Initial SO groups with min uploaded date
+        $soGroupsQuery = $query->select('so_no', DB::raw('MIN(created_at) as uploaded_at'))->groupBy('so_no');
 
-
-        // Get all SO numbers with their earliest uploaded date
-        $soGroups = $query->select('so_no', DB::raw('MIN(created_at) as uploaded_at'))->groupBy('so_no');
-
-        // Packing date filter (from pickings.updated_at, exact match)
+        // Packing date filter (based on pickings.updated_at)
         if ($request->filled('packing_date')) {
-            $soGroups = $soGroups->whereIn('so_no', function ($sub) use ($request) {
-                $sub->select('so_no')->from('pickings')->whereDate('updated_at', $request->packing_date);
+            $soGroupsQuery->whereIn('so_no', function ($sub) use ($request) {
+                $sub->select('so_no')
+                    ->from('pickings')
+                    ->whereDate('updated_at', $request->packing_date);
             });
         }
-        $soGroups = $soGroups->orderByDesc('uploaded_at')->paginate(50)->appends($request->all());
 
-        // Load related pickings in one go
-        $pickingsBySo = \App\Models\Picking::whereIn('so_no', $soGroups->pluck('so_no'))->get()->groupBy('so_no');
+        // Paginate final SO groups
+        $soGroups = $soGroupsQuery->orderByDesc('uploaded_at')->paginate(50)->appends($request->all());
 
-        // echo '<pre>';
-        // print_r($pickingsBySo->toArray());
-        // echo '</pre>';
-        // exit();
+        // Load related sales orders & pickings
+        $soNos = $soGroups->pluck('so_no');
+        $salesOrdersBySo = \App\Models\SalesOrder::whereIn('so_no', $soNos)->get()->groupBy('so_no');
+
+        $pickingsBySo = \App\Models\Picking::whereIn('so_no', $soNos)->get()->groupBy('so_no');
+
+        // Decode items JSON in pickings
+        $pickingsBySo->each(function ($group) {
+            $group->each(function ($picking) {
+                $picking->items_array = is_string($picking->items) ? json_decode($picking->items, true) : $picking->items;
+
+            });
+        });
 
         return view('sales_orders.index', [
             'soGroups' => $soGroups,
+            'salesOrdersBySo' => $salesOrdersBySo,
+            'pickingsBySo' => $pickingsBySo,
+            'search' => $request->search,
             'uploaded_date' => $request->uploaded_date,
             'packing_date' => $request->packing_date,
-            'search' => $request->search,
-            'pickingsBySo' => $pickingsBySo,
         ]);
     }
+
 
     /**
      * Filter sales orders by SO Number
