@@ -40,6 +40,8 @@ try {
         $items = $data['items'] ?? null;
     }
 
+
+
     // Validate required parameters
     if (empty($box) || empty($so_no)) {
         echo json_encode([
@@ -49,13 +51,21 @@ try {
         exit;
     }
 
+    if (is_array($box)) {
+        // If box is an array, take the first element
+        $box = $box[0];
+    } elseif (is_string($box)) {
+        // If box is a string, trim it
+        $box = trim($box);
+    }
+
 
     // Normalize box value (handle array or string)
-    $boxValue = is_array($box) ? $box[0] : $box;
+    // $boxValue = is_array($box) ? $box[0] : $box;
 
     // Find existing picking
     $picking = App\Models\Picking::where('so_no', $so_no)
-        ->where('box', $boxValue)
+        ->where('box', $box)
         ->first();
 
     if (!$picking) {
