@@ -61,14 +61,13 @@ class SalesOrderController extends Controller
         $salesOrdersBySo = \App\Models\SalesOrder::whereIn('so_no', $soNos)->get()->groupBy('so_no');
 
         $pickingsBySo = \App\Models\Picking::whereIn('so_no', $soNos)->get()->groupBy('so_no');
-
+       
         // Decode items JSON in pickings
-        $pickingsBySo->each(function ($group) {
-            $group->each(function ($picking) {
-                $picking->items_array = is_string($picking->items) ? json_decode($picking->items, true) : $picking->items;
-
+            $pickingsBySo->each(function ($group) {
+                $group->each(function ($picking) {
+                    $picking->items_array = $picking->items;
+                });
             });
-        });
 
         return view('sales_orders.index', [
             'soGroups' => $soGroups,
