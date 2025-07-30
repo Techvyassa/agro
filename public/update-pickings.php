@@ -1,10 +1,5 @@
 <?php
-/**
- * Standalone handler for updating pickings by so_no and box
- * Supports both GET and POST requests
- */
 
-// Initialize Laravel
 require __DIR__ . '/../vendor/autoload.php';
 $app = require_once __DIR__ . '/../bootstrap/app.php';
 $kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
@@ -12,27 +7,26 @@ $response = $kernel->handle(
     $request = Illuminate\Http\Request::capture()
 );
 
-// Set JSON response header
+use Illuminate\Support\Facades\DB;
+
 header('Content-Type: application/json');
 
 try {
-    // Get request method
     $method = $_SERVER['REQUEST_METHOD'];
 
-    // Get parameters based on request method
     if ($method === 'GET') {
+        $id = $_GET['id'] ?? null;
         $box = $_GET['box'] ?? null;
         $so_no = $_GET['so_no'] ?? null;
         $dimension = $_GET['dimension'] ?? null;
         $weight = $_GET['weight'] ?? null;
         $items = isset($_GET['items']) ? (is_array($_GET['items']) ? $_GET['items'] : [$_GET['items']]) : null;
     } else {
-        // For POST, get data from request body
         $data = json_decode(file_get_contents('php://input'), true);
         if (!$data && !empty($_POST)) {
             $data = $_POST;
         }
-
+        $id = $data['id'] ?? null;
         $box = $data['box'] ?? null;
         $so_no = $data['so_no'] ?? null;
         $dimension = $data['dimension'] ?? null;
@@ -40,79 +34,114 @@ try {
         $items = $data['items'] ?? null;
     }
 
+    function extractFirstBoxValue($box)
+    {
+        if (is_array($box)) {
+            return trim($box[0]);
+        }
 
+        if (is_string($box)) {
+            $clean = trim($box, "[] ");
+            $parts = explode(',', $clean);
+            return isset($parts[0]) ? trim($parts[0], "\"' ") : null;
+        }
 
-    // Validate required parameters
-    if (empty($box) || empty($so_no)) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Both box and so_no parameters are required'
-        ]);
-        exit;
+        return null;
     }
 
-    if (is_array($box)) {
-        // If box is an array, take the first element
-        $box = $box[0];
-    } elseif (is_string($box)) {
-        // If box is a string, trim it
-        $box = trim($box);
+    $pickingModel = null;
+
+    // 🔍 Directly find by ID if provided
+    if ($id) {
+        $pickingModel = App\Models\Picking::find($id);
+        if (!$pickingModel) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'No picking found with provided ID'
+            ]);
+            exit;
+        }
+    } else {
+        // Require so_no and box if no ID
+        if (empty($box) || empty($so_no)) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Either id or both box and so_no parameters are required'
+            ]);
+            exit;
+        }
+
+        $firstRequestBox = extractFirstBoxValue($box);
+        if (!$firstRequestBox) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'Unable to extract first box value from request'
+            ]);
+            exit;
+        }
+
+        // 🔍 Find all pickings for so_no and match box
+        $allPickings = DB::table('pickings')->where('so_no', $so_no)->get();
+
+        foreach ($allPickings as $picking) {
+            $firstDbBox = extractFirstBoxValue($picking->box);
+            if ($firstDbBox == $firstRequestBox) {
+                $pickingModel = App\Models\Picking::find($picking->id);
+                break;
+            }
+        }
+
+        if (!$pickingModel) {
+            echo json_encode([
+                'success' => false,
+                'message' => 'No matching picking found for given so_no and box'
+            ]);
+            exit;
+        }
     }
 
-
-    // Normalize box value (handle array or string)
-    // $boxValue = is_array($box) ? $box[0] : $box;
-
-    // Find existing picking
-    $picking = App\Models\Picking::where('so_no', $so_no)
-        ->where('box', $box)
-        ->first();
-
-    if (!$picking) {
-        echo json_encode([
-            'success' => false,
-            'message' => 'Picking not found for the specified so_no and box'
-        ]);
-        exit;
-    }
-
-    // Update fields if provided
+    // 🔧 Update fields if provided
     $updated = false;
 
     if (!is_null($items)) {
-        $picking->items = $items;
+        $pickingModel->items = $items;
+        $updated = true;
+    }
+
+    if (!is_null($box)) {
+        $pickingModel->box = $box;
         $updated = true;
     }
 
     if (!is_null($dimension)) {
-        $picking->dimension = $dimension;
+        $pickingModel->dimension = $dimension;
         $updated = true;
     }
 
     if (!is_null($weight)) {
-        $picking->weight = $weight;
+        $pickingModel->weight = $weight;
         $updated = true;
     }
 
     if ($updated) {
-        $picking->save();
+        $pickingModel->save();
         echo json_encode([
             'success' => true,
             'message' => 'Picking updated successfully',
-            'data' => $picking
+            'data' => $pickingModel
         ]);
     } else {
         echo json_encode([
             'success' => true,
-            'message' => 'No updates were provided',
-            'data' => $picking
+            'message' => 'No fields updated',
+            'data' => $pickingModel
         ]);
     }
 
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
-        'message' => 'Failed to update picking',
+        'message' => 'Error occurred during update',
         'error' => $e->getMessage()
     ]);
 }
