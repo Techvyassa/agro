@@ -148,7 +148,7 @@
                                                                     <ul class="mb-0 ps-3">
                                                                         @foreach($picking->items as $itemJson)
                                                                             @php
-                                                                                $item = json_decode($itemJson, true);m,
+                                                                                $item = json_decode($itemJson, true);
                                                                             @endphp
                                                                             <li>{{ $item['item'] }} (Qty: {{ $item['qty'] }})</li>
                                                                         @endforeach
