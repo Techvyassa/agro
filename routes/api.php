@@ -228,7 +228,7 @@ Route::post('update-pickings', function (\Illuminate\Http\Request $request) {
 
 
 // DELETE Picking
-Route::delete('delete-pickings/{id}', [PickingController::class, 'destroy']);
+Route::post('delete-pickings/{id}', [PickingController::class, 'destroy']);
 
 
 // Freight Estimation Proxy - to handle CORS issues
