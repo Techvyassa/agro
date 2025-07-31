@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\PickingController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ItemMasterController;
@@ -224,6 +225,11 @@ Route::post('update-pickings', function (\Illuminate\Http\Request $request) {
         ], 500);
     }
 });
+
+
+// DELETE Picking
+Route::delete('delete-pickings/{id}', [PickingController::class, 'destroy']);
+
 
 // Freight Estimation Proxy - to handle CORS issues
 Route::post('freight-proxy', function (\Illuminate\Http\Request $request) {

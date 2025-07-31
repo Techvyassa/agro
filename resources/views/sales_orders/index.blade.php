@@ -95,79 +95,80 @@
                                 </tr>
 
                                 <tr class="collapse bg-light" id="so-details-{{ $loop->index }}">
-    <td colspan="4">
-        <div class="row">
-            {{-- Sales Order Items --}}
-            <div class="col-md-6">
-                <h6>Sales Order Items</h6>
-                @if($salesOrdersBySo[$row->so_no] ?? false)
-                    <table class="table table-sm table-bordered">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th>Item Name</th>
-                                <th>Category</th>
-                                <th>HSN</th>
-                                <th>Qty</th>
-                                <th>Rate</th>
+                                <td colspan="4">
+                                    <div class="row">
+                                        {{-- Sales Order Items --}}
+                                        <div class="col-md-6">
+                                            <h6>Sales Order Items</h6>
+                                            @if($salesOrdersBySo[$row->so_no] ?? false)
+                                                <table class="table table-sm table-bordered">
+                                                    <thead class="table-secondary">
+                                                        <tr>
+                                                            <th>Item Name</th>
+                                                            <th>Category</th>
+                                                            <th>HSN</th>
+                                                            <th>Qty</th>
+                                                            <th>Rate</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($salesOrdersBySo[$row->so_no] as $so)
+                                                            <tr>
+                                                                <td>{{ $so->item_name }}</td>
+                                                                <td>{{ $so->category }}</td>
+                                                                <td>{{ $so->hsn }}</td>
+                                                                <td>{{ $so->qty }}</td>
+                                                                <td>{{ $so->rate }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @else
+                                                <div class="text-muted">No sales order items found.</div>
+                                            @endif
+                                        </div>
+
+                                        {{-- Picking Items --}}
+                                        <div class="col-md-6">
+                                            <h6>Picking Details</h6>
+                                            @if($pickingsBySo[$row->so_no] ?? false)
+                                                <table class="table table-sm table-bordered">
+                                                    <thead class="table-secondary">
+                                                        <tr>
+                                                            <th>Item</th>
+                                                            <th>Dimension</th>
+                                                            <th>Weight</th>
+                                                            <th>Status</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        @foreach($pickingsBySo[$row->so_no] as $picking)
+                                                            <tr>
+                                                                <td>
+                                                                    <ul class="mb-0 ps-3">
+                                                                        @foreach($picking->items as $itemJson)
+                                                                            @php
+                                                                                $item = json_decode($itemJson, true);
+                                                                            @endphp
+                                                                            <li>{{ $item['item'] }} (Qty: {{ $item['qty'] }})</li>
+                                                                        @endforeach
+                                                                    </ul>
+                                                                    
+                                                                </td>
+                                                                <td>{{ $picking->dimension }}</td>
+                                                                <td>{{ $picking->weight }}</td>
+                                                                <td>{{ ucfirst($picking->status) }}</td>
+                                                            </tr>
+                                                        @endforeach
+                                                    </tbody>
+                                                </table>
+                                            @else
+                                                <div class="text-muted">No picking data found.</div>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($salesOrdersBySo[$row->so_no] as $so)
-                                <tr>
-                                    <td>{{ $so->item_name }}</td>
-                                    <td>{{ $so->category }}</td>
-                                    <td>{{ $so->hsn }}</td>
-                                    <td>{{ $so->qty }}</td>
-                                    <td>{{ $so->rate }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <div class="text-muted">No sales order items found.</div>
-                @endif
-            </div>
-
-            {{-- Picking Items --}}
-            <div class="col-md-6">
-                <h6>Picking Details</h6>
-                @if($pickingsBySo[$row->so_no] ?? false)
-                    <table class="table table-sm table-bordered">
-                        <thead class="table-secondary">
-                            <tr>
-                                <th>Item</th>
-                                <th>Dimension</th>
-                                <th>Weight</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($pickingsBySo[$row->so_no] as $picking)
-                                <tr>
-                                    <td>
-                                        <ul class="mb-0 ps-3">
-                                            @foreach($picking->items_array as $item)
-                                                <li>{{ $item['item'] ?? 'N/A' }} (Qty: {{ $item['qty'] ?? 0 }})</li>
-                                            @endforeach
-                                        </ul>
-                                    </td>
-                                    <td>{{ $picking->dimension }}</td>
-                                    <td>{{ $picking->weight }}</td>
-                                    <td>{{ ucfirst($picking->status) }}</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <div class="text-muted">No picking data found.</div>
-                @endif
-            </div>
-        </div>
-    </td>
-</tr>
-
-
-
                             @endforeach
                         </tbody>
                     </table>
