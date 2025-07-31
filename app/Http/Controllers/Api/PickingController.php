@@ -59,7 +59,7 @@ class PickingController extends Controller
             ], 500);
         }
     }
-    
+
     /**
      * Original store method - preserved for compatibility
      *
@@ -70,4 +70,24 @@ class PickingController extends Controller
     {
         return $this->__invoke($request);
     }
+
+    public function destroy($id)
+    {
+        $picking = Picking::find($id);
+        if (!$picking) {
+            return response()->json([
+                'success' => false,
+                'message' => 'No picking found with provided ID'
+            ], 404);
+        }
+
+        $picking->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Picking deleted successfully'
+        ]);
+    }
+
+
 }
