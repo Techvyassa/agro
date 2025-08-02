@@ -33,9 +33,67 @@ class DashboardController extends Controller
 
     public function shortSoPage()
     {
+        // 
+
+
+
+
         // Get all pickings on hold, grouped by so_no
         $pickings = \App\Models\Picking::where('status', 'hold')->get()->groupBy('so_no');
-        return view('short-so', compact('pickings'));
+
+        // Get comparison data for each SO
+        $comparisonData = [];
+
+        foreach ($pickings as $so_no => $group) {
+            // Get sales order items for this SO
+            $salesOrderItems = \App\Models\SalesOrder::where('so_no', $so_no)
+                ->select('item_name', 'qty')
+                ->get()
+                ->keyBy('item_name');
+
+            // Get picked items for this SO
+            $pickedItems = collect();
+            foreach ($group as $packing) {
+                $itemsData = $packing->items;
+
+                if (is_array($itemsData)) {
+                    foreach ($itemsData as $itemString) {
+                        if (is_string($itemString)) {
+                            $decoded = json_decode($itemString, true);
+                            if (is_array($decoded) && isset($decoded['item']) && isset($decoded['qty'])) {
+                                $pickedItems->push($decoded);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // Group picked items by item name and sum quantities
+            $pickedItemsGrouped = $pickedItems->groupBy('item')->map(function ($group) {
+                return $group->sum('qty');
+            });
+
+            // Compare sales order vs picked items
+            $shortItems = [];
+            foreach ($salesOrderItems as $itemName => $salesOrder) {
+                $orderedQty = $salesOrder->qty;
+                $pickedQty = $pickedItemsGrouped->get($itemName, 0);
+                $shortQty = $orderedQty - $pickedQty;
+
+                if ($shortQty > 0) {
+                    $shortItems[] = [
+                        'item' => $itemName,
+                        'ordered_qty' => $orderedQty,
+                        'picked_qty' => $pickedQty,
+                        'short_qty' => $shortQty
+                    ];
+                }
+            }
+
+            $comparisonData[$so_no] = $shortItems;
+        }
+
+        return view('short-so', compact('pickings', 'comparisonData'));
     }
 
     public function forceCompleteBySoNo($so_no)

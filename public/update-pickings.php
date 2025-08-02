@@ -15,24 +15,21 @@ try {
     $method = $_SERVER['REQUEST_METHOD'];
 
     if ($method === 'GET') {
-        $id = $_GET['id'] ?? null;
-        $box = $_GET['box'] ?? null;
-        $so_no = $_GET['so_no'] ?? null;
-        $dimension = $_GET['dimension'] ?? null;
-        $weight = $_GET['weight'] ?? null;
-        $items = isset($_GET['items']) ? (is_array($_GET['items']) ? $_GET['items'] : [$_GET['items']]) : null;
-    } else {
-        $data = json_decode(file_get_contents('php://input'), true);
-        if (!$data && !empty($_POST)) {
-            $data = $_POST;
-        }
-        $id = $data['id'] ?? null;
-        $box = $data['box'] ?? null;
-        $so_no = $data['so_no'] ?? null;
-        $dimension = $data['dimension'] ?? null;
-        $weight = $data['weight'] ?? null;
-        $items = $data['items'] ?? null;
+        echo json_encode([
+            'success' => false,
+            'message' => 'GET method not supported for updating'
+        ]);
+        exit;
     }
+
+    // 🔍 Parse raw input
+    $rawData = json_decode(file_get_contents('php://input'), true);
+    if (!$rawData && !empty($_POST)) {
+        $rawData = $_POST;
+    }
+
+    // Ensure input is an array
+    $records = isset($rawData[0]) ? $rawData : [$rawData];
 
     function extractFirstBoxValue($box)
     {
@@ -49,99 +46,108 @@ try {
         return null;
     }
 
-    $pickingModel = null;
+    $results = [];
 
-    // 🔍 Directly find by ID if provided
-    if ($id) {
-        $pickingModel = App\Models\Picking::find($id);
-        if (!$pickingModel) {
-            echo json_encode([
-                'success' => false,
-                'message' => 'No picking found with provided ID'
-            ]);
-            exit;
-        }
-    } else {
-        // Require so_no and box if no ID
-        if (empty($box) || empty($so_no)) {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Either id or both box and so_no parameters are required'
-            ]);
-            exit;
-        }
+    foreach ($records as $index => $data) {
+        try {
+            $id = $data['id'] ?? null;
+            $box = $data['box'] ?? null;
+            $so_no = $data['so_no'] ?? null;
+            $dimension = $data['dimension'] ?? null;
+            $weight = $data['weight'] ?? null;
+            $items = $data['items'] ?? null;
 
-        $firstRequestBox = extractFirstBoxValue($box);
-        if (!$firstRequestBox) {
-            echo json_encode([
-                'success' => false,
-                'message' => 'Unable to extract first box value from request'
-            ]);
-            exit;
-        }
+            $pickingModel = null;
 
-        // 🔍 Find all pickings for so_no and match box
-        $allPickings = DB::table('pickings')->where('so_no', $so_no)->get();
+            // 🆔 Find by ID or so_no + box
+            if ($id) {
+                $pickingModel = App\Models\Picking::find($id);
+            } else {
+                if (empty($box) || empty($so_no)) {
+                    throw new Exception('Missing required fields: either id or (box and so_no)');
+                }
 
-        foreach ($allPickings as $picking) {
-            $firstDbBox = extractFirstBoxValue($picking->box);
-            if ($firstDbBox == $firstRequestBox) {
-                $pickingModel = App\Models\Picking::find($picking->id);
-                break;
+                $firstRequestBox = extractFirstBoxValue($box);
+                if (!$firstRequestBox) {
+                    throw new Exception('Unable to extract first box value');
+                }
+
+                $allPickings = DB::table('pickings')->where('so_no', $so_no)->get();
+                foreach ($allPickings as $picking) {
+                    $firstDbBox = extractFirstBoxValue($picking->box);
+                    if ($firstDbBox == $firstRequestBox) {
+                        $pickingModel = App\Models\Picking::find($picking->id);
+                        break;
+                    }
+                }
             }
-        }
 
-        if (!$pickingModel) {
-            echo json_encode([
+            if (!$pickingModel) {
+                throw new Exception('Picking not found for ID or box+so_no combination');
+            }
+
+            // 🛠️ Update fields
+            $updated = false;
+
+            if (!is_null($items)) {
+                $pickingModel->items = $items;
+                $updated = true;
+            }
+
+            if (!is_null($box)) {
+                $pickingModel->box = $box;
+                $updated = true;
+            }
+
+            if (!is_null($dimension)) {
+                $pickingModel->dimension = $dimension;
+                $updated = true;
+            }
+
+            if (!is_null($weight)) {
+                $pickingModel->weight = $weight;
+                $updated = true;
+            }
+
+            if ($updated) {
+                $pickingModel->save();
+                $results[] = [
+                    'index' => $index,
+                    'success' => true,
+                    'message' => 'Picking updated successfully',
+                    'id' => $pickingModel->id
+                ];
+            } else {
+                $results[] = [
+                    'index' => $index,
+                    'success' => true,
+                    'message' => 'No fields updated',
+                    'id' => $pickingModel->id
+                ];
+            }
+
+        } catch (Exception $e) {
+            // ⛔ Catch and report error for this index
+            $results[] = [
+                'index' => $index,
                 'success' => false,
-                'message' => 'No matching picking found for given so_no and box'
-            ]);
-            exit;
+                'message' => 'Failed to update picking',
+                'error' => $e->getMessage(),
+                'data' => $data
+            ];
         }
     }
 
-    // 🔧 Update fields if provided
-    $updated = false;
-
-    if (!is_null($items)) {
-        $pickingModel->items = $items;
-        $updated = true;
-    }
-
-    if (!is_null($box)) {
-        $pickingModel->box = $box;
-        $updated = true;
-    }
-
-    if (!is_null($dimension)) {
-        $pickingModel->dimension = $dimension;
-        $updated = true;
-    }
-
-    if (!is_null($weight)) {
-        $pickingModel->weight = $weight;
-        $updated = true;
-    }
-
-    if ($updated) {
-        $pickingModel->save();
-        echo json_encode([
-            'success' => true,
-            'message' => 'Picking updated successfully',
-            'data' => $pickingModel
-        ]);
-    } else {
-        echo json_encode([
-            'success' => true,
-            'message' => 'No fields updated',
-            'data' => $pickingModel
-        ]);
-    }
+    echo json_encode([
+        'success' => true,
+        'message' => 'Batch update processed',
+        'results' => $results
+    ]);
 
 } catch (Exception $e) {
     echo json_encode([
         'success' => false,
-        'message' => 'Error occurred during update',
+        'message' => 'Critical error during batch update',
         'error' => $e->getMessage()
     ]);
 }
